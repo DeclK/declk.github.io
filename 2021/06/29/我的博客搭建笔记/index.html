@@ -491,28 +491,28 @@ v10.19.0
 hexo-cli: <span class="token number">4.3</span>.0
 os: linux <span class="token number">5.4</span>.0-77-generic Ubuntu <span class="token number">20.04</span>.2 LTS <span class="token punctuation">(</span>Focal Fossa<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-none"><code class="language-none">mkdir blog &amp;&amp; cd blog
-sudo hexo init<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">mkdir</span> blog <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> blog
+<span class="token function">sudo</span> hexo init<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>如果哪里出错了，想重来，直接删除 blog 文件夹即可</p>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre class="line-numbers language-none"><code class="language-none">sudo hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>遇到报错</p>
-<pre class="line-numbers language-none"><code class="language-none">INFO  Validating config
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">INFO  Validating config
 INFO  Start processing
-FATAL &#123; err:
-   TypeError: line.matchAll is not a function<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+FATAL <span class="token punctuation">&#123;</span> err:
+   TypeError: line.matchAll is not a <span class="token keyword">function</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>原因在于 nodejs 版本太低，尝试使用 n 升级 nodejs</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo npm install -g n
-sudo n latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g n
+<span class="token function">sudo</span> n latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>查看版本</p>
-<pre class="line-numbers language-none"><code class="language-none">node -v
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">node -v
 v16.4.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>成功启动 hexo server，你可以通过 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 访问你的本地博客啦！</p>
-<h3 id="写第一篇文章"><a href="#写第一篇文章" class="headerlink" title="写第一篇文章"></a>写第一篇文章</h3><pre class="line-numbers language-none"><code class="language-none">sudo hexo new &#39;Fisrt Blog&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="写第一篇文章"><a href="#写第一篇文章" class="headerlink" title="写第一篇文章"></a>写第一篇文章</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> hexo new <span class="token string">'Fisrt Blog'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>信息</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">INFO  Validating config
@@ -536,10 +536,12 @@ deploy:
   repo: https://github.com/DeclK/declk.github.io.git
   branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h3><pre class="line-numbers language-none"><code class="language-none">sudo hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>现在你的仓库里多了一些文件</p>
 <p>以后你就可以通过你的仓库名 ***.github.io 来访问你的博客啦！</p>
+<p>其中遇到一个问题，需要设置一下 git deployer 中 user.name &amp; user.email，参考链接如下</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/IThelei/article/details/104179452">https://blog.csdn.net/IThelei/article/details/104179452</a></p>
 <h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>在寻找了许久过后决定使用下面这个主题</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery">https://github.com/blinkfox/hexo-theme-matery</a></p>
 <p>可以根据这个项目去更改</p>
@@ -774,18 +776,17 @@ deploy:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/06/29/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E7%AC%94%E8%AE%B0/">
+                <a href="/2021/06/30/code-test/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="我的博客搭建笔记">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="code test">
                         
-                        <span class="card-title">我的博客搭建笔记</span>
+                        <span class="card-title">code test</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -795,9 +796,9 @@ deploy:
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-29
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-30
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -806,7 +807,6 @@ deploy:
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
