@@ -244,7 +244,7 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    background-image: linear-gradient(to right, #BEBEBE 0%, #708090 100%);
 }
 
 .text-color {
@@ -260,7 +260,7 @@ mark {
     position: fixed;
     bottom: 0;
     z-index: 300;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    background: linear-gradient(to right, #BEBEBE 0%, #708090 100%);
     opacity: 0.8;
 }
 
@@ -405,7 +405,7 @@ header .side-nav .social-link {
 .scroll-down {
     background: #333;
     margin: 100px auto;
-    -webkit-animation: scroll-down 1.5s infinite;
+    -webkit-F: scroll-down 1.5s infinite;
     -moz-animation: scroll-down 1.5s infinite;
     -o-animation: scroll-down 1.5s infinite;
     animation: scroll-down 1.5s infinite;
@@ -585,15 +585,16 @@ header .go-back i {
 
 .bg-cover .description {
     font-weight: 300;
-    font-size: 1.25rem;
+    font-size: 2rem;
     line-height: 1.4em;
-    color: #eee;
+    color: #000;
 }
 
 .bg-cover .post-title {
     margin: 0 auto;
     font-size: 2.5rem;
     font-weight: 400;
+    color: #eee
 }
 
 @-webkit-keyframes rainbow {
@@ -1906,7 +1907,7 @@ footer .copy-right {
 }
 
 .top-scroll .btn-floating {
-    background: linear-gradient(to bottom right, #FF5E3A 0%, #FF2A68 100%);
+    background: linear-gradient(to bottom right, #CD5555 50%, #FFD700 100%);
     width: 48px;
     height: 48px;
 }
