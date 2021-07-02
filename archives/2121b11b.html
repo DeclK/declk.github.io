@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="我的博客搭建笔记, Hongkun">
+    <meta name="keywords" content="Git 教程, Hongkun">
     <meta name="description" content="Blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>我的博客搭建笔记 | Hongkun</title>
+    <title>Git 教程 | Hongkun</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -278,7 +278,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">我的博客搭建笔记</h1>
+                    <h1 class="description center-align post-title">Git 教程</h1>
                 </div>
             </div>
         </div>
@@ -394,12 +394,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/hexo/">
-                                <span class="chip bg-color">hexo</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                                <span class="chip bg-color">博客搭建</span>
+                            <a href="/tags/git/">
+                                <span class="chip bg-color">git</span>
                             </a>
                         
                     </div>
@@ -414,8 +410,8 @@
                                 软件基础
                             </a>
                         
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/hexo/" class="post-category">
-                                hexo
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/git/" class="post-category">
+                                git
                             </a>
                         
                     </div>
@@ -427,7 +423,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-06-29
+                    2021-07-02
                 </div>
                 
 
@@ -436,7 +432,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    632
+                    1.3k
                 </div>
                 
 
@@ -461,84 +457,102 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="个人博客搭建-hexo"><a href="#个人博客搭建-hexo" class="headerlink" title="个人博客搭建 hexo"></a>个人博客搭建 hexo</h1><p>整体参考过程为 CodeSheep 视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty">https://www.bilibili.com/video/BV1Yb411a7ty</a></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Node-js-amp-npm"><a href="#Node-js-amp-npm" class="headerlink" title="Node.js &amp; npm"></a>Node.js &amp; npm</h3><p>参考链接：<a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/760687">https://developer.aliyun.com/article/760687</a></p>
-<p>我选择了 apt 安装</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo apt update
-sudo apt install nodejs npm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+                <h1 id="Git-reorganiszed-note"><a href="#Git-reorganiszed-note" class="headerlink" title="Git reorganiszed note"></a>Git reorganiszed note</h1><p>重新整理了 git 的常用操作命令，能够覆盖大部分版本管理场景，适合作为提纲进行复习</p>
+<p>整理来自：</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FE411P7B3?from=search&amp;seid=1905221215711628694">https://www.bilibili.com/video/BV1FE411P7B3?from=search&amp;seid=1905221215711628694</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">https://www.liaoxuefeng.com/wiki/896043488029600</a></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>当遇到国外资源下载很慢的时候，可以考虑使用镜像资源</p>
+<p>视频里使用了淘宝镜像安装 windows 版本 <a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/">https://npm.taobao.org/mirrors/</a></p>
+<p>ubuntu 直接使用 apt install git 使用阿里云镜像</p>
+<h2 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h2><p>首先要理解的是，在windows 中 git bash 的基本操作命令和 Linux  terminal 是一样的。在 Linux 中 git 是集成到 terminal 当中的</p>
+<h3 id="git-config"><a href="#git-config" class="headerlink" title="git  config"></a>git  config</h3><p>配置用户名和邮箱</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git config --global user.name 'your_name'
+git config --global user.email '***@qq.com'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>版本信息</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nodejs --version
-v10.19.0
-npm --version
-6.14.4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>之后的所有提交都会使用你的用户和邮箱</p>
+<p>还可以根据需求配置代理</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 设置代理
+git config --global http.proxy http://127.0.0.1:1080
+# 查看代理
+git config --global --get http.proxy
+# 取消代理
+git config --global --unset http.proxy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>版本还是有点老旧</p>
-<h3 id="淘宝镜像-cnpm"><a href="#淘宝镜像-cnpm" class="headerlink" title="淘宝镜像 cnpm"></a>淘宝镜像 cnpm</h3><p>cnpm 的官方介绍是：cnpm是一个完整 npmjs.or 镜像，你可以用此代替官方版本(只读)，同步频率目前为 <strong>10分钟</strong> 一次以保证尽量与官方服务同步。</p>
-<p>安装了 cnpm 就可以使用镜像资源下载包，如果不希望使用镜像资源则换回 npm 命令即可。使用如下命令安装</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo npm install -g cnpm --registry=https://registry.npm.taobao.org<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="Git-基本理论"><a href="#Git-基本理论" class="headerlink" title="Git 基本理论"></a>Git 基本理论</h2><p>直接上图，重点关注左侧命令</p>
+<img src="/archives/2121b11b/image-20210628141830141.png" style="zoom:80%;">
 
-<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo cnpm install -g hexo-cli<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>从工作区 -&gt; 暂存区：git add</p>
+<p>从暂存区 -&gt; 本地仓库：git commit</p>
+<p>从本地仓库 -&gt; 远程仓库：git push</p>
+<p>这三个命令就能够让你感受到 git 版本控制的基本流程</p>
+<h2 id="Git-仓库搭建"><a href="#Git-仓库搭建" class="headerlink" title="Git 仓库搭建"></a>Git 仓库搭建</h2><h3 id="git-init-amp-git-clone"><a href="#git-init-amp-git-clone" class="headerlink" title="git init &amp; git clone"></a>git init &amp; git clone</h3><p>生成仓库(master 分支)的两种方法</p>
+<ol>
+<li><p>git init 初始化，生成 .git 文件</p>
+</li>
+<li><p>git clone url 克隆远程仓库</p>
+</li>
+</ol>
+<p>删除仓库则只需要删除 .git 文件夹即可</p>
+<h2 id="Git-文件基本操作"><a href="#Git-文件基本操作" class="headerlink" title="Git 文件基本操作"></a>Git 文件基本操作</h2><h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p>git status 查看 git 文件状态，git status file_name 可指定文件</p>
+<p>文件的几种状态：</p>
+<ol>
+<li>untracked 文件在文件夹中，从没有 add 过</li>
+<li>unmodify 文件已经 commit 且库中最新版本和当前文件是一致的，可以通过 git rm 将其移出版本库管理</li>
+<li>modified 文件在 commit 或者 add 过后有过修改，可以使用 git checkout 丢弃修改</li>
+<li>staged (文件在之前 commit 过后有过修改) 经过 add，没有 commit</li>
+</ol>
+<h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p>有些时候我们不想把某些文件纳入版本控制中，可在主目录下建立 .gitignore 文件，例如你不详把 txt 类型文件进行版本控制，则在 .gitignore 文件中写入 *.txt 即可，其他具体规则不作介绍，也比较简单。</p>
+<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><p>git add file_name 将文件加入暂存区，文件成为 staged 状态</p>
+<p>git add . 将当前文件夹 add，比较方便快捷</p>
+<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p>git commit -m ‘massage you want to say’ 将暂存区所有文件加入到版本库中，并留下此次提交的 message</p>
+<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p>将已经 commit 的文件从版本库中移除变为 untracked 文件</p>
+<h2 id="Git-版本回退"><a href="#Git-版本回退" class="headerlink" title="Git 版本回退"></a>Git 版本回退</h2><h3 id="git-log-amp-git-reflog"><a href="#git-log-amp-git-reflog" class="headerlink" title="git log &amp; git reflog"></a>git log &amp; git reflog</h3><p>git log 查看 commit 历史记录，id，作者等信息</p>
+<p>git reflog 查看所有的操作</p>
+<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>回退到某一个 commit 版本，id 只用写前几位，git 自动识别</p>
+<p>git reset –hard commit_id</p>
+<p>回退到上一个 commit 版本，如果回退两个则是 HEAD^^</p>
+<p>git reset –hard HEAD^</p>
+<p>–hard 参数其实代表回退到某个 commit 后，该 commit 之后的记录都会被丢弃。但 git 永远都有后悔药吃，如果回退到以前的版本想要再回来，使用 git reflog 查看所有命令</p>
+<h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h3><p>git checkout 能够让文件回到最近一次 add 或者 commit 时的状态</p>
+<p>git checkout file_name</p>
+<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="github-amp-gitee"><a href="#github-amp-gitee" class="headerlink" title="github &amp; gitee"></a>github &amp; gitee</h3><p>国内外的远程仓库，gitee 为国内网站，传输速度更快。通过以下步骤将本机与远程连接（以 github 为例）：</p>
+<ol>
+<li><p>注册 github 账号</p>
+</li>
+<li><p>生成 ssh 公钥</p>
+<ol>
+<li><p>在本机 user 目录下找到 ssh 文件夹（安装 git 过后这个文件夹会自动生成）</p>
+</li>
+<li><p>在 shell 中运行以下命令生成 ssh 密钥，其中 rsa 是一种加密算法 </p>
+<p><code>ssh-keygen -t rsa</code></p>
+<p>之后你就能在 .ssh 文件中找到 id_rsa 和 id_rsa.pub 文件</p>
+</li>
+</ol>
+</li>
+<li><p>添加 id_rsa.pub 到 github 账户设置中</p>
+</li>
+</ol>
+<h2 id="分支与冲突"><a href="#分支与冲突" class="headerlink" title="分支与冲突"></a>分支与冲突</h2><h3 id="git-brach"><a href="#git-brach" class="headerlink" title="git brach"></a>git brach</h3><p>从这里我们可以更加深入理解 git 的工作形象，working tree</p>
+<p>除了 master 分支，我们还可以创建其他分支，HEAD 所指的就是 working tree “生长”的地方，然后我们将分支合并，也即让 master “赶上来”，再删除 dev 分支。git 分支还有一个一般规则是，master 分支永远是最稳定的分支，开发都在 dev 或其他分支上进行</p>
+<img src="/archives/2121b11b/branch_1.png" style="zoom: 50%;">
 
-<p>版本信息</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">hexo -v
-hexo-cli: 4.3.0
-os: linux 5.4.0-77-generic Ubuntu 20.04.2 LTS (Focal Fossa)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<img src="/archives/2121b11b/branch_2.png" style="zoom: 50%;">
 
-<h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">mkdir blog &amp;&amp; cd blog
-sudo hexo init<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<img src="/archives/2121b11b/branch_3.png" style="zoom:50%;">
 
-<p>如果哪里出错了，想重来，直接删除 blog 文件夹即可</p>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>使用 git branch 查看分支情况，也可用于删除分支</p>
+<p>git branch -d branch_name</p>
+<h3 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h3><p>使用 git swich 来创建和切换分支</p>
+<p>git switch -c branch_name</p>
+<p>git switch branch_name</p>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p>将某个分支合并到当前分支</p>
+<p>git merge branch_name</p>
+<p>如果发生了冲突：两个 branch 中在同一个文件中有不同的修改而无法合并，那么需要解决冲突。</p>
+<img src="/archives/2121b11b/branch_4.png" style="zoom:50%;">
 
-<p>遇到报错</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">INFO  Validating config
-INFO  Start processing
-FATAL { err:
-   TypeError: line.matchAll is not a function<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>原因在于 nodejs 版本太低，尝试使用 n 升级 nodejs</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo npm install -g n
-sudo n latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>查看版本</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">node -v
-v16.4.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>成功启动 hexo server，你可以通过 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 访问你的本地博客啦！</p>
-<h3 id="写第一篇文章"><a href="#写第一篇文章" class="headerlink" title="写第一篇文章"></a>写第一篇文章</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo hexo new 'Fisrt Blog'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>信息</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">INFO  Validating config
-INFO  Created: /home/declan/Documents/blog/source/_posts/First-Blog.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>你的文章位置在上面的路径中可以找到，可以通过 markdown 语法进行书写</p>
-<h3 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h3><p>清理一些缓存，然后生成我们的页面，同样使用 hexo server 从本地查看效果</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">hexo clean
-hexo generate
-hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="布属到远端"><a href="#布属到远端" class="headerlink" title="布属到远端"></a>布属到远端</h2><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><p>在 github 新建仓库 name.github.io name一定要是你的 github 用户名</p>
-<p>在 blog 目录下，下载 git deployer</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo cnpm install --save hexo-deployer-git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="设置-config-yml"><a href="#设置-config-yml" class="headerlink" title="设置 _config.yml"></a>设置 _config.yml</h3><p>在 blog 目录下打开 _config.yml 文件，在文件最后的 # Deployments 上修改</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: 'git'
-  repo: https://github.com/DeclK/declk.github.io.git
-  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>现在你的仓库里多了一些文件</p>
-<p>以后你就可以通过你的仓库名 ***.github.io 来访问你的博客啦！</p>
-<p>其中遇到一个问题，需要设置一下 git deployer 中 user.name &amp; user.email，参考链接如下</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/IThelei/article/details/104179452">https://blog.csdn.net/IThelei/article/details/104179452</a></p>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>在寻找了许久过后决定使用下面这个主题</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery">https://github.com/blinkfox/hexo-theme-matery</a></p>
-<p>可以根据这个项目去更改</p>
+<p>先使用 git status 查看哪个文件发生冲突，然后使用 vim 编辑，git 会自动在文档中标明冲突的地方，我们需要将两个分支不同的地方变为相同的。</p>
+<h2 id="Git-IDE"><a href="#Git-IDE" class="headerlink" title="Git + IDE"></a>Git + IDE</h2><p>现在 git 和很多 IDE 都有联动，可以直接在 IDE 中方便的操作 git！</p>
+<p>以 pycharm 为例，只需要在你的项目文件夹下 git init 就可以 </p>
 
                 
             </div>
@@ -565,7 +579,7 @@ deploy:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://declk.github.io/archives/4984.html">https://declk.github.io/archives/4984.html</a>
+                    <a href="https://declk.github.io/archives/2121b11b.html">https://declk.github.io/archives/2121b11b.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -603,12 +617,8 @@ deploy:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/hexo/">
-                                    <span class="chip bg-color">hexo</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                                    <span class="chip bg-color">博客搭建</span>
+                                <a href="/tags/git/">
+                                    <span class="chip bg-color">git</span>
                                 </a>
                             
                         </div>
@@ -788,74 +798,18 @@ deploy:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/archives/b129f5ae.html">
+                <a href="/archives/2121b11b.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="hexo-theme-matery 教程">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Git 教程">
                         
-                        <span class="card-title">hexo-theme-matery 教程</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-02
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    软件基础
-                                </a>
-                            
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/hexo/" class="post-category">
-                                    hexo
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                        <span class="chip bg-color">博客搭建</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Current&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/archives/4984.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="我的博客搭建笔记">
-                        
-                        <span class="card-title">我的博客搭建笔记</span>
+                        <span class="card-title">Git 教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -866,7 +820,7 @@ deploy:
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-02
                             </span>
                         <span class="publish-author">
                             
@@ -876,8 +830,8 @@ deploy:
                                     软件基础
                                 </a>
                             
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/hexo/" class="post-category">
-                                    hexo
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/git/" class="post-category">
+                                    git
                                 </a>
                             
                             
@@ -888,14 +842,47 @@ deploy:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
                     </a>
                     
-                    <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                        <span class="chip bg-color">博客搭建</span>
-                    </a>
-                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/64c6e1a6.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="first article">
+                        
+                        <span class="card-title">first article</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Declan
+                            
+                        </span>
+                    </div>
                 </div>
                 
             </div>
