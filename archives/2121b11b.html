@@ -458,9 +458,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="Git-reorganiszed-note"><a href="#Git-reorganiszed-note" class="headerlink" title="Git reorganiszed note"></a>Git reorganiszed note</h1><p>重新整理了 git 的常用操作命令，能够覆盖大部分版本管理场景，适合作为提纲进行复习</p>
-<p>整理来自：</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FE411P7B3?from=search&amp;seid=1905221215711628694">https://www.bilibili.com/video/BV1FE411P7B3?from=search&amp;seid=1905221215711628694</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">https://www.liaoxuefeng.com/wiki/896043488029600</a></p>
+<p>整理来自：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FE411P7B3?from=search&amp;seid=1905221215711628694">bilibili</a> <a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰教程</a></p>
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>当遇到国外资源下载很慢的时候，可以考虑使用镜像资源</p>
 <p>视频里使用了淘宝镜像安装 windows 版本 <a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/">https://npm.taobao.org/mirrors/</a></p>
 <p>ubuntu 直接使用 apt install git 使用阿里云镜像</p>
@@ -506,6 +504,7 @@ git config --global --unset http.proxy<span aria-hidden="true" class="line-numbe
 <p>git add . 将当前文件夹 add，比较方便快捷</p>
 <h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p>git commit -m ‘massage you want to say’ 将暂存区所有文件加入到版本库中，并留下此次提交的 message</p>
 <h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p>将已经 commit 的文件从版本库中移除变为 untracked 文件</p>
+<p>git rm –cached file_name</p>
 <h2 id="Git-版本回退"><a href="#Git-版本回退" class="headerlink" title="Git 版本回退"></a>Git 版本回退</h2><h3 id="git-log-amp-git-reflog"><a href="#git-log-amp-git-reflog" class="headerlink" title="git log &amp; git reflog"></a>git log &amp; git reflog</h3><p>git log 查看 commit 历史记录，id，作者等信息</p>
 <p>git reflog 查看所有的操作</p>
 <h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>回退到某一个 commit 版本，id 只用写前几位，git 自动识别</p>
