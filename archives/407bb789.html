@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Git 教程, Hongkun">
+    <meta name="keywords" content="cs231n assignment2 笔记, Hongkun">
     <meta name="description" content="Blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Git 教程 | Hongkun</title>
+    <title>cs231n assignment2 笔记 | Hongkun</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,7 +293,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Git 教程</h1>
+                    <h1 class="description center-align post-title">cs231n assignment2 笔记</h1>
                 </div>
             </div>
         </div>
@@ -409,8 +409,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/git/">
-                                <span class="chip bg-color">git</span>
+                            <a href="/tags/cs231n/">
+                                <span class="chip bg-color">cs231n</span>
                             </a>
                         
                     </div>
@@ -421,12 +421,12 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/" class="post-category">
-                                软件基础
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
+                                课程
                             </a>
                         
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/git/" class="post-category">
-                                git
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/cs231n/" class="post-category">
+                                cs231n
                             </a>
                         
                     </div>
@@ -438,7 +438,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-07-02
+                    2021-07-12
                 </div>
                 
 
@@ -447,7 +447,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.9k
+                    2.6k
                 </div>
                 
 
@@ -472,108 +472,137 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Git-reorganiszed-note"><a href="#Git-reorganiszed-note" class="headerlink" title="Git reorganiszed note"></a>Git reorganiszed note</h1><p>重新整理了 git 的常用操作命令，能够覆盖大部分版本管理场景，适合作为提纲进行复习</p>
-<p>整理来自：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FE411P7B3?from=search&amp;seid=1905221215711628694">bilibili</a> <a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰教程</a></p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>当遇到国外资源下载很慢的时候，可以考虑使用镜像资源</p>
-<p>视频里使用了淘宝镜像安装 windows 版本 <a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/">https://npm.taobao.org/mirrors/</a></p>
-<p>ubuntu 直接使用 apt install git 使用阿里云镜像</p>
-<h2 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h2><p>首先要理解的是，在windows 中 git bash 的基本操作命令和 Linux  terminal 是一样的。在 Linux 中 git 是集成到 terminal 当中的</p>
-<h3 id="git-config"><a href="#git-config" class="headerlink" title="git  config"></a>git  config</h3><p>配置用户名和邮箱</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> config --global user.name <span class="token string">'your_name'</span>
-<span class="token function">git</span> config --global user.email <span class="token string">'***@qq.com'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>之后的所有提交都会使用你的用户和邮箱</p>
-<p>还可以根据需求配置代理</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 设置代理</span>
-<span class="token function">git</span> config --global http.proxy http://127.0.0.1:1080
-<span class="token comment"># 查看代理</span>
-<span class="token function">git</span> config --global --get http.proxy
-<span class="token comment"># 取消代理</span>
-<span class="token function">git</span> config --global --unset http.proxy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Git-基本理论"><a href="#Git-基本理论" class="headerlink" title="Git 基本理论"></a>Git 基本理论</h2><p>直接上图，重点关注左侧命令</p>
-<p><img src="/archives/2121b11b/image-20210628141830141.png" style="zoom:80%;"></p>
-<p>从工作区 -&gt; 暂存区：git add</p>
-<p>从暂存区 -&gt; 本地仓库：git commit</p>
-<p>从本地仓库 -&gt; 远程仓库：git push</p>
-<p>这三个命令就能够让你感受到 git 版本控制的基本流程</p>
-<h2 id="Git-仓库搭建"><a href="#Git-仓库搭建" class="headerlink" title="Git 仓库搭建"></a>Git 仓库搭建</h2><h3 id="git-init-amp-git-clone"><a href="#git-init-amp-git-clone" class="headerlink" title="git init &amp; git clone"></a>git init &amp; git clone</h3><p>生成仓库(master 分支)的两种方法</p>
-<ol>
-<li><p>git init 初始化，生成 .git 文件</p>
+                <h1 id="cs231n-2021-Assignment-2-note"><a href="#cs231n-2021-Assignment-2-note" class="headerlink" title="cs231n 2021 Assignment 2 note"></a>cs231n 2021 Assignment 2 note</h1><h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p>assignment 模板: <a target="_blank" rel="noopener" href="https://github.com/cs231n/cs231n.github.io">github</a> </p>
+<p>官方: <a target="_blank" rel="noopener" href="https://cs231n.github.io/assignments2021/assignment2/">课程链接</a></p>
+<p>assignment 参考链接: <a target="_blank" rel="noopener" href="https://github.com/amanchadha/stanford-cs231n-assignments-2020">2020</a></p>
+<p>发现了一种新的模式: pycharm + git + anaconda &amp; jupyter</p>
+<p>上面的组合能够帮助写代码的效率提升，pycharm 能够帮助调试，git 用于版本管理，conda 用于环境管理。jupyter 在测试代码块上有很大的优势，并且很多 cs231n 的作业形式都是以 ipynb 的文件类型发布，更适合在 jupyter 上打开，而且 jupyter 能够直接使用创建好的 conda 环境，特别方便</p>
+<p>经过一番折腾，最终决定使用 vs code 替换 pycharm，原因是 vs code 有 jupyter notebook 插件，可以直接显示在 editor 内，比 Pycharm 更方便而且以后想要学习其他语言 vs code 优势更大</p>
+<h2 id="过程中的编程复习"><a href="#过程中的编程复习" class="headerlink" title="过程中的编程复习"></a>过程中的编程复习</h2><ol>
+<li><p>重新复习了 numpy 的一些用法，一个重要思想就是尽量少考虑使用循环解决，要以 index 索引思想来解决数据的操作问题。</p>
+<p>reshape已经存在的shape</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>b<span class="token punctuation">.</span>shape<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>当接受参数是元组而是可变参数 <em>args 的时候，可以用 </em>tuple 来将参数变为 *args</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token operator">*</span>a<span class="token punctuation">.</span>shape<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>要学会善用矩阵点乘 A * B，是将对应元素相乘，在计算模的时候，或者当其中一个是 indication function 时很有用</p>
 </li>
-<li><p>git clone url 克隆远程仓库</p>
+<li><p>重新复习了字典的用法，核心是创造字典，dict(), dict.fromkeys()</p>
+<p>字典的 key, val 迭代器，如果不用 items，则只有 key</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> key<span class="token punctuation">,</span> val <span class="token keyword">in</span> <span class="token builtin">dict</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	pas<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>对于格式化字符串有新的认知，下面例子</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">self<span class="token punctuation">.</span>params <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+self<span class="token punctuation">.</span>params<span class="token punctuation">[</span><span class="token string">'b%d'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> weight_scale <span class="token operator">*</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>hd<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>可以用这样的形式来调用 key</p>
 </li>
 </ol>
-<p>删除仓库则只需要删除 .git 文件夹即可</p>
-<h2 id="Git-文件基本操作"><a href="#Git-文件基本操作" class="headerlink" title="Git 文件基本操作"></a>Git 文件基本操作</h2><h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p>git status 查看 git 文件状态，git status file_name 可指定文件</p>
-<p>文件的几种状态：</p>
-<ol>
-<li>untracked 文件在文件夹中，从没有 add 过</li>
-<li>unmodify 文件已经 commit 且库中最新版本和当前文件是一致的，可以通过 git rm 将其移出版本库管理</li>
-<li>modified 文件在 commit 或者 add 过后有过修改，可以使用 git checkout 丢弃修改</li>
-<li>staged (文件在之前 commit 过后有过修改) 经过 add，没有 commit</li>
+<h2 id="Fully-Connected-Networks"><a href="#Fully-Connected-Networks" class="headerlink" title="Fully Connected Networks"></a>Fully Connected Networks</h2><ol>
+<li>对于网络的认知有了更新。要把层(layer, w)和点(node, x)分开来看，这样网络结构才更清晰。一般隐藏层不包含输出层</li>
+<li><strong>反向传播熟悉 back propagation，尤其是矩阵相乘的反向传播，只需要记住结论就行了。对于广播过后的结果，需要将广播的矩阵作 sum 处理，得到广播前的对应元素梯度</strong></li>
+<li>5 layers 和 3 layers 网络优化时比较，差异在哪里？5 layer 更难优化，对于初始值敏感</li>
+<li><strong>对于优化算法进行了进一步了解，由三个核心点：AdaGrad, Momentum, EWA 最后自然推出 Adam 优化算法</strong></li>
+<li><strong>在编写代码的时候重要的版本需要保存，这就需要使用 git</strong></li>
 </ol>
-<h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p>有些时候我们不想把某些文件纳入版本控制中，可在主目录下建立 .gitignore 文件，例如你不详把 txt 类型文件进行版本控制，则在 .gitignore 文件中写入 *.txt 即可，其他具体规则不作介绍，也比较简单。</p>
-<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><p>git add file_name 将文件加入暂存区，文件成为 staged 状态</p>
-<p>git add . 将当前文件夹 add，比较方便快捷</p>
-<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p>git commit -m ‘massage you want to say’ 将暂存区所有文件加入到版本库中，并留下此次提交的 message</p>
-<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p>将已经 commit 的文件从版本库中移除变为 untracked 文件</p>
-<p>git rm —cached file_name</p>
-<h2 id="Git-版本回退"><a href="#Git-版本回退" class="headerlink" title="Git 版本回退"></a>Git 版本回退</h2><h3 id="git-log-amp-git-reflog"><a href="#git-log-amp-git-reflog" class="headerlink" title="git log &amp; git reflog"></a>git log &amp; git reflog</h3><p>git log 查看 commit 历史记录，id，作者等信息</p>
-<p>git reflog 查看所有的操作</p>
-<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>回退到某一个 commit 版本，id 只用写前几位，git 自动识别</p>
-<p>git reset —hard commit_id</p>
-<p>回退到上一个 commit 版本，如果回退两个则是 HEAD^^</p>
-<p>git reset —hard HEAD^</p>
-<p>—hard 参数其实代表回退到某个 commit 后，该 commit 之后的记录都会被丢弃。但 git 永远都有后悔药吃，如果回退到以前的版本想要再回来，使用 git reflog 查看所有命令</p>
-<h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h3><p>git checkout 能够让文件回到最近一次 add 或者 commit 时的状态</p>
-<p>git checkout file_name</p>
-<h2 id="分支与冲突"><a href="#分支与冲突" class="headerlink" title="分支与冲突"></a>分支与冲突</h2><h3 id="git-brach"><a href="#git-brach" class="headerlink" title="git brach"></a>git brach</h3><p>从这里我们可以更加深入理解 git 的工作形象，working tree</p>
-<p>除了 master 分支，我们还可以创建其他分支，HEAD 所指的就是 working tree “生长”的地方，然后我们将分支合并，也即让 master “赶上来”，再删除 dev 分支。git 分支还有一个一般规则是，master 分支永远是最稳定的分支，开发都在 dev 或其他分支上进行</p>
-<p><img src="/archives/2121b11b/branch_1.png" style="zoom: 50%;"></p>
-<p><img src="/archives/2121b11b/branch_2.png" style="zoom: 50%;"></p>
-<p><img src="/archives/2121b11b/branch_3.png" style="zoom:50%;"></p>
-<p>使用 git branch 查看分支情况，也可用于删除分支</p>
-<p>git branch -d branch_name</p>
-<h3 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h3><p>使用 git swich 来创建和切换分支</p>
-<p>git switch -c branch_name</p>
-<p># 复制远程的分支到本地</p>
-<p>git switch -c branch_name origin/branch_name</p>
-<p>git switch branch_name</p>
-<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p>将某个分支合并到当前分支</p>
-<p>git merge branch_name</p>
-<p>如果发生了冲突：两个 branch 中在同一个文件中有不同的修改而无法合并，那么需要解决冲突。（判断文件是否有修改，是根据 commit id 之类的标记节点来判断的，但是否存在冲突则是根据文件的内容）</p>
-<p><img src="/archives/2121b11b/branch_4.png" style="zoom:50%;"></p>
-<p>先使用 git status 查看哪个文件发生冲突，然后使用 vim 编辑，git 会自动在文档中标明冲突的地方。怎样修改无所谓，只要你 add &amp; commit 过后，git 就会默认冲突解决，并将你的文件作为最新的版本加入版本库中，更新 working tree</p>
-<p>如果对于 git 中 recursive 3-way merge 算法感兴趣，可以参看<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Merge_(version_control">维基百科</a></p>
-<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="添加远程仓库-github-or-gitee"><a href="#添加远程仓库-github-or-gitee" class="headerlink" title="添加远程仓库 github or gitee"></a>添加远程仓库 github or gitee</h3><p>gitee 为国内网站，传输速度更快。通过以下步骤将本机与远程连接（以 github 为例）：</p>
+<h2 id="Batch-normalization"><a href="#Batch-normalization" class="headerlink" title="Batch normalization"></a>Batch normalization</h2><p>进一步清晰了 bn 的过程与作用，可以回看自己的笔记了解详情</p>
+<h3 id="Inline-Question-1"><a href="#Inline-Question-1" class="headerlink" title="Inline Question 1"></a>Inline Question 1</h3><p><strong>How does the scale of weight initialization affect models with/without batch normalization differently, and why?</strong></p>
+<p>You should find that using batch normalization helps the network to converge much faster. </p>
+<p>使用 batch normalization 会让网络在训练集上收敛更快。这和普通的 normalization 是一个道理，减少 zigzag 拐弯</p>
+<p>还有几个需要知道和理解的点是：</p>
 <ol>
-<li><p>注册 github 账号</p>
+<li>batch normalization 帮助缓解梯度消失/爆炸的问题，这将减缓因为 weight initialization 过大或过小而产生梯度消失/爆炸的问题</li>
+<li>batch normalization 有一定的正则化效果，避免过拟合</li>
+</ol>
+<p><img src="/archives/407bb789/image-20210707160726541.png" alt="image-20210707160726541" style="zoom: 67%;"></p>
+<h3 id="Inline-Question-2"><a href="#Inline-Question-2" class="headerlink" title="Inline Question 2"></a>Inline Question 2</h3><p><strong>hat does this imply about the relationship between batch normalization and batch size? Why is this relationship observed?</strong></p>
+<p>一般规律是：batch size 越大训练集上收敛越快。当 batch size 比较小的时候，比 baseline 速度更慢，原因在于过少的样本带来的偏差太大，这样的噪音会影响训练和测试表现</p>
+<p><img src="/archives/407bb789/image-20210707164225500.png" alt="image-20210707164225500" style="zoom: 67%;"></p>
+<p>在训练和测试时均会用到 bn layer，测试时用的 $\mu,\sigma$  参数是训练过程中的指数加权平均 EWA</p>
+<h3 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h3><p>用在 RNN 中更多，如果以后接触 NLP 领域的话再深入整理。简单的解释 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74516930">知乎链接</a> </p>
+<p>假设我们有 10行 3列 的数据，即我们的batchsize = 10，每一行数据有三个特征，这是一种“列缩放”。</p>
+<p>而layer方向相反，它针对的是每一行进行缩放。即只看一笔数据，算出这笔所有特征的均值与方差再缩放。这是一种“行缩放”。</p>
+<p>Q: 为什么 gamma 和 beta 还是原来的 (D, ) 形状？Layer normalization 在 RNN 中有什么作用？</p>
+<p><img src="/archives/407bb789/image-20210707200112133.png" alt="image-20210707200112133" style="zoom: 67%;"></p>
+<p>看得出 layer normalization 在训练上也是有一定作用的，但在图像方面相比于 batch normalization 效果差一点，另一个比较自然的结果是，对于 layer normalization 来说 hidden dimension 取较大值较好</p>
+<h2 id="Drop-out"><a href="#Drop-out" class="headerlink" title="Drop out"></a>Drop out</h2><p>两行代码解决 (inverted) dropout layer 核心</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">mask <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token operator">*</span><span class="token builtin">input</span><span class="token punctuation">.</span>shape<span class="token punctuation">)</span> <span class="token operator">&lt;</span> p
+output <span class="token operator">=</span> <span class="token builtin">input</span> <span class="token operator">*</span> mask <span class="token operator">/</span> p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>vallina dropout 是在 test 时将输出乘以 p 使得输出是一个合理期望值。但如果我们在训练的时候已经除以 p 了，在测试时就不需要作任何操作。下图为正则化效果 regularization</p>
+<p><img src="/archives/407bb789/image-20210708160433242.png" alt="image-20210708160433242" style="zoom:67%;"></p>
+<h2 id="Convolutional-Neural-Networks"><a href="#Convolutional-Neural-Networks" class="headerlink" title="Convolutional Neural Networks"></a>Convolutional Neural Networks</h2><ol>
+<li><p>用嵌套循环实现了最原始的卷积操作，使用 np.pad 函数能实现 padding 操作，感觉这个函数的参数不是那么灵活</p>
 </li>
-<li><p>生成 ssh 公钥</p>
-<ol>
-<li><p>在本机 user 目录下找到 ssh 文件夹（安装 git 过后这个文件夹会自动生成）</p>
+<li><p>返回最大值坐标 np.argmax，如果想要返回多元坐标还需要使用 np.unravel_index 转化</p>
+<p><code>np.unravel(indices, shape)</code></p>
 </li>
-<li><p>在 shell 中运行以下命令生成 ssh 密钥，其中 rsa 是一种加密算法 </p>
-<p><code>ssh-keygen -t rsa</code></p>
-<p>之后你就能在 .ssh 文件中找到 id_rsa 和 id_rsa.pub 文件</p>
+<li><p>assignment 提供了 fast_layers.py 来实现快速卷积操作，比我自己写的循环代码要快 1000 多倍，使用了 im2col 技巧以及 Cpython extension</p>
+</li>
+<li><p>为什么在正则化的时候正则项中不包括偏差 b? 个人理解认为 b 对于正则化的贡献并不大，而 w 参数则占据了绝大部分的参数。</p>
 </li>
 </ol>
+<h3 id="Spatial-Batch-Normalization"><a href="#Spatial-Batch-Normalization" class="headerlink" title="Spatial Batch Normalization"></a>Spatial Batch Normalization</h3><p>这是卷积神经网络特有的 batch normalization。之前使用的 batch normalization 面对的是 (N, D) 形状的数据，但卷积过后得到的输出是类似 (N, C, H, W) 这样的多维数据。那我们应该怎样去计算这一批数据的统计量 $\mu, \sigma$ 呢？</p>
+<p>如果沿着之前的思维，我们只沿着样本数据轴 N 去计算 $\mu, \sigma$ </p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># data.shape = (N, C, H, W)</span>
+mean <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>data<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+var  <span class="token operator">=</span> np<span class="token punctuation">.</span>var<span class="token punctuation">(</span>data<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>这将会得到 (C, H, W) 形状的统计量，其中每一个值 (c, h, w)，其样本来自于 N 个像素点（同一 channel，同一位置）。但我们希望样本的数量更广泛一些，具体一点来说，我们希望样本来自于 N 个 feature map (H, W)，用 numpy 表示为</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># data.shape = (N, C, H, W)</span>
+mean <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>data<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+var <span class="token operator">=</span> np<span class="token punctuation">.</span>var<span class="token punctuation">(</span>data<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>这将会得到 (C,) 形状的统计量，即：得到了对于某一个 channel 的统计量，这是合理的，因为同一个 channel 我们使用的是同一个 kernel。这样我们不仅得到了更广泛样本的统计量，还减少了参数数量</p>
+<p>如果要使用之前写的 batch_norm 函数的话可以将数据转化为 (N <em> H </em> W, C) ，在 numpy 中使用 transpose + reshape 就可以完成</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">data<span class="token punctuation">.</span>transpose<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> C<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="Spatial-Group-Normalization"><a href="#Spatial-Group-Normalization" class="headerlink" title="Spatial Group Normalization"></a>Spatial Group Normalization</h3><p>一张图展示Batch Norm， Layer Norm ，Group Norm的区别</p>
+<p><img src="/archives/407bb789/image-20210710193505933.png" alt="image-20210710193505933"></p>
+<p>Group Norm可以理解为在layer Norm的基础上，输入维度为 (N, C, H, W)，对C进行分组，即 (N, G, C//G, H, W)。为了完成这一部分，重新思考了如何基于系统计算 back propagation</p>
+<p><strong>可以以重要的中间变量为节点，根据计算图逐步推导梯度。难点在于有矩阵参与的计算，经常伴随着矩阵形状的改变，在进行 back propagation 中一定要让梯度跟着这些计算进行升维和降维，可以想象为梯度会随着这些节点形状的变化进行复杂的流动，有分流(例如降维度)，也有汇合(例如 broadcast)</strong></p>
+<p>例如，在 forward pass 中 broadcast 会将矩阵升维，sum 会将矩阵降维，如果在 backward pass 中遇到 broadcast 操作时，则需要将 upper_grad 根据对应维度求和，举个例子，如果我们要求下面 X 的梯度的话，代码应该时这样的</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># input: X, X.shape = (N, D)</span>
+<span class="token comment"># f(X) = X - np.mean(X)</span>
+<span class="token comment"># upper_grad = dout, dout.shape = (N, D)</span>
+dmean <span class="token operator">=</span> np<span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span>dout<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>	<span class="token comment"># sum broadcast dimension</span>
+dmean <span class="token operator">=</span> dmean <span class="token operator">/</span> N	<span class="token comment"># mean operation back prop</span>
+dX <span class="token operator">=</span> dout <span class="token operator">-</span> dmean<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果想不使用计算图直接按照一般的矩阵梯度计算，遇到对矩阵/向量求导时，就会出现张量，也就是说维度会增加，需要熟悉张量的运算及其思维。还是借用上面的例子，但我们把平均值作为 (N, D) 形状来看待</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># input: X, X.shape = (N, D)</span>
+<span class="token comment"># f(X) = X - np.mean(X) * np.ones(X.shape)</span>
+<span class="token comment"># upper_grad = dout, dout.shape = (N, D)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<script type="math/tex; mode=display">
+\frac{\partial{loss}}{\partial{f(x)}} = dout，\ f(x)=x-\mu
+\\
+\frac{\partial{f(x)}}{\partial{\mu}} = a\ ((N\times D) \times (N\times D))\ shape\ tensor
+\\
+\frac{\partial{loss}}{\partial{\mu}}=\frac{\partial{loss}}{\partial{f(x)}} ·\frac{\partial{f(x)}}{\partial{\mu}}=dout
+\\
+\frac{\partial{\mu}}{\partial{x}} = a\ ((N\times D) \times (N\times D))\ shape\ tensor
+\\
+\frac{\partial{loss}}{\partial{x}}=\frac{\partial{loss}}{\partial{f(x)}}·\frac{\partial{f(x)}}{\partial{x}} - \frac{\partial{loss}}{\partial{f(x)}}·\frac{\partial{f(x)}}{\partial{\mu}}·\frac{\partial{\mu}}{\partial{x}}=dout -dout·\frac{\partial{\mu}}{\partial{x}}</script><p>这将是一种普适的方法，更加抽象化，能够处理任何的矩阵求导，但不推荐实际中使用。</p>
+<p>不论使用哪种方法，最核心的还是要理解梯度流动的本质——某一个变量的变动能够引起输出多少变动</p>
+<h2 id="BUG"><a href="#BUG" class="headerlink" title="BUG"></a>BUG</h2><h3 id="Fully-Connected-Layer"><a href="#Fully-Connected-Layer" class="headerlink" title="Fully Connected Layer"></a>Fully Connected Layer</h3><p>现在卡在了 solver 上</p>
+<p>不能得到 overfitting 的结果</p>
+<ol>
+<li><p>尝试更换 solver 看能否得到不一样的结果</p>
+<p>失败了</p>
 </li>
-<li><p>添加 id_rsa.pub 到 github 账户设置中</p>
+<li><p>尝试使用2016的所有答案，看是否是自己的代码出问题了</p>
+<p>失败了</p>
+<p>小技巧 Ctrl+r 能够更换 pycharm 相同字段</p>
+</li>
+<li><p>尝试更改 colab 本身的文件，使用2016年的colab文件</p>
+<p>成功，原因在于 learning rate 太小了，不能找到全局最优</p>
 </li>
 </ol>
-<p>这样就把本机和远程仓库连接起来了，具体的说是将本机与你的 github 账号通过 ssh 连接起来了</p>
-<h3 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h3><p>你的账号里可以有很多的仓库，我们想要将本地仓库与某一个指定仓库链接使用以下命令即可</p>
-<p>git remote add origin [url]</p>
-<p>远程仓库的名字叫 origin，这是 git 的默认叫法，url 是仓库的 https 或者 ssh</p>
-<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>把本地库的内容推送到远程仓库，使用下面命令</p>
-<p>git push -u orgin master</p>
-<p>这样就把本地 master 分支内容推送到了远程新的 master 分支。-u 参数为 set upstream 的意思，在推送的同时将我们的本地 master 分支和远程 master 分支联系起来（相当于作了 <code>git branch -u origin</code> ），今后则可以直接输入 git push 来简化推送命令，强烈建议在第一次 push 的时候带上 -u 参数</p>
-<p>其他本地分支与远程分支的 push 和连接也是一样的，把上面命令的 master 改为对应分支的名字（例如：dev 分支）即可，前提是本地要切换到那个分支，且远程存在同名的分支。</p>
-<p>个人认为 git push 一般是在同名的本地分支和远程分支之间进行</p>
-<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p>文件冲突不仅出现在本地的 merge 当中，也存在在 push 操作当中。push 的本质也是将本地和远程这两个 branch 进行融合。当这个远程仓库只有你一个人在 push 时，是不会有冲突的，因为远程的 working tree 只会一直往前延伸；当有多个人都在对某一个文件进行修改，working tree 就相当于有了多个分支，在 push 的时候就会形成冲突。如果有远端的冲突形成，就需要使用 git pull</p>
-<p>git pull 有两个作用，一个是拉取代码到本地，另一个是尝试与本地代码合并，如果不能使用 fast forward 合并，则需要自己来修改冲突部分，这部分和 git merge 是一样的</p>
-<h2 id="Git-IDE"><a href="#Git-IDE" class="headerlink" title="Git + IDE"></a>Git + IDE</h2><p>现在 git 和很多 IDE 都有联动，可以直接在 IDE 中方便的操作 git！</p>
-<p>以 pycharm 为例，只需要在你的项目文件夹下 git init 就可以 </p>
+<h3 id="Batch-normalization-1"><a href="#Batch-normalization-1" class="headerlink" title="Batch normalization"></a>Batch normalization</h3><ol>
+<li><p>卡在了计算 back prop 上</p>
+<p>最后出现的失误还是在于每一个公式必须要精确才行</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">norm_x <span class="token operator">=</span> <span class="token punctuation">(</span>x <span class="token operator">-</span> sample_mean<span class="token punctuation">)</span> <span class="token operator">/</span> np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>sample_var <span class="token operator">+</span> eps<span class="token punctuation">)</span>
+norm_x <span class="token operator">=</span> <span class="token punctuation">(</span>x <span class="token operator">-</span> sample_mean<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>sample_var<span class="token punctuation">)</span> <span class="token operator">+</span> eps<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>上面两个式子虽然在计算结果上相差不多，但是在网络的计算中，一点点的误差传播过后会变得越来越大</p>
+</li>
+<li><p>尝试使用 jupyter 进行编程，遇到问题：The kernel appears to have died. It will restart automatically</p>
+<p>以为是 jupyter 的问题，但测试了不同的软件都出错了，最终发现是自己代码的问题！当找了一圈没有找到答案时，可能就要怀疑自己了，而不是怀疑软件出了问题！不过这也有好处，让我决定放弃使用 pycharm 转战 vs code</p>
+</li>
+</ol>
 
                 
             </div>
@@ -600,7 +629,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://declk.github.io/archives/2121b11b.html">https://declk.github.io/archives/2121b11b.html</a>
+                    <a href="https://declk.github.io/archives/407bb789.html">https://declk.github.io/archives/407bb789.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -638,8 +667,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/git/">
-                                    <span class="chip bg-color">git</span>
+                                <a href="/tags/cs231n/">
+                                    <span class="chip bg-color">cs231n</span>
                                 </a>
                             
                         </div>
@@ -819,9 +848,64 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/archives/407bb789.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="cs231n assignment2 笔记">
+                        
+                        <span class="card-title">cs231n assignment2 笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
+                                    课程
+                                </a>
+                            
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/cs231n/" class="post-category">
+                                    cs231n
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/cs231n/">
+                        <span class="chip bg-color">cs231n</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/archives/53e3a160.html">
                     <div class="card-image">
@@ -839,9 +923,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -867,63 +951,6 @@
                     
                     <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
                         <span class="chip bg-color">安装教程</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/archives/b129f5ae.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="hexo-theme-matery 教程">
-                        
-                        <span class="card-title">hexo-theme-matery 教程</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-02
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    软件基础
-                                </a>
-                            
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/hexo/" class="post-category">
-                                    hexo
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                        <span class="chip bg-color">博客搭建</span>
                     </a>
                     
                 </div>
@@ -1054,6 +1081,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 
