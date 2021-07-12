@@ -78,30 +78,11 @@
   <li class="hide-on-med-and-down nav-item">
     
     <a href="/categories" class="waves-effect waves-light">
-
       
       <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
       
       <span>Categories</span>
-      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
     </a>
-    <ul class="sub-nav menus_item_child ">
-      
-      <li>
-        <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80">
-          
-          <span>软件基础</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/categories/%E8%AF%BE%E7%A8%8B">
-          
-          <span>课程</span>
-        </a>
-      </li>
-      
-    </ul>
     
   </li>
   
@@ -199,32 +180,12 @@
         
         <li class="m-nav-item">
 	  
-		<a href="javascript:;">
+		<a href="/categories" class="waves-effect waves-light">
 			
-				<i class="fa-fw fas fa-bookmark"></i>
+			    <i class="fa-fw fas fa-bookmark"></i>
 			
 			Categories
-			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
 		</a>
-            <ul  style="background:  ;" >
-              
-                <li>
-
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80 " style="margin-left:75px">
-				  
-		          <span>软件基础</span>
-                  </a>
-                </li>
-              
-                <li>
-
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B " style="margin-left:75px">
-				  
-		          <span>课程</span>
-                  </a>
-                </li>
-              
-            </ul>
           
         </li>
         
@@ -327,76 +288,459 @@
 <main class="content">
 
     
+<style>
 
-<div id="category-cloud" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-bookmark"></i>&nbsp;&nbsp;Post Categories
-            </div>
-            <div class="tag-chips">
-                
-                
-                
-                <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/" title="软件基础: 4">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F9EBEA;">软件基础
-                        <span class="tag-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E8%AF%BE%E7%A8%8B/" title="课程: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F5EEF8;">课程
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/hexo/" title="hexo: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #D5F5E3;">hexo
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/git/" title="git: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #E8F8F5;">git
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/Linux/" title="Linux: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #FEF9E7;">Linux
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E8%AF%BE%E7%A8%8B/cs231n/" title="cs231n: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F8F9F9;">cs231n
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-            </div>
+/*
+.category:not(:last-child) {
+  margin-bottom: 1rem;
+}
+*/
+.category-item {
+  color: black;
+  font-size: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.category-subitem {
+  font-size: 1rem;
+  font-weight: initial;
+}
+.category-collapse {
+  margin-left: 1.25rem;
+  width: 100%;
+}
+.category-count {
+  color: slategray;
+  font-size: 0.9rem;
+  font-weight: initial;
+  min-width: 1.3em;
+  line-height: 1.3em;
+  display: flex;
+  align-items: center;
+}
+.category-count i {
+  color: slategray;
+  padding-right: 0.25rem;
+}
+.category-count span {
+  color: slategray;
+  width: 2rem;
+}
+.category-item-action:not(.collapsed) > i {
+  transform: rotate(90deg);
+  transform-origin: center center;
+}
+.category-item-action i {
+  transition: transform 0.3s ease-out;
+  display: inline-block;
+  margin-left: 0.25rem;
+}
+.category-item-action:hover {
+  z-index: 1;
+  color: black;
+  text-decoration: none;
+  background-color: #F8F9FA;
+}
+
+
+
+.list-group-item:first-child {
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.category-item {
+    font-size: 1.25rem;
+    font-weight: initial;
+    display: flex;
+    align-items: center;
+}
+.list-group-item {
+    background-color: transparent;
+    border: 0;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    background-color: #fff;
+    /* border: 1px solid rgba(0,0,0,.125); */
+}
+
+#card-list-zzy .list-group-item:hover {
+    color: black;
+    background-color: #F8F9FA;
+    /*  border: 1px solid rgba(0,0,0,.125); */
+}
+
+.category-item-action i {
+    transition: transform .3s ease-out;
+    display: inline-block;
+    margin-left: .25rem;
+}
+
+.category-item-action a{
+      display: block;
+      padding: .75rem 1.25rem;
+}
+
+card-categories-list-spcail > div:hover{
+
+  color:black;
+  background-color: #F8F9FA;
+}
+
+.fa {
+    font-size: 1rem;
+    line-height: 1;
+}
+.category-count {
+    font-size: .9rem;
+    font-weight: initial;
+    min-width: 1.3em;
+    line-height: 1.3em;
+    display: flex;
+    align-items: center;
+}
+
+
+.category-content{
+   border-left:0px;
+   padding: .75rem 1.25rem;
+}
+
+.category-content a{
+    color: black;
+}
+
+.category-content a:hover{
+    color:black;
+    background-color: #F8F9FA;
+    box-shadow:none;
+ }
+.category-row {
+  border-color: #F8F9FA;;
+  border-bottom:none;
+  box-shadow: none;
+}
+
+#card-list-zzy{
+    position: relative;
+    /* margin-top: -2rem; */
+    transition: background-color .2s ease-in-out;
+    border-radius: .5rem;
+    z-index: 3;
+}
+.collapsible-header{
+
+    border: none;
+}
+
+.collapsible{
+  box-shadow:none !important;
+  -webkit-box-shadow: none !important;
+  border-left:none !important;
+  border-right:none !important;
+  border-bottom:none !important;
+}
+
+.categories-title{
+    font-size: 1.75rem;
+    padding-top: 20px;
+    /* padding-bottom: 5px; */
+    margin-bottom: -10px;
+}
+</style>
+
+  
+
+
+
+
+
+
+<div class="container" data-aos="fade-up">
+    <div class="card  card-categories-list-spcail">
+        <div class="categories-title center-align">
+                <i class="fas fa-bookmark"></i>&nbsp;&nbsp; All Categories
         </div>
+
+        <div class="card-content col s12  m12">
+         <div  id="card-list-zzy" class="container ">
+        <ul class="category-list collapsible expandable"  data-collapsible="expandable">
+          
+          
+  
+
+  
+    
+    
+
+    <li  class="active" >
+    <div class="category-row  row collapsible-header">
+      <a
+        class=" category-item  list-group-item category-item-action col s11 m11"
+        id="heading-ckr0j62kp000f0zilaklr9snv" 
+      >
+        课程
+        <i class="fas fa-chevron-right"></i>
+      </a>
+      <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="category-count col s1 m1">
+        <i class="fa fa-list"></i>
+        <span>1</span>
+      </a>
+
     </div>
+
+        
+      <div class="category-content collapsible-body">
+          
+
+        <ul class="collapsible expandable category-row"  data-collapsible="expandable">
+            
+  
+
+  
+    
+    
+
+    <li  class="" >
+    <div class="category-row category-sub  row collapsible-header">
+      <a
+        class=" category-subitem collapsed list-group-item category-item-action col s11 m11"
+        id="heading-ckr0j62lc000y0zil7hj9djqw" 
+      >
+        cs231n
+        <i class="fas fa-chevron-right"></i>
+      </a>
+      <a href="/categories/%E8%AF%BE%E7%A8%8B/cs231n/" class="category-count col s1 m1">
+        <i class="fa fa-list"></i>
+        <span>1</span>
+      </a>
+
+    </div>
+
+        
+          
+  <div id="collapse-ckr0j62lc000y0zil7hj9djqw" class="category-content collapsible-body" >
+    
+    
+    
+      
+      
+        <a href="/archives/407bb789.html" class=" list-group-item list-group-item-action">
+          <span class="category-post">cs231n assignment2 笔记</span>
+        </a>
+      
+    
+  </div>
+
+        
+
+    </li>
+  
+         </ul>
+
+
+
+       </div>
+
+        
+
+    </li>
+  
+    
+    
+
+    <li  class="active" >
+    <div class="category-row  row collapsible-header">
+      <a
+        class=" category-item  list-group-item category-item-action col s11 m11"
+        id="heading-ckr0j62jt00040zil668j1jkh" 
+      >
+        软件基础
+        <i class="fas fa-chevron-right"></i>
+      </a>
+      <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/" class="category-count col s1 m1">
+        <i class="fa fa-list"></i>
+        <span>4</span>
+      </a>
+
+    </div>
+
+        
+      <div class="category-content collapsible-body">
+          
+
+        <ul class="collapsible expandable category-row"  data-collapsible="expandable">
+            
+  
+
+  
+    
+    
+
+    <li  class="" >
+    <div class="category-row category-sub  row collapsible-header">
+      <a
+        class=" category-subitem collapsed list-group-item category-item-action col s11 m11"
+        id="heading-ckr0j62l7000s0zilbyg9hc8m" 
+      >
+        Linux
+        <i class="fas fa-chevron-right"></i>
+      </a>
+      <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/Linux/" class="category-count col s1 m1">
+        <i class="fa fa-list"></i>
+        <span>1</span>
+      </a>
+
+    </div>
+
+        
+          
+  <div id="collapse-ckr0j62l7000s0zilbyg9hc8m" class="category-content collapsible-body" >
+    
+    
+    
+      
+      
+        <a href="/archives/53e3a160.html" class=" list-group-item list-group-item-action">
+          <span class="category-post">Linux 安装笔记</span>
+        </a>
+      
+    
+  </div>
+
+        
+
+    </li>
+  
+    
+    
+
+    <li  class="" >
+    <div class="category-row category-sub  row collapsible-header">
+      <a
+        class=" category-subitem collapsed list-group-item category-item-action col s11 m11"
+        id="heading-ckr0j62l0000l0zil97zk5w1v" 
+      >
+        git
+        <i class="fas fa-chevron-right"></i>
+      </a>
+      <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/git/" class="category-count col s1 m1">
+        <i class="fa fa-list"></i>
+        <span>1</span>
+      </a>
+
+    </div>
+
+        
+          
+  <div id="collapse-ckr0j62l0000l0zil97zk5w1v" class="category-content collapsible-body" >
+    
+    
+    
+      
+      
+        <a href="/archives/2121b11b.html" class=" list-group-item list-group-item-action">
+          <span class="category-post">Git 教程</span>
+        </a>
+      
+    
+  </div>
+
+        
+
+    </li>
+  
+    
+    
+
+    <li  class="" >
+    <div class="category-row category-sub  row collapsible-header">
+      <a
+        class=" category-subitem collapsed list-group-item category-item-action col s11 m11"
+        id="heading-ckr0j62ks000h0zilhpveh4nw" 
+      >
+        hexo
+        <i class="fas fa-chevron-right"></i>
+      </a>
+      <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/hexo/" class="category-count col s1 m1">
+        <i class="fa fa-list"></i>
+        <span>2</span>
+      </a>
+
+    </div>
+
+        
+          
+  <div id="collapse-ckr0j62ks000h0zilhpveh4nw" class="category-content collapsible-body" >
+    
+    
+    
+      
+      
+        <a href="/archives/b129f5ae.html" class=" list-group-item list-group-item-action">
+          <span class="category-post">hexo-theme-matery 教程</span>
+        </a>
+      
+    
+      
+      
+        <a href="/archives/4984.html" class=" list-group-item list-group-item-action">
+          <span class="category-post">我的博客搭建笔记</span>
+        </a>
+      
+    
+  </div>
+
+        
+
+    </li>
+  
+         </ul>
+
+
+
+       </div>
+
+        
+
+    </li>
+  
+        </ul>
+       </div>
+    </div>
+</div>   
 </div>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script>
+
+
+$('.list-group-item').click(function(){
+
+  if($(this).hasClass('collapsed') ){
+      $(this).removeClass('collapsed');
+
+      //$(this).parent().next().slideDown();
+  }else{
+      $(this).addClass('collapsed');
+      //$(this).parent().next().slideUp();
+
+  }
+
+});
+
+
+var elem = document.querySelector('.collapsible .expandable');
+var instance = M.Collapsible.init(elem, {
+  accordion: false
+});
+
+</script>
 
     
     <style type="text/css">
@@ -474,7 +818,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.9k</span>&nbsp;字
+                class="white-color">8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
