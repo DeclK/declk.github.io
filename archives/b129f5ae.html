@@ -534,8 +534,8 @@ layout: <span class="token string">"tags"</span>
 </li>
 <li><p>在 hexo d 时遇到问题</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">err: Error: Spawn failed<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>第二天自动好了，估计是网络没有走通的问题还有点棘手，之后可能再次遇到，到时候再解决，建议在 github 上搜索</p>
-<p>现在发现了，是在 root 用户下 git config 没有设置好的原因，我在 root 目录的 .gitconfig 和 .ssh 下也配置好了 user.name ssh 等必要 git 配置。这说明了在 linux 下不同的用户都需要自己去配置</p>
+<p>第二天自动好了，根本原因是网络没有走通的问题，之后可能再次遇到，到时候再解决，建议在 github 上搜索</p>
+<p>现在发现了，由于我使用的是 root 用户下的 git 配置，而我 root 用户下 git config 没有设置好参数所以部署失败。我在 root 目录的 .gitconfig 和 .ssh 下配置好了 user.name ssh 等必要 git 配置就成功了。这说明了在 linux 下不同的用户都需要自己去配置 git</p>
 </li>
 <li><p>修改博客 feature image 只选用1张简单图来代表。原来有 24 张图，我把24个路径全部改为同1张图。</p>
 </li>
