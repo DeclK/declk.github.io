@@ -509,8 +509,9 @@ Connection to your_ip closed.<span aria-hidden="true" class="line-numbers-rows">
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
   <span class="token key atrule">type</span><span class="token punctuation">:</span> git
   <span class="token key atrule">repo</span><span class="token punctuation">:</span> git@your_ip<span class="token punctuation">:</span>/home/git/repos/blog.git
-  <span class="token key atrule">branch</span><span class="token punctuation">:</span> master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>配置好后就是 hexo 三连：<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code></p>
+<span class="token comment"># repo: git@github.com:name/name.github.io.git</span>
+  <span class="token key atrule">branch</span><span class="token punctuation">:</span> master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>配置好后就是 hexo 三连一键部署：<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code></p>
 <h3 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">cd</span> /etc/nginx
 <span class="token function">cp</span> nginx.conf nginx_backup.conf <span class="token comment"># 备份配置文件</span>
 <span class="token function">vim</span> nginx.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
