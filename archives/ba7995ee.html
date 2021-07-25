@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="hexo-theme-matery 教程, Hongkun">
+    <meta name="keywords" content="CenterPoint 复现笔记, Hongkun">
     <meta name="description" content="Blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>hexo-theme-matery 教程 | Hongkun</title>
+    <title>CenterPoint 复现笔记 | Hongkun</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hexo-theme-matery 教程</h1>
+                    <h1 class="description center-align post-title">CenterPoint 复现笔记</h1>
                 </div>
             </div>
         </div>
@@ -370,12 +370,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/hexo/">
-                                <span class="chip bg-color">hexo</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                                <span class="chip bg-color">博客搭建</span>
+                            <a href="/tags/CenterPoint/">
+                                <span class="chip bg-color">CenterPoint</span>
                             </a>
                         
                     </div>
@@ -386,12 +382,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/" class="post-category">
-                                软件基础
-                            </a>
-                        
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/hexo/" class="post-category">
-                                hexo
+                            <a href="/categories/papers/" class="post-category">
+                                papers
                             </a>
                         
                     </div>
@@ -403,7 +395,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-07-02
+                    2021-07-25
                 </div>
                 
 
@@ -412,7 +404,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.4k
+                    878
                 </div>
                 
 
@@ -437,166 +429,89 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="hexo-theme-matery-note"><a href="#hexo-theme-matery-note" class="headerlink" title="hexo-theme-matery note"></a>hexo-theme-matery note</h1><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>参考原 github 项目进行整理：<a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery">https://github.com/blinkfox/hexo-theme-matery</a></p>
-<h3 id="config-yml-的修改建议"><a href="#config-yml-的修改建议" class="headerlink" title="_config.yml 的修改建议"></a>_config.yml 的修改建议</h3><p>在 hexo 根目录下的 _config.yml 文件中：</p>
+                <h1 id="CenterPoint-复现笔记"><a href="#CenterPoint-复现笔记" class="headerlink" title="CenterPoint 复现笔记"></a>CenterPoint 复现笔记</h1><h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><ol>
+<li><p>pytorch下载如果使用镜像需要去掉参数 -c pytorch，采用北外的镜像速度快</p>
+</li>
+<li><p>下载cmake使用apt，但要更新下载源为阿里云，这样版本才够新</p>
+</li>
+<li><p>安装spconv时报错</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">The following packages have unmet dependencies:
+ gsettings-desktop-schemas <span class="token builtin class-name">:</span> Breaks: mutter <span class="token punctuation">(</span><span class="token operator">&lt;</span> <span class="token number">3.31</span>.4<span class="token punctuation">)</span> but <span class="token number">3.28</span>.4+git20200505-0ubuntu18.04.2 is to be installed
+E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>网络上一个解决方案是使用aptitude</p>
+<pre class="line-numbers language-SHell" data-language="SHell"><code class="language-SHell"># download aptitude
+sudo apt install aptitude
+sudo aptitude install &lt;packagename&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>血泪教训，不要轻易使用aptitude，系统很多东西都被改写了，经过一番折腾升级到了ubuntu 20.04，也不知道之前安装的东西有没有被动</p>
+<p>印象中提到”held packages”，应该按照那种方式解决</p>
+</li>
+<li><p>在下载spconv报错</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">CMake Error at CMakeLists.txt:2 <span class="token punctuation">(</span>project<span class="token punctuation">)</span>:
+  No CMAKE_CUDA_COMPILER could be found.
+  
+raise CalledProcessError<span class="token punctuation">(</span>retcode, cmd<span class="token punctuation">)</span>
+subprocess.CalledProcessError: Command <span class="token string">'['</span>cmake<span class="token string">', '</span>/home/declan/CenterPoint/spconv<span class="token string">', '</span>-DCMAKE_PREFIX_PATH<span class="token operator">=</span>/home/declan/anaconda3/envs/centerpoint/lib/python3.6/site-packages/torch<span class="token string">', '</span>-DPYBIND11_PYTHON_VERSION<span class="token operator">=</span><span class="token number">3.6</span><span class="token string">', '</span>-DSPCONV_BuildTests<span class="token operator">=</span>OFF<span class="token string">', '</span>-DCMAKE_CUDA_FLAGS<span class="token operator">=</span><span class="token string">"--expt-relaxed-constexpr"</span><span class="token string">', '</span>-DCMAKE_LIBRARY_OUTPUT_DIRECTORY<span class="token operator">=</span>/home/declan/CenterPoint/spconv/build/lib.linux-x86_64-3.6/spconv<span class="token string">', '</span>-DCMAKE_BUILD_TYPE<span class="token operator">=</span>Release<span class="token string">']'</span> returned non-zero <span class="token builtin class-name">exit</span> status <span class="token number">1</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>尝试设置 CUDA 路径</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">export</span> <span class="token assign-left variable">PYTHONPATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">${PYTHONPATH}</span>:/home/declan/CenterPoint"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/usr/local/cuda-10.0/bin:<span class="token environment constant">$PATH</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CUDA_PATH</span><span class="token operator">=</span>/usr/local/cuda-10.0
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CUDA_HOME</span><span class="token operator">=</span>/usr/local/cuda-10.0
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span>/usr/local/cuda-10.0/lib64:<span class="token variable">$LD_LIBRARY_PATH</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>没有效果</p>
+<h1 id="241-issues和我问题一模一样-https-github-com-traveller59-spconv-issues-241"><a href="#241-issues和我问题一模一样-https-github-com-traveller59-spconv-issues-241" class="headerlink" title="241 issues和我问题一模一样 https://github.com/traveller59/spconv/issues/241"></a>241 issues和我问题一模一样 <a target="_blank" rel="noopener" href="https://github.com/traveller59/spconv/issues/241">https://github.com/traveller59/spconv/issues/241</a></h1><p>尝试增加路径 </p>
+<p>try adding ‘-DCMAKE_CUDA_COMPILER=/usr/local/cuda-10.1/bin/nvcc’ in cmake_args</p>
+<p>依旧失败</p>
+<p>尝试使用不同版本的g++ sudo apt install g++-7，显示已经下载，我们需要切换版本</p>
+<p>ls name* 可以列出所有name开头的包</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/FontThrone/article/details/104279224">https://blog.csdn.net/FontThrone/article/details/104279224</a></p>
+<p>—slave 使得g++ gcc版本保持一致 70 90为重要权重priority</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 <span class="token number">70</span> --slave /usr/bin/g++ g++ /usr/bin/g++-7
+<span class="token function">sudo</span> update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 <span class="token number">90</span> --slave /usr/bin/g++ g++ /usr/bin/g++-9<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>对g++和gcc进行管理</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">  Selection    Path            Priority   Status
+------------------------------------------------------------
+* <span class="token number">0</span>            /usr/bin/gcc-9   <span class="token number">90</span>        auto mode
+  <span class="token number">1</span>            /usr/bin/gcc-7   <span class="token number">70</span>        manual mode
+  <span class="token number">2</span>            /usr/bin/gcc-9   <span class="token number">90</span>        manual mode
+<span class="token function">sudo</span> update-alternatives --config gcc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>成功</p>
+</li>
+</ol>
 <ol>
-<li><p>切换 theme 为 hexo-theme-matery</p>
+<li><p>选择了 nuScenes mini 数据集</p>
 </li>
-<li><p>url 改为网站 url (如：<a target="_blank" rel="noopener" href="http://xxx.github.io">http://xxx.github.io</a>)</p>
-</li>
-<li><p>per_page 数值改为6及6的倍数，这样文章列表在各个屏幕下都能较好显示</p>
-</li>
-<li><p>插入图片（有点复杂，可以先跳过）。根据 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/265077468">知乎链接</a> 配置好 post_asset_folder，里面提到的 typora 技巧也很实用，建议采用。且一般来讲链接中提到的 hexo-renderer-marked 插件都是已经内置好的，不然你的博客不会渲染成功。</p>
-<p>但是这个方法不能控制图片大小，而且配置过 typora 后还要再改图片的路径。我再下载了 hexo-asset-image 插件过后，直接用 typora 中的 html 方法 <code>&lt;img src='post_name/img.jpg'&gt;</code>引用图片，不需要二次更改路径</p>
+<li><p>运行测试</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python ./tools/dist_test.py infos_val_10sweeps_withvelo_filter_True.json  --work_dir work_dirs/CONFIG_NAME --checkpoint work_dirs/CONFIG_NAME/latest.pth --speed_test <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>报错</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ModuleNotFoundError: No module named <span class="token string">'torchie'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>尝试将torchie文档直接加入到PYTHONPATH当中</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">export</span> <span class="token assign-left variable">PYTHONPATH</span><span class="token operator">=</span><span class="token variable">$PYTHONPATH</span>:/home/delcan/CenterPoint/det3d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>新报错</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:  File <span class="token string">"./tools/dist_test.py"</span>, line <span class="token number">211</span>, <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>    main<span class="token punctuation">(</span><span class="token punctuation">)</span>  File <span class="token string">"./tools/dist_test.py"</span>, line <span class="token number">102</span>, <span class="token keyword">in</span> main    logger <span class="token operator">=</span> get_root_logger<span class="token punctuation">(</span>cfg.log_level<span class="token punctuation">)</span>  File <span class="token string">"/home/declan/CenterPoint/det3d/torchie/utils/config.py"</span>, line <span class="token number">146</span>, <span class="token keyword">in</span> __getattr__    <span class="token builtin class-name">return</span> getattr<span class="token punctuation">(</span>self._cfg_dict, name<span class="token punctuation">)</span>  File <span class="token string">"/home/declan/CenterPoint/det3d/torchie/utils/config.py"</span>, line <span class="token number">29</span>, <span class="token keyword">in</span> __getattr__    raise exAttributeError: <span class="token string">'ConfigDict'</span> object has no attribute <span class="token string">'log_level'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>可能是因为 nuscenes_mini 测试集原因</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tianweiy/CenterPoint/issues/106">https://github.com/tianweiy/CenterPoint/issues/106</a></p>
+<p>我根据上面的内容对源码进行了修改，先尝试 train 一下</p>
+<p>依旧报错，再检查可能是因为配置文件没有对的原因</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/issues/3093">https://github.com/open-mmlab/mmdetection/issues/3093</a></p>
+<p>通过正确配置 nusc_centerpoint_voxelnet_0075voxel_fix_bn_z.py 文件解决上面报错</p>
+<p>./configs/nusc/voxelnet/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z.py</p>
 </li>
 </ol>
-<h3 id="新建分类-categories-页"><a href="#新建分类-categories-页" class="headerlink" title="新建分类 categories 页"></a>新建分类 categories 页</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> hexo new page <span class="token string">'categories'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>categories 页是用来展示所有分类的页面</p>
-<p>修改 <code>/source/categories/index.md</code> 文件的 front-matter (Front-matter 是文件最上方以 —- 分隔的区域，用于指定个别文件的变量)</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">---
-title: categories
-date: <span class="token number">2018</span>-09-30 <span class="token number">17</span>:25:30
-type: <span class="token string">"categories"</span>
-layout: <span class="token string">"categories"</span>
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>关于 page 和 post 的区别：两者其实很相似，你可以把 page 看作是特殊的 post，用来放置一些特殊内容：如分类、标签等等。</p>
-<p>hexo 的分类是有等级关系的，我们以下面的 post front-matter 为例</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">title: 我的博客搭建笔记
-date: 2021-06-29 15:26:41
-tags:
-<span class="token list punctuation">-</span> hexo
-<span class="token list punctuation">-</span> 博客搭建
-categories:
-<span class="token list punctuation">-</span> 软件基础
-<span class="token list punctuation">-</span> hexo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这个文件在分类时会被分配到所有提到的 categories 中，这些 categories 的路径是逐渐往下的 <code>/categories/软件基础/hexo/</code>，它们都有自己的 page 来收纳属于自己类别的文章。</p>
-<h3 id="新建标签-tags-页"><a href="#新建标签-tags-页" class="headerlink" title="新建标签 tags 页"></a>新建标签 tags 页</h3><p>新建 page</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">hexo new page <span class="token string">"tags"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>修改对应 index.md</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">---
-title: tags
-date: <span class="token number">2018</span>-09-30 <span class="token number">18</span>:23:38
-type: <span class="token string">"tags"</span>
-layout: <span class="token string">"tags"</span>
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>给 post 指定 tags 只需要在 front-matter 中写好就行了，如上面 categories 的例子。</p>
-<h3 id="新建关于我-about-页"><a href="#新建关于我-about-页" class="headerlink" title="新建关于我 about 页"></a>新建关于我 about 页</h3><h3 id="新建留言板-contact-页"><a href="#新建留言板-contact-页" class="headerlink" title="新建留言板 contact 页"></a>新建留言板 contact 页</h3><h3 id="新建友情链接-friends-页"><a href="#新建友情链接-friends-页" class="headerlink" title="新建友情链接 friends 页"></a>新建友情链接 friends 页</h3><p>新建方法都是和上面的方法一样的</p>
-<h2 id="菜单导航配置"><a href="#菜单导航配置" class="headerlink" title="菜单导航配置"></a>菜单导航配置</h2><h3 id="名称、路径、图标"><a href="#名称、路径、图标" class="headerlink" title="名称、路径、图标"></a>名称、路径、图标</h3><p>配置菜单导航的名称、路径url、和图标icon，配置文件在 <code>themes/hexo-theme-matery/._config.yml</code></p>
-<p>更改 menu 部分即可</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">menu:
-  <span class="token comment"># 把 Index 改为 Home</span>
-  Home:
-    url: /
-    icon: fas fa-home
-  Tags:
-    url: /tags
-    icon: fas fa-tags<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>可该的部分：</p>
+<p>   由于没有完整的 nuScenes 数据集，又有新的错误报错</p>
+   <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">FileNotFoundError: <span class="token punctuation">[</span>Errno <span class="token number">2</span><span class="token punctuation">]</span> No such <span class="token function">file</span> or directory: <span class="token string">'nuScenes/samples/LIDAR_TOP/n008-2018-08-27-11-48-51-0400__LIDAR_TOP__1535385105950634.pcd.bin'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>   跳过这里，尝试跑一个 demo</p>
 <ol>
-<li>名称可以是中文</li>
-<li>图标可以在 <a target="_blank" rel="noopener" href="https://fontawesome.com/icons">Font Awesome</a> 中查找</li>
-<li>还可以使用二级菜单。二级菜单在实现上可以理解为创建了一个软链接，到你指定的 page 上。</li>
-</ol>
-<p>由于我对于这个导航还是比较满意，就不作过多修改</p>
-<h3 id="修改页脚"><a href="#修改页脚" class="headerlink" title="修改页脚"></a>修改页脚</h3><p>页脚信息可能需要做定制化修改，修改的地方在主题文件的 <code>/layout/_partial/footer.ejs</code> 文件中，包括站点、使用的主题、访问量等。</p>
-<p>由于代码看不明白，找到了一个比较详细的教程</p>
-<p><a target="_blank" rel="noopener" href="https://sunhwee.com/posts/6e8839eb.html">https://sunhwee.com/posts/6e8839eb.html</a></p>
-<p>根据上面的链接修改了版权信息，增加了网站运行时间，访问人数的代码目前不需要修改</p>
-<h3 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h3><p>修改 Hexo 根目录下 <code>_config.yml</code> 文件中 <code>highlight.enable</code> 的值为 <code>false</code>，并将 <code>prismjs.enable</code> 的值设置为 <code>true</code></p>
-<p>以上的设置并不管用，没有高亮也没有行号</p>
-<p>但是我下载了 hexo-prism-plugin 又卸载掉这个插件，就有高亮了，但依旧没有行号</p>
-<p>考虑是 matery.css 文件中 pre 下 paddidng 不够大的问题，增加 padding 但依然没能解决</p>
-<p>考虑是不是本身 prism 文件出了问题，重新到官网上下载了 prism.js 和 prism.css 替换原来系统中对应的文件，同时调整上面提到的 padding 参数，最后成功！</p>
-<p>prism.js 文件位置在 <code>node_modules/prismjs</code></p>
-<p>prism.css 文件位置在 <code>themes/hexo-theme-matery/source/libs/prism</code></p>
-<p>现在想要去除隔离的那条竖线，尝试重复下面链接的操作，操作过后竖线没有去除，不过稍微调整了一下代码位置，也挺好看</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/issues/103">https://github.com/blinkfox/hexo-theme-matery/issues/103</a></p>
-<p>最终，我通过修改 prism.css 中 border-right 为 0px，去除了行号和代码之间的分隔线！</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.line-numbers .line-numbers-rows</span> <span class="token punctuation">{</span>
-	<span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
-	<span class="token property">pointer-events</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
-	<span class="token property">top</span><span class="token punctuation">:</span> -0.2em<span class="token punctuation">;</span>
-	<span class="token property">font-size</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
-	<span class="token property">left</span><span class="token punctuation">:</span> -3.8em<span class="token punctuation">;</span>
-	<span class="token property">width</span><span class="token punctuation">:</span> 3em<span class="token punctuation">;</span> <span class="token comment">/* works for line-numbers below 1000 lines */</span>
-	<span class="token property">letter-spacing</span><span class="token punctuation">:</span> -1px<span class="token punctuation">;</span>
-	<span class="token property">border-right</span><span class="token punctuation">:</span> 0px solid #999<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>现在解决标号和 code 没对齐的问题，修改 prism.css 文件中 <code>.line-numbers .line-numbers-rows</code> 下 top 参数为 -0.2em，微调成功！治好了强迫症！</p>
-<h2 id="配置-theme-中的-config-yml"><a href="#配置-theme-中的-config-yml" class="headerlink" title="配置 theme 中的 _config.yml"></a>配置 theme 中的 _config.yml</h2><ol>
-<li><p>根据配置文件中的注释，简单修改了下面的设置</p>
-<p>dream, music, video, recommend, github &amp; social link, reward, clicklove, myProjects, mySkills, subtitle, banner</p>
+<li><p>```<br>python ./tools/dist_test.py ./configs/nusc/voxelnet/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z.py —work_dir work_dirs/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z —checkpoint work_dirs/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z/latest.pth —speed_test </p>
+<pre class="line-numbers language-none"><code class="language-none">
+上面的报错
+
+```shell
+FileNotFoundError: [Errno 2] No such file or directory: 'nuScenes/samples/LIDAR_TOP/n015-2018-10-02-10-50-40+0800__LIDAR_TOP__1538448754047572.pcd.bin'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查找目录发现这个文件其实是存在的，说明路径没有对，在 CentePoint 目录下添加 nuScenes 的软链接就可以解决了</p>
 </li>
-<li><p>取消 rainbow 特效</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.bg-cover:after</span> <span class="token punctuation">{</span>
-    <span class="token property">-webkit-animation</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
-    <span class="token property">animation</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>在 hexo d 时遇到问题</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">err: Error: Spawn failed<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>第二天自动好了，根本原因是网络没有走通的问题，之后可能再次遇到，到时候再解决，建议在 github 上搜索</p>
-<p>现在发现了，由于我使用的是 root 用户下的 git 配置，而我 root 用户下 git config 没有设置好参数所以部署失败。我在 root 目录的 .gitconfig 和 .ssh 下配置好了 user.name ssh 等必要 git 配置就成功了。这说明了在 linux 下不同的用户都需要自己去配置 git</p>
-</li>
-<li><p>修改博客 feature image 只选用1张简单图来代表。原来有 24 张图，我把24个路径全部改为同1张图。</p>
-</li>
-<li><p>因为之后需要写入数学公式，将 mathjax 改为 true。但发现显示公式渲染不正常，而且小括号显示不出来。根据 <a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/issues/119">github issue</a> 解决无法换行问题，将渲染器换为 hexo-renderer-kramed 而且代码高亮插件似乎并没受到影响。根据 <a target="_blank" rel="noopener" href="https://adaning.github.io/posts/33457.html">MathJax常见问题</a> 解决小括号无法显示问题。</p>
+<li><p>最终 RuntimeError: CUDA out of memory 即使 batch_size = 1 也直接炸了，放弃！</p>
 </li>
 </ol>
-<h2 id="配置-matery-css"><a href="#配置-matery-css" class="headerlink" title="配置 matery.css"></a>配置 matery.css</h2><p>为了进一步设置我们的网页，让其更具有个性化，就需要进一步调整 matery.css 文件。</p>
-<ol>
-<li><p>设置 导航颜色</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.bg-color</span> <span class="token punctuation">{</span>
-    <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">linear-gradient</span><span class="token punctuation">(</span>to right<span class="token punctuation">,</span> #BEBEBE 0%<span class="token punctuation">,</span> #708090 100%<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>查询颜色代码网址：<a target="_blank" rel="noopener" href="https://tool.oschina.net/commons?type=3">https://tool.oschina.net/commons?type=3</a></p>
-</li>
-<li><p>由于刚开始加载时 banner 图片没有迅速加载，会默认先加载橙色，我改成灰色</p>
-<p>修改“\Hexo\themes\hexo-theme-matery\layout\ _partial\index-cover.ejs”文件中的第63行即可。</p>
-<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>carousel-item red white-text bg-cover about-cover<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>把“red”修改为其他颜色即可。我改为 slate gray</p>
-</li>
-<li><p>改变 progress-bar 颜色</p>
-</li>
-<li><p>改变回到顶部按钮颜色 top-scroll</p>
-</li>
-<li><p>改变封面打字效果的文字大小、颜色 .bg-cover .description</p>
-</li>
-<li><p>修改了打字效果的颜色过后，我发现文章标题的颜色也跟着改了。解决方法是在下面的 .bg-cover .description 增加属性 color: #color_code，这样就能分别调整它们的颜色。</p>
-</li>
-<li><p>修改 about 页面链接颜色 aboutme</p>
-</li>
-<li><p>修改 archive 页面时间线颜色 cd-timeline</p>
-</li>
-</ol>
-<h2 id="插件优化"><a href="#插件优化" class="headerlink" title="插件优化"></a>插件优化</h2><h3 id="文章-url-优化"><a href="#文章-url-优化" class="headerlink" title="文章 url 优化"></a>文章 url 优化</h3><p>我没有使用项目中主要介绍的转拼音方法，那样生成的链接太长了，而是使用 hexo-abbrlink 插件</p>
-<pre class="line-numbers language-sehll" data-language="sehll"><code class="language-sehll">npm install hexo-abbrlink --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>在根目录 _config.yml 文件中修改</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">permalink</span><span class="token punctuation">:</span> archives/<span class="token punctuation">:</span>abbrlink.html
-<span class="token key atrule">abbrlink</span><span class="token punctuation">:</span>
-    <span class="token key atrule">alg</span><span class="token punctuation">:</span> crc32   <span class="token comment">#算法： crc16(default) and crc32</span>
-    <span class="token key atrule">rep</span><span class="token punctuation">:</span> hex     <span class="token comment">#进制： dec(default) and hex</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在 hexo 三连时遇到报错</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">FATAL YAMLException: duplicated mapping key <span class="token punctuation">(</span><span class="token number">111</span>:1<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>说明有原配置文件中已经有 permalink 的定义，我们需要把里本身的 permalink 代码注释掉，完美运行！现在我们的文章 url 最后是特殊的数字id <code>/archives/48732.html</code></p>
-<h3 id="文章字数统计插件"><a href="#文章字数统计插件" class="headerlink" title="文章字数统计插件"></a>文章字数统计插件</h3><h3 id="添加-emoji-表情支持"><a href="#添加-emoji-表情支持" class="headerlink" title="添加 emoji 表情支持"></a>添加 emoji 表情支持</h3><h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>上面三个部分都是按照 hexo-thme-matery github 项目配置的</p>
-<h3 id="评论插件utterance"><a href="#评论插件utterance" class="headerlink" title="评论插件utterance"></a>评论插件utterance</h3><p>matery 在配置文件中告诉我们，有的评论软件有安全隐患，推荐使用 utterance</p>
-<p>尝试 utterance，如果成功，则返回卸载 valine，注销 lean cloud</p>
-<p>也尝试了 livere 安装也很不友好</p>
-<p>成功在 contact 页面下展示了 utterance，方法是在 contact.ejs 文档下找了一个地方插入下面的代码（记得改为 r自己的 github repo，形式为 <owner>/<name> ），</name></owner></p>
-<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://utteranc.es/client.js<span class="token punctuation">"</span></span>
-<span class="token attr-name">repo</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>[ENTER REPO HERE]<span class="token punctuation">"</span></span>
-<span class="token attr-name">issue-term</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pathname<span class="token punctuation">"</span></span>
-<span class="token attr-name">theme</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>github-light<span class="token punctuation">"</span></span>
-<span class="token attr-name">crossorigin</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>anonymous<span class="token punctuation">"</span></span>
-<span class="token attr-name">async</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
-</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我插入在 <code>&lt;div class="card"&gt;</code> 后面，是管用的。因为原项目说，插入到你的 layout 需要出现的地方，我不懂前端的代码，只能胡乱插入了，管用就行！我猜测这是一个“卡片类”能够存放你的内容，以白色卡片在页面中展示出来。</p>
-<p>用同样的方法在 post 下添加评论。找到 <code>/hexo-theme-matery/layout/_partial/post-detail.ejs</code> 文件，找到评论的布局之处（搜索主题自带的评论插件如 gittalk，就能找到）插入上面的代码即可。但是渲染过后背景是透明的，不太好看，我希望想 contact 一样有白色背景，那就复制一下 contact.ejs 中的“卡片类”评论区就行了。</p>
-<h3 id="分类优化"><a href="#分类优化" class="headerlink" title="分类优化"></a>分类优化</h3><p>matery 主题的分类没有多层分类，在 categories 页面只有像 tag 一样标签，这样的分类又有什么用呢？根据 <a target="_blank" rel="noopener" href="https://notes.zhangxiaocai.cn/posts/5a99eb4d.html#toc-heading-8">Hexo Matery 主题添加多级分类</a> 进行设置，可以得到更好的分类页，类别之间将有层次关系</p>
-<p>具体来讲，采用了博客里最新更新的代码，给 category-item, category-count 等增加 color 属性，改为自己喜欢的颜色。给 category-title 增加 font-size 属性，修改标题大小</p>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><h3 id="网站SEO优化"><a href="#网站SEO优化" class="headerlink" title="网站SEO优化"></a>网站SEO优化</h3><p>Search Engine Optimization</p>
-<p>将自己的网站提交给搜索引擎</p>
-<h3 id="不断更新"><a href="#不断更新" class="headerlink" title="不断更新"></a>不断更新</h3><p>持续更新博客内容，完善分类</p>
 
                 
             </div>
@@ -623,7 +538,7 @@ layout: <span class="token string">"tags"</span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://hongkun.space/archives/b129f5ae.html">https://hongkun.space/archives/b129f5ae.html</a>
+                    <a href="https://hongkun.space/archives/ba7995ee.html">https://hongkun.space/archives/ba7995ee.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -661,12 +576,8 @@ layout: <span class="token string">"tags"</span>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/hexo/">
-                                    <span class="chip bg-color">hexo</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                                    <span class="chip bg-color">博客搭建</span>
+                                <a href="/tags/CenterPoint/">
+                                    <span class="chip bg-color">CenterPoint</span>
                                 </a>
                             
                         </div>
@@ -850,13 +761,13 @@ layout: <span class="token string">"tags"</span>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/2121b11b.html">
+                <a href="/archives/ca50f614.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Git 教程">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="vs code 教程">
                         
-                        <span class="card-title">Git 教程</span>
+                        <span class="card-title">vs code 教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -867,7 +778,7 @@ layout: <span class="token string">"tags"</span>
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-02
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
                         </span>
                         <span class="publish-author">
                             
@@ -877,8 +788,8 @@ layout: <span class="token string">"tags"</span>
                                     软件基础
                                 </a>
                             
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/git/" class="post-category">
-                                    git
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/vs-code/" class="post-category">
+                                    vs code
                                 </a>
                             
                             
@@ -888,8 +799,12 @@ layout: <span class="token string">"tags"</span>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/git/">
-                        <span class="chip bg-color">git</span>
+                    <a href="/tags/vs-code/">
+                        <span class="chip bg-color">vs code</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">教程</span>
                     </a>
                     
                 </div>
@@ -903,13 +818,13 @@ layout: <span class="token string">"tags"</span>
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/4984.html">
+                <a href="/archives/d547a647.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="我的博客搭建笔记">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="阿里云服务器部署hexo博客教程">
                         
-                        <span class="card-title">我的博客搭建笔记</span>
+                        <span class="card-title">阿里云服务器部署hexo博客教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -920,7 +835,7 @@ layout: <span class="token string">"tags"</span>
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
                             </span>
                         <span class="publish-author">
                             
@@ -945,8 +860,8 @@ layout: <span class="token string">"tags"</span>
                         <span class="chip bg-color">hexo</span>
                     </a>
                     
-                    <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                        <span class="chip bg-color">博客搭建</span>
+                    <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">
+                        <span class="chip bg-color">阿里云</span>
                     </a>
                     
                 </div>
