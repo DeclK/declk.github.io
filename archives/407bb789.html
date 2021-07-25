@@ -474,22 +474,22 @@ self<span class="token punctuation">.</span>params<span class="token punctuation
 <li>batch normalization 帮助缓解梯度消失/爆炸的问题，这将减缓因为 weight initialization 过大或过小而产生梯度消失/爆炸的问题</li>
 <li>batch normalization 有一定的正则化效果，避免过拟合</li>
 </ol>
-<p><img src="/archives/407bb789/image-20210707160726541.png" alt="image-20210707160726541" style="zoom: 67%;"></p>
+<p><img src="/archives/407bb789/image-20210707160726541.png" style="zoom: 67%;"></p>
 <h3 id="Inline-Question-2"><a href="#Inline-Question-2" class="headerlink" title="Inline Question 2"></a>Inline Question 2</h3><p><strong>hat does this imply about the relationship between batch normalization and batch size? Why is this relationship observed?</strong></p>
 <p>一般规律是：batch size 越大训练集上收敛越快。当 batch size 比较小的时候，比 baseline 速度更慢，原因在于过少的样本带来的偏差太大，这样的噪音会影响训练和测试表现</p>
-<p><img src="/archives/407bb789/image-20210707164225500.png" alt="image-20210707164225500" style="zoom: 67%;"></p>
+<p><img src="/archives/407bb789/image-20210707164225500.png" style="zoom: 67%;"></p>
 <p>在训练和测试时均会用到 bn layer，测试时用的 $\mu,\sigma$  参数是训练过程中的指数加权平均 EWA</p>
 <h3 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h3><p>用在 RNN 中更多，如果以后接触 NLP 领域的话再深入整理。简单的解释 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74516930">知乎链接</a> </p>
 <p>假设我们有 10行 3列 的数据，即我们的batchsize = 10，每一行数据有三个特征，这是一种“列缩放”。</p>
 <p>而layer方向相反，它针对的是每一行进行缩放。即只看一笔数据，算出这笔所有特征的均值与方差再缩放。这是一种“行缩放”。</p>
 <p>Q: 为什么 gamma 和 beta 还是原来的 (D, ) 形状？Layer normalization 在 RNN 中有什么作用？</p>
-<p><img src="/archives/407bb789/image-20210707200112133.png" alt="image-20210707200112133" style="zoom: 67%;"></p>
+<p><img src="/archives/407bb789/image-20210707200112133.png" style="zoom: 67%;"></p>
 <p>看得出 layer normalization 在训练上也是有一定作用的，但在图像方面相比于 batch normalization 效果差一点，另一个比较自然的结果是，对于 layer normalization 来说 hidden dimension 取较大值较好</p>
 <h2 id="Drop-out"><a href="#Drop-out" class="headerlink" title="Drop out"></a>Drop out</h2><p>两行代码解决 (inverted) dropout layer 核心</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">mask <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token operator">*</span><span class="token builtin">input</span><span class="token punctuation">.</span>shape<span class="token punctuation">)</span> <span class="token operator">&lt;</span> p
 output <span class="token operator">=</span> <span class="token builtin">input</span> <span class="token operator">*</span> mask <span class="token operator">/</span> p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>vallina dropout 是在 test 时将输出乘以 p 使得输出是一个合理期望值。但如果我们在训练的时候已经除以 p 了，在测试时就不需要作任何操作。下图为正则化效果 regularization</p>
-<p><img src="/archives/407bb789/image-20210708160433242.png" alt="image-20210708160433242" style="zoom:67%;"></p>
+<p><img src="/archives/407bb789/image-20210708160433242.png" style="zoom:67%;"></p>
 <h2 id="Convolutional-Neural-Networks"><a href="#Convolutional-Neural-Networks" class="headerlink" title="Convolutional Neural Networks"></a>Convolutional Neural Networks</h2><ol>
 <li><p>用嵌套循环实现了最原始的卷积操作，使用 np.pad 函数能实现 padding 操作，感觉这个函数的参数不是那么灵活</p>
 </li>
