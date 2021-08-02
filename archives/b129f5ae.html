@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.4k
+                    2.5k
                 </div>
                 
 
@@ -593,7 +593,19 @@ layout: <span class="token string">"tags"</span>
 <p>我插入在 <code>&lt;div class="card"&gt;</code> 后面，是管用的。因为原项目说，插入到你的 layout 需要出现的地方，我不懂前端的代码，只能胡乱插入了，管用就行！我猜测这是一个“卡片类”能够存放你的内容，以白色卡片在页面中展示出来。</p>
 <p>用同样的方法在 post 下添加评论。找到 <code>/hexo-theme-matery/layout/_partial/post-detail.ejs</code> 文件，找到评论的布局之处（搜索主题自带的评论插件如 gittalk，就能找到）插入上面的代码即可。但是渲染过后背景是透明的，不太好看，我希望想 contact 一样有白色背景，那就复制一下 contact.ejs 中的“卡片类”评论区就行了。</p>
 <h3 id="分类优化"><a href="#分类优化" class="headerlink" title="分类优化"></a>分类优化</h3><p>matery 主题的分类没有多层分类，在 categories 页面只有像 tag 一样标签，这样的分类又有什么用呢？根据 <a target="_blank" rel="noopener" href="https://notes.zhangxiaocai.cn/posts/5a99eb4d.html#toc-heading-8">Hexo Matery 主题添加多级分类</a> 进行设置，可以得到更好的分类页，类别之间将有层次关系</p>
-<p>具体来讲，采用了博客里最新更新的代码，给 category-item, category-count 等增加 color 属性，改为自己喜欢的颜色。给 category-title 增加 font-size 属性，修改标题大小</p>
+<p>具体来讲，采用了博客里最新更新的代码，又作了以下改动：</p>
+<ol>
+<li><p>给 category-item, category-count 等增加 color 属性，改为自己喜欢的颜色</p>
+</li>
+<li><p>给 category-title 增加 font-size 属性，修改标题大小</p>
+</li>
+<li><p>由于每次进入目录默认要展开一个类别，改动下方代码，让所有类别初始状态默认折叠</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">/* origin code: &lt;li  class="&lt;%= subCats.length &gt; 0 ? 'active' : '' %&gt;" &gt; */</span>
+<span class="token operator">&lt;</span>li  <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"&lt;%= subCats.length &gt; 10000 ? 'active' : '' %&gt;"</span> <span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>删除箭头变化 <code>category-item-action col s11 m11</code></p>
+</li>
+</ol>
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><h3 id="网站SEO优化"><a href="#网站SEO优化" class="headerlink" title="网站SEO优化"></a>网站SEO优化</h3><p>Search Engine Optimization</p>
 <p>将自己的网站提交给搜索引擎</p>
 <h3 id="不断更新"><a href="#不断更新" class="headerlink" title="不断更新"></a>不断更新</h3><p>持续更新博客内容，完善分类</p>
@@ -1094,7 +1106,7 @@ layout: <span class="token string">"tags"</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.5k</span>&nbsp;字
+                class="white-color">11.6k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
