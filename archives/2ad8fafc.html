@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="cs231n assignment2 笔记, ">
+    <meta name="keywords" content="Faster RCNN note, ">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>cs231n assignment2 笔记 | </title>
+    <title>Faster RCNN note | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">cs231n assignment2 笔记</h1>
+                    <h1 class="description center-align post-title">Faster RCNN note</h1>
                 </div>
             </div>
         </div>
@@ -370,8 +370,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/cs231n/">
-                                <span class="chip bg-color">cs231n</span>
+                            <a href="/tags/faster-rcnn/">
+                                <span class="chip bg-color">faster rcnn</span>
                             </a>
                         
                     </div>
@@ -382,12 +382,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
-                                课程
-                            </a>
-                        
-                            <a href="/categories/%E8%AF%BE%E7%A8%8B/cs231n/" class="post-category">
-                                cs231n
+                            <a href="/categories/papers/" class="post-category">
+                                papers
                             </a>
                         
                     </div>
@@ -399,7 +395,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-07-12
+                    2021-08-07
                 </div>
                 
 
@@ -408,7 +404,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.6k
+                    1k
                 </div>
                 
 
@@ -433,137 +429,85 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="cs231n-2021-Assignment-2-note"><a href="#cs231n-2021-Assignment-2-note" class="headerlink" title="cs231n 2021 Assignment 2 note"></a>cs231n 2021 Assignment 2 note</h1><h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p>assignment 模板: <a target="_blank" rel="noopener" href="https://github.com/cs231n/cs231n.github.io">github</a> </p>
-<p>官方: <a target="_blank" rel="noopener" href="https://cs231n.github.io/assignments2021/assignment2/">课程链接</a></p>
-<p>assignment 参考链接: <a target="_blank" rel="noopener" href="https://github.com/amanchadha/stanford-cs231n-assignments-2020">2020</a></p>
-<p>发现了一种新的模式: pycharm + git + anaconda &amp; jupyter</p>
-<p>上面的组合能够帮助写代码的效率提升，pycharm 能够帮助调试，git 用于版本管理，conda 用于环境管理。jupyter 在测试代码块上有很大的优势，并且很多 cs231n 的作业形式都是以 ipynb 的文件类型发布，更适合在 jupyter 上打开，而且 jupyter 能够直接使用创建好的 conda 环境，特别方便</p>
-<p>经过一番折腾，最终决定使用 vs code 替换 pycharm，原因是 vs code 有 jupyter notebook 插件，可以直接显示在 editor 内，比 Pycharm 更方便而且以后想要学习其他语言 vs code 优势更大</p>
-<h2 id="过程中的编程复习"><a href="#过程中的编程复习" class="headerlink" title="过程中的编程复习"></a>过程中的编程复习</h2><ol>
-<li><p>重新复习了 numpy 的一些用法，一个重要思想就是尽量少考虑使用循环解决，要以 index 索引思想来解决数据的操作问题。</p>
-<p>reshape已经存在的shape</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">a<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>b<span class="token punctuation">.</span>shape<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>当接受参数是元组而是可变参数 <em>args 的时候，可以用 </em>tuple 来将参数变为 *args</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token operator">*</span>a<span class="token punctuation">.</span>shape<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>要学会善用矩阵点乘 A * B，是将对应元素相乘，在计算模的时候，或者当其中一个是 indication function 时很有用</p>
-</li>
-<li><p>重新复习了字典的用法，核心是创造字典，dict(), dict.fromkeys()</p>
-<p>字典的 key, val 迭代器，如果不用 items，则只有 key</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> key<span class="token punctuation">,</span> val <span class="token keyword">in</span> <span class="token builtin">dict</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-	pas<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li><p>对于格式化字符串有新的认知，下面例子</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">self<span class="token punctuation">.</span>params <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-self<span class="token punctuation">.</span>params<span class="token punctuation">[</span><span class="token string">'b%d'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> weight_scale <span class="token operator">*</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>hd<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>可以用这样的形式来调用 key</p>
-</li>
-</ol>
-<h2 id="Fully-Connected-Networks"><a href="#Fully-Connected-Networks" class="headerlink" title="Fully Connected Networks"></a>Fully Connected Networks</h2><ol>
-<li>对于网络的认知有了更新。要把层(layer, w)和点(node, x)分开来看，这样网络结构才更清晰。一般隐藏层不包含输出层</li>
-<li><strong>反向传播熟悉 back propagation，尤其是矩阵相乘的反向传播，只需要记住结论就行了。对于广播过后的结果，需要将广播的矩阵作 sum 处理，得到广播前的对应元素梯度</strong></li>
-<li>5 layers 和 3 layers 网络优化时比较，差异在哪里？5 layer 更难优化，对于初始值敏感</li>
-<li><strong>对于优化算法进行了进一步了解，由三个核心点：AdaGrad, Momentum, EWA 最后自然推出 Adam 优化算法</strong></li>
-<li><strong>在编写代码的时候重要的版本需要保存，这就需要使用 git</strong></li>
-</ol>
-<h2 id="Batch-normalization"><a href="#Batch-normalization" class="headerlink" title="Batch normalization"></a>Batch normalization</h2><p>进一步清晰了 bn 的过程与作用，可以回看自己的笔记了解详情</p>
-<h3 id="Inline-Question-1"><a href="#Inline-Question-1" class="headerlink" title="Inline Question 1"></a>Inline Question 1</h3><p><strong>How does the scale of weight initialization affect models with/without batch normalization differently, and why?</strong></p>
-<p>You should find that using batch normalization helps the network to converge much faster. </p>
-<p>使用 batch normalization 会让网络在训练集上收敛更快。这和普通的 normalization 是一个道理，减少 zigzag 拐弯</p>
-<p>还有几个需要知道和理解的点是：</p>
+                <h1 id="Faster-RCNN-note"><a href="#Faster-RCNN-note" class="headerlink" title="Faster RCNN note"></a>Faster RCNN note</h1><p>本文总结自知乎链接<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31426458">https://zhuanlan.zhihu.com/p/31426458</a></p>
+<h2 id="整体思路"><a href="#整体思路" class="headerlink" title="整体思路"></a>整体思路</h2><p>Faster RCNN其实可以分为4个主要内容：</p>
 <ol>
-<li>batch normalization 帮助缓解梯度消失/爆炸的问题，这将减缓因为 weight initialization 过大或过小而产生梯度消失/爆炸的问题</li>
-<li>batch normalization 有一定的正则化效果，避免过拟合</li>
-</ol>
-<p><img src="/archives/407bb789/image-20210707160726541.png" style="zoom: 67%;"></p>
-<h3 id="Inline-Question-2"><a href="#Inline-Question-2" class="headerlink" title="Inline Question 2"></a>Inline Question 2</h3><p><strong>hat does this imply about the relationship between batch normalization and batch size? Why is this relationship observed?</strong></p>
-<p>一般规律是：batch size 越大训练集上收敛越快。当 batch size 比较小的时候，比 baseline 速度更慢，原因在于过少的样本带来的偏差太大，这样的噪音会影响训练和测试表现</p>
-<p><img src="/archives/407bb789/image-20210707164225500.png" style="zoom: 67%;"></p>
-<p>在训练和测试时均会用到 bn layer，测试时用的 $\mu,\sigma$  参数是训练过程中的指数加权平均 EWA</p>
-<h3 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h3><p>用在 RNN 中更多，如果以后接触 NLP 领域的话再深入整理。简单的解释 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74516930">知乎链接</a> </p>
-<p>假设我们有 10行 3列 的数据，即我们的batchsize = 10，每一行数据有三个特征，这是一种“列缩放”。</p>
-<p>而layer方向相反，它针对的是每一行进行缩放。即只看一笔数据，算出这笔所有特征的均值与方差再缩放。这是一种“行缩放”。</p>
-<p>Q: 为什么 gamma 和 beta 还是原来的 (D, ) 形状？Layer normalization 在 RNN 中有什么作用？</p>
-<p><img src="/archives/407bb789/image-20210707200112133.png" style="zoom: 67%;"></p>
-<p>看得出 layer normalization 在训练上也是有一定作用的，但在图像方面相比于 batch normalization 效果差一点，另一个比较自然的结果是，对于 layer normalization 来说 hidden dimension 取较大值较好</p>
-<h2 id="Drop-out"><a href="#Drop-out" class="headerlink" title="Drop out"></a>Drop out</h2><p>两行代码解决 (inverted) dropout layer 核心</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">mask <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token operator">*</span><span class="token builtin">input</span><span class="token punctuation">.</span>shape<span class="token punctuation">)</span> <span class="token operator">&lt;</span> p
-output <span class="token operator">=</span> <span class="token builtin">input</span> <span class="token operator">*</span> mask <span class="token operator">/</span> p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>vallina dropout 是在 test 时将输出乘以 p 使得输出是一个合理期望值。但如果我们在训练的时候已经除以 p 了，在测试时就不需要作任何操作。下图为正则化效果 regularization</p>
-<p><img src="/archives/407bb789/image-20210708160433242.png" style="zoom:67%;"></p>
-<h2 id="Convolutional-Neural-Networks"><a href="#Convolutional-Neural-Networks" class="headerlink" title="Convolutional Neural Networks"></a>Convolutional Neural Networks</h2><ol>
-<li><p>用嵌套循环实现了最原始的卷积操作，使用 np.pad 函数能实现 padding 操作，感觉这个函数的参数不是那么灵活</p>
+<li><p>Conv layers </p>
+<p>Faster RCNN首先使用一组基础的conv+relu+pooling层提取image的feature maps。该feature maps被共享用于后续RPN层和全连接层。</p>
 </li>
-<li><p>返回最大值坐标 np.argmax，如果想要返回多元坐标还需要使用 np.unravel_index 转化</p>
-<p><code>np.unravel(indices, shape)</code></p>
+<li><p>Region Proposal Networks</p>
+<p>该层通过softmax判断anchors属于positive或者negative，再利用bounding box regression修正anchors获得精确的proposals。</p>
 </li>
-<li><p>assignment 提供了 fast_layers.py 来实现快速卷积操作，比我自己写的循环代码要快 1000 多倍，使用了 im2col 技巧以及 Cpython extension</p>
+<li><p>Roi Pooling</p>
+<p>该层收集输入的feature maps和proposals，综合这些信息后提取proposal feature maps，送入后续全连接层判定目标类别。</p>
 </li>
-<li><p>为什么在正则化的时候正则项中不包括偏差 b? 个人理解认为 b 对于正则化的贡献并不大，而 w 参数则占据了绝大部分的参数。</p>
+<li><p>Classification</p>
+<p>利用proposal feature maps计算proposal的类别，同时再次bounding box regression获得检测框最终的精确位置。</p>
 </li>
 </ol>
-<h3 id="Spatial-Batch-Normalization"><a href="#Spatial-Batch-Normalization" class="headerlink" title="Spatial Batch Normalization"></a>Spatial Batch Normalization</h3><p>这是卷积神经网络特有的 batch normalization。之前使用的 batch normalization 面对的是 (N, D) 形状的数据，但卷积过后得到的输出是类似 (N, C, H, W) 这样的多维数据。那我们应该怎样去计算这一批数据的统计量 $\mu, \sigma$ 呢？</p>
-<p>如果沿着之前的思维，我们只沿着样本数据轴 N 去计算 $\mu, \sigma$ </p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># data.shape = (N, C, H, W)</span>
-mean <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>data<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
-var  <span class="token operator">=</span> np<span class="token punctuation">.</span>var<span class="token punctuation">(</span>data<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>这将会得到 (C, H, W) 形状的统计量，其中每一个值 (c, h, w)，其样本来自于 N 个像素点（同一 channel，同一位置）。但我们希望样本的数量更广泛一些，具体一点来说，我们希望样本来自于 N 个 feature map (H, W)，用 numpy 表示为</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># data.shape = (N, C, H, W)</span>
-mean <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>data<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-var <span class="token operator">=</span> np<span class="token punctuation">.</span>var<span class="token punctuation">(</span>data<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>这将会得到 (C,) 形状的统计量，即：得到了对于某一个 channel 的统计量，这是合理的，因为同一个 channel 我们使用的是同一个 kernel。这样我们不仅得到了更广泛样本的统计量，还减少了参数数量</p>
-<p>如果要使用之前写的 batch_norm 函数的话可以将数据转化为 (N <em> H </em> W, C) ，在 numpy 中使用 transpose + reshape 就可以完成</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">data<span class="token punctuation">.</span>transpose<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> C<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="Spatial-Group-Normalization"><a href="#Spatial-Group-Normalization" class="headerlink" title="Spatial Group Normalization"></a>Spatial Group Normalization</h3><p>一张图展示Batch Norm， Layer Norm ，Group Norm的区别</p>
-<p><img src="/archives/407bb789/image-20210710193505933.png" alt="image-20210710193505933"></p>
-<p>Group Norm可以理解为在layer Norm的基础上，输入维度为 (N, C, H, W)，对C进行分组，即 (N, G, C//G, H, W)。为了完成这一部分，重新思考了如何基于系统计算 back propagation</p>
-<p><strong>可以以重要的中间变量为节点，根据计算图逐步推导梯度。难点在于有矩阵参与的计算，经常伴随着矩阵形状的改变，在进行 back propagation 中一定要让梯度跟着这些计算进行升维和降维，可以想象为梯度会随着这些节点形状的变化进行复杂的流动，有分流(例如降维度)，也有汇合(例如 broadcast)</strong></p>
-<p>例如，在 forward pass 中 broadcast 会将矩阵升维，sum 会将矩阵降维，如果在 backward pass 中遇到 broadcast 操作时，则需要将 upper_grad 根据对应维度求和，举个例子，如果我们要求下面 X 的梯度的话，代码应该时这样的</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># input: X, X.shape = (N, D)</span>
-<span class="token comment"># f(X) = X - np.mean(X)</span>
-<span class="token comment"># upper_grad = dout, dout.shape = (N, D)</span>
-dmean <span class="token operator">=</span> np<span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span>dout<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>	<span class="token comment"># sum broadcast dimension</span>
-dmean <span class="token operator">=</span> dmean <span class="token operator">/</span> N	<span class="token comment"># mean operation back prop</span>
-dX <span class="token operator">=</span> dout <span class="token operator">-</span> dmean<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果想不使用计算图直接按照一般的矩阵梯度计算，遇到对矩阵/向量求导时，就会出现张量，也就是说维度会增加，需要熟悉张量的运算及其思维。还是借用上面的例子，但我们把平均值作为 (N, D) 形状来看待</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># input: X, X.shape = (N, D)</span>
-<span class="token comment"># f(X) = X - np.mean(X) * np.ones(X.shape)</span>
-<span class="token comment"># upper_grad = dout, dout.shape = (N, D)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<script type="math/tex; mode=display">
-\frac{\partial{loss}}{\partial{f(x)}} = dout，\ f(x)=x-\mu
-\\
-\frac{\partial{f(x)}}{\partial{\mu}} = a\ ((N\times D) \times (N\times D))\ shape\ tensor
-\\
-\frac{\partial{loss}}{\partial{\mu}}=\frac{\partial{loss}}{\partial{f(x)}} ·\frac{\partial{f(x)}}{\partial{\mu}}=dout
-\\
-\frac{\partial{\mu}}{\partial{x}} = a\ ((N\times D) \times (N\times D))\ shape\ tensor
-\\
-\frac{\partial{loss}}{\partial{x}}=\frac{\partial{loss}}{\partial{f(x)}}·\frac{\partial{f(x)}}{\partial{x}} - \frac{\partial{loss}}{\partial{f(x)}}·\frac{\partial{f(x)}}{\partial{\mu}}·\frac{\partial{\mu}}{\partial{x}}=dout -dout·\frac{\partial{\mu}}{\partial{x}}</script><p>这将是一种普适的方法，更加抽象化，能够处理任何的矩阵求导，但不推荐实际中使用。</p>
-<p>不论使用哪种方法，最核心的还是要理解梯度流动的本质——某一个变量的变动能够引起输出多少变动</p>
-<h2 id="BUG"><a href="#BUG" class="headerlink" title="BUG"></a>BUG</h2><h3 id="Fully-Connected-Layer"><a href="#Fully-Connected-Layer" class="headerlink" title="Fully Connected Layer"></a>Fully Connected Layer</h3><p>现在卡在了 solver 上</p>
-<p>不能得到 overfitting 的结果</p>
+<p><img src="/archives/2ad8fafc/image-20210614151135341.png" style="zoom: 67%;"></p>
+<h2 id="Conv-Layers"><a href="#Conv-Layers" class="headerlink" title="Conv Layers"></a>Conv Layers</h2><p>Conv layers部分共有13个conv层，13个relu层，4个pooling层 </p>
 <ol>
-<li><p>尝试更换 solver 看能否得到不一样的结果</p>
-<p>失败了</p>
+<li>所有的conv层都是：kernel_size=3，pad=1，stride=1</li>
+<li>所有的pooling层都是：kernel_size=2，pad=0，stride=2</li>
+</ol>
+<p>那么，一个MxN大小的矩阵经过Conv layers固定变为(M/16)x(N/16)</p>
+<h2 id="Region-Proposal-Networks"><a href="#Region-Proposal-Networks" class="headerlink" title="Region Proposal Networks"></a>Region Proposal Networks</h2><h3 id="Anchors"><a href="#Anchors" class="headerlink" title="Anchors"></a>Anchors</h3><p>提到RPN网络，就不能不说anchors。所谓anchors，实际上就是一组由程序生成的矩形。直接运行作者demo中的generate_anchors.py可以得到以下输出 (不要被这些数字吓到了，没有具体意义)</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token operator">-</span><span class="token number">84</span><span class="token punctuation">.</span>  <span class="token operator">-</span><span class="token number">40</span><span class="token punctuation">.</span>   <span class="token number">99</span><span class="token punctuation">.</span>   <span class="token number">55</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+ <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">176</span><span class="token punctuation">.</span>  <span class="token operator">-</span><span class="token number">88</span><span class="token punctuation">.</span>  <span class="token number">191</span><span class="token punctuation">.</span>  <span class="token number">103</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+ <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">360</span><span class="token punctuation">.</span> <span class="token operator">-</span><span class="token number">184</span><span class="token punctuation">.</span>  <span class="token number">375</span><span class="token punctuation">.</span>  <span class="token number">199</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+ <span class="token punctuation">[</span> <span class="token operator">-</span><span class="token number">56</span><span class="token punctuation">.</span>  <span class="token operator">-</span><span class="token number">56</span><span class="token punctuation">.</span>   <span class="token number">71</span><span class="token punctuation">.</span>   <span class="token number">71</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+ <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">120</span><span class="token punctuation">.</span> <span class="token operator">-</span><span class="token number">120</span><span class="token punctuation">.</span>  <span class="token number">135</span><span class="token punctuation">.</span>  <span class="token number">135</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+ <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">248</span><span class="token punctuation">.</span> <span class="token operator">-</span><span class="token number">248</span><span class="token punctuation">.</span>  <span class="token number">263</span><span class="token punctuation">.</span>  <span class="token number">263</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+ <span class="token punctuation">[</span> <span class="token operator">-</span><span class="token number">36</span><span class="token punctuation">.</span>  <span class="token operator">-</span><span class="token number">80</span><span class="token punctuation">.</span>   <span class="token number">51</span><span class="token punctuation">.</span>   <span class="token number">95</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+ <span class="token punctuation">[</span> <span class="token operator">-</span><span class="token number">80</span><span class="token punctuation">.</span> <span class="token operator">-</span><span class="token number">168</span><span class="token punctuation">.</span>   <span class="token number">95</span><span class="token punctuation">.</span>  <span class="token number">183</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+ <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">168</span><span class="token punctuation">.</span> <span class="token operator">-</span><span class="token number">344</span><span class="token punctuation">.</span>  <span class="token number">183</span><span class="token punctuation">.</span>  <span class="token number">359</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>每行有4个值，代表了矩形左上角和右下角两个点$(x_1, y_1, x_2, y_2)$ </p>
+<p>一共9个矩形，来组于不同长宽比和不同大小的组合：长宽比有3种，1:1, 1:2, 2:1</p>
+<p><img src="/archives/2ad8fafc/image-20210614152512944.png" style="zoom:50%;"></p>
+<p>那么这9个anchors是做什么的呢？借用Faster RCNN论文中的原图，如图7，遍历Conv layers计算获得的feature maps，为每一个点都配备这9种anchors作为初始的检测框</p>
+<p><img src="/archives/2ad8fafc/v2-c93db71cc8f4f4fd8cfb4ef2e2cef4f4_720w.jpg" style="zoom:80%;"></p>
+<p>简单解释一下上图：</p>
+<ol>
+<li><p>conv feature map中，每一个点都是256-dimensions</p>
 </li>
-<li><p>尝试使用2016的所有答案，看是否是自己的代码出问题了</p>
-<p>失败了</p>
-<p>小技巧 Ctrl+r 能够更换 pycharm 相同字段</p>
+<li><p>intermidiate layer为 3x3 卷积，out put dimension为256，得到新的conv feature map</p>
 </li>
-<li><p>尝试更改 colab 本身的文件，使用2016年的colab文件</p>
-<p>成功，原因在于 learning rate 太小了，不能找到全局最优</p>
+<li><p>在新的conv feature map上，我们对每一个点预先设定的k个anchor做bounding box regression和softmax分类(positive, nagetive两类)，分别对应4k coordinates，2k scores</p>
+<p>换句话说，就是把某一anchor区域中的特征向量拿去做prediction，预测内容为该点的分类和该点/anchor对应的bounding box参数</p>
+</li>
+<li><p>由于anchor数量是巨大的，训练程序会在合适的anchors中<strong>随机</strong>选取128个postive anchors+128个negative anchors进行训练</p>
 </li>
 </ol>
-<h3 id="Batch-normalization-1"><a href="#Batch-normalization-1" class="headerlink" title="Batch normalization"></a>Batch normalization</h3><ol>
-<li><p>卡在了计算 back prop 上</p>
-<p>最后出现的失误还是在于每一个公式必须要精确才行</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">norm_x <span class="token operator">=</span> <span class="token punctuation">(</span>x <span class="token operator">-</span> sample_mean<span class="token punctuation">)</span> <span class="token operator">/</span> np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>sample_var <span class="token operator">+</span> eps<span class="token punctuation">)</span>
-norm_x <span class="token operator">=</span> <span class="token punctuation">(</span>x <span class="token operator">-</span> sample_mean<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>sample_var<span class="token punctuation">)</span> <span class="token operator">+</span> eps<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>上面两个式子虽然在计算结果上相差不多，但是在网络的计算中，一点点的误差传播过后会变得越来越大</p>
-</li>
-<li><p>尝试使用 jupyter 进行编程，遇到问题：The kernel appears to have died. It will restart automatically</p>
-<p>以为是 jupyter 的问题，但测试了不同的软件都出错了，最终发现是自己代码的问题！当找了一圈没有找到答案时，可能就要怀疑自己了，而不是怀疑软件出了问题！不过这也有好处，让我决定放弃使用 pycharm 转战 vs code</p>
-</li>
+<h3 id="Bounding-box-regression原理"><a href="#Bounding-box-regression原理" class="headerlink" title="Bounding box regression原理"></a>Bounding box regression原理</h3><p>怎样在anchor的基础上回归得到ground truth标签呢？</p>
+<p>给定anchor $(A_x, A_y, A_w, A_h)$ ，给定ground truth $(G_x, G_y, G_w, G_h)$</p>
+<p>我们只要去预测中心点的位置偏移，以及矩形长宽的缩放即可</p>
+<p>个人觉得这样的回归方法有点麻烦，这样来看CenterNet中的bounding box回归是相当直接的</p>
+<h3 id="Proposal"><a href="#Proposal" class="headerlink" title="Proposal"></a>Proposal</h3><ol>
+<li>生成anchors，得到对应的confidence score &amp; bounding box regression，形成最初的proposal</li>
+<li>对所有anchors，根据positive score进行排序，取前6000个anchor proposals</li>
+<li>去除较小和超出边界的proposal</li>
+<li>NMS</li>
 </ol>
+<h2 id="ROI-Pooling"><a href="#ROI-Pooling" class="headerlink" title="ROI Pooling"></a>ROI Pooling</h2><p>Rol pooling层有2个输入：</p>
+<ol>
+<li>原始feature maps</li>
+<li>RPN输出的proposals</li>
+</ol>
+<p>这一个Pooling操作还要有一个功能，就是需要处理不同大小的proposal (kernel)。经典的pooing操作是使用相同大小的kernel，这里我们要预先对 proposal (region of interest) 进行统一的分割，使得pooling结果是相同的表示(如下图)</p>
+<p><img src="/archives/2ad8fafc/image-20210614164103022.png" style="zoom: 67%;"></p>
+<h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><p>Classification部分利用已经获得的proposal feature maps，通过full connect层与softmax计算每个proposal具体属于那个类别（如人，车，电视等），输出cls_prob概率向量；同时再次利用bounding box regression获得每个proposal的位置偏移量bbox_pred，用于回归更加精确的目标检测框</p>
+<p><img src="/archives/2ad8fafc/image-20210614164211554.png" style="zoom:80%;"></p>
+<h2 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h2><p>Faster R-CNN的训练，是在已经训练好的model（如VGG，ZF）的基础上继续进行训练，实际训练过程为以下：</p>
+<ol>
+<li>在已经训练好的model(e.g. VGG)，训练RPN</li>
+<li>用步骤1中得到的RPN提出proposal</li>
+<li>用提出的Proposal训练Fast RCNN</li>
+<li>用步骤4中训练好的Fast RCNN继续训练RPN</li>
+<li>重复2</li>
+<li>重复3</li>
+</ol>
+<p>可以看出这是一种类似迭代的过程，但只循环了2次，文章提出更多的循环并不会带来相应的提升</p>
 
                 
             </div>
@@ -590,7 +534,7 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://hongkun.space/archives/407bb789.html">https://hongkun.space/archives/407bb789.html</a>
+                    <a href="https://hongkun.space/archives/2ad8fafc.html">https://hongkun.space/archives/2ad8fafc.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -628,8 +572,8 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/cs231n/">
-                                    <span class="chip bg-color">cs231n</span>
+                                <a href="/tags/faster-rcnn/">
+                                    <span class="chip bg-color">faster rcnn</span>
                                 </a>
                             
                         </div>
@@ -809,17 +753,18 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/archives/d547a647.html">
+                <a href="/archives/2ad8fafc.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="阿里云服务器部署hexo博客教程">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Faster RCNN note">
                         
-                        <span class="card-title">阿里云服务器部署hexo博客教程</span>
+                        <span class="card-title">Faster RCNN note</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -829,34 +774,27 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    软件基础
-                                </a>
-                            
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/hexo/" class="post-category">
-                                    hexo
+                            <a href="/categories/papers/" class="post-category">
+                                    papers
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
-                    </a>
-                    
-                    <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">
-                        <span class="chip bg-color">阿里云</span>
+                    <a href="/tags/faster-rcnn/">
+                        <span class="chip bg-color">faster rcnn</span>
                     </a>
                     
                 </div>
@@ -870,13 +808,13 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/53e3a160.html">
+                <a href="/archives/ca50f614.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Linux 安装笔记">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="vs code 教程">
                         
-                        <span class="card-title">Linux 安装笔记</span>
+                        <span class="card-title">vs code 教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -887,7 +825,7 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
                             </span>
                         <span class="publish-author">
                             
@@ -897,8 +835,8 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
                                     软件基础
                                 </a>
                             
-                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80/vs-code/" class="post-category">
+                                    vs code
                                 </a>
                             
                             
@@ -908,12 +846,12 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/vs-code/">
+                        <span class="chip bg-color">vs code</span>
                     </a>
                     
-                    <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">安装教程</span>
+                    <a href="/tags/%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">教程</span>
                     </a>
                     
                 </div>
@@ -1044,13 +982,6 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-    });
-</script>
 
 
 

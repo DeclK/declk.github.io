@@ -404,7 +404,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    878
+                    862
                 </div>
                 
 
@@ -430,7 +430,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="CenterPoint-复现笔记"><a href="#CenterPoint-复现笔记" class="headerlink" title="CenterPoint 复现笔记"></a>CenterPoint 复现笔记</h1><h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><ol>
-<li><p>pytorch下载如果使用镜像需要去掉参数 -c pytorch，采用北外的镜像速度快</p>
+<li><p>pytorch下载如果很慢，请采用镜像！</p>
 </li>
 <li><p>下载cmake使用apt，但要更新下载源为阿里云，这样版本才够新</p>
 </li>
@@ -445,7 +445,7 @@ sudo aptitude install &lt;packagename&gt;<span aria-hidden="true" class="line-nu
 <p>血泪教训，不要轻易使用aptitude，系统很多东西都被改写了，经过一番折腾升级到了ubuntu 20.04，也不知道之前安装的东西有没有被动</p>
 <p>印象中提到”held packages”，应该按照那种方式解决</p>
 </li>
-<li><p>在下载spconv报错</p>
+<li><p>在下载 spconv 报错</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">CMake Error at CMakeLists.txt:2 <span class="token punctuation">(</span>project<span class="token punctuation">)</span>:
   No CMAKE_CUDA_COMPILER could be found.
   
@@ -457,8 +457,8 @@ subprocess.CalledProcessError: Command <span class="token string">'['</span>cmak
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">CUDA_PATH</span><span class="token operator">=</span>/usr/local/cuda-10.0
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">CUDA_HOME</span><span class="token operator">=</span>/usr/local/cuda-10.0
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span>/usr/local/cuda-10.0/lib64:<span class="token variable">$LD_LIBRARY_PATH</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>没有效果</p>
-<h1 id="241-issues和我问题一模一样-https-github-com-traveller59-spconv-issues-241"><a href="#241-issues和我问题一模一样-https-github-com-traveller59-spconv-issues-241" class="headerlink" title="241 issues和我问题一模一样 https://github.com/traveller59/spconv/issues/241"></a>241 issues和我问题一模一样 <a target="_blank" rel="noopener" href="https://github.com/traveller59/spconv/issues/241">https://github.com/traveller59/spconv/issues/241</a></h1><p>尝试增加路径 </p>
+<p>没有效果。#241 issues和我问题一模一样 <a target="_blank" rel="noopener" href="https://github.com/traveller59/spconv/issues/241">https://github.com/traveller59/spconv/issues/241</a></p>
+<p>尝试增加路径 </p>
 <p>try adding ‘-DCMAKE_CUDA_COMPILER=/usr/local/cuda-10.1/bin/nvcc’ in cmake_args</p>
 <p>依旧失败</p>
 <p>尝试使用不同版本的g++ sudo apt install g++-7，显示已经下载，我们需要切换版本</p>
@@ -476,8 +476,6 @@ subprocess.CalledProcessError: Command <span class="token string">'['</span>cmak
 <span class="token function">sudo</span> update-alternatives --config gcc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>成功</p>
 </li>
-</ol>
-<ol>
 <li><p>选择了 nuScenes mini 数据集</p>
 </li>
 <li><p>运行测试</p>
@@ -493,20 +491,14 @@ subprocess.CalledProcessError: Command <span class="token string">'['</span>cmak
 <p>我根据上面的内容对源码进行了修改，先尝试 train 一下</p>
 <p>依旧报错，再检查可能是因为配置文件没有对的原因</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/issues/3093">https://github.com/open-mmlab/mmdetection/issues/3093</a></p>
-<p>通过正确配置 nusc_centerpoint_voxelnet_0075voxel_fix_bn_z.py 文件解决上面报错</p>
-<p>./configs/nusc/voxelnet/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z.py</p>
-</li>
-</ol>
-<p>   由于没有完整的 nuScenes 数据集，又有新的错误报错</p>
-   <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">FileNotFoundError: <span class="token punctuation">[</span>Errno <span class="token number">2</span><span class="token punctuation">]</span> No such <span class="token function">file</span> or directory: <span class="token string">'nuScenes/samples/LIDAR_TOP/n008-2018-08-27-11-48-51-0400__LIDAR_TOP__1535385105950634.pcd.bin'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>   跳过这里，尝试跑一个 demo</p>
-<ol>
-<li><p>```<br>python ./tools/dist_test.py ./configs/nusc/voxelnet/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z.py —work_dir work_dirs/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z —checkpoint work_dirs/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z/latest.pth —speed_test </p>
-<pre class="line-numbers language-none"><code class="language-none">
-上面的报错
-
-```shell
-FileNotFoundError: [Errno 2] No such file or directory: 'nuScenes/samples/LIDAR_TOP/n015-2018-10-02-10-50-40+0800__LIDAR_TOP__1538448754047572.pcd.bin'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>通过正确配置 <code>nusc_centerpoint_voxelnet_0075voxel_fix_bn_z.py</code> 文件解决上面报错</p>
+<p><code>./configs/nusc/voxelnet/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z.py</code></p>
+<p>由于没有完整的 nuScenes 数据集，又有新的错误报错</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">FileNotFoundError: <span class="token punctuation">[</span>Errno <span class="token number">2</span><span class="token punctuation">]</span> No such <span class="token function">file</span> or directory: <span class="token string">'nuScenes/samples/LIDAR_TOP/n008-2018-08-27-11-48-51-0400__LIDAR_TOP__1535385105950634.pcd.bin'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>跳过这里，尝试跑一个 demo</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python ./tools/dist_test.py ./configs/nusc/voxelnet/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z.py --work_dir work_dirs/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z --checkpoint work_dirs/nusc_centerpoint_voxelnet_0075voxel_fix_bn_z/latest.pth --speed_test <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上面的报错</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">FileNotFoundError: <span class="token punctuation">[</span>Errno <span class="token number">2</span><span class="token punctuation">]</span> No such <span class="token function">file</span> or directory: <span class="token string">'nuScenes/samples/LIDAR_TOP/n015-2018-10-02-10-50-40+0800__LIDAR_TOP__1538448754047572.pcd.bin'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>查找目录发现这个文件其实是存在的，说明路径没有对，在 CentePoint 目录下添加 nuScenes 的软链接就可以解决了</p>
 </li>
 <li><p>最终 RuntimeError: CUDA out of memory 即使 batch_size = 1 也直接炸了，放弃！</p>
@@ -1009,7 +1001,7 @@ FileNotFoundError: [Errno 2] No such file or directory: 'nuScenes/samples/LIDAR_
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.6k</span>&nbsp;字
+                class="white-color">12.7k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
