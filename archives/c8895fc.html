@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    366
+                    388
                 </div>
                 
 
@@ -437,7 +437,7 @@
 <h2 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h2><h3 id="conda-info"><a href="#conda-info" class="headerlink" title="conda info"></a>conda info</h3><p>这个命令非常管用，基本上能够看到所有的 conda 配置信息</p>
 <h3 id="conda-install"><a href="#conda-install" class="headerlink" title="conda install"></a>conda install</h3><p><code>conda install PACKAGENAME</code> 下载指定包</p>
 <h3 id="conda-update"><a href="#conda-update" class="headerlink" title="conda update"></a>conda update</h3><p><code>conda update PACKAGENAME</code> 更新指定包 </p>
-<h2 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h2><h3 id="conda-env-create"><a href="#conda-env-create" class="headerlink" title="conda (env) create"></a>conda (env) create</h3><p><code>conda (env) create -n py36 python=3.6</code> 创造一个 python 3.6 的环境 py36，env 加不加都可以，建议加上比较有统一性</p>
+<h2 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h2><h3 id="conda-create-n"><a href="#conda-create-n" class="headerlink" title="conda create -n"></a>conda create -n</h3><p><code>conda create -n py36 python=3.6</code> 创造一个 python 3.6 的环境 py36</p>
 <p>注意：一般都要加上 <code>python=x.x</code> 否则使用的是 base 环境的 python 解释器</p>
 <h3 id="conda-env-list"><a href="#conda-env-list" class="headerlink" title="conda env list"></a>conda env list</h3><p>列出目前有的环境</p>
 <h3 id="conda-env-remove"><a href="#conda-env-remove" class="headerlink" title="conda env remove"></a>conda env remove</h3><p><code>conda env remove -n env_name</code> 移除环境</p>
@@ -446,6 +446,8 @@
 <p><code>conda install --file requirements.txt</code> 通过 requirements 文件下载包</p>
 <h3 id="conda-remove"><a href="#conda-remove" class="headerlink" title="conda remove"></a>conda remove</h3><p><code>conda remove PACKAGENAME</code> 移除包</p>
 <h3 id="conda-list"><a href="#conda-list" class="headerlink" title="conda list"></a>conda list</h3><p><code>conda list PACKAGENAME</code> 查看环境的某个包，如果不加 PACKAGENAME 则列出所有环境</p>
+<h3 id="conda-clean"><a href="#conda-clean" class="headerlink" title="conda clean"></a>conda clean</h3><p>如果不清理的话，anaconda 还是很吃存储的，会逐渐积累很多下载包</p>
+<p><code>conda clean --all</code>  Remove index cache, lock files, unused cache packages, and tarballs.</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="禁用自动启动-base-环境"><a href="#禁用自动启动-base-环境" class="headerlink" title="禁用自动启动 base 环境"></a>禁用自动启动 base 环境</h3><p>每次打开新的 shell 都会自动进入 base 环境，用下面的命令行禁用</p>
 <p><code>conda config --set auto_activate_base false</code></p>
 <h3 id="镜像源设置"><a href="#镜像源设置" class="headerlink" title="镜像源设置"></a>镜像源设置</h3><p>编辑 <code>~/.condarc</code> 文件，设置镜像源</p>
@@ -957,7 +959,7 @@ custom_channels:
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">15.4k</span>&nbsp;字
+                class="white-color">16.7k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
