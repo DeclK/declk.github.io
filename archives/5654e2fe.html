@@ -462,7 +462,7 @@
 <p>(然而最终却稀里糊涂的安装在了 base 环境)</p>
 <p>使用 <code>conda list manim</code> 检查是否安装成功，通过 <a target="_blank" rel="noopener" href="https://docs.manim.community/en/stable/tutorials/quickstart.html">Quickstart</a> 简单运行一个程序，检查整个流程是否能够运行</p>
 <h2 id="Tutorials"><a href="#Tutorials" class="headerlink" title="Tutorials"></a>Tutorials</h2><h3 id="Quickstart"><a href="#Quickstart" class="headerlink" title="Quickstart"></a>Quickstart</h3><p>下面是一段简单的代码，能够实现从矩形到圆形的变换</p>
-<p><img src="Manim-教程/SquareToCircle_ManimCE_v0.8.0.gif" alt="SquareToCircle_ManimCE_v0.8.0" style="zoom: 25%;"></p>
+<p><img src="/archives/5654e2fe/SquareToCircle_ManimCE_v0.8.0.gif" alt="SquareToCircle_ManimCE_v0.8.0" style="zoom: 25%;"></p>
 <p>代码如下</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># scene.py</span>
 
@@ -558,7 +558,7 @@ self<span class="token punctuation">.</span>play<span class="token punctuation">
         <span class="token comment"># animate the change of position</span>
         self<span class="token punctuation">.</span>play<span class="token punctuation">(</span>square<span class="token punctuation">.</span>animate<span class="token punctuation">.</span>shift<span class="token punctuation">(</span>UP<span class="token punctuation">)</span><span class="token punctuation">)</span>
         self<span class="token punctuation">.</span>wait<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="Manim-教程/ApplyMethodExample_ManimCE_v0.8.0.gif" alt="ApplyMethodExample_ManimCE_v0.8.0" style="zoom: 25%;"></p>
+<p><img src="/archives/5654e2fe/ApplyMethodExample_ManimCE_v0.8.0.gif" alt="ApplyMethodExample_ManimCE_v0.8.0" style="zoom: 25%;"></p>
 <h4 id="Scene"><a href="#Scene" class="headerlink" title="Scene"></a>Scene</h4><blockquote>
 <p>The <a target="_blank" rel="noopener" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene"><code>Scene</code></a> class is the connective tissue of manim. </p>
 </blockquote>
@@ -604,14 +604,14 @@ background_color <span class="token operator">=</span> WHITE<span aria-hidden="t
     <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>        
         text <span class="token operator">=</span> Text<span class="token punctuation">(</span><span class="token string">'Hello world'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>scale<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>        
         self<span class="token punctuation">.</span>add<span class="token punctuation">(</span>text<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="Manim-教程/image-20210729160507790.png" style="zoom:25%;"></p>
+<p><img src="/archives/5654e2fe/image-20210729160507790.png" style="zoom:25%;"></p>
 <p>使用 tex_mobject 的话，如下</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> manim <span class="token keyword">import</span> <span class="token operator">*</span>
 <span class="token keyword">class</span> <span class="token class-name">HelloLaTeX</span><span class="token punctuation">(</span>Scene<span class="token punctuation">)</span><span class="token punctuation">:</span>    
     <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>        
         tex <span class="token operator">=</span> Tex<span class="token punctuation">(</span><span class="token string">r"\LaTeX"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>scale<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>        
         self<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tex<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="Manim-教程/image-20210729160532548.png" style="zoom: 33%;"></p>
+<p><img src="/archives/5654e2fe/image-20210729160532548.png" style="zoom: 33%;"></p>
 <p>注意需要使用 raw string <code>r('...')</code> 因为 Latex 中很多特殊字符需要进行转义</p>
 <p>还有不同的方法都能返回 text_mobject &amp; tex_mobject，比如 MarkupText, MathTex </p>
 <p>这篇笔记就到这里了，还有好多好玩的功能就请自行探索吧 😎</p>

@@ -451,7 +451,7 @@
 <span class="token comment"># 取消代理</span>
 <span class="token function">git</span> config --global --unset http.proxy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="Git-基本理论"><a href="#Git-基本理论" class="headerlink" title="Git 基本理论"></a>Git 基本理论</h2><p>直接上图，重点关注左侧命令</p>
-<p><img src="Git-教程/image-20210628141830141.png" style="zoom:80%;"></p>
+<p><img src="/archives/2121b11b/image-20210628141830141.png" style="zoom:80%;"></p>
 <p>从工作区 -&gt; 暂存区：git add</p>
 <p>从暂存区 -&gt; 本地仓库：git commit</p>
 <p>从本地仓库 -&gt; 远程仓库：git push</p>
@@ -489,9 +489,9 @@
 <p>git checkout file_name</p>
 <h2 id="分支与冲突"><a href="#分支与冲突" class="headerlink" title="分支与冲突"></a>分支与冲突</h2><h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><p>从这里我们可以更加深入理解 git 的工作形象，working tree</p>
 <p>除了 master 分支，我们还可以创建其他分支，HEAD 所指的就是 working tree “生长”的地方，然后我们将分支合并，也即让 master “赶上来”，再删除 dev 分支。git 分支还有一个一般规则是，master 分支永远是最稳定的分支，开发都在 dev 或其他分支上进行</p>
-<p><img src="Git-教程/branch_1.png" style="zoom: 50%;"></p>
-<p><img src="Git-教程/branch_2.png" style="zoom: 50%;"></p>
-<p><img src="Git-教程/branch_3.png" style="zoom:50%;"></p>
+<p><img src="/archives/2121b11b/branch_1.png" style="zoom: 50%;"></p>
+<p><img src="/archives/2121b11b/branch_2.png" style="zoom: 50%;"></p>
+<p><img src="/archives/2121b11b/branch_3.png" style="zoom:50%;"></p>
 <p>使用 git branch 查看分支情况，也可用于删除分支</p>
 <p>git branch -d branch_name</p>
 <h3 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h3><p>使用 git swich 来创建和切换分支</p>
@@ -502,7 +502,7 @@
 <h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p>将某个分支合并到当前分支</p>
 <p>git merge branch_name</p>
 <p>如果发生了冲突：两个 branch 中在同一个文件中有不同的修改而无法合并，那么需要解决冲突。（判断文件是否有修改，是根据 commit id 之类的标记节点来判断的，但是否存在冲突则是根据文件的内容）</p>
-<p><img src="Git-教程/branch_4.png" style="zoom:50%;"></p>
+<p><img src="/archives/2121b11b/branch_4.png" style="zoom:50%;"></p>
 <p>先使用 git status 查看哪个文件发生冲突，然后使用 vim 编辑，git 会自动在文档中标明冲突的地方。怎样修改无所谓，只要你 add &amp; commit 过后，git 就会默认冲突解决，并将你的文件作为最新的版本加入版本库中，更新 working tree</p>
 <p>如果对于 git 中 recursive 3-way merge 算法感兴趣，可以参看<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Merge_(version_control">维基百科</a></p>
 <h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="添加远程仓库-github-or-gitee"><a href="#添加远程仓库-github-or-gitee" class="headerlink" title="添加远程仓库 github or gitee"></a>添加远程仓库 github or gitee</h3><p>gitee 为国内网站，传输速度更快。通过以下步骤将本机与远程连接（以 github 为例）：</p>
