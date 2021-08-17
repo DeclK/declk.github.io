@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Faster RCNN note, ">
-    <meta name="description" content="">
+    <meta name="description" content=" ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -147,7 +147,7 @@
         <div class="logo-name"></div>
         <div class="logo-desc">
             
-            Never really desperate, only the lost of the soul.
+             
             
         </div>
     </div>
@@ -445,7 +445,7 @@
 <p>利用proposal feature maps计算proposal的类别，同时再次bounding box regression获得检测框最终的精确位置。</p>
 </li>
 </ol>
-<p><img src="/archives/2ad8fafc/image-20210614151135341.png" style="zoom: 67%;"></p>
+<p><img src="Faster-RCNN-note/image-20210614151135341.png" style="zoom: 67%;"></p>
 <h2 id="Conv-Layers"><a href="#Conv-Layers" class="headerlink" title="Conv Layers"></a>Conv Layers</h2><p>Conv layers部分共有13个conv层，13个relu层，4个pooling层 </p>
 <ol>
 <li>所有的conv层都是：kernel_size=3，pad=1，stride=1</li>
@@ -464,9 +464,9 @@
  <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">168</span><span class="token punctuation">.</span> <span class="token operator">-</span><span class="token number">344</span><span class="token punctuation">.</span>  <span class="token number">183</span><span class="token punctuation">.</span>  <span class="token number">359</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>每行有4个值，代表了矩形左上角和右下角两个点$(x_1, y_1, x_2, y_2)$ </p>
 <p>一共9个矩形，来组于不同长宽比和不同大小的组合：长宽比有3种，1:1, 1:2, 2:1</p>
-<p><img src="/archives/2ad8fafc/image-20210614152512944.png" style="zoom:50%;"></p>
+<p><img src="Faster-RCNN-note/image-20210614152512944.png" style="zoom:50%;"></p>
 <p>那么这9个anchors是做什么的呢？借用Faster RCNN论文中的原图，如图7，遍历Conv layers计算获得的feature maps，为每一个点都配备这9种anchors作为初始的检测框</p>
-<p><img src="/archives/2ad8fafc/v2-c93db71cc8f4f4fd8cfb4ef2e2cef4f4_720w.jpg" style="zoom:80%;"></p>
+<p><img src="Faster-RCNN-note/v2-c93db71cc8f4f4fd8cfb4ef2e2cef4f4_720w.jpg" style="zoom:80%;"></p>
 <p>简单解释一下上图：</p>
 <ol>
 <li><p>conv feature map中，每一个点都是256-dimensions</p>
@@ -495,9 +495,9 @@
 <li>RPN输出的proposals</li>
 </ol>
 <p>这一个Pooling操作还要有一个功能，就是需要处理不同大小的proposal (kernel)。经典的pooing操作是使用相同大小的kernel，这里我们要预先对 proposal (region of interest) 进行统一的分割，使得pooling结果是相同的表示(如下图)</p>
-<p><img src="/archives/2ad8fafc/image-20210614164103022.png" style="zoom: 67%;"></p>
+<p><img src="Faster-RCNN-note/image-20210614164103022.png" style="zoom: 67%;"></p>
 <h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><p>Classification部分利用已经获得的proposal feature maps，通过full connect层与softmax计算每个proposal具体属于那个类别（如人，车，电视等），输出cls_prob概率向量；同时再次利用bounding box regression获得每个proposal的位置偏移量bbox_pred，用于回归更加精确的目标检测框</p>
-<p><img src="/archives/2ad8fafc/image-20210614164211554.png" style="zoom:80%;"></p>
+<p><img src="Faster-RCNN-note/image-20210614164211554.png" style="zoom:80%;"></p>
 <h2 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h2><p>Faster R-CNN的训练，是在已经训练好的model（如VGG，ZF）的基础上继续进行训练，实际训练过程为以下：</p>
 <ol>
 <li>在已经训练好的model(e.g. VGG)，训练RPN</li>
@@ -1012,7 +1012,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">16.7k</span>&nbsp;字
+                class="white-color">20.5k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
