@@ -434,11 +434,11 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="MMDetection-note"><a href="#MMDetection-note" class="headerlink" title="MMDetection note"></a>MMDetection note</h1><p>整理自 <a target="_blank" rel="noopener" href="https://mmdetection.readthedocs.io/en/latest/index.html">MMDetection 官方文档</a></p>
-<h1 id="Quick-Run"><a href="#Quick-Run" class="headerlink" title="Quick Run"></a>Quick Run</h1><h1 id="Part-1-Inference-and-train-with-existing-models-and-standard-datasets"><a href="#Part-1-Inference-and-train-with-existing-models-and-standard-datasets" class="headerlink" title="Part 1, Inference and train with existing models and standard datasets"></a>Part 1, Inference and train with existing models and standard datasets</h1><blockquote>
+<h1 id="Quick-Run"><a href="#Quick-Run" class="headerlink" title="Quick Run"></a>Quick Run</h1><h2 id="Part-1-Inference-and-train-with-existing-models-and-standard-datasets"><a href="#Part-1-Inference-and-train-with-existing-models-and-standard-datasets" class="headerlink" title="Part 1, Inference and train with existing models and standard datasets"></a>Part 1, Inference and train with existing models and standard datasets</h2><blockquote>
 <p>MMDetection provides hundreds of existing and existing detection models in <a target="_blank" rel="noopener" href="https://mmdetection.readthedocs.io/en/latest/model_zoo.html">Model Zoo</a>, and supports multiple standard datasets, including Pascal VOC, COCO, CityScapes, LVIS, etc.</p>
 </blockquote>
 <p>这一部分将简要介绍，如何使用 MMDetection 对 Model zoo 中的模型进行测试和训练</p>
-<h2 id="Inference-with-existing-models"><a href="#Inference-with-existing-models" class="headerlink" title="Inference with existing models"></a>Inference with existing models</h2><blockquote>
+<h3 id="Inference-with-existing-models"><a href="#Inference-with-existing-models" class="headerlink" title="Inference with existing models"></a>Inference with existing models</h3><blockquote>
 <p>By inference, we mean using trained models to detect objects on images. In MMDetection, a model is defined by a configuration file and existing model parameters are save in a checkpoint file.</p>
 </blockquote>
 <p>这里介绍了 MMDetection 模型表示的基本逻辑：<code>configuration file</code>+ <code>checkpoint file</code> </p>
@@ -447,7 +447,7 @@
 <p>To start with, we recommend <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/tree/master/configs/faster_rcnn">Faster RCNN</a> with this <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/blob/master/configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py">configuration file</a> and this <a target="_blank" rel="noopener" href="https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth">checkpoint file</a>. It is recommended to download the checkpoint file to <code>checkpoints</code> directory.</p>
 </blockquote>
 <p>Q: config files 名字的意义是什么？在 config 对应的文件夹中有 markdown 文档进行说明，例如 <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/tree/master/configs/faster_rcnn">faster rcnn</a> </p>
-<h3 id="High-level-APIs-for-inference"><a href="#High-level-APIs-for-inference" class="headerlink" title="High-level APIs for inference"></a>High-level APIs for inference</h3><p>在之前也见到过这个代码，现在再来看一看</p>
+<h4 id="High-level-APIs-for-inference"><a href="#High-level-APIs-for-inference" class="headerlink" title="High-level APIs for inference"></a>High-level APIs for inference</h4><p>在之前也见到过这个代码，现在再来看一看</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> mmdet<span class="token punctuation">.</span>apis <span class="token keyword">import</span> init_detector<span class="token punctuation">,</span> inference_detector
 <span class="token keyword">import</span> mmcv
 
@@ -478,22 +478,22 @@ video <span class="token operator">=</span> mmcv<span class="token punctuation">
 <li>推理 <code>inference_detector</code></li>
 </ol>
 <p>这里 <code>show_result</code> 的参数请查看 <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/blob/a1cecf63c713c53941b8dcf8a9d762baf8511f2c/mmdet/models/detectors/base.py">原代码</a>，如果需要显示的话要添加参数 <code>show=True</code>。但在用 vscode 连接远程服务器的情况下，即使设置了 <code>show=True</code> 也不会展示结果，可能因为服务器不支持 GUI，替代的方法就是在 Jupyter notebook 或者 interactive window 中运行</p>
-<h3 id="Asynchronous-interface-supported-for-Python-3-7"><a href="#Asynchronous-interface-supported-for-Python-3-7" class="headerlink" title="Asynchronous interface - supported for Python 3.7+"></a>Asynchronous interface - supported for Python 3.7+</h3><p>这一节没有理解清楚，只稍微留了点印象：使用异步接口理论上能够加速推理/训练过程</p>
-<h4 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h4><p>首先什么是 <a target="_blank" rel="noopener" href="https://blog.csdn.net/lemon4869/article/details/107145903">异步思维</a>，在链接中的理解来说：异步就是不必等待推理结束才开始下一张图像的预处理。但看原代码说的异步到底是什么意思，我也不太理解，以后再回来整理 asyncio 相关知识吧</p>
-<h4 id="async-amp-await"><a href="#async-amp-await" class="headerlink" title="async &amp; await"></a>async &amp; await</h4><p>什么是 Asynchronous interface <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/353857526">知乎链接</a></p>
+<h4 id="Asynchronous-interface-supported-for-Python-3-7"><a href="#Asynchronous-interface-supported-for-Python-3-7" class="headerlink" title="Asynchronous interface - supported for Python 3.7+"></a>Asynchronous interface - supported for Python 3.7+</h4><p>这一节没有理解清楚，只稍微留了点印象：使用异步接口理论上能够加速推理/训练过程</p>
+<h5 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h5><p>首先什么是 <a target="_blank" rel="noopener" href="https://blog.csdn.net/lemon4869/article/details/107145903">异步思维</a>，在链接中的理解来说：异步就是不必等待推理结束才开始下一张图像的预处理。但看原代码说的异步到底是什么意思，我也不太理解，以后再回来整理 asyncio 相关知识吧</p>
+<h5 id="async-amp-await"><a href="#async-amp-await" class="headerlink" title="async &amp; await"></a>async &amp; await</h5><p>什么是 Asynchronous interface <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/353857526">知乎链接</a></p>
 <p>什么是 asyncio <a target="_blank" rel="noopener" href="https://blog.csdn.net/permike/article/details/110821246">知乎链接</a></p>
 <p>Q: 这里需要更多的 python 知识，我得回去补充，比如 with 关键字什么意思？整个异步的过程是怎么样的，能否把整个时间与事件弄清楚？</p>
-<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>文档给了3个demo：</p>
+<h4 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h4><p>文档给了3个demo：</p>
 <ol>
 <li>Image Demo</li>
 <li>Webcam Demo</li>
 <li>Video Demo</li>
 </ol>
 <p>简单看了一下代码，看来还需要补充总结 OpenCV 的一些基础知识</p>
-<h2 id="Test-existing-models-on-standard-datasets"><a href="#Test-existing-models-on-standard-datasets" class="headerlink" title="Test existing models on standard datasets"></a>Test existing models on standard datasets</h2><blockquote>
+<h3 id="Test-existing-models-on-standard-datasets"><a href="#Test-existing-models-on-standard-datasets" class="headerlink" title="Test existing models on standard datasets"></a>Test existing models on standard datasets</h3><blockquote>
 <p>MMDetection supports multiple public datasets including COCO, Pascal VOC, CityScapes, and <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/tree/master/configs/_base_/datasets">more</a>. This section will show how to test existing models on supported datasets.</p>
 </blockquote>
-<h3 id="Prepare-datasets"><a href="#Prepare-datasets" class="headerlink" title="Prepare datasets"></a>Prepare datasets</h3><p>推荐在项目之外建立数据集，然后以软链接的形式放到项目中，且目录结构要根据 config files 规放置（或者你自己修改 config files），举个几个例子</p>
+<h4 id="Prepare-datasets"><a href="#Prepare-datasets" class="headerlink" title="Prepare datasets"></a>Prepare datasets</h4><p>推荐在项目之外建立数据集，然后以软链接的形式放到项目中，且目录结构要根据 config files 规放置（或者你自己修改 config files），举个几个例子</p>
 <pre class="line-numbers language-none"><code class="language-none">mmdetection
 ├── mmdet
 ├── tools
@@ -515,10 +515,10 @@ video <span class="token operator">=</span> mmcv<span class="token punctuation">
 │   ├── VOCdevkit
 │   │   ├── VOC2007
 │   │   ├── VOC2012<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Test-existing-models"><a href="#Test-existing-models" class="headerlink" title="Test existing models"></a>Test existing models</h3><blockquote>
+<h4 id="Test-existing-models"><a href="#Test-existing-models" class="headerlink" title="Test existing models"></a>Test existing models</h4><blockquote>
 <p>We provide testing scripts for evaluating an existing model on the whole dataset (COCO, PASCAL VOC, Cityscapes, etc.). </p>
 </blockquote>
-<p>可以在当 GPU 上测试，也可以在多个 GPU 上进行分布测试</p>
+<p>可以在单个 GPU 上测试，也可以在多个 GPU 上进行分布测试</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># single-gpu testing</span>
 python tools/test.py <span class="token punctuation">\</span>
     <span class="token variable">${CONFIG_FILE}</span> <span class="token punctuation">\</span>
@@ -537,12 +537,12 @@ python tools/test.py <span class="token punctuation">\</span>
 <p>mmdetection 提供对无标记数据集进行测试，但数据集需要符合 COCO format，如果不是 COCO format 例如 VOC 数据集，需要使用 <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/tree/master/tools/dataset_converters/pascal_voc.py">script in tools</a> 转化</p>
 <p>mmdetection 提供 batch inference，能够一次推理多个样本，在 config files 中修改 <code>sample_per_gpu</code> 即可，或者使用 <code>--cfg-options data.test.samples_per_gpu=2</code></p>
 <p>还有很多参数可以调整，具体请看源代码，文档也给出了很多 <a target="_blank" rel="noopener" href="https://mmdetection.readthedocs.io/en/latest/1_exist_data_model.html#examples">例子</a></p>
-<h2 id="Train-predefined-models-on-standard-datasets"><a href="#Train-predefined-models-on-standard-datasets" class="headerlink" title="Train predefined models on standard datasets"></a>Train predefined models on standard datasets</h2><blockquote>
+<h4 id="Train-predefined-models-on-standard-datasets"><a href="#Train-predefined-models-on-standard-datasets" class="headerlink" title="Train predefined models on standard datasets"></a>Train predefined models on standard datasets</h4><blockquote>
 <p>This section will show how to train <em>predefined</em> models (under <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/tree/master/configs">configs</a>) on standard datasets i.e. COCO.</p>
 <p><strong>Important</strong>: 训练的默认学习率的配置为 8个 GPU 和 2 img/gpu，也就是 batch size 为16，如果使用不同的 batch size 那么就要按照线性缩放原则更改学习率 e.g., <code>lr=0.01</code> for 4 GPUs <em> 2 imgs/gpu and <code>lr=0.08</code> for 16 GPUs </em> 4 imgs/gpu.</p>
 </blockquote>
-<h3 id="Prepare-datasets-1"><a href="#Prepare-datasets-1" class="headerlink" title="Prepare datasets"></a>Prepare datasets</h3><p>准备过程和上一节 Test 部分是一致的。建议先将模型下载好，以防网不好导致报</p>
-<h3 id="Training-on-a-single-GPU"><a href="#Training-on-a-single-GPU" class="headerlink" title="Training on a single GPU"></a>Training on a single GPU</h3><p>在单个 GPU 上训练，基本使用方法</p>
+<h5 id="Prepare-datasets-1"><a href="#Prepare-datasets-1" class="headerlink" title="Prepare datasets"></a>Prepare datasets</h5><p>准备过程和上一节 Test 部分是一致的。建议先将模型下载好，以防网不好导致报错</p>
+<h5 id="Training-on-a-single-GPU"><a href="#Training-on-a-single-GPU" class="headerlink" title="Training on a single GPU"></a>Training on a single GPU</h5><p>在单个 GPU 上训练，基本使用方法</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python tools/train.py <span class="token punctuation">\</span>
     <span class="token variable">${CONFIG_FILE}</span> <span class="token punctuation">\</span>
     <span class="token punctuation">[</span>optional arguments<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -555,15 +555,15 @@ python tools/test.py <span class="token punctuation">\</span>
 <li><code>--options 'Key=value'</code>: Overrides other settings in the used config.</li>
 </ul>
 <p>文档提到两个参数的区别：<code>--resume-from &amp; --load-from</code> 前者不仅加载参数权重，也加载 optimizer 的状态，主要用于训练被突然打断后接着训练。后者只加载参数权重，主要用于 finetuning</p>
-<h3 id="Training-on-multiple-GPUs"><a href="#Training-on-multiple-GPUs" class="headerlink" title="Training on multiple GPUs"></a>Training on multiple GPUs</h3><p>同样，基本用法</p>
+<h4 id="Training-on-multiple-GPUs"><a href="#Training-on-multiple-GPUs" class="headerlink" title="Training on multiple GPUs"></a>Training on multiple GPUs</h4><p>同样，基本用法</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">bash</span> ./tools/dist_train.sh <span class="token punctuation">\</span>
     <span class="token variable">${CONFIG_FILE}</span> <span class="token punctuation">\</span>
     <span class="token variable">${GPU_NUM}</span> <span class="token punctuation">\</span>
     <span class="token punctuation">[</span>optional arguments<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>可选参数和上面训练单个 GPU 是一样的</p>
-<h4 id="Launch-multiple-jobs-simultaneously"><a href="#Launch-multiple-jobs-simultaneously" class="headerlink" title="Launch multiple jobs simultaneously"></a>Launch multiple jobs simultaneously</h4><p>在训练当中，通常会有多任务的存在，mmdetection 也可以实现，但现在能力有限，实在不能理解具体的实现逻辑，留个 <a target="_blank" rel="noopener" href="https://mmdetection.readthedocs.io/en/latest/1_exist_data_model.html#training-on-multiple-gpus">原文档链接</a></p>
+<h5 id="Launch-multiple-jobs-simultaneously"><a href="#Launch-multiple-jobs-simultaneously" class="headerlink" title="Launch multiple jobs simultaneously"></a>Launch multiple jobs simultaneously</h5><p>在训练当中，通常会有多任务的存在，mmdetection 也可以实现，但现在能力有限，实在不能理解具体的实现逻辑，留个 <a target="_blank" rel="noopener" href="https://mmdetection.readthedocs.io/en/latest/1_exist_data_model.html#training-on-multiple-gpus">原文档链接</a></p>
 <p>提到了很多新东西，nodes, port, slurm, pytorch launch utility…如果能够在实践中理解这些概念更好了</p>
-<h1 id="Part-2-Train-with-customized-datasets"><a href="#Part-2-Train-with-customized-datasets" class="headerlink" title="Part 2, Train with customized datasets"></a>Part 2, Train with customized datasets</h1><blockquote>
+<h2 id="Part-2-Train-with-customized-datasets"><a href="#Part-2-Train-with-customized-datasets" class="headerlink" title="Part 2, Train with customized datasets"></a>Part 2, Train with customized datasets</h2><blockquote>
 <p> We use the <a target="_blank" rel="noopener" href="https://github.com/matterport/Mask_RCNN/tree/master/samples/balloon">balloon dataset</a> as an example to describe the whole process.</p>
 </blockquote>
 <p>基本步骤为：</p>
@@ -655,7 +655,7 @@ load_from <span class="token operator">=</span> <span class="token string">'chec
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python tools/test.py configs/balloon/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py <span class="token punctuation">\</span>
 work_dirs/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py/latest.pth <span class="token punctuation">\</span>
 --eval bbox segm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h1 id="Part-3-Train-with-customized-models-and-standard-datasets"><a href="#Part-3-Train-with-customized-models-and-standard-datasets" class="headerlink" title="Part 3, Train with customized models and standard datasets"></a>Part 3, Train with customized models and standard datasets</h1><blockquote>
+<h2 id="Part-3-Train-with-customized-models-and-standard-datasets"><a href="#Part-3-Train-with-customized-models-and-standard-datasets" class="headerlink" title="Part 3, Train with customized models and standard datasets"></a>Part 3, Train with customized models and standard datasets</h2><blockquote>
 <p>In this note, you will know how to train, test and inference your own customized models under standard datasets.</p>
 </blockquote>
 <p>使用 cityscapes dataset 训练个性化 Cascade Mask R-CNN R50 model，使用 <a target="_blank" rel="noopener" href="https://github.com/Gus-Guo/AugFPN"><code>AugFPN</code></a> 替代 <code>FPN</code> 作为 neck，并且加上 <code>Rotate</code> or <code>Translate</code> 作为数据增强</p>
@@ -696,7 +696,7 @@ work_dirs/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py/latest.pth <span cl
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python tools/train.py configs/cityscapes/cascade_mask_rcnn_r50_augfpn_autoaug_10e_cityscapes.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>To test the trained model, you can simply run</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python tools/test.py configs/cityscapes/cascade_mask_rcnn_r50_augfpn_autoaug_10e_cityscapes.py <span class="token punctuation">\</span>work_dirs/cascade_mask_rcnn_r50_augfpn_autoaug_10e_cityscapes.py/latest.pth --eval bbox segm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="pth文件里有什么"><a href="#pth文件里有什么" class="headerlink" title=".pth文件里有什么"></a>.pth文件里有什么</h2><p>要回答一个问题，什么是 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/84797438">.pth 文件 知乎</a>，在 mmdetection 框架中可以看到 pth 文件包含了两个部分 <code>meta &amp; state_dict</code></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="pth文件里有什么"><a href="#pth文件里有什么" class="headerlink" title=".pth文件里有什么"></a>.pth文件里有什么</h3><p>要回答一个问题，什么是 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/84797438">.pth 文件 知乎</a>，在 mmdetection 框架中可以看到 pth 文件包含了两个部分 <code>meta &amp; state_dict</code></p>
 <p>其中 <code>meta</code> 保存了模型的配置信息，列出其 key：</p>
 <ol>
 <li>mmdet_version</li>
@@ -710,7 +710,7 @@ work_dirs/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py/latest.pth <span cl
 <p>而 <code>state_dict</code> 保存了模型参数值，列出部分 key：</p>
 <p>backbone.conv1.weight<br>backbone.bn1.weight<br>backbone.bn1.bias<br>backbone.bn1.running_mean<br>backbone.bn1.running_var<br>backbone.bn1.num_batches_tracked<br>backbone.layer1.0.conv1.weight<br>backbone.layer1.0.bn1.weight<br>backbone.layer1.0.bn1.bias<br>backbone.layer1.0.bn1.running_mean<br>backbone.layer1.0.bn1.running_var<br>backbone.layer1.0.bn1.num_batches_tracked</p>
 <p>…….</p>
-<h2 id="如何理解-Registry"><a href="#如何理解-Registry" class="headerlink" title="如何理解 Registry"></a>如何理解 Registry</h2><p>在学习 mmdetection 过程中一直又一个问题：如何使用 config + registry 返回一个 nn.Module 类的模型，这些模型是如何被注册到 Registry 类当中的？</p>
+<h3 id="如何理解-Registry"><a href="#如何理解-Registry" class="headerlink" title="如何理解 Registry"></a>如何理解 Registry</h3><p>在学习 mmdetection 过程中一直又一个问题：如何使用 config + registry 返回一个 nn.Module 类的模型，这些模型是如何被注册到 Registry 类当中的？</p>
 <p>阅读资源：</p>
 <ol>
 <li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_29963957">mmdetection 源码阅读笔记</a></p>
@@ -746,9 +746,9 @@ __all__ <span class="token operator">=</span> <span class="token punctuation">[<
     <span class="token string">'build_shared_head'</span><span class="token punctuation">,</span> <span class="token string">'build_head'</span><span class="token punctuation">,</span> <span class="token string">'build_loss'</span><span class="token punctuation">,</span> <span class="token string">'build_detector'</span>
 <span class="token punctuation">]</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Bug-amp-vscode-debugger"><a href="#Bug-amp-vscode-debugger" class="headerlink" title="Bug  &amp; vscode debugger"></a>Bug  &amp; vscode debugger</h2><p>捣鼓了一天了在服务器，怎么都不能够搞好 xrdp，还差点把电脑弄出点毛病…最后用 <code>sudo dpkg --purge xrdp</code> 删除了没有下载完全的包才弄好了。我认为实验室的服务器需要一个大更新，一个是系统升级，另一个是清理内存，现在大概还有350G的空间剩余，最重要的是服务器的网络是个大问题！很多资源都无法直接下载，有些资源下载起来非常吃力</p>
+<h3 id="Bug-amp-vscode-debugger"><a href="#Bug-amp-vscode-debugger" class="headerlink" title="Bug  &amp; vscode debugger"></a>Bug  &amp; vscode debugger</h3><p>捣鼓了一天了在服务器，怎么都不能够搞好 xrdp，还差点把电脑弄出点毛病…最后用 <code>sudo dpkg --purge xrdp</code> 删除了没有下载完全的包才弄好了。我认为实验室的服务器需要一个大更新，一个是系统升级，另一个是清理内存，现在大概还有350G的空间剩余，最重要的是服务器的网络是个大问题！很多资源都无法直接下载，有些资源下载起来非常吃力</p>
 <p>放一个 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ceb3c020e06b">nvidia-smi讲解链接</a>，理解一下各个指标是在说什么</p>
-<h3 id="vscode-debugger"><a href="#vscode-debugger" class="headerlink" title="vscode debugger"></a>vscode debugger</h3><p>在使用 vscode debug 的时候发现有的代码并不会 step in，后来发现这些代码都是通过 pip/conda install 下载的库中的代码。而 vscode 的 debugger 会默认设定只在 ‘MyCode’ 中进行 debug，简单的说，如果不是“自己”写的代码，vscode debugger 是不会 step in 的</p>
+<h4 id="vscode-debugger"><a href="#vscode-debugger" class="headerlink" title="vscode debugger"></a>vscode debugger</h4><p>在使用 vscode debug 的时候发现有的代码并不会 step in，后来发现这些代码都是通过 pip/conda install 下载的库中的代码。而 vscode 的 debugger 会默认设定只在 ‘MyCode’ 中进行 debug，简单的说，如果不是“自己”写的代码，vscode debugger 是不会 step in 的</p>
 <p>解决办法：在 debugger 的 json 文件中设置 <code>"justMyCode: false"</code></p>
 <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>
     <span class="token comment">// Use IntelliSense to learn about possible attributes.</span>
