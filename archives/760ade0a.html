@@ -1,0 +1,1384 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Python 数据结构, ">
+    <meta name="description" content=" ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Python 数据结构 | </title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span"></span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name"></div>
+        <div class="logo-desc">
+            
+             
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Python 数据结构</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%99%E7%A8%8B/">
+                                <span class="chip bg-color">教程</span>
+                            </a>
+                        
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                <span class="chip bg-color">数据结构</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                编程
+                            </a>
+                        
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/python/" class="post-category">
+                                python
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-08-28
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    2.6k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Python-String-amp-Data-Structure"><a href="#Python-String-amp-Data-Structure" class="headerlink" title="Python String &amp; Data Structure"></a>Python String &amp; Data Structure</h1><h2 id="String-字符串"><a href="#String-字符串" class="headerlink" title="String 字符串"></a>String 字符串</h2><p>python 用单引号 <code>''</code> 或者双引号 <code>""</code> 来表示字符串，三引号 <code>'''</code> 允许跨多行的字符串</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">s1 <span class="token operator">=</span> <span class="token string">'hello, world!'</span>
+s2 <span class="token operator">=</span> <span class="token string">"hello, world!"</span>
+<span class="token comment"># 以三个双引号或单引号开头的字符串可以折行</span>
+s3 <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+hello, 
+world!
+"""</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token punctuation">,</span> s2<span class="token punctuation">,</span> s3<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>字符串中可以使用反斜杠 <code>\</code> 表示转义，如 <code>\n, \t</code> 等转义字符，如果希望输入原字符串可在引号前加 r 字母</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">s1 <span class="token operator">=</span> <span class="token string">'\n\\hello, world!\\\n'</span>
+s2 <span class="token operator">=</span> <span class="token string">r'\n\\hello, world!\\\n'</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token punctuation">,</span> s2<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h3><p>字符串接受 <code>+, *, [:], in</code> 等运算，对字符串内容进行合并、重复、截取、成员运算</p>
+<h3 id="字符串格式化"><a href="#字符串格式化" class="headerlink" title="字符串格式化"></a>字符串格式化</h3><p>当字符串中需要表示变量时，格式化表示将会非常有用，基本用法如下</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">num<span class="token punctuation">,</span> pai <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3.1415926</span>
+s <span class="token operator">=</span> <span class="token string">'here is a number %d, and pai is %.2f'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>num<span class="token punctuation">,</span> pai<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>基本逻辑就是，一个萝卜一个坑，想要在字符串中插入变量，就在需要插入的地方用相应的符号替代，然后在字符串后用 <code>%</code> 指明变量</p>
+<p>这里列几个常用的替代符号：<code>%d, %f, %s, %e</code>，最后一个 <code>%e</code> 表示科学计数</p>
+<h3 id="字符串内建函数"><a href="#字符串内建函数" class="headerlink" title="字符串内建函数"></a>字符串内建函数</h3><p>字符串自带了很多方便的方法，这里列举几个常用的，string 代表某个字符串</p>
+<ol>
+<li><p><code>sting.count(str)</code>，字符串中有多少个 str</p>
+</li>
+<li><p><code>string.find(str)</code>，str 在字符串中的哪个位置，如不存在返回-1</p>
+</li>
+<li><p><code>string.format(*args, **kwargs)</code>，<strong>增强版格式化方法，非常推荐使用该函数来格式化字符串</strong>，参考 <a target="_blank" rel="noopener" href="https://www.runoob.com/python/att-string-format.html">菜鸟教程</a></p>
+</li>
+<li><p><code>string.split(str)</code>，<strong>按照 str 分隔字符串，返回一个列表</strong></p>
+</li>
+<li><p><code>string.replace(str1, str2)</code>，将 str1 替换为 str2</p>
+</li>
+</ol>
+<h2 id="List-列表"><a href="#List-列表" class="headerlink" title="List 列表"></a>List 列表</h2><p>列表是最基本的数据结构，可以顺序存储不同的对象。在 python 中创建列表：</p>
+<ol>
+<li>直接赋值 <code>LIST = []</code></li>
+<li>类型转换 <code>list(tuple)</code></li>
+</ol>
+<h3 id="列表运算"><a href="#列表运算" class="headerlink" title="列表运算"></a>列表运算</h3><p>列表也接受：<code>+, *, [:], in</code> 等运算符</p>
+<h3 id="python-内置函数操作列表"><a href="#python-内置函数操作列表" class="headerlink" title="python 内置函数操作列表"></a>python 内置函数操作列表</h3><ol>
+<li><code>len(list)</code></li>
+<li><code>max(list)</code> &amp; <code>min(list)</code></li>
+<li><code>for i in list</code> &amp; <code>for index, value in enumerate(list)</code>，对列表进行循环遍历</li>
+</ol>
+<h3 id="列表内建函数"><a href="#列表内建函数" class="headerlink" title="列表内建函数"></a>列表内建函数</h3><ol>
+<li><code>list.append(obj)</code> &amp; <code>list.insert(index, obj)</code></li>
+<li><code>list.remove(obj)</code> &amp; <code>list.pop()</code></li>
+<li><code>list.sort(reverse=False)</code>，将列表按照上升值排列，返回 None</li>
+<li><code>list.copy()</code></li>
+</ol>
+<h2 id="Tuple-元组"><a href="#Tuple-元组" class="headerlink" title="Tuple 元组"></a>Tuple 元组</h2><p>元组和列表类似，也是线性表的一种，不过在元组建立过后，其成员是不能够被修改的，增加和删除成员也是不支持的，在 python 中创建元组：</p>
+<ol>
+<li>直接赋值 <code>TUPLE = (1,)</code></li>
+<li>类型转换 <code>tuple(list)</code></li>
+</ol>
+<h3 id="元组运算"><a href="#元组运算" class="headerlink" title="元组运算"></a>元组运算</h3><p>元组支持 <code>+, *, [:], in</code> 等运算符，但注意，由于元组成员不能被修改的性质，所以不能够对索引值进行新的赋值。虽然不能增加成员，但是仍可以使用 <code>+</code> 运算，将两个元组合并</p>
+<h3 id="python-内置函数操作元组"><a href="#python-内置函数操作元组" class="headerlink" title="python 内置函数操作元组"></a>python 内置函数操作元组</h3><p>在列表当中能用的操作也能用作元组，毕竟元组可以看作不可修改成员的列表</p>
+<h3 id="元组内建函数"><a href="#元组内建函数" class="headerlink" title="元组内建函数"></a>元组内建函数</h3><p>元组的内建函数就不如列表的丰富了，可以说元组有的，列表都有。下面列举两个</p>
+<ol>
+<li><p><code>tuple.count(obj)</code></p>
+</li>
+<li><p><code>tuple.index(obj)</code>，返回 obj 在元组中的索引数，若元组中不存在 obj 则报错</p>
+</li>
+</ol>
+<p>最后提一句，为什么有了列表还需要有元组这样的数据类型呢？部分原因是元组可以用于保护一些数据，让其不被修改，并且创建元组在时间和空间上的代价更小</p>
+<h2 id="Dict-字典"><a href="#Dict-字典" class="headerlink" title="Dict 字典"></a>Dict 字典</h2><p>字典也是一种可变容器，其不是通过 index 索引获得容器内的对象，而是通过 key: value 对，将 key 映射到其对应的 value。换句话说就是通过 key 来获得容器内的对象。很明显这样的映射性质需要 key 是唯一的，同时 python 也要求 key 是不可变的，如数字，字符串，元组。创建字典的方式：</p>
+<ol>
+<li><p>直接赋值 <code>DICT = {key_1：value_1}</code></p>
+</li>
+<li><p>通过内置函数 <code>dict()</code> 创建：</p>
+<ul>
+<li><p><code>dict(**kwargs)</code>，传入 key=value 对，例如 <code>DICT = dict(a=1, b=2)</code>，注意这里 key 不用转化为字符串形式</p>
+</li>
+<li><p><code>dict(iterable, **kwargs)</code>，传入可迭代对象，其中可迭代对象中的成员必须为二元元组，同时也可任意传入 key=value 对，下面举一个例子</p>
+</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">ITER <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token comment"># ITER 也可以通过 python 内置函数 zip() 生成</span>
+<span class="token comment"># ITER = zip(['a', 'b'], [1, 2])</span>
+DICT <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>ITER<span class="token punctuation">,</span> c<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><code>dict.fromkeys(iterable, value)</code>，传入可迭代对象，比如列表、元组都可以，将这些顺序表的成员作为 key 创建字典，并且所有的 value 都统一初始化</li>
+</ul>
+</li>
+</ol>
+<h3 id="字典运算"><a href="#字典运算" class="headerlink" title="字典运算"></a>字典运算</h3><p>字典支持 <code>[], in</code> 运算，显然 <code>+, *</code> 运算对于字典是没有意义的。而 <code>[]</code> 运算区别于列表和元组，索引值不是数字而是 key</p>
+<h3 id="python-内置函数操作字典"><a href="#python-内置函数操作字典" class="headerlink" title="python 内置函数操作字典"></a>python 内置函数操作字典</h3><ol>
+<li><p><code>len(dict)</code></p>
+</li>
+<li><p><code>for i in dict</code>，注意这样形式的循环只会对字典中的 key 进行循环遍历。如果想要同时对 key 和 value 循环遍历则需要调用字典内建函数 <code>dict.items()</code> 返回可遍历的 (key, value) 元组数组</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">DICT <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> b<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> DICT<span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+<span class="token comment"># result: a b</span>
+<span class="token keyword">for</span> key<span class="token punctuation">,</span>value <span class="token keyword">in</span> DICT<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'%s:%d'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># result: a:1 b:2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<h3 id="字典内建函数"><a href="#字典内建函数" class="headerlink" title="字典内建函数"></a>字典内建函数</h3><ol>
+<li><code>dict.get(key, default=None)</code>，返回指定键的值，如果 key 值不在字典中则自动添加 key 并返回 default 值作为其 value。这既是一种获取 value 的方法，也是创建新 key 的方法。比较类似的，如果字典中不存在某个 key，那么使用 <code>dict[key] = value</code> 也会自动在字典中创建 key, value 对</li>
+<li><code>dict.items()</code> 返回可遍历的 (key, value) 元组组成的列表</li>
+<li><p><code>dict.keys()</code> &amp; <code>dict.values()</code> 返回 key/value 列表</p>
+</li>
+<li><p><code>dict.pop(key, default)</code> &amp; <code>dict.clear()</code> 前者删除 key 值，并返回该 key 对应 value，若不存在该 key 则返回 default。后者清空字典所有内容</p>
+</li>
+<li><code>dict.update(dict_new)</code> 将新字典里的 (key, value) 更新到本字典中</li>
+<li><code>dict.copy()</code></li>
+</ol>
+<h2 id="Set-集合"><a href="#Set-集合" class="headerlink" title="Set 集合"></a>Set 集合</h2><p>集合是一个无序的不重复元素序列，且元素性质是不可变的，如数字，字符串，元组。创建集合有如下方法：</p>
+<ol>
+<li><p>直接赋值 <code>SET = {1, 2, 3}</code> 这里必须有元素，如果没有则会创建一个字典</p>
+</li>
+<li><p>类型转换 <code>set(iterable)</code>，传入可迭代对象，可以是列表、元组，也可以不传参数以创建空集合</p>
+</li>
+</ol>
+<h3 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h3><p>集合运算相比于前面的数据结构就要更多了，除了基础的 <code>[], in</code> 这样的索引和成员运算，还有 <code>&amp;, |, -, ^</code> 交集、并集、差集、异或（对称差集）</p>
+<h3 id="python-内置函数操作集合"><a href="#python-内置函数操作集合" class="headerlink" title="python 内置函数操作集合"></a>python 内置函数操作集合</h3><p>在列表当中能用的操作也能用作集合，毕竟集合可以粗略看作要求元素唯一的列表</p>
+<h3 id="集合内建函数"><a href="#集合内建函数" class="headerlink" title="集合内建函数"></a>集合内建函数</h3><ol>
+<li><code>set.add()</code></li>
+<li><code>set.remove(obj)</code> &amp; <code>set.clear()</code> 前者删除指定元素，后者清空所有</li>
+<li><code>set.issubset(set_new)</code> &amp; <code>set.issuperset(set_new)</code> &amp; <code>set.isdisjoint(set_new)</code> 判断是否是集合的子集、超集，以及是否是不相交的</li>
+</ol>
+<h2 id="补充：迭代器，生成式，生成器"><a href="#补充：迭代器，生成式，生成器" class="headerlink" title="补充：迭代器，生成式，生成器"></a>补充：迭代器，生成式，生成器</h2><p>这一部分将会涉及到部分面向对象的内容，以及 python 的特殊方法。之前就是因为缺少这两部分的内容的了解，一直对迭代器、生成器不理解，现在进行整理。参考资料：<a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python3-iterator-generator.html">迭代器与生成器</a> <a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/python-yield-used-analysis.html">浅析 yield</a> </p>
+<h3 id="iterator-迭代器"><a href="#iterator-迭代器" class="headerlink" title="iterator 迭代器"></a>iterator 迭代器</h3><p>其实在之前就已经见到了迭代器了，列表、元组、字典这些数据结构都能够在 for-in 循环的时候自动生成迭代器对象。在一个类中如何实现迭代器对象？python 提供了特殊方法 <code>__iter__()</code> 和 <code>__next__()</code> 实现创造迭代器对象，当类中有 <code>__iter__()</code> 方法时，就意味着这个类的实例不是一个普通的对象，而是一个迭代器对象</p>
+<p>这里提一下 python 类中 <code>__function__()</code> 形式的函数被成为称为特殊函数，在特定条件发生时运行，而 <code>__iter__()</code> 和 <code>__next__()</code> 则会在 for-in 循环中被调用。下面通过迭代器实现一个简单 <code>ListDemo</code> 了解其内部逻辑</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">ListDemo</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>args <span class="token operator">=</span> args
+        self<span class="token punctuation">.</span>count <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 函数内可以做一些初始化操作</span>
+        self<span class="token punctuation">.</span>index <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token comment"># 最后必须返回迭代器对象本身</span>
+        <span class="token keyword">return</span> self
+
+    <span class="token keyword">def</span> <span class="token function">__next__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>index <span class="token operator">&lt;</span> self<span class="token punctuation">.</span>count<span class="token punctuation">:</span>
+            result <span class="token operator">=</span> self<span class="token punctuation">.</span>args<span class="token punctuation">[</span>self<span class="token punctuation">.</span>index<span class="token punctuation">]</span>
+            self<span class="token punctuation">.</span>index <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">return</span> result
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token comment"># 循环结束的标志</span>
+            <span class="token keyword">raise</span> StopIteration
+
+<span class="token comment"># 运行一下</span>
+LIST <span class="token operator">=</span>  ListDemo<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> LIST<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>整个迭代器在循环中到底在怎么运行呢？首先 <code>ListDemo</code> 先运行了 <code>__iter__()</code> 进行了初始化，返回迭代器对象本身。在循环当中， <code>ListDemo</code> 类在重复调用 <code>__next__()</code> 函数，并返回结果给 <code>i</code>，最后遇到 <code>StopIteration</code> 结束循环</p>
+<p>python 还有内置函数 <code>iter()</code>  &amp; <code>next()</code> 用于直接调用 <code>__iter__()</code> &amp; <code>__next__()</code> 而不需要遇到循环才触发</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">LIST <span class="token operator">=</span>  ListDemo<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
+iterator <span class="token operator">=</span> <span class="token builtin">iter</span><span class="token punctuation">(</span>LIST<span class="token punctuation">)</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">next</span><span class="token punctuation">(</span>iterator<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> StopIteration<span class="token punctuation">:</span>
+        <span class="token keyword">break</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="generator-生成器"><a href="#generator-生成器" class="headerlink" title="generator 生成器"></a>generator 生成器</h3><p>如果说迭代器是定义在类当中的，那么生成器就是可以直接定义在普通函数中的迭代器。通过 <code>yield</code> 关键字能够将普通函数变为生成器，它将实现之前的  <code>__iter__()</code> 和 <code>__next__()</code> 功能。每次遇到 yield 时函数会暂停并保存当前所有的运行信息，并返回一个 <code>yield</code> 的值, 并在下一次执行 next() 方法时从当前 <code>yield</code> 位置继续运行。下面实现一个斐波那契数列函数，来进一步理解其内部逻辑</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">fibonacci</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    a<span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span>
+    count <span class="token operator">=</span> <span class="token number">0</span> 
+    <span class="token keyword">while</span> count <span class="token operator">&lt;</span> n<span class="token punctuation">:</span>
+        <span class="token keyword">yield</span> a
+        a_ <span class="token operator">=</span> a
+        a <span class="token operator">=</span> b
+        b <span class="token operator">=</span> a_ <span class="token operator">+</span> b
+        count <span class="token operator">+=</span> <span class="token number">1</span>
+
+iterator <span class="token operator">=</span> fibonacci<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> iterator<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>类比一下类中的迭代器，能够更快速的理解。通过 <code>yield</code> 声明这是一个生成器，这样会在遇到 for-in 循环的时候不断地调用 next() 方法并返回 <code>yield</code> 值 <code>a</code> 赋给 <code>i</code>。区别于类中的 <code>__next__()</code>  方法是重复 <code>__next__()</code> 函数内的代码，生成器运行 <code>next()</code> 函数，则会从当前 <code>yield</code> 处继续运行，直到碰到下一个 <code>yield</code> </p>
+<h3 id="生成式"><a href="#生成式" class="headerlink" title="生成式"></a>生成式</h3><p>生成式是生成器的一个简单应用，可以用于生成列表、字典</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 使用生成式创建列表和字典</span>
+f <span class="token operator">=</span> <span class="token punctuation">[</span>x<span class="token operator">**</span><span class="token number">2</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+f <span class="token operator">=</span> <span class="token punctuation">[</span>x <span class="token operator">+</span> y <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token string">'ABCDE'</span> <span class="token keyword">for</span> y <span class="token keyword">in</span> <span class="token string">'1234567'</span><span class="token punctuation">]</span>
+f <span class="token operator">=</span> <span class="token punctuation">{</span>x<span class="token punctuation">:</span>x<span class="token operator">**</span><span class="token number">2</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+<span class="token comment"># 生成式本质上是一个生成器</span>
+f <span class="token operator">=</span> x <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> f<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Declan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://hongkun.space/archives/760ade0a.html">https://hongkun.space/archives/760ade0a.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Declan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%95%99%E7%A8%8B/">
+                                    <span class="chip bg-color">教程</span>
+                                </a>
+                            
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                    <span class="chip bg-color">数据结构</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+        <div class="card">
+	    <script src="https://utteranc.es/client.js"
+	    repo="DeclK/declk.github.io"
+	    issue-term="pathname"
+	    theme="github-light"
+	    crossorigin="anonymous"
+	    async>
+	    </script>
+            
+
+            
+
+            
+
+            
+
+            
+			
+			
+
+            
+
+        </div>
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/archives/c19cb72c.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Python 拓展">
+                        
+                        <span class="card-title">Python 拓展</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/python/" class="post-category">
+                                    python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">教程</span>
+                    </a>
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%8B%93%E5%B1%95/">
+                        <span class="chip bg-color">拓展</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/2bc936a0.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Python 基础">
+                        
+                        <span class="card-title">Python 基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/python/" class="post-category">
+                                    python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">教程</span>
+                    </a>
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <a href="/about" target="_blank">Declan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">30.1k</span>&nbsp;字
+            
+            <span id="sitetime"></span>
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/DeclK" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hongkun20sme@smail.nju.edu.cn" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="https://space.bilibili.com/385931953" class="tooltipped" target="_blank" data-tooltip="访问我的bilibili" data-position="top" data-delay="50">
+        <i class="fas fa-bold"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        var t1 = Date.UTC(2021, 06, 30, 00, 00, 00); //起始北京时间
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
