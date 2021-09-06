@@ -448,7 +448,7 @@
 <li><p><a target="_blank" rel="noopener" href="https://www.manim.community/">ManimCE documentation</a></p>
 </li>
 </ol>
-<p>强烈推荐根据官方文档进行学习，因为网上的很多资源都是过时的，包括我这篇笔记也会可能会很快过时。这篇笔记主要记录如何安装 ManimCE，以及其代码逻辑，更多实用的动画方法另外再做整理。</p>
+<p>强烈推荐根据官方文档进行学习，因为网上的很多资源都是过时的，包括我这篇笔记也会可能会很快过时。这篇笔记主要记录如何安装 ManimCE，以及其代码逻辑，更多实用的动画方法另外再做整理</p>
 <h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><h3 id="Install-dependencies"><a href="#Install-dependencies" class="headerlink" title="Install dependencies"></a>Install dependencies</h3><p>官方给出了一个<a target="_blank" rel="noopener" href="https://hub.gke2.mybinder.org/user/behackl-725d956-b7bf9b4aef40b78-cns6ckcq/notebooks/basic%20example%20scenes.ipynb"> jupyter notebook</a> 预先装载好了 manim 环境，如果你现在不想安装的话，可以在这个 notebook 里面进行小实验</p>
 <p>ManimCE 需要预先下载两个软件 ffmpeg 和 LaTex。文档中建议使用 Scoop, Chocolatey 等包管理软件来下载 dependencies，但我太懒了，不想再下一个包管理软件，而且我自己的电脑上本来就安装了 LaTex 和 ffmpeg 所以只要确保 ManimCE  能够调用这些 dependencies 即可，具体来说就是让 ffmpeg 和 LaTex 命令加入环境变量</p>
 <p>给两个参考链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/118362010">ffmpeg 知乎教程</a>  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV11h41127FD?from=search&amp;seid=5330798070960440671">LaTex简介 bilibili</a></p>
@@ -587,12 +587,28 @@ config<span class="token punctuation">[</span><span class="token string">"backgr
 <blockquote>
 <p>Manim can also be configured using a configuration file. A configuration file is a file ending with the suffix <code>.cfg</code>. To use a configuration file when rendering your scene, you must create a file with name <code>manim.cfg</code> in the same directory as your scene code.</p>
 </blockquote>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">[</span>CLI<span class="token punctuation">]</span><span class="token comment"># my config file</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">[</span>CLI<span class="token punctuation">]</span>
+<span class="token comment"># my config file</span>
 output_file <span class="token operator">=</span> myscene
 save_as_gif <span class="token operator">=</span> <span class="token boolean">True</span>
-background_color <span class="token operator">=</span> WHITE<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+background_color <span class="token operator">=</span> WHITE<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
+<h4 id="A-list-of-all-config-options"><a href="#A-list-of-all-config-options" class="headerlink" title="A list of all config options"></a>A list of all config options</h4><pre class="line-numbers language-config" data-language="config"><code class="language-config">     aspect_ratio              assets_dir        background_color       background_opacity
+           bottom          custom_folders         disable_caching                 dry_run
+  ffmpeg_loglevel             flush_cache            frame_height              frame_rate
+       frame_size             frame_width          frame_x_radius          frame_y_radius
+from_animation_number          fullscreen              images_dir              input_file
+        left_side                 log_dir             log_to_file        max_files_cached
+        media_dir             media_width       movie_file_extension    notify_outdated_version
+      output_file       partial_movie_dir            pixel_height             pixel_width
+          plugins                 preview            progress_bar                 quality
+       right_side             save_as_gif         save_last_frame               save_pngs
+      scene_names       show_in_file_browser                sound                 tex_dir
+     tex_template       tex_template_file                text_dir                     top
+      transparent       upto_animation_number   use_opengl_renderer     use_webgl_renderer
+        verbosity               video_dir       webgl_renderer_path       window_position
+   window_monitor             window_size               write_all          write_to_movie<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="Using-Text"><a href="#Using-Text" class="headerlink" title="Using Text"></a>Using Text</h3><p>There are two different ways by which you can render <strong>Text</strong> in videos:</p>
 <ol>
 <li>Using Pango (<a target="_blank" rel="noopener" href="https://docs.manim.community/en/stable/reference/manim.mobject.svg.text_mobject.html#module-manim.mobject.svg.text_mobject"><code>text_mobject</code></a>)</li>
@@ -600,17 +616,19 @@ background_color <span class="token operator">=</span> WHITE<span aria-hidden="t
 </ol>
 <p>一般如果不用公式的话，直接使用 text_mobject 就可以了</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> manim <span class="token keyword">import</span> <span class="token operator">*</span>
-<span class="token keyword">class</span> <span class="token class-name">HelloWorld</span><span class="token punctuation">(</span>Scene<span class="token punctuation">)</span><span class="token punctuation">:</span>    
-    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>        
-        text <span class="token operator">=</span> Text<span class="token punctuation">(</span><span class="token string">'Hello world'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>scale<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>        
-        self<span class="token punctuation">.</span>add<span class="token punctuation">(</span>text<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span class="token keyword">class</span> <span class="token class-name">HelloWorld</span><span class="token punctuation">(</span>Scene<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        text <span class="token operator">=</span> Text<span class="token punctuation">(</span><span class="token string">'Hello world'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>scale<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>add<span class="token punctuation">(</span>text<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/archives/5654e2fe/image-20210729160507790.png" style="zoom:25%;"></p>
 <p>使用 tex_mobject 的话，如下</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> manim <span class="token keyword">import</span> <span class="token operator">*</span>
-<span class="token keyword">class</span> <span class="token class-name">HelloLaTeX</span><span class="token punctuation">(</span>Scene<span class="token punctuation">)</span><span class="token punctuation">:</span>    
-    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>        
-        tex <span class="token operator">=</span> Tex<span class="token punctuation">(</span><span class="token string">r"\LaTeX"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>scale<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>        
-        self<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tex<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span class="token keyword">class</span> <span class="token class-name">HelloLaTeX</span><span class="token punctuation">(</span>Scene<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        tex <span class="token operator">=</span> Tex<span class="token punctuation">(</span><span class="token string">r"\LaTeX"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>scale<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tex<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/archives/5654e2fe/image-20210729160532548.png" style="zoom: 33%;"></p>
 <p>注意需要使用 raw string <code>r('...')</code> 因为 Latex 中很多特殊字符需要进行转义</p>
 <p>还有不同的方法都能返回 text_mobject &amp; tex_mobject，比如 MarkupText, MathTex </p>
@@ -1104,7 +1122,7 @@ background_color <span class="token operator">=</span> WHITE<span aria-hidden="t
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">31.5k</span>&nbsp;字
+                class="white-color">37.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -370,12 +370,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
-                            </a>
-                        
                             <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
                                 <span class="chip bg-color">安装教程</span>
+                            </a>
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
                             </a>
                         
                     </div>
@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    424
+                    456
                 </div>
                 
 
@@ -440,7 +440,7 @@
                 <h1 id="安装Linux笔记"><a href="#安装Linux笔记" class="headerlink" title="安装Linux笔记"></a>安装Linux笔记</h1><h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ol>
 <li><p>如何安装双系统：移步 bilibili（建议安装最新版，美观且体验更友好）</p>
 </li>
-<li><p>设置root密码。然后创建新用户，并设置新用户密码以及 sudo 权限。</p>
+<li><p>设置 root 密码。然后创建新用户，并设置新用户密码以及 sudo 权限</p>
 </li>
 <li><p>修改 /etc/hostname，reboot 后永久更改主机名</p>
 </li>
@@ -452,15 +452,18 @@
 <li><p>官网下载git anaconda chrome typora chrome baiduyun vscode软件并安装</p>
 <p>conda install, pip install 下载速度慢时，请使用国内镜像源，例如：</p>
 <ol>
-<li><p><a target="_blank" rel="noopener" href="https://mirrors.bfsu.edu.cn/help/anaconda/">北京外国语大学镜像源</a>（推荐，截至2021/6/15下载速度很快）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/anaconda/">清华镜像源</a></p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://mirrors.bfsu.edu.cn/help/anaconda/">北京外国语大学镜像源</a>（截至2021/6/15下载速度很快）</li>
+<li><a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/anaconda/">清华大学镜像源</a></li>
+<li><a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/help/anaconda">南京大学镜像源</a>（自家的镜像源，当然要推荐一下😎）</li>
 </ol>
 </li>
-<li><p>配置nvidia driver: 根据 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59618999">知乎链接</a> ，在命令行里下载推荐的driver。如果在配置nvidia driver的过程中出现连接不上显卡，可能需要关闭 security boot。根据 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108930996">知乎链接</a> 下载安装CUDA，选择runfile。</p>
-<p>参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/336429888">稚晖君</a> 的教程，如果想移除所有cuda, cudnn, nvidia driver</p>
-<pre class="line-numbers language-SHELL" data-language="SHELL"><code class="language-SHELL">sudo apt-get remove --purge nvidia*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<li><p>配置nvidia driver: 根据 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59618999">知乎链接</a> ，在命令行里下载推荐的driver。如果在配置nvidia driver的过程中出现连接不上显卡，可能需要关闭 security boot。参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/336429888">稚晖君</a> 的教程，下载安装CUDA，选择runfile。</p>
+<p>如果想移除所有cuda, cudnn, nvidia driver</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">apt-get</span> remove --purge nvidia*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>设置 cuda path</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">export</span> <span class="token assign-left variable">CUDA_HOME</span><span class="token operator">=</span>/usr/local/cuda
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token variable">${CUDA_HOME}</span>/lib64
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">${CUDA_HOME}</span>/bin:<span class="token variable">${<span class="token environment constant">PATH</span>}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>教程里还教了如何更新apt source为阿里云镜像，里面的软件会更新而且下载更快。同时也设置了 sudo，让每一次 sudo 都不需要输入密码</p>
 </li>
 <li><p>pip install 遇到问题 enter your password to unlock your login keyring</p>
@@ -531,12 +534,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
                                     <span class="chip bg-color">安装教程</span>
+                                </a>
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -960,7 +963,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">31.5k</span>&nbsp;字
+                class="white-color">37.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
