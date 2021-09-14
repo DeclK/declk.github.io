@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MMDetection 笔记, ">
+    <meta name="keywords" content="MMDetection Quick Run, ">
     <meta name="description" content=" ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MMDetection 笔记 | </title>
+    <title>MMDetection Quick Run | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MMDetection 笔记</h1>
+                    <h1 class="description center-align post-title">MMDetection Quick Run</h1>
                 </div>
             </div>
         </div>
@@ -433,8 +433,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MMDetection-note"><a href="#MMDetection-note" class="headerlink" title="MMDetection note"></a>MMDetection note</h1><p>整理自 <a target="_blank" rel="noopener" href="https://mmdetection.readthedocs.io/en/latest/index.html">MMDetection 官方文档</a></p>
-<h1 id="Quick-Run"><a href="#Quick-Run" class="headerlink" title="Quick Run"></a>Quick Run</h1><h2 id="Part-1-Inference-and-train-with-existing-models-and-standard-datasets"><a href="#Part-1-Inference-and-train-with-existing-models-and-standard-datasets" class="headerlink" title="Part 1, Inference and train with existing models and standard datasets"></a>Part 1, Inference and train with existing models and standard datasets</h2><blockquote>
+                <h1 id="MMDetection-Quick-Run"><a href="#MMDetection-Quick-Run" class="headerlink" title="MMDetection Quick Run"></a>MMDetection Quick Run</h1><p>整理自 <a target="_blank" rel="noopener" href="https://mmdetection.readthedocs.io/en/latest/index.html">MMDetection 官方文档</a></p>
+<h2 id="Part-1-Inference-and-train-with-existing-models-and-standard-datasets"><a href="#Part-1-Inference-and-train-with-existing-models-and-standard-datasets" class="headerlink" title="Part 1, Inference and train with existing models and standard datasets"></a>Part 1, Inference and train with existing models and standard datasets</h2><blockquote>
 <p>MMDetection provides hundreds of existing and existing detection models in <a target="_blank" rel="noopener" href="https://mmdetection.readthedocs.io/en/latest/model_zoo.html">Model Zoo</a>, and supports multiple standard datasets, including Pascal VOC, COCO, CityScapes, LVIS, etc.</p>
 </blockquote>
 <p>这一部分将简要介绍，如何使用 MMDetection 对 Model zoo 中的模型进行测试和训练</p>
@@ -537,12 +537,12 @@ python tools/test.py <span class="token punctuation">\</span>
 <p>mmdetection 提供对无标记数据集进行测试，但数据集需要符合 COCO format，如果不是 COCO format 例如 VOC 数据集，需要使用 <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/tree/master/tools/dataset_converters/pascal_voc.py">script in tools</a> 转化</p>
 <p>mmdetection 提供 batch inference，能够一次推理多个样本，在 config files 中修改 <code>sample_per_gpu</code> 即可，或者使用 <code>--cfg-options data.test.samples_per_gpu=2</code></p>
 <p>还有很多参数可以调整，具体请看源代码，文档也给出了很多 <a target="_blank" rel="noopener" href="https://mmdetection.readthedocs.io/en/latest/1_exist_data_model.html#examples">例子</a></p>
-<h4 id="Train-predefined-models-on-standard-datasets"><a href="#Train-predefined-models-on-standard-datasets" class="headerlink" title="Train predefined models on standard datasets"></a>Train predefined models on standard datasets</h4><blockquote>
+<h3 id="Train-predefined-models-on-standard-datasets"><a href="#Train-predefined-models-on-standard-datasets" class="headerlink" title="Train predefined models on standard datasets"></a>Train predefined models on standard datasets</h3><blockquote>
 <p>This section will show how to train <em>predefined</em> models (under <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/tree/master/configs">configs</a>) on standard datasets i.e. COCO.</p>
 <p><strong>Important</strong>: 训练的默认学习率的配置为 8个 GPU 和 2 img/gpu，也就是 batch size 为16，如果使用不同的 batch size 那么就要按照线性缩放原则更改学习率 e.g., <code>lr=0.01</code> for 4 GPUs <em> 2 imgs/gpu and <code>lr=0.08</code> for 16 GPUs </em> 4 imgs/gpu.</p>
 </blockquote>
-<h5 id="Prepare-datasets-1"><a href="#Prepare-datasets-1" class="headerlink" title="Prepare datasets"></a>Prepare datasets</h5><p>准备过程和上一节 Test 部分是一致的。建议先将模型下载好，以防网不好导致报错</p>
-<h5 id="Training-on-a-single-GPU"><a href="#Training-on-a-single-GPU" class="headerlink" title="Training on a single GPU"></a>Training on a single GPU</h5><p>在单个 GPU 上训练，基本使用方法</p>
+<h4 id="Prepare-datasets-1"><a href="#Prepare-datasets-1" class="headerlink" title="Prepare datasets"></a>Prepare datasets</h4><p>准备过程和上一节 Test 部分是一致的。建议先将模型下载好，以防网不好导致报错</p>
+<h4 id="Training-on-a-single-GPU"><a href="#Training-on-a-single-GPU" class="headerlink" title="Training on a single GPU"></a>Training on a single GPU</h4><p>在单个 GPU 上训练，基本使用方法</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python tools/train.py <span class="token punctuation">\</span>
     <span class="token variable">${CONFIG_FILE}</span> <span class="token punctuation">\</span>
     <span class="token punctuation">[</span>optional arguments<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -1262,7 +1262,7 @@ __all__ <span class="token operator">=</span> <span class="token punctuation">[<
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">48.5k</span>&nbsp;字
+                class="white-color">50.9k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
