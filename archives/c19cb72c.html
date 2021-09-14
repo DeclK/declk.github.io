@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.3k
+                    2k
                 </div>
                 
 
@@ -498,7 +498,7 @@ f<span class="token punctuation">.</span>close<span class="token punctuation">(<
 <h3 id="with-关键字"><a href="#with-关键字" class="headerlink" title="with 关键字"></a>with 关键字</h3><p>一些对象定义了标准的清理行为，无论系统是否成功的使用了它，一旦不需要它了，那么这个标准的清理行为就会执行。只需要该对象定义了 <code>__enter__ &amp; __exit__</code> 魔术方法，关键字 with 就可以保证诸如文件之类的对象在使用完之后一定会正确的执行他的清理方法</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
     <span class="token comment"># statement</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="os-amp-system-模块"><a href="#os-amp-system-模块" class="headerlink" title="os &amp; system 模块"></a>os &amp; system 模块</h2><h3 id="os"><a href="#os" class="headerlink" title="os"></a>os</h3><p><strong>os</strong> 模块提供了非常丰富的方法用来处理文件和目录。关于 os 模块更多操作可以查询 <a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python3-os-file-methods.html">菜鸟教程</a>，这里列举一些常用的部分。由于返回的这些路径多为字符串类型，所以字符串的操作在这里也会经常使用</p>
+<h2 id="os-amp-sys-模块"><a href="#os-amp-sys-模块" class="headerlink" title="os &amp; sys 模块"></a>os &amp; sys 模块</h2><h3 id="os"><a href="#os" class="headerlink" title="os"></a>os</h3><p><strong>os</strong> 模块提供了非常丰富的方法用来处理文件和目录。关于 os 模块更多操作可以查询 <a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python3-os-file-methods.html">菜鸟教程</a>，这里列举一些常用的部分。由于返回的这些路径多为字符串类型，所以字符串的操作在这里也会经常使用</p>
 <h4 id="系统相关"><a href="#系统相关" class="headerlink" title="系统相关"></a>系统相关</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> os
 <span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>name<span class="token punctuation">)</span>  <span class="token comment"># 操作系统名称</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">)</span>   <span class="token comment"># 环境变量，返回一个“字典”</span>
@@ -566,7 +566,73 @@ Traceback <span class="token punctuation">(</span>most recent call last<span cla
   File <span class="token string">"d:/..."</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
     <span class="token keyword">assert</span> <span class="token number">1</span><span class="token operator">==</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'Somenthing Wrong!'</span>
 AssertionError<span class="token punctuation">:</span> Somenthing Wrong!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><h3 id="时间和日期"><a href="#时间和日期" class="headerlink" title="时间和日期"></a>时间和日期</h3><h3 id="Argparse-模块"><a href="#Argparse-模块" class="headerlink" title="Argparse 模块"></a>Argparse 模块</h3><h3 id="进程、线程"><a href="#进程、线程" class="headerlink" title="进程、线程"></a>进程、线程</h3><h3 id="Python-爬虫"><a href="#Python-爬虫" class="headerlink" title="Python 爬虫"></a>Python 爬虫</h3>
+<h2 id="Argparse-模块"><a href="#Argparse-模块" class="headerlink" title="Argparse 模块"></a>Argparse 模块</h2><p>argsparse 是 python 的命令行解析的标准模块，内置于python，不需要安装。这个库可以让我们<strong>直接在命令行中就可以向程序中传入参数</strong>，同时argparse会自动生成帮助文档，传入参数 <code>-h</code> 显示。下面写一个 python 脚本</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># arg.py</span>
+<span class="token keyword">import</span> argparse
+
+<span class="token comment"># 创建 parser 并添加描述，通常为该脚本的用途</span>
+parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">'this is a parser'</span><span class="token punctuation">)</span>
+<span class="token comment"># 添加参数</span>
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'params'</span><span class="token punctuation">)</span>
+<span class="token comment"># 解析参数</span>
+args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'show the params:'</span><span class="token punctuation">,</span> args<span class="token punctuation">.</span>params<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>由于 argparse 模块是从命令行向文件传入参数，所以现在在 cmd 下给文件名后面传入参数 123 得到结果如下</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">(base) D:\VScodeProjects\LearnManim&gt;python arg.py 123
+show the params: 123
+# 参数 123 传入到了文件中 parser 的位置参数 params 中<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>从 <code>arg.py</code> 中看出使用 argparse 模块的步骤：</p>
+<ol>
+<li>创建 <code>ArgumentParser</code> 对象</li>
+<li>给对象中加入参数 <code>add_argument</code></li>
+<li>解析对象，也即将命令行中的参数传给 <code>args</code>，之后能够像类的属性一样调用这些参数 <code>args.params</code></li>
+</ol>
+<p>下面来详细了解一下方法 <code>add_argument</code>，该方法能够方便我们从命令行输入参数。先来看看该函数自己的参数</p>
+<ol>
+<li><p>位置参数：不带 <code>-</code> 的参数。从命令行传入的参数会按照顺序传给 parser 添加的参数，比如上面的例子中，传入的第一个参数为 123，而 parser 中添加的第一个参数是 <code>params</code>，所以 123 传给了 <code>params</code>。正如 python 自身函数传参规则一样，位置参数是必须要传入的参数，如果不传入则会报错</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">(</span>base<span class="token punctuation">)</span> D<span class="token punctuation">:</span>\VScodeProjects\LearnManim<span class="token operator">&gt;</span>python arg<span class="token punctuation">.</span>py         
+usage<span class="token punctuation">:</span> arg<span class="token punctuation">.</span>py <span class="token punctuation">[</span><span class="token operator">-</span>h<span class="token punctuation">]</span> params
+arg<span class="token punctuation">.</span>py<span class="token punctuation">:</span> error<span class="token punctuation">:</span> the following arguments are required<span class="token punctuation">:</span> params<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>可选参数：带 <code>-</code> 的参数。可选参数有两种方式，</p>
+<ul>
+<li><code>-</code> 指定短参数，如 <code>-h</code></li>
+<li><code>--</code> 指定长参数，如 <code>--help</code></li>
+</ul>
+<p>两种参数可以同时存在，可选参数就像 python 函数中使用关键字传参一样。修改一下上面的 python 脚本</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># arg.py</span>
+<span class="token keyword">import</span> argparse
+
+parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">'this is a parser'</span><span class="token punctuation">)</span>
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'--params'</span><span class="token punctuation">,</span> <span class="token string">'-p'</span><span class="token punctuation">)</span>
+args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'show the params:'</span><span class="token punctuation">,</span> args<span class="token punctuation">.</span>params<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用短参数和长参数都可以，不传入参数也不会报错</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">(base) D:\VScodeProjects\LearnManim&gt;python arg.py -p 1
+show the params: 1
+
+(base) D:\VScodeProjects\LearnManim&gt;python arg.py --params 1
+show the params: 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>类型 <code>type</code>：指定输入参数的类型</p>
+</li>
+<li><p>默认值 <code>default</code>：指定默认值</p>
+</li>
+<li><p>帮助 <code>help</code>：描述该参数的功能</p>
+</li>
+<li><p>必须参数 <code>required</code>：该参数是否为必须传入的参数</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'--params'</span><span class="token punctuation">,</span> <span class="token string">'-p'</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token builtin">int</span><span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">help</span><span class="token operator">=</span><span class="token string">'optional number'</span><span class="token punctuation">,</span> required<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>动作 <code>action</code>：不需要在命令行传入参数。常用值为 <code>action='store_true'</code> 也即当传入关键字时，该参数值为 <code>True</code> </p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'--params'</span><span class="token punctuation">,</span> <span class="token string">'-p'</span><span class="token punctuation">,</span> action<span class="token operator">=</span><span class="token string">'store_true'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">(base) D:\VScodeProjects\LearnManim&gt;python arg.py -p  
+show the params: True<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<p>当然还有更多的参数，就不列举了，遇到了就去查文档</p>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><h3 id="时间和日期"><a href="#时间和日期" class="headerlink" title="时间和日期"></a>时间和日期</h3><h3 id="进程、线程"><a href="#进程、线程" class="headerlink" title="进程、线程"></a>进程、线程</h3><h3 id="Python-爬虫"><a href="#Python-爬虫" class="headerlink" title="Python 爬虫"></a>Python 爬虫</h3>
                 
             </div>
             <hr/>
@@ -1079,7 +1145,7 @@ AssertionError<span class="token punctuation">:</span> Somenthing Wrong!<span ar
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">37.3k</span>&nbsp;字
+                class="white-color">48.5k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

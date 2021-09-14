@@ -1,0 +1,1424 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="FFMPEG note, ">
+    <meta name="description" content=" ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>FFMPEG note | </title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span"></span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name"></div>
+        <div class="logo-desc">
+            
+             
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">FFMPEG note</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/ffmpeg/">
+                                <span class="chip bg-color">ffmpeg</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6/" class="post-category">
+                                软件
+                            </a>
+                        
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6/FFMPEG/" class="post-category">
+                                FFMPEG
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-09-14
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    2.7k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="FFMPEG"><a href="#FFMPEG" class="headerlink" title="FFMPEG"></a>FFMPEG</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="01-下载，配置"><a href="#01-下载，配置" class="headerlink" title="01.下载，配置"></a>01.下载，配置</h3><p>用的系统是 Ubuntu 可以直接 apt-get</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> ffmpeg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>windows 可以去官网下载 <a target="_blank" rel="noopener" href="https://www.gyan.dev/ffmpeg/builds/">windows build</a></p>
+<h3 id="02-简介，上手-FFmpeg-FFprobe-FFplay"><a href="#02-简介，上手-FFmpeg-FFprobe-FFplay" class="headerlink" title="02.简介，上手(FFmpeg FFprobe FFplay)"></a>02.简介，上手(FFmpeg FFprobe FFplay)</h3><p>(1) 查看 ffmpeg 的帮助说明，提供的指令。建议将其中的命令大致看看，在本笔记最后附有该帮助说明</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -h<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>(2) 播放媒体的指令</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffplay video.mp4
+ffplay music.mp3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>(3) 常用快捷键</p>
+<p>按键”Q”或”Esc”：退出媒体播放<br>键盘方向键：媒体播放的前进后退<br>点击鼠标右键：拖动到该播放位置<br>按键”F”：全屏<br>按键”P”或空格键：暂停<br>按键”W”:切换显示模式</p>
+<p>(4) 查看媒体参数信息</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffprobe video.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>输出形如下面的内容</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Stream <span class="token comment">#0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 1440x720, 163 kb/s, 30 fps, 30 tbr, 16k tbn (default)</span>
+    Metadata:
+      handler_name    <span class="token builtin class-name">:</span> VideoHandler
+      vendor_id       <span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+Stream <span class="token comment">#0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)</span>
+    Metadata:
+      handler_name    <span class="token builtin class-name">:</span> SoundHandler
+      vendor_id       <span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到视频为 h264 编码，分辨率 1440x720、比特率(码率) 163 kb/s、帧率 30 fps。音频为 acc 编码，音频采样率 44100 Hz，比特率 128 kb/s</p>
+<h3 id="03-转换格式-文件格式-封装格式"><a href="#03-转换格式-文件格式-封装格式" class="headerlink" title="03.转换格式(文件格式,封装格式)"></a>03.转换格式(文件格式,封装格式)</h3><p>(1) 文件名可以是中英文，但不能有空格</p>
+<p>(2) <strong>转换格式</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video.mp4 video_avi.avi<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>ffmpeg 使用 -i 参数来表示输入文件，也可以用 -f 参数指定输出格式，但为了省事儿好像也可以不用指定，ffmpeg 会根据输出文件名的后缀自动识别</p>
+<h3 id="04-提取音视频"><a href="#04-提取音视频" class="headerlink" title="04.提取音视频"></a>04.提取音视频</h3><p>(1) 单独提取视频（不含音频流）</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video.mp4 -vcodec copy -an video_silent.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>(2) 单独提取音频（不含视频流）</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video.mp4 -vn -acodec copy video_novideo.m4a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>具备多个音频流的，如</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Stream <span class="token comment">#0:2[0x81]:Audio:ac3,48000Hz,5.1,s16,384kb/s</span>
+Stream <span class="token comment">#0:3[0x82]:Audio:ac3,48000Hz,5.1,s16,384kb/s</span>
+Stream <span class="token comment">#0:4[0x80]:Audio:ac3,48000Hz,5.1,s16,448kb/s</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>针对性的单一的提取，例如提取第2条，用指令： -map 0:3</p>
+<p>(3) 合并音视频</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video_novideo.m4a -i video_silent.mp4 -c copy video_merge.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>-c 为 -codec 的缩写，传入参数 copy 即使用原视频/音频编码器，这样会大大加快处理时间而不用重新转码。一般在 codec 前/后有 a/v 即代表音频/视频</p>
+<h3 id="05-截取，连接音视频"><a href="#05-截取，连接音视频" class="headerlink" title="05.截取，连接音视频"></a>05.截取，连接音视频</h3><p>(1) 截取</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i music.mp3 -ss 00:00:30 -to 00:02:00 -acodec copy music_cutout.mp3<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>输入时间可以是如上的 <code>时:分:秒</code>，也可以是 <code>分:秒</code>，也可以直接输入多少秒，秒可以是浮点数。还可以截取指定长度的音视频，如截取60秒</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i music.mp3 -ss 00:00:30 -t <span class="token number">60</span> -acodec copy music_cutout60s.mp3<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>-sseof time_offset: 开始时间从媒体末尾开始计算，传入参数为复数</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i in.mp4 -ss 00:01:00 -to 00:01:10 -c copy out.mp4
+ffmpeg -ss 00:01:00 -i in.mp4 -to 00:01:10 -c copy out.mp4
+ffmpeg -ss 00:01:00 -i in.mp4 -to 00:01:10 -c copy -copyts out.mp4
+<span class="token comment"># 从末尾往前 10s 截取 5s</span>
+ffmpeg -sseof -10 -t <span class="token number">5</span> -i in.mp4 -c copy out.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>把-ss放到-i之前，启用了关键帧技术，加速操作。但截取的时间段不一定准确。可用最后一条指令，保留时间戳，保证时间准确。</p>
+<p>(2) 连接音视频</p>
+<p>我推荐使用下面的方法</p>
+<ol>
+<li><p>新建一个 list.txt 文件，里面包含了需要连接的音视频。格式如下</p>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">file '/path/to/file1'
+file '/path/to/file2'
+file '/path/to/file3'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>可以使用 -f concat，来合并音视频</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -f concat -i mylist.txt -c copy output.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ol>
+<p>对于精细的音视频连接并不推荐使用 ffmeg</p>
+<h3 id="06-截图，水印，动图-gif"><a href="#06-截图，水印，动图-gif" class="headerlink" title="06.截图，水印，动图 gif"></a>06.截图，水印，动图 gif</h3><p>(1) 截图.</p>
+<p>截取第7秒第1帧的画面</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video.mp4 -ss <span class="token number">7</span> -vframes <span class="token number">1</span> video_image.jpg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>视频分离成图片</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i input_test.mp4 -r <span class="token number">1</span> -f image2 output_image-%03d.jpeg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>图片也能合成为视频</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -f image2 -i output_image-%03d.jpeg output_test.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>(2) 水印</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video.mp4 -i qt.png -filter_complex <span class="token string">"overlay=20:80"</span> video_watermark.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>(3) 截取动图</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video.mp4 -ss <span class="token number">7.5</span> -to <span class="token number">8.5</span> -s 640x320 -r <span class="token number">15</span> video_gif.gif<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="补充：视频编码"><a href="#补充：视频编码" class="headerlink" title="补充：视频编码"></a>补充：视频编码</h2><h3 id="01-改变编码-上-编码-音频转码"><a href="#01-改变编码-上-编码-音频转码" class="headerlink" title="01.改变编码 上(编码,音频转码)"></a>01.改变编码 上(编码,音频转码)</h3><p>(1)查看编解码器</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -codecs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>(2)<strong>网站常用编码</strong></p>
+<p>MP4封装：H264视频编码+ACC音频编码<br>WebM封装：VP8视频编码+Vorbis音频编码<br>OGG封装：Theora视频编码+Vorbis音频编码</p>
+<p>(3)<strong>无损编码格式.flac转换编码</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i music_flac.flac -acodec libmp3lame -ar <span class="token number">44100</span> -ab 320k -ac <span class="token number">2</span> music_flac_mp3.mp3<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>说明：</strong></p>
+<ul>
+<li>acodec:audio Coder Decoder 音频编码解码器</li>
+<li>libmp3lame:mp3解码器</li>
+<li>ar:audio rate：音频采样率</li>
+<li><strong>44100:设置音频的采样率44100。若不输入，默认用原音频的采样率</strong></li>
+<li>ab:audio bit rate 音频比特率</li>
+<li><strong>320k：设置音频的比特率。若不输入，默认128K</strong></li>
+<li>ac: aduio channels 音频声道</li>
+<li>2:声道数。若不输入，默认采用源音频的声道数</li>
+</ul>
+<p>概括：设置格式的基本套路-先是指名属性，然后跟着新的属性值</p>
+<p>(4)查看结果属性</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffprobe music_flac_mp3.mp3<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="02-改变编码-中-视频压制"><a href="#02-改变编码-中-视频压制" class="headerlink" title="02.改变编码 中(视频压制)"></a>02.改变编码 中(视频压制)</h3><p>(1)视频转码</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video.mp4 -s 1920x1080 -pix_fmt yuv420p -vcodec libx264 -preset medium -profile:v high -level:v <span class="token number">4.1</span> -crf <span class="token number">23</span> -acodec aac -ar <span class="token number">44100</span> -ac <span class="token number">2</span> -b:a 128k video_avi.avi<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>说明:</strong></p>
+<ul>
+<li><strong>-s 1920x1080：缩放视频新尺寸(size)</strong></li>
+<li>-pix_fmt yuv420p：pixel format,用来设置视频颜色空间。参数查询：ffmpeg -pix_fmts</li>
+<li>-vcodec libx264：video Coder Decoder，视频编码解码器</li>
+<li>-preset medium: 编码器预设。参数：ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo</li>
+<li>-profile:v high :编码器配置，与压缩比有关。实时通讯-baseline,流媒体-main,超清视频-high</li>
+<li>-level:v 4.1 ：对编码器设置的具体规范和限制，权衡压缩比和画质。</li>
+<li>-crf 23 ：设置码率控制模式。constant rate factor-恒定速率因子模式。范围0~51,默认23。数值越小，画质越高。一般在8~28做出选择。</li>
+<li><strong>-r 30 :设置视频帧率</strong></li>
+<li>-acodec aac :audio Coder Decoder-音频编码解码器</li>
+<li>-b:a 128k :音频比特率.大多数网站限制音频比特率128k,129k<br>其他参考上一个教程</li>
+</ul>
+<h3 id="03-改变编码-下-码率控制模式"><a href="#03-改变编码-下-码率控制模式" class="headerlink" title="03.改变编码 下(码率控制模式)"></a>03.改变编码 下(码率控制模式)</h3><p>ffmpeg支持的码率控制模式：-qp -crf -b</p>
+<p>(1)  -qp :constant quantizer,恒定量化器模式 </p>
+<p>无损压缩的例子（快速编码）</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i input -vcodec libx264 -preset ultrafast -qp <span class="token number">0</span> output.mkv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>无损压缩的例子（高压缩比）</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i input -vcodec libx264 -preset veryslow -qp <span class="token number">0</span> output.mkv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>(2) -crf :constant rate factor,恒定速率因子模式</p>
+<p>(3) -b ：bitrate,固定目标码率模式。一般不建议使用</p>
+<p>3种模式默认单遍编码</p>
+<p>VBR(Variable Bit Rate/动态比特率) 例子</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i input -vcodec libx264 -preset veryslow output<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>ABR(Average Bit Rate/平均比特率) 例子</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i input -vcodec libx264 -preset veryslow -b:v 3000k output<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>CBR(Constant Bit Rate/恒定比特率) 例子</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">..</span>. -b:v 4000k -minrate 4000k -maxrate 4000k -bufsize 1835k <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>笔记来源：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av40146374">https://www.bilibili.com/video/av40146374</a></p>
+<p>官方教程： <a target="_blank" rel="noopener" href="http://ffmpeg.org/ffmpeg-all.html">http://ffmpeg.org/ffmpeg-all.html</a></p>
+<p>博客：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f07f0be088d0">https://www.jianshu.com/p/f07f0be088d0</a></p>
+<h2 id="帮助文档，用于查询"><a href="#帮助文档，用于查询" class="headerlink" title="帮助文档，用于查询"></a>帮助文档，用于查询</h2><p>下面是 ffmpeg 的帮助文档，用于查询</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg version <span class="token number">2021</span>-09-08-git-5e7e2e5031-full_build-www.gyan.dev Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token number">2000</span>-2021 the FFmpeg developers
+  built with gcc <span class="token number">10.3</span>.0 <span class="token punctuation">(</span>Rev5, Built by MSYS2 project<span class="token punctuation">)</span>
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-sdl2 --enable-libdav1d --enable-libzvbi --enable-librav1e --enable-libsvtav1 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-ffnvcodec --enable-nvdec --enable-nvenc --enable-d3d11va --enable-dxva2 --enable-libmfx --enable-libglslang --enable-vulkan --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libilbc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      <span class="token number">57</span>.  <span class="token number">4.101</span> / <span class="token number">57</span>.  <span class="token number">4.101</span>
+  libavcodec     <span class="token number">59</span>.  <span class="token number">7.102</span> / <span class="token number">59</span>.  <span class="token number">7.102</span>
+  libavformat    <span class="token number">59</span>.  <span class="token number">5.100</span> / <span class="token number">59</span>.  <span class="token number">5.100</span>
+  libavdevice    <span class="token number">59</span>.  <span class="token number">0.101</span> / <span class="token number">59</span>.  <span class="token number">0.101</span>
+  libavfilter     <span class="token number">8</span>.  <span class="token number">7.101</span> /  <span class="token number">8</span>.  <span class="token number">7.101</span>
+  libswscale      <span class="token number">6</span>.  <span class="token number">1.100</span> /  <span class="token number">6</span>.  <span class="token number">1.100</span>
+  libswresample   <span class="token number">4</span>.  <span class="token number">0.100</span> /  <span class="token number">4</span>.  <span class="token number">0.100</span>
+  libpostproc    <span class="token number">56</span>.  <span class="token number">0.100</span> / <span class="token number">56</span>.  <span class="token number">0.100</span>
+Hyper fast Audio and Video encoder
+usage: ffmpeg <span class="token punctuation">[</span>options<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>infile options<span class="token punctuation">]</span> -i infile<span class="token punctuation">]</span><span class="token punctuation">..</span>. <span class="token punctuation">{</span><span class="token punctuation">[</span>outfile options<span class="token punctuation">]</span> outfile<span class="token punctuation">}</span><span class="token punctuation">..</span>.
+
+Getting help:
+    -h      -- print basic options
+    -h long -- print <span class="token function">more</span> options
+    -h full -- print all options <span class="token punctuation">(</span>including all <span class="token function">format</span> and codec specific options, very long<span class="token punctuation">)</span>
+    -h <span class="token assign-left variable">type</span><span class="token operator">=</span>name -- print all options <span class="token keyword">for</span> the named decoder/encoder/demuxer/muxer/filter/bsf/protocol
+    See <span class="token function">man</span> ffmpeg <span class="token keyword">for</span> detailed description of the options.
+
+Print <span class="token builtin class-name">help</span> / information / capabilities:
+-L                  show license
+-h topic            show <span class="token builtin class-name">help</span>
+-? topic            show <span class="token builtin class-name">help</span>
+-help topic         show <span class="token builtin class-name">help</span>
+--help topic        show <span class="token builtin class-name">help</span>
+-version            show version
+-buildconf          show build configuration
+-formats            show available formats
+-muxers             show available muxers
+-demuxers           show available demuxers
+-devices            show available devices
+-codecs             show available codecs
+-decoders           show available decoders
+-encoders           show available encoders
+-bsfs               show available bit stream filters
+-protocols          show available protocols
+-filters            show available filters
+-pix_fmts           show available pixel formats
+-layouts            show standard channel layouts
+-sample_fmts        show available audio sample formats
+-colors             show available color names
+-sources device     list sources of the input device
+-sinks device       list sinks of the output device
+-hwaccels           show available HW acceleration methods
+
+Global options <span class="token punctuation">(</span>affect whole program instead of just one <span class="token function">file</span><span class="token punctuation">)</span>:
+-loglevel loglevel  <span class="token builtin class-name">set</span> logging level
+-v loglevel         <span class="token builtin class-name">set</span> logging level
+-report             generate a report
+-max_alloc bytes    <span class="token builtin class-name">set</span> maximum size of a single allocated block
+-y                  overwrite output files
+-n                  never overwrite output files
+-ignore_unknown     Ignore unknown stream types
+-filter_threads     number of non-complex filter threads
+-filter_complex_threads  number of threads <span class="token keyword">for</span> -filter_complex
+-stats              print progress report during encoding
+-max_error_rate maximum error rate  ratio of decoding errors <span class="token punctuation">(</span><span class="token number">0.0</span>: no errors, <span class="token number">1.0</span>: <span class="token number">100</span>% errors<span class="token punctuation">)</span> above <span class="token function">which</span> ffmpeg returns an error instead of success.
+-bits_per_raw_sample number  <span class="token builtin class-name">set</span> the number of bits per raw sample
+-vol volume         change audio volume <span class="token punctuation">(</span><span class="token number">256</span><span class="token operator">=</span>normal<span class="token punctuation">)</span>
+
+Per-file main options:
+-f <span class="token function">fmt</span>              force <span class="token function">format</span>
+-c codec            codec name
+-codec codec        codec name
+-pre preset         preset name
+-map_metadata outfile<span class="token punctuation">[</span>,metadata<span class="token punctuation">]</span>:infile<span class="token punctuation">[</span>,metadata<span class="token punctuation">]</span>  <span class="token builtin class-name">set</span> metadata information of outfile from infile
+-t duration         record or transcode <span class="token string">"duration"</span> seconds of audio/video
+-to time_stop       record or transcode stop <span class="token function">time</span>
+-fs limit_size      <span class="token builtin class-name">set</span> the limit <span class="token function">file</span> size <span class="token keyword">in</span> bytes
+-ss time_off        <span class="token builtin class-name">set</span> the start <span class="token function">time</span> offset
+-sseof time_off     <span class="token builtin class-name">set</span> the start <span class="token function">time</span> offset relative to EOF
+-seek_timestamp     enable/disable seeking by timestamp with -ss
+-timestamp <span class="token function">time</span>     <span class="token builtin class-name">set</span> the recording timestamp <span class="token punctuation">(</span><span class="token string">'now'</span> to <span class="token builtin class-name">set</span> the current <span class="token function">time</span><span class="token punctuation">)</span>
+-metadata <span class="token assign-left variable">string</span><span class="token operator">=</span>string  <span class="token function">add</span> metadata
+-program <span class="token assign-left variable">title</span><span class="token operator">=</span>string:st<span class="token operator">=</span>number<span class="token punctuation">..</span>.  <span class="token function">add</span> program with specified streams
+-target <span class="token builtin class-name">type</span>        specify target <span class="token function">file</span> <span class="token builtin class-name">type</span> <span class="token punctuation">(</span><span class="token string">"vcd"</span>, <span class="token string">"svcd"</span>, <span class="token string">"dvd"</span>, <span class="token string">"dv"</span> or <span class="token string">"dv50"</span> with optional prefixes <span class="token string">"pal-"</span>, <span class="token string">"ntsc-"</span> or <span class="token string">"film-"</span><span class="token punctuation">)</span>
+-apad               audio pad
+-frames number      <span class="token builtin class-name">set</span> the number of frames to output
+-filter filter_graph  <span class="token builtin class-name">set</span> stream filtergraph
+-filter_script filename  <span class="token builtin class-name">read</span> stream filtergraph description from a <span class="token function">file</span>
+-reinit_filter      reinit filtergraph on input parameter changes
+-discard            discard
+-disposition        disposition
+
+Video options:
+-vframes number     <span class="token builtin class-name">set</span> the number of video frames to output
+-r rate             <span class="token builtin class-name">set</span> frame rate <span class="token punctuation">(</span>Hz value, fraction or abbreviation<span class="token punctuation">)</span>
+-fpsmax rate        <span class="token builtin class-name">set</span> max frame rate <span class="token punctuation">(</span>Hz value, fraction or abbreviation<span class="token punctuation">)</span>
+-s size             <span class="token builtin class-name">set</span> frame size <span class="token punctuation">(</span>WxH or abbreviation<span class="token punctuation">)</span>
+-aspect aspect      <span class="token builtin class-name">set</span> aspect ratio <span class="token punctuation">(</span><span class="token number">4</span>:3, <span class="token number">16</span>:9 or <span class="token number">1.3333</span>, <span class="token number">1.7777</span><span class="token punctuation">)</span>
+-bits_per_raw_sample number  <span class="token builtin class-name">set</span> the number of bits per raw sample
+-vn                 disable video
+-vcodec codec       force video codec <span class="token punctuation">(</span><span class="token string">'copy'</span> to copy stream<span class="token punctuation">)</span>
+-timecode hh:mm:ss<span class="token punctuation">[</span>:<span class="token punctuation">;</span>.<span class="token punctuation">]</span>ff  <span class="token builtin class-name">set</span> initial TimeCode value.
+-pass n             <span class="token keyword">select</span> the pass number <span class="token punctuation">(</span><span class="token number">1</span> to <span class="token number">3</span><span class="token punctuation">)</span>
+-vf filter_graph    <span class="token builtin class-name">set</span> video filters
+-ab bitrate         audio bitrate <span class="token punctuation">(</span>please use -b:a<span class="token punctuation">)</span>
+-b bitrate          video bitrate <span class="token punctuation">(</span>please use -b:v<span class="token punctuation">)</span>
+-dn                 disable data
+
+Audio options:
+-aframes number     <span class="token builtin class-name">set</span> the number of audio frames to output
+-aq quality         <span class="token builtin class-name">set</span> audio quality <span class="token punctuation">(</span>codec-specific<span class="token punctuation">)</span>
+-ar rate            <span class="token builtin class-name">set</span> audio sampling rate <span class="token punctuation">(</span>in Hz<span class="token punctuation">)</span>
+-ac channels        <span class="token builtin class-name">set</span> number of audio channels
+-an                 disable audio
+-acodec codec       force audio codec <span class="token punctuation">(</span><span class="token string">'copy'</span> to copy stream<span class="token punctuation">)</span>
+-vol volume         change audio volume <span class="token punctuation">(</span><span class="token number">256</span><span class="token operator">=</span>normal<span class="token punctuation">)</span>
+-af filter_graph    <span class="token builtin class-name">set</span> audio filters
+
+Subtitle options:
+-s size             <span class="token builtin class-name">set</span> frame size <span class="token punctuation">(</span>WxH or abbreviation<span class="token punctuation">)</span>
+-sn                 disable subtitle
+-scodec codec       force subtitle codec <span class="token punctuation">(</span><span class="token string">'copy'</span> to copy stream<span class="token punctuation">)</span>
+-stag fourcc/tag    force subtitle tag/fourcc
+-fix_sub_duration   fix subtitles duration
+-canvas_size size   <span class="token builtin class-name">set</span> canvas size <span class="token punctuation">(</span>WxH or abbreviation<span class="token punctuation">)</span>
+-spre preset        <span class="token builtin class-name">set</span> the subtitle options to the indicated preset<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Declan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://hongkun.space/archives/97736837.html">https://hongkun.space/archives/97736837.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Declan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/ffmpeg/">
+                                    <span class="chip bg-color">ffmpeg</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+        <div class="card">
+	    <script src="https://utteranc.es/client.js"
+	    repo="DeclK/declk.github.io"
+	    issue-term="pathname"
+	    theme="github-light"
+	    crossorigin="anonymous"
+	    async>
+	    </script>
+            
+
+            
+
+            
+
+            
+
+            
+			
+			
+
+            
+
+        </div>
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/archives/71f4e62.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="MMDetection tutorial note">
+                        
+                        <span class="card-title">MMDetection tutorial note</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/OpenMMLab/" class="post-category">
+                                    OpenMMLab
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/mmlab/">
+                        <span class="chip bg-color">mmlab</span>
+                    </a>
+                    
+                    <a href="/tags/mmdetection/">
+                        <span class="chip bg-color">mmdetection</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/d76b900f.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Pr note">
+                        
+                        <span class="card-title">Pr note</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6/" class="post-category">
+                                    软件
+                                </a>
+                            
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6/Adobe/" class="post-category">
+                                    Adobe
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/pr/">
+                        <span class="chip bg-color">pr</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <a href="/about" target="_blank">Declan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">48.5k</span>&nbsp;字
+            
+            <span id="sitetime"></span>
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/DeclK" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hongkun20sme@smail.nju.edu.cn" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="https://space.bilibili.com/385931953" class="tooltipped" target="_blank" data-tooltip="访问我的bilibili" data-position="top" data-delay="50">
+        <i class="fas fa-bold"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        var t1 = Date.UTC(2021, 06, 30, 00, 00, 00); //起始北京时间
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

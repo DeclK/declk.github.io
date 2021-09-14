@@ -640,12 +640,12 @@ ds <span class="token operator">=</span> datasets<span class="token punctuation"
 
 train_dataloader <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>training_data<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>如果需要更复杂的取样，则需要 <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html#data-loading-order-and-sampler">Samplers</a>，下面举一个 sampler 的子类进行说明</p>
-<pre class="line-numbers language-none"><code class="language-none">from torch.utils.data.sampler import SubsetRandomSampler
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>sampler <span class="token keyword">import</span> SubsetRandomSampler
 
-NUM_TRAIN = 5000
-sampler = SubsetRandomSampler(range(NUM_TRAIN))
-# 仅采样前 5000 个样本作为训练集
-train_dataloader = DataLoader(training_data, batch_size=64, sampler=sampler)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+NUM_TRAIN <span class="token operator">=</span> <span class="token number">5000</span>
+sampler <span class="token operator">=</span> SubsetRandomSampler<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span>NUM_TRAIN<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 仅采样前 5000 个样本作为训练集</span>
+train_dataloader <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>training_data<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> sampler<span class="token operator">=</span>sampler<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在创建好 dataloader 实例过后，由于其是迭代器对象，以通过循环进行迭代。迭代器返回对象为一个元组，元组成员为数据集列表和其对应的标签列表。下面用 <code>next &amp; iter</code> 查看迭代器返回的第一个对象</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">train_features<span class="token punctuation">,</span> train_labels <span class="token operator">=</span> <span class="token builtin">next</span><span class="token punctuation">(</span><span class="token builtin">iter</span><span class="token punctuation">(</span>train_dataloader<span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Feature batch shape: </span><span class="token interpolation"><span class="token punctuation">{</span>train_features<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
@@ -1403,7 +1403,7 @@ model <span class="token operator">=</span> torch<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">37.3k</span>&nbsp;字
+                class="white-color">48.5k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
