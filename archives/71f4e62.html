@@ -437,7 +437,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="MMDetection-tutorial-note"><a href="#MMDetection-tutorial-note" class="headerlink" title="MMDetection tutorial note"></a>MMDetection tutorial note</h2><h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>由于 config 是有继承机制的，所以想要查看完整的 config，可以用官方提供的 <code>print_config.py</code> 函数来查看</p>
+                <h1 id="MMDetection-tutorial-note"><a href="#MMDetection-tutorial-note" class="headerlink" title="MMDetection tutorial note"></a>MMDetection tutorial note</h1><h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>由于 config 是有继承机制的，所以想要查看完整的 config，可以用官方提供的 <code>print_config.py</code> 函数来查看</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python tools/misc/print_config.py /<span class="token environment constant">PATH</span>/TO/CONFIG<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="修改-config"><a href="#修改-config" class="headerlink" title="修改 config"></a>修改 config</h3><p>在使用 <code>tools/train.py</code> or <code>tools/test.py</code> 时，可以通过 <code>--cfg-options</code> 来修改此次运行的 config 而不修改 config 文件</p>
 <p>更改字典，列表，元组都可以，只需要按照规范传入参数即可，下面给几个例子</p>
@@ -738,7 +738,10 @@ lr_config <span class="token operator">=</span> <span class="token builtin">dict
     step<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span class="token comment"># the max_epochs and step in lr_config need specifically tuned for the customized dataset</span>
 runner <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>max_epochs<span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">)</span>
-log_config <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>interval<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+log_config <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>interval<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span>
+
+<span class="token comment"># We can use the pre-trained Mask RCNN model to obtain higher performance</span>
+load_from <span class="token operator">=</span> <span class="token string">'checkpoints/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco_bbox_mAP-0.408__segm_mAP-0.37_20200504_163245-42aa3d00.pth'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>可以把 mmdetection 的使用分为两个大块来进行理解：</p>
 <ol>
 <li>模型的建立</li>
@@ -1563,7 +1566,7 @@ work_dir <span class="token operator">=</span> <span class="token string">'work_
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">50.9k</span>&nbsp;字
+                class="white-color">52.1k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

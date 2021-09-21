@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2k
+                    3.2k
                 </div>
                 
 
@@ -464,7 +464,7 @@ age <span class="token operator">=</span> <span class="token number">23</span>
 <h2 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h2><p>Python open() 方法用于打开一个文件，并返回文件对象，在对文件进行处理过程都需要使用到这个函数，如果该文件无法被打开，会抛出 OSError。<strong>注意：</strong>使用 open() 方法一定要保证关闭文件对象，即调用 close() 方法</p>
 <p>open() 函数常用形式是接收两个参数：文件名(file)和模式(mode)，更多参数查询  <a target="_blank" rel="noopener" href="https://www.runoob.com/python/file-methods.html">菜鸟教程</a>。现在介绍一下常用的 <code>mode</code> 参数：</p>
 <ol>
-<li><code>r</code>，只读模式</li>
+<li><code>r</code>，只读模式，为默认设置</li>
 <li><code>w</code>，写入模式，会擦除文件中之前的内容，重新写入。如果没有文件会自动创建</li>
 <li><code>a</code>，附加模式，会在文件末尾加入新内容</li>
 <li><code>r+</code>，读写模式，指针位于文件开头</li>
@@ -522,10 +522,12 @@ os<span class="token punctuation">.</span>getcwd<span class="token punctuation">
 <span class="token comment"># os.path 是一个常用模块，重点介绍</span>
 os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>abspath<span class="token punctuation">(</span>path<span class="token punctuation">)</span>   <span class="token comment"># 返回绝对路径</span>
 os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>path<span class="token punctuation">)</span>   <span class="token comment"># 返回路径的 dirname</span>
+os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>basename<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
 os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>split<span class="token punctuation">(</span>path<span class="token punctuation">)</span> 	<span class="token comment"># 把路径分割成 dirname 和 basename，返回一个元组</span>
+os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>splittext<span class="token punctuation">(</span>path<span class="token punctuation">)</span>	<span class="token comment"># 将路径的扩展名分离出来</span>
 os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
 os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isdir<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
-os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token operator">*</span>path<span class="token punctuation">)</span>	<span class="token comment"># 将多个名称合成为一个路径名</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token operator">*</span>path<span class="token punctuation">)</span>	<span class="token comment"># 将多个名称合成为一个路径名</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="sys"><a href="#sys" class="headerlink" title="sys"></a>sys</h3><p>sys 即 system，该模块提供了一些接口，用于访问 Python 解释器自身使用和维护的变量。下面列举一些常用成员</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
 
@@ -566,7 +568,7 @@ Traceback <span class="token punctuation">(</span>most recent call last<span cla
   File <span class="token string">"d:/..."</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
     <span class="token keyword">assert</span> <span class="token number">1</span><span class="token operator">==</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'Somenthing Wrong!'</span>
 AssertionError<span class="token punctuation">:</span> Somenthing Wrong!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Argparse-模块"><a href="#Argparse-模块" class="headerlink" title="Argparse 模块"></a>Argparse 模块</h2><p>argsparse 是 python 的命令行解析的标准模块，内置于python，不需要安装。这个库可以让我们<strong>直接在命令行中就可以向程序中传入参数</strong>，同时argparse会自动生成帮助文档，传入参数 <code>-h</code> 显示。下面写一个 python 脚本</p>
+<h2 id="argparse-模块"><a href="#argparse-模块" class="headerlink" title="argparse 模块"></a>argparse 模块</h2><p>argsparse 是 python 的命令行解析的标准模块，内置于python，不需要安装。这个库可以让我们<strong>直接在命令行中就可以向程序中传入参数</strong>，同时argparse会自动生成帮助文档，传入参数 <code>-h</code> 显示。下面写一个 python 脚本</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># arg.py</span>
 <span class="token keyword">import</span> argparse
 
@@ -632,6 +634,74 @@ show the params: True<span aria-hidden="true" class="line-numbers-rows"><span></
 </li>
 </ol>
 <p>当然还有更多的参数，就不列举了，遇到了就去查文档</p>
+<h2 id="re-模块"><a href="#re-模块" class="headerlink" title="re 模块"></a>re 模块</h2><p>re 为正则表达式的缩写，所以需要了解正则表达式的一些基础知识。正则表达式可以匹配某些特定模式的数据，在编辑文件、爬虫等方面有着广泛应用，以下内容参考 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19t4y1y7qP/">bilibili</a> &amp; <a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-syntax.html">菜鸟教程</a> 学习，这里记录一些基本的语法规则，仅供复习</p>
+<h3 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h3><h4 id="字符组"><a href="#字符组" class="headerlink" title="字符组"></a>字符组</h4><p><code>[]</code>，字符组，匹配集合中的任意字符，如果想表示特殊字符则需要转义字符 <code>\</code></p>
+<p> <code>^</code>，在字符组内表示取反，在字符组外表示匹配开头 <code>$</code>，匹配字符串的末尾</p>
+<h4 id="快捷表示"><a href="#快捷表示" class="headerlink" title="快捷表示"></a>快捷表示</h4><p><code>\d</code>，数字</p>
+<p><code>\s</code>，空格</p>
+<p><code>\w</code>，字符（字母、数字、下划线）</p>
+<p>大写为其取反 <code>\D</code> <code>\S</code> <code>\W</code> 表示非数字、非空格、非字符</p>
+<p><code>.</code>，为任意单个字符，换行符除外</p>
+<h4 id="限定符（控制重复次数）"><a href="#限定符（控制重复次数）" class="headerlink" title="限定符（控制重复次数）"></a>限定符（控制重复次数）</h4><p><code>{n}</code>，<code>{n,}</code>，<code>{n, m}</code> n, m 为非负整数，表示匹配重复次数或者重复区间</p>
+<p><code>+</code>，匹配前面的子表达式一次或多次，相当于 <code>{1,}</code></p>
+<p><code>*</code>，匹配前面的子表达式零次或多次，相当于 <code>{0,}</code></p>
+<p><code>?</code> 可选字符，匹配0次或1次。也可表示非贪婪模式（最小匹配），常用于 <code>+ or *</code> 之后。例如需要匹配 <code>&lt;mark&gt;.*&lt;mark&gt;</code> 这样的模式，如果遇到字符串 <code>&lt;mark&gt;1&lt;mark&gt; &lt;mark&gt;2&lt;mark&gt;</code> 将会匹配整个字符串，而不能分 <code>&lt;mark&gt;1&lt;mark&gt;</code> 和 <code>&lt;mark&gt;2&lt;mark&gt;</code>，这时使用最小匹配即可完成 <code>&lt;mark&gt;.*？&lt;mark&gt;</code></p>
+<h4 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h4><p><code>$</code>，匹配字符串的末尾</p>
+<p><code>^</code>，匹配字符串的开头，但当 <code>^</code> 和 <script type="math/tex">` 同时出现时不代表开头和末尾分别匹配，而是代表整个字符串必须匹配该表达式，例如 `^python</script> 仅能匹配 python 这个字符串，而不能匹配开头末尾为 python 的字符串，像 python … python 是不被匹配的</p>
+<p><code>\b</code>，匹配单词边界，即字与空格的位置</p>
+<h4 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h4><p><code>()</code>，表示捕获分组，<code>()</code> 会把每个分组里的匹配的值保存起来， 多个匹配值可以通过转义符+数字 n 来查看，举个例子 <code>(expression_1)(expression_2)\2\1</code></p>
+<p><code>(?:)</code>，不捕获，只使用分组功能</p>
+<p><code>(express_1|express_2|express_3)</code>，选择，满足任一表达式即匹配</p>
+<p><code>(?=express)</code>，正向先行断言，顺序从左往右看，判断在该位置的字符是否匹配表达式，如满足表达式则匹配整个表达式，如 <code>re(?=gular)</code> 只匹配 regular 中的 re 而不匹配其他单词中的 re</p>
+<p><code>(?&lt;=express)</code>，正向后行断言，顺序从右往左，如 <code>(?&lt;=re)open</code> 只匹配 reopen 中的 open，不匹配其他单词中的 open</p>
+<p><code>(?!express)</code>，逆向先行断言，不满足表达式则匹配</p>
+<p><code>(?&lt;!express)</code>，逆向后行断言</p>
+<h3 id="模块方法"><a href="#模块方法" class="headerlink" title="模块方法"></a>模块方法</h3><ol>
+<li><p><code>re.match(pattern, string, flags=0)</code>，尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match()就返回none，匹配成功则返回匹配对象 MatchObject</p>
+<p><code>flags</code> 为标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等，参考 <a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-reg-expressions.html#flags">正则表达式修饰符 - 可选标志</a></p>
+<p>使用 group(num) 或 groups() 匹配对象函数来获取匹配表达式中的分组，即表达式中要有括号</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> re
+
+line <span class="token operator">=</span> <span class="token string">"Cats are smarter than dogs"</span>
+ 
+a <span class="token operator">=</span> re<span class="token punctuation">.</span>match<span class="token punctuation">(</span> <span class="token string">r'(.*) are (.*?) .*'</span><span class="token punctuation">,</span> line<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>group<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span>group<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># Cats smarter</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>groups<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># ('Cats', 'smarter')</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>group() 也可以一次输入多个组号，在这种情况下它将返回一个包含那些组所对应值的元组</p>
+<p>如果没有分组，则直接使用 group() 调用，不用传参，默认传入0</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> re
+
+line <span class="token operator">=</span> <span class="token string">"Cats are smarter than dogs"</span>
+ 
+a <span class="token operator">=</span> re<span class="token punctuation">.</span>match<span class="token punctuation">(</span> <span class="token string">r'.* are .*? .*'</span><span class="token punctuation">,</span> line<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>group<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># print(a.group(0)) is the same</span>
+<span class="token comment"># Cats are smarter than dogs</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>re.search(pattern, string, flags=0)</code>，扫描整个字符串并返回第一个成功的匹配对象 MatchObject</p>
+</li>
+<li><p><code>re.findall(pattern, string, flags=0)</code>，在字符串中找到正则表达式所匹配的所有<strong>子串</strong>，并返回一个列表，如果没有找到匹配的，则返回空列表</p>
+</li>
+<li><p><code>re.sub(pattern, repl, string, count=0, flags=0)</code> 用于替换字符串中的匹配项</p>
+</li>
+<li><p><code>re.compile(pattern, flags=0)</code> ，根据一个模式字符串和可选的标志参数生成一个正则表达式对象，该对象能够调用一系列的方法用于正则表达式匹配和替换</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> re
+
+line <span class="token operator">=</span> <span class="token string">"re short for regular expression"</span>
+ 
+pattern <span class="token operator">=</span> re<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span> <span class="token string">r're'</span><span class="token punctuation">)</span>
+all_list <span class="token operator">=</span> pattern<span class="token punctuation">.</span>findall<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+sub <span class="token operator">=</span> pattern<span class="token punctuation">.</span>sub<span class="token punctuation">(</span><span class="token string">'RE'</span><span class="token punctuation">,</span> line<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>all_list<span class="token punctuation">)</span>
+<span class="token comment"># ['re', 're', 're']</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>sub<span class="token punctuation">)</span>
+<span class="token comment"># RE short for REgular expREssion</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><h3 id="时间和日期"><a href="#时间和日期" class="headerlink" title="时间和日期"></a>时间和日期</h3><h3 id="进程、线程"><a href="#进程、线程" class="headerlink" title="进程、线程"></a>进程、线程</h3><h3 id="Python-爬虫"><a href="#Python-爬虫" class="headerlink" title="Python 爬虫"></a>Python 爬虫</h3>
                 
             </div>
@@ -1145,7 +1215,7 @@ show the params: True<span aria-hidden="true" class="line-numbers-rows"><span></
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">50.9k</span>&nbsp;字
+                class="white-color">52.1k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
