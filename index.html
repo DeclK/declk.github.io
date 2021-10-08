@@ -771,22 +771,21 @@ I
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/archives/f3e8f95c.html">
+                    <a href="/archives/63387d0d.html">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/0.png" class="responsive-img" alt="PointPillars (dev)">
+                            <img src="/medias/featureimages/0.png" class="responsive-img" alt="PointNet &amp; PointNet++">
                             
-                            <span class="card-title">PointPillars (dev)</span>
+                            <span class="card-title">PointNet &amp; PointNet++</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                PointPillars note这篇文章也经常在其他文章中被提到，该网络特点就是具有非常快的推理速度。
-项目地址：https://github.com/nutonomy/second.pytorch
-AbstractIn this wor
+                                PointNet &amp; PointNet++
+Qi, Charles R., Hao Su, Kaichun Mo, and Leonidas J. Guibas. “PointNet: Deep Learning on Point 
                             
                         </div>
                         <div class="publish-info">
@@ -813,8 +812,8 @@ AbstractIn this wor
                             <span class="chip bg-color">Point Cloud</span>
                         </a>
                         
-                        <a href="/tags/PointPillars/">
-                            <span class="chip bg-color">PointPillars</span>
+                        <a href="/tags/PointNet/">
+                            <span class="chip bg-color">PointNet</span>
                         </a>
                         
                     </div>
@@ -868,7 +867,7 @@ AbstractIn this wor
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81k</span>&nbsp;字
+                class="white-color">81.1k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
@@ -1028,17 +1027,17 @@ $(function () {
                             if (first_occur >= 0) {
                                 // cut out 100 characters
                                 var start = first_occur - 20;
-                                var end = first_occur + 80;
+                                var end = first_occur + 180;
                                 if (start < 0) {
                                     start = 0;
                                 }
                                 if (start === 0) {
-                                    end = 100;
+                                    end = 200;
                                 }
                                 if (end > content.length) {
                                     end = content.length;
                                 }
-                                var match_content = content.substr(start, end);
+                                var match_content = content.substring(start, end);
                                 // highlight all keywords
                                 keywords.forEach(function (keyword) {
                                     var regS = new RegExp(keyword, "gi");

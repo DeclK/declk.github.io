@@ -315,7 +315,7 @@
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">42</a></span>
+    <span class="count"><a href="/tags">41</a></span>
     <span class="name">Tags</span>
 </div>
 
@@ -345,7 +345,7 @@
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">42</a></span>
+    <span class="count"><a href="/tags">41</a></span>
     <span class="name">Tags</span>
 </div>
 
@@ -527,7 +527,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"papers","value":10},{"name":"课程","value":2},{"name":"编程","value":19},{"name":"Dive into deep learning","value":1},{"name":"OpenMMLab","value":6},{"name":"Git","value":1},{"name":"Manim","value":2},{"name":"Python","value":5},{"name":"软件","value":5},{"name":"Pytorch","value":2},{"name":"VSCode","value":1},{"name":"Conda","value":1},{"name":"cs231n","value":1},{"name":"生活","value":5},{"name":"Linux","value":1},{"name":"Adobe","value":1},{"name":"FFMPEG","value":1},{"name":"Hexo","value":3}],
+                data: [{"name":"papers","value":10},{"name":"课程","value":2},{"name":"编程","value":19},{"name":"Dive into deep learning","value":1},{"name":"OpenMMLab","value":6},{"name":"Git","value":1},{"name":"Manim","value":2},{"name":"Python","value":5},{"name":"软件","value":5},{"name":"Pytorch","value":2},{"name":"VSCode","value":1},{"name":"Conda","value":1},{"name":"CS231N","value":1},{"name":"生活","value":5},{"name":"Linux","value":1},{"name":"Adobe","value":1},{"name":"FFMPEG","value":1},{"name":"Hexo","value":3}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -551,7 +551,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["教程","Point Cloud","Python","MMDetection","Hexo","CenterPoint","Manim","Pytorch","博客搭建","安装教程"]
+                data: ["教程","Point Cloud","Python","MMDetection","Hexo","CenterPoint","Manim","Pytorch","CS231N","博客搭建"]
             }
         ],
         yAxis: [
@@ -620,7 +620,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81k</span>&nbsp;字
+                class="white-color">81.1k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
@@ -780,17 +780,17 @@ $(function () {
                             if (first_occur >= 0) {
                                 // cut out 100 characters
                                 var start = first_occur - 20;
-                                var end = first_occur + 80;
+                                var end = first_occur + 180;
                                 if (start < 0) {
                                     start = 0;
                                 }
                                 if (start === 0) {
-                                    end = 100;
+                                    end = 200;
                                 }
                                 if (end > content.length) {
                                     end = content.length;
                                 }
-                                var match_content = content.substr(start, end);
+                                var match_content = content.substring(start, end);
                                 // highlight all keywords
                                 keywords.forEach(function (keyword) {
                                     var regS = new RegExp(keyword, "gi");

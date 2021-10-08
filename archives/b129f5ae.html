@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.5k
+                    2.6k
                 </div>
                 
 
@@ -578,7 +578,7 @@ layout: <span class="token string">"tags"</span>
 <p>在 hexo 三连时遇到报错</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">FATAL YAMLException: duplicated mapping key <span class="token punctuation">(</span><span class="token number">111</span>:1<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>说明有原配置文件中已经有 permalink 的定义，我们需要把里本身的 permalink 代码注释掉，完美运行！现在我们的文章 url 最后是特殊的数字id <code>/archives/48732.html</code></p>
-<h3 id="文章字数统计插件"><a href="#文章字数统计插件" class="headerlink" title="文章字数统计插件"></a>文章字数统计插件</h3><h3 id="添加-emoji-表情支持"><a href="#添加-emoji-表情支持" class="headerlink" title="添加 emoji 表情支持"></a>添加 emoji 表情支持</h3><h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>上面三个部分都是按照 hexo-thme-matery github 项目配置的</p>
+<h3 id="文章字数统计插件"><a href="#文章字数统计插件" class="headerlink" title="文章字数统计插件"></a>文章字数统计插件</h3><h3 id="添加-emoji-表情支持"><a href="#添加-emoji-表情支持" class="headerlink" title="添加 emoji 表情支持"></a>添加 emoji 表情支持</h3><h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>上面三个部分都是按照 hexo-thme-matery github 项目配置的，其中搜索部分，由于有时候搜索结果显示太长了，自己修改了一下 <code>search.ejs</code> 文件，将 substr 函数换为了 substring 函数，仅最多显示200个字符</p>
 <h3 id="评论插件utterance"><a href="#评论插件utterance" class="headerlink" title="评论插件utterance"></a>评论插件utterance</h3><p>matery 在配置文件中告诉我们，有的评论软件有安全隐患，推荐使用 utterance</p>
 <p>尝试 utterance，如果成功，则返回卸载 valine，注销 lean cloud</p>
 <p>也尝试了 livere 安装也很不友好</p>
@@ -1110,7 +1110,7 @@ layout: <span class="token string">"tags"</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81k</span>&nbsp;字
+                class="white-color">81.1k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
@@ -1270,17 +1270,17 @@ $(function () {
                             if (first_occur >= 0) {
                                 // cut out 100 characters
                                 var start = first_occur - 20;
-                                var end = first_occur + 80;
+                                var end = first_occur + 180;
                                 if (start < 0) {
                                     start = 0;
                                 }
                                 if (start === 0) {
-                                    end = 100;
+                                    end = 200;
                                 }
                                 if (end > content.length) {
                                     end = content.length;
                                 }
-                                var match_content = content.substr(start, end);
+                                var match_content = content.substring(start, end);
                                 // highlight all keywords
                                 keywords.forEach(function (keyword) {
                                     var regS = new RegExp(keyword, "gi");

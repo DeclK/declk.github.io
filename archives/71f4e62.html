@@ -1566,7 +1566,7 @@ work_dir <span class="token operator">=</span> <span class="token string">'work_
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81k</span>&nbsp;字
+                class="white-color">81.1k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
@@ -1726,17 +1726,17 @@ $(function () {
                             if (first_occur >= 0) {
                                 // cut out 100 characters
                                 var start = first_occur - 20;
-                                var end = first_occur + 80;
+                                var end = first_occur + 180;
                                 if (start < 0) {
                                     start = 0;
                                 }
                                 if (start === 0) {
-                                    end = 100;
+                                    end = 200;
                                 }
                                 if (end > content.length) {
                                     end = content.length;
                                 }
-                                var match_content = content.substr(start, end);
+                                var match_content = content.substring(start, end);
                                 // highlight all keywords
                                 keywords.forEach(function (keyword) {
                                     var regS = new RegExp(keyword, "gi");

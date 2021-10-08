@@ -370,8 +370,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/cs231n/">
-                                <span class="chip bg-color">cs231n</span>
+                            <a href="/tags/CS231N/">
+                                <span class="chip bg-color">CS231N</span>
                             </a>
                         
                     </div>
@@ -386,8 +386,8 @@
                                 课程
                             </a>
                         
-                            <a href="/categories/%E8%AF%BE%E7%A8%8B/cs231n/" class="post-category">
-                                cs231n
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/CS231N/" class="post-category">
+                                CS231N
                             </a>
                         
                     </div>
@@ -628,8 +628,8 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/cs231n/">
-                                    <span class="chip bg-color">cs231n</span>
+                                <a href="/tags/CS231N/">
+                                    <span class="chip bg-color">CS231N</span>
                                 </a>
                             
                         </div>
@@ -1072,7 +1072,7 @@ norm_x <span class="token operator">=</span> <span class="token punctuation">(</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81k</span>&nbsp;字
+                class="white-color">81.1k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
@@ -1232,17 +1232,17 @@ $(function () {
                             if (first_occur >= 0) {
                                 // cut out 100 characters
                                 var start = first_occur - 20;
-                                var end = first_occur + 80;
+                                var end = first_occur + 180;
                                 if (start < 0) {
                                     start = 0;
                                 }
                                 if (start === 0) {
-                                    end = 100;
+                                    end = 200;
                                 }
                                 if (end > content.length) {
                                     end = content.length;
                                 }
-                                var match_content = content.substr(start, end);
+                                var match_content = content.substring(start, end);
                                 // highlight all keywords
                                 keywords.forEach(function (keyword) {
                                     var regS = new RegExp(keyword, "gi");
