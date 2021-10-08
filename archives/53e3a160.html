@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    592
+                    793
                 </div>
                 
 
@@ -460,6 +460,20 @@
 <li><a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/anaconda/">清华大学镜像源</a></li>
 <li><a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/help/anaconda">南京大学镜像源</a>（自家的镜像源，当然要推荐一下😎）</li>
 </ol>
+<pre class="line-numbers language-source.list" data-language="source.list"><code class="language-source.list"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}} main restricted universe multiverse
+# deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}} main restricted universe multiverse
+deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-updates main restricted universe multiverse
+# deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-updates main restricted universe multiverse
+deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-backports main restricted universe multiverse
+# deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-backports main restricted universe multiverse
+deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-security main restricted universe multiverse
+# deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-proposed main restricted universe multiverse
+# deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-proposed main restricted universe multiverse<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>| 版本             |  |<br>| ———————— | ———————— |<br>| Ubuntu 14.04 LTS | trusty           |<br>| Ubuntu 16.04 LTS | xenial           |<br>| Ubuntu 18.04 LTS | bionic           |<br>| Ubuntu 20.04 LTS | focal            |<br>| Ubuntu 20.10     | groovy           |<br>| Ubuntu 21.04     | hirsute          |</p>
 </li>
 <li><p>配置nvidia driver: 根据 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59618999">知乎链接</a> ，在命令行里下载推荐的driver。如果在配置nvidia driver的过程中出现连接不上显卡，可能需要关闭 security boot。参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/336429888">稚晖君</a> 的教程，下载安装CUDA，选择runfile。</p>
 <p>如果想移除所有cuda, cudnn, nvidia driver</p>
@@ -741,9 +755,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="cs231n assignment2 笔记">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="CS231N Assignment2 笔记">
                         
-                        <span class="card-title">cs231n assignment2 笔记</span>
+                        <span class="card-title">CS231N Assignment2 笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -981,7 +995,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55k</span>&nbsp;字
+                class="white-color">81k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

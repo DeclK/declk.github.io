@@ -370,8 +370,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ffmpeg/">
-                                <span class="chip bg-color">ffmpeg</span>
+                            <a href="/tags/FFMPEG/">
+                                <span class="chip bg-color">FFMPEG</span>
                             </a>
                         
                     </div>
@@ -499,9 +499,10 @@ file '/path/to/file3'<span aria-hidden="true" class="line-numbers-rows"><span></
 <p>截取第7秒第1帧的画面</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video.mp4 -ss <span class="token number">7</span> -vframes <span class="token number">1</span> video_image.jpg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>视频分离成图片</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i input_test.mp4 -r <span class="token number">1</span> -f image2 output_image-%03d.jpeg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i input_test.mp4 -r <span class="token number">1</span> -f image2 output_image-%03d.png<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>图片也能合成为视频</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -f image2 -i output_image-%03d.jpeg output_test.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -f image2 -i output_image-%03d.png output_test.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注意，这里选择 png 格式而不是 jpg 格式是因为 png 为无损压缩图，这样在视频和图片的转换当中，就不会有损失</p>
 <p>(2) 水印</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video.mp4 -i qt.png -filter_complex <span class="token string">"overlay=20:80"</span> video_watermark.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>(3) 截取动图</p>
@@ -744,8 +745,8 @@ Subtitle options:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ffmpeg/">
-                                    <span class="chip bg-color">ffmpeg</span>
+                                <a href="/tags/FFMPEG/">
+                                    <span class="chip bg-color">FFMPEG</span>
                                 </a>
                             
                         </div>
@@ -967,12 +968,12 @@ Subtitle options:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mmlab/">
-                        <span class="chip bg-color">mmlab</span>
+                    <a href="/tags/MMLab/">
+                        <span class="chip bg-color">MMLab</span>
                     </a>
                     
-                    <a href="/tags/mmdetection/">
-                        <span class="chip bg-color">mmdetection</span>
+                    <a href="/tags/MMDetection/">
+                        <span class="chip bg-color">MMDetection</span>
                     </a>
                     
                 </div>
@@ -1024,8 +1025,8 @@ Subtitle options:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/pr/">
-                        <span class="chip bg-color">pr</span>
+                    <a href="/tags/Pr/">
+                        <span class="chip bg-color">Pr</span>
                     </a>
                     
                 </div>
@@ -1173,7 +1174,7 @@ Subtitle options:
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55k</span>&nbsp;字
+                class="white-color">81k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

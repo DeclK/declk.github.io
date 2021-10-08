@@ -523,6 +523,8 @@ z1 <span class="token operator">=</span> tensor_1 <span class="token operator">*
 <span class="token comment"># convert one element tensor to a Python numerical value</span>
 x<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="GPU-Usage"><a href="#GPU-Usage" class="headerlink" title="GPU Usage"></a>GPU Usage</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available		<span class="token comment"># check for cuda</span>
+torch<span class="token punctuation">.</span>version<span class="token punctuation">.</span>cuda			<span class="token comment"># check version</span>
+torch<span class="token punctuation">.</span>__version__			<span class="token comment"># check torch version</span>
 x <span class="token operator">=</span> x<span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>				<span class="token comment"># move x's data from CPU to GPU and return new object</span>
 x <span class="token operator">=</span> x<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span>					<span class="token comment"># move x's data from GPU to CPU and return new object</span>
 
@@ -532,7 +534,7 @@ x <span class="token operator">=</span> x<span class="token punctuation">.</span
     args<span class="token punctuation">.</span>device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cpu'</span><span class="token punctuation">)</span>                       
 
 net<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>				<span class="token comment"># recursively convert their parameters and buffers to device specific tensors</span>
-x <span class="token operator">=</span> x<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>			<span class="token comment"># copy your tensors to a device (gpu, cpu)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+x <span class="token operator">=</span> x<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>			<span class="token comment"># copy your tensors to a device (gpu, cpu)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="Datasets-amp-DataLoader"><a href="#Datasets-amp-DataLoader" class="headerlink" title="Datasets &amp; DataLoader"></a>Datasets &amp; DataLoader</h2><blockquote>
 <p>Code for processing data samples can get messy and hard to maintain; we ideally want our dataset code to be decoupled from our model training code for better readability and modularity. PyTorch provides two data primitives: <code>torch.utils.data.DataLoader</code> and <code>torch.utils.data.Dataset</code> that allow you to use pre-loaded datasets as well as your own data. </p>
 </blockquote>
@@ -1414,7 +1416,7 @@ model <span class="token operator">=</span> torch<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55k</span>&nbsp;字
+                class="white-color">81k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

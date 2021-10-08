@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    520
+                    906
                 </div>
                 
 
@@ -464,11 +464,12 @@
 <li><p>安装 pytorch</p>
 <p>在 <a target="_blank" rel="noopener" href="https://pytorch.org/get-started/previous-versions/">pytorch previous versions</a> 中查找你想要的版本，我选择如下</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda <span class="token function">install</span> <span class="token assign-left variable">pytorch</span><span class="token operator">==</span><span class="token number">1.5</span>.1 <span class="token assign-left variable">torchvision</span><span class="token operator">==</span><span class="token number">0.6</span>.1 <span class="token assign-left variable">cudatoolkit</span><span class="token operator">=</span><span class="token number">10.1</span> -c pytorch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>但我电脑上安装的 CUDA 版本为10.0，之后看看这样做有什么区别</p>
+<p>此时查看我的电脑上安装的 CUDA 版本，使用命令 <code>nvcc -V</code></p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nvcc: NVIDIA <span class="token punctuation">(</span>R<span class="token punctuation">)</span> Cuda compiler driver
 Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token number">2005</span>-2018 NVIDIA Corporation
 Built on Sat_Aug_25_21:08:01_CDT_2018
 Cuda compilation tools, release <span class="token number">10.0</span>, V10.0.130<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>该版本为 10.0 和 cudatoolkit 的 10.1 版本并不一样，那么 pytorch 究竟是使用哪个版本呢？答案是使用 10.0 的版本，需要更改一下环境 CUDA_HOME 环境变量。更多的信息，请阅读补充笔记</p>
 </li>
 </ol>
 <h2 id="安装-MMDetection"><a href="#安装-MMDetection" class="headerlink" title="安装 MMDetection"></a>安装 MMDetection</h2><p>官方推荐使用 <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mim">MIM</a> 安装 MMDetection</p>
@@ -498,6 +499,18 @@ img <span class="token operator">=</span> <span class="token string">'demo/demo.
 result <span class="token operator">=</span> inference_detector<span class="token punctuation">(</span>model<span class="token punctuation">,</span> img<span class="token punctuation">)</span>
 <span class="token comment"># 绘制结果图</span>
 model<span class="token punctuation">.</span>show_result<span class="token punctuation">(</span>img<span class="token punctuation">,</span> result<span class="token punctuation">,</span> wait_time<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="补充：Pytorch-amp-CUDA"><a href="#补充：Pytorch-amp-CUDA" class="headerlink" title="补充：Pytorch &amp; CUDA"></a>补充：Pytorch &amp; CUDA</h2><h3 id="CUDA-amp-CUDA-toolkit-amp-pytorch-install-with-conda"><a href="#CUDA-amp-CUDA-toolkit-amp-pytorch-install-with-conda" class="headerlink" title="CUDA &amp; CUDA toolkit &amp; pytorch install with conda"></a>CUDA &amp; CUDA toolkit &amp; pytorch install with conda</h3><p>conda 在安装 Pytorch 等会使用到 CUDA 的框架时，会自动为用户安装 cudatoolkit，其主要包含应用程序在使用 CUDA 相关的功能时所依赖的动态链接库。在安装了 cudatoolkit 后，只要系统上存在与当前的 cudatoolkit 所兼容的 Nvidia 驱动，则已经编译好的 CUDA 相关的程序就可以直接运行，而不需要安装完整的 Nvidia 官方提供的 CUDA Toolkit </p>
+<p>经过自己的实验，环境中的 CUDA_HOME 变量是清空的，而且也没有设置 /usr/local/cuda 软链接，但是 pytorch 依然能够调用 GPU，说明只需要你的 Nvidia Driver 和 conda install cudatoolkit 兼容，那么就不需要从 Nvidia 官网中下载完整的 CUDA Toolkit</p>
+<p>综上 Pytorch 查找 cuda 路径顺序为：</p>
+<ol>
+<li><p>先查找环境变量中是否存在 CUDA_PATH / CUDA_HOME 如有则使用该路径指向的 CUDA 版本。其中 CUDA_PATH 为 windows 环境变量，CUDA_HOME 为 Linux 环境变量</p>
+</li>
+<li><p>若找不到 CUDA_HOME，则查看 usr/local/cuda 是否存在，若存在则使用该路径指向的 CUDA 版本</p>
+</li>
+<li><p>若两个路径都不存在，则使用 conda 下载的 cudatoolkit，也即下载 pytorch 时自动下载的 cudatoolkit</p>
+</li>
+</ol>
+<p>推荐 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/yhjoker/p/10972795.html">参考链接</a> 进行深入了解</p>
 
                 
             </div>
@@ -987,7 +1000,7 @@ model<span class="token punctuation">.</span>show_result<span class="token punct
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55k</span>&nbsp;字
+                class="white-color">81k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
