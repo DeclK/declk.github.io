@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.6k
+                    2.5k
                 </div>
                 
 
@@ -481,7 +481,7 @@ layout: <span class="token string">"tags"</span>
 ---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>给 post 指定 tags 只需要在 front-matter 中写好就行了，如上面 categories 的例子。</p>
 <h3 id="新建关于我-about-页"><a href="#新建关于我-about-页" class="headerlink" title="新建关于我 about 页"></a>新建关于我 about 页</h3><h3 id="新建留言板-contact-页"><a href="#新建留言板-contact-页" class="headerlink" title="新建留言板 contact 页"></a>新建留言板 contact 页</h3><h3 id="新建友情链接-friends-页"><a href="#新建友情链接-friends-页" class="headerlink" title="新建友情链接 friends 页"></a>新建友情链接 friends 页</h3><p>新建方法都是和上面的方法一样的</p>
-<h2 id="菜单导航配置"><a href="#菜单导航配置" class="headerlink" title="菜单导航配置"></a>菜单导航配置</h2><h3 id="名称、路径、图标"><a href="#名称、路径、图标" class="headerlink" title="名称、路径、图标"></a>名称、路径、图标</h3><p>配置菜单导航的名称、路径url、和图标icon，配置文件在 <code>themes/hexo-theme-matery/._config.yml</code></p>
+<h2 id="菜单导航配置与渲染"><a href="#菜单导航配置与渲染" class="headerlink" title="菜单导航配置与渲染"></a>菜单导航配置与渲染</h2><h3 id="名称、路径、图标"><a href="#名称、路径、图标" class="headerlink" title="名称、路径、图标"></a>名称、路径、图标</h3><p>配置菜单导航的名称、路径url、和图标icon，配置文件在 <code>themes/hexo-theme-matery/._config.yml</code></p>
 <p>更改 menu 部分即可</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">menu:
   <span class="token comment"># 把 Index 改为 Home</span>
@@ -499,9 +499,7 @@ layout: <span class="token string">"tags"</span>
 </ol>
 <p>由于我对于这个导航还是比较满意，就不作过多修改</p>
 <h3 id="修改页脚"><a href="#修改页脚" class="headerlink" title="修改页脚"></a>修改页脚</h3><p>页脚信息可能需要做定制化修改，修改的地方在主题文件的 <code>/layout/_partial/footer.ejs</code> 文件中，包括站点、使用的主题、访问量等。</p>
-<p>由于代码看不明白，找到了一个比较详细的教程</p>
-<p><a target="_blank" rel="noopener" href="https://sunhwee.com/posts/6e8839eb.html">https://sunhwee.com/posts/6e8839eb.html</a></p>
-<p>根据上面的链接修改了版权信息，增加了网站运行时间，访问人数的代码目前不需要修改</p>
+<p>由于代码看不明白，找到了一个比较详细的 <a target="_blank" rel="noopener" href="https://sunhwee.com/posts/6e8839eb.html">教程</a>。根据教程修改了版权信息，增加了网站运行时间，访问人数的代码目前不需要修改</p>
 <h3 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h3><p>修改 Hexo 根目录下 <code>_config.yml</code> 文件中 <code>highlight.enable</code> 的值为 <code>false</code>，并将 <code>prismjs.enable</code> 的值设置为 <code>true</code></p>
 <p>以上的设置并不管用，没有高亮也没有行号</p>
 <p>但是我下载了 hexo-prism-plugin 又卸载掉这个插件，就有高亮了，但依旧没有行号</p>
@@ -509,8 +507,7 @@ layout: <span class="token string">"tags"</span>
 <p>考虑是不是本身 prism 文件出了问题，重新到官网上下载了 prism.js 和 prism.css 替换原来系统中对应的文件，同时调整上面提到的 padding 参数，最后成功！</p>
 <p>prism.js 文件位置在 <code>node_modules/prismjs</code></p>
 <p>prism.css 文件位置在 <code>themes/hexo-theme-matery/source/libs/prism</code></p>
-<p>现在想要去除隔离的那条竖线，尝试重复下面链接的操作，操作过后竖线没有去除，不过稍微调整了一下代码位置，也挺好看</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/issues/103">https://github.com/blinkfox/hexo-theme-matery/issues/103</a></p>
+<p>现在想要去除隔离的那条竖线，尝试重复 <a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/issues/103">github issue</a> 的操作，操作过后竖线没有去除，不过稍微调整了一下代码位置，也挺好看</p>
 <p>最终，我通过修改 prism.css 中 border-right 为 0px，去除了行号和代码之间的分隔线！</p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.line-numbers .line-numbers-rows</span> <span class="token punctuation">{</span>
 	<span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
@@ -522,6 +519,7 @@ layout: <span class="token string">"tags"</span>
 	<span class="token property">letter-spacing</span><span class="token punctuation">:</span> -1px<span class="token punctuation">;</span>
 	<span class="token property">border-right</span><span class="token punctuation">:</span> 0px solid #999<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>现在解决标号和 code 没对齐的问题，修改 prism.css 文件中 <code>.line-numbers .line-numbers-rows</code> 下 top 参数为 -0.2em，微调成功！治好了强迫症！</p>
+<h3 id="渲染表格"><a href="#渲染表格" class="headerlink" title="渲染表格"></a>渲染表格</h3><p>hexo 对表格的渲染与 typora 是不一样的，正文和表格需要间隔两行。而且 hexo 并不会显示双括号，建议使用代码格式引用双括号 <code>{{}}</code></p>
 <h2 id="配置-theme-中的-config-yml"><a href="#配置-theme-中的-config-yml" class="headerlink" title="配置 theme 中的 _config.yml"></a>配置 theme 中的 _config.yml</h2><ol>
 <li><p>根据配置文件中的注释，简单修改了下面的设置</p>
 <p>dream, music, video, recommend, github &amp; social link, reward, clicklove, myProjects, mySkills, subtitle, banner</p>
@@ -578,7 +576,7 @@ layout: <span class="token string">"tags"</span>
 <p>在 hexo 三连时遇到报错</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">FATAL YAMLException: duplicated mapping key <span class="token punctuation">(</span><span class="token number">111</span>:1<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>说明有原配置文件中已经有 permalink 的定义，我们需要把里本身的 permalink 代码注释掉，完美运行！现在我们的文章 url 最后是特殊的数字id <code>/archives/48732.html</code></p>
-<h3 id="文章字数统计插件"><a href="#文章字数统计插件" class="headerlink" title="文章字数统计插件"></a>文章字数统计插件</h3><h3 id="添加-emoji-表情支持"><a href="#添加-emoji-表情支持" class="headerlink" title="添加 emoji 表情支持"></a>添加 emoji 表情支持</h3><h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>上面三个部分都是按照 hexo-thme-matery github 项目配置的，其中搜索部分，由于有时候搜索结果显示太长了，自己修改了一下 <code>search.ejs</code> 文件，将 substr 函数换为了 substring 函数，仅最多显示200个字符</p>
+<h3 id="文章字数统计插件"><a href="#文章字数统计插件" class="headerlink" title="文章字数统计插件"></a>文章字数统计插件</h3><h3 id="添加-emoji-表情支持"><a href="#添加-emoji-表情支持" class="headerlink" title="添加 emoji 表情支持"></a>添加 emoji 表情支持</h3><h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>上面三个部分都是按照 hexo-thme-matery github 项目配置的</p>
 <h3 id="评论插件utterance"><a href="#评论插件utterance" class="headerlink" title="评论插件utterance"></a>评论插件utterance</h3><p>matery 在配置文件中告诉我们，有的评论软件有安全隐患，推荐使用 utterance</p>
 <p>尝试 utterance，如果成功，则返回卸载 valine，注销 lean cloud</p>
 <p>也尝试了 livere 安装也很不友好</p>
@@ -1110,7 +1108,7 @@ layout: <span class="token string">"tags"</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.1k</span>&nbsp;字
+                class="white-color">81.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

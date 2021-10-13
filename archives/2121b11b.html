@@ -476,6 +476,9 @@
 <li>modified 文件在 commit 或者 add 过后有过修改，可以使用 git checkout 丢弃修改</li>
 <li>staged (文件在之前 commit 过后有过修改) 经过 add，没有 commit</li>
 </ol>
+<p>当存在文件为中文命名时 git status 会显示为转义数字串形如 \351\237… 解决方法如下</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> config --global core.quotepath <span class="token boolean">false</span>
+<span class="token comment"># core.quotepath的作用是控制路径是否编码显示的选项, 当字符为中文时会转义输出</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p>有些时候我们不想把某些文件纳入版本控制中，可在主目录下建立 .gitignore 文件，例如你不详把 txt 类型文件进行版本控制，则在 .gitignore 文件中写入 *.txt 即可，其他具体规则不作介绍，也比较简单。</p>
 <h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><p>git add file_name 将文件加入暂存区，文件成为 staged 状态</p>
 <p>git add . 将当前文件夹 add，比较方便快捷</p>
@@ -1048,7 +1051,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.1k</span>&nbsp;字
+                class="white-color">81.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
