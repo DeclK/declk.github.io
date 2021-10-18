@@ -492,7 +492,7 @@
 \mathcal{L}_{\text {res }}^{(p)}=\sum_{v \in\{y, h, w, l\}} \mathcal{F}_{\text {reg }}\left(\widehat{\operatorname{res}}_{v}^{(p)}, \operatorname{res}_{v}^{(p)}\right) \\
 \mathcal{L}_{\text {reg }}=\frac{1}{N_{\text {pos }}} \sum_{p \in \text { pos }}\left(\mathcal{L}_{\text {bin }}^{(p)}+\mathcal{L}_{\text {res }}^{(p)}\right)
 \end{array}</script><p>分类任务采取的是 cross entropy classification loss，回归任务采取的是 smooth L1 loss</p>
-<h4 id="NMS"><a href="#NMS" class="headerlink" title="NMS"></a>NMS</h4><p>使用 non-maximum suppression (NMS) 算法去除多余的选框，关于训练和推理时的具体参数请参考原文。筛选出来的选框，将进行下一步细化</p>
+<h4 id="NMS"><a href="#NMS" class="headerlink" title="NMS"></a>NMS</h4><p>使用 non-maximum suppression (NMS) 算法去除多余的选框，关于训练和推理时的具体参数请参考原文。筛选出来的选框，将进行下一步细化，NMS 几乎是筛选最终选框/细化选框必不可缺的，可能之后的总结里不会提，但不代表没有这一步骤</p>
 <blockquote>
 <p>For training, we use 0.85 as the bird’s view IoU threshold and after NMS we keep top 300 proposals for training the stage-2 sub-network. For inference, we use oriented NMS with IoU threshold 0.8, and only top 100 proposals are kept for the refinement of stage-2 sub-network.</p>
 </blockquote>
@@ -792,13 +792,13 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/f3e8f95c.html">
+                <a href="/archives/74da7df7.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="PointPillars (dev)">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Point-GNN">
                         
-                        <span class="card-title">PointPillars (dev)</span>
+                        <span class="card-title">Point-GNN</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -830,8 +830,8 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                         <span class="chip bg-color">Point Cloud</span>
                     </a>
                     
-                    <a href="/tags/PointPillars/">
-                        <span class="chip bg-color">PointPillars</span>
+                    <a href="/tags/Point-GNN/">
+                        <span class="chip bg-color">Point-GNN</span>
                     </a>
                     
                 </div>
@@ -845,13 +845,13 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/88f138aa.html">
+                <a href="/archives/63387d0d.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Pytorch cn231n note (dev)">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="PointNet &amp; PointNet++">
                         
-                        <span class="card-title">Pytorch cn231n note (dev)</span>
+                        <span class="card-title">PointNet &amp; PointNet++</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -868,12 +868,8 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
-                                    编程
-                                </a>
-                            
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Pytorch/" class="post-category">
-                                    Pytorch
+                            <a href="/categories/papers/" class="post-category">
+                                    papers
                                 </a>
                             
                             
@@ -883,12 +879,12 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Pytorch/">
-                        <span class="chip bg-color">Pytorch</span>
+                    <a href="/tags/Point-Cloud/">
+                        <span class="chip bg-color">Point Cloud</span>
                     </a>
                     
-                    <a href="/tags/CS231N/">
-                        <span class="chip bg-color">CS231N</span>
+                    <a href="/tags/PointNet/">
+                        <span class="chip bg-color">PointNet</span>
                     </a>
                     
                 </div>
@@ -1043,7 +1039,7 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.3k</span>&nbsp;字
+                class="white-color">84.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SA-SSD (dev), ">
+    <meta name="keywords" content="SA-SSD, ">
     <meta name="description" content=" ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SA-SSD (dev) | </title>
+    <title>SA-SSD | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SA-SSD (dev)</h1>
+                    <h1 class="description center-align post-title">SA-SSD</h1>
                 </div>
             </div>
         </div>
@@ -370,10 +370,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Point-Cloud/">
-                                <span class="chip bg-color">Point Cloud</span>
-                            </a>
-                        
                             <a href="/tags/SA-SSD/">
                                 <span class="chip bg-color">SA-SSD</span>
                             </a>
@@ -399,7 +395,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-10-08
+                    2021-10-13
                 </div>
                 
 
@@ -408,7 +404,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.4k
+                    3k
                 </div>
                 
 
@@ -433,74 +429,71 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SA-SSD-note"><a href="#SA-SSD-note" class="headerlink" title="SA-SSD note"></a>SA-SSD note</h1><p>这篇文章的重点之一就是引入了 auxiliary network 来帮助学习，在之后的SE-SSD中也受其启发</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>We design an auxiliary network which converts the convolutional features in the backbone network back to point-level representations. </p>
-<p><strong>The auxiliary network can be detached after training and therefore introduces no extra computation in the inference stage.</strong></p>
-<p>Specifically, the auxiliary network first converts the features from the backbone network back to point-wise representations and then performs two auxiliary tasks: </p>
+                <h1 id="SA-SSD"><a href="#SA-SSD" class="headerlink" title="SA-SSD"></a>SA-SSD</h1><hr>
+<p>He, Chenhang, Hui Zeng, Jianqiang Huang, Xian-Sheng Hua, and Lei Zhang. “Structure Aware Single-Stage 3D Object Detection From Point Cloud.” In <em>2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 11870–79. Seattle, WA, USA: IEEE, 2020. <a target="_blank" rel="noopener" href="https://doi.org/10.1109/CVPR42600.2020.01189">https://doi.org/10.1109/CVPR42600.2020.01189</a>.</p>
+<hr>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>现阶段点云目标检测常用 SSD 方法为，使用卷积网络逐步缩小 feature map 形状，同时感受野也在逐渐提高，最终使用 downscale 的特征图谱去做选框的预测。这个过程中不可避免地会丢失空间信息：</p>
 <ol>
-<li>foreground segmentation to drift the features to be sensitive to the object boundary and </li>
-<li>point-wise center estimation to make the features be aware of the intra-object relationship. </li>
+<li>在将点云进行体素化时会丢失原始点云的空间信息</li>
+<li>在进行卷积操作时，虽然进一步提取了局部特征，但同时也会丢失细节信息</li>
 </ol>
-<p>The auxiliary network is jointly optimized with the backbone network in training stage and is removed after training, introducing no extra computational cost at inference stage. </p>
-<h3 id="Contributions"><a href="#Contributions" class="headerlink" title="Contributions"></a>Contributions</h3><p>(1) We propose a structure-aware single-stage 3D object detector, which employs a detachable auxiliary network</p>
-<p>(2) We develop an efficient feature map warping method to mitigate the discordance between the predicted bounding boxes and corresponding classification confidences</p>
-<h2 id="Structure-Aware-3D-Object-Detection-via-Auxiliary-Network-Learning"><a href="#Structure-Aware-3D-Object-Detection-via-Auxiliary-Network-Learning" class="headerlink" title="Structure-Aware 3D Object Detection via Auxiliary Network Learning"></a>Structure-Aware 3D Object Detection via Auxiliary Network Learning</h2><p><img src="/archives/fb8f23a/image-20210616084733234.png" style="zoom:80%;"></p>
-<h3 id="Backbone-and-detection-networks"><a href="#Backbone-and-detection-networks" class="headerlink" title="Backbone and detection networks"></a>Backbone and detection networks</h3><p><strong>Input data representation</strong> Let ${p_i = (x_i, y_i, z_i) : i = 1, …N}$ be the coordinates of point cloud and $d = [d_x, d_y, d_z] ∈ R^3$ be the quantization step of input tensor. The tensor indices can then be represented as ${\overline{p}_i = (\lfloor\frac{x_i}{d_x}\rfloor,\lfloor \frac{y_i}{d_y}\rfloor,\lfloor\frac{z_i}{d_z}\rfloor):  i = 1, …, N}$</p>
-<h4 id="Network-architecture"><a href="#Network-architecture" class="headerlink" title="Network architecture"></a>Network architecture</h4><p>Backbone: 可以使用 VoxelNet 得到 feature map</p>
-<p>之后进行6层标准卷积得到新的 feature map，再分别用两个1x1卷积，分成两个head，一个作分类，一个作 bounding box 回归</p>
-<h4 id="Detachable-auxiliary-network"><a href="#Detachable-auxiliary-network" class="headerlink" title="Detachable auxiliary network"></a>Detachable auxiliary network</h4><p><strong>Motivation</strong> 由于 down sample 过后肯定会失去一些结构细节，我们想要解决这个问题。Fig. 3 从2D的角度来理解为什么会丢失一些Structure information</p>
-<p><img src="/archives/fb8f23a/image-20210616092638243.png" style="zoom:80%;"></p>
-<h5 id="Solution-Point-level-supervision-Point-wise-feature-representation"><a href="#Solution-Point-level-supervision-Point-wise-feature-representation" class="headerlink" title="Solution: Point level supervision, Point-wise feature representation"></a>Solution: Point level supervision, Point-wise feature representation</h5><p>先将 backbone 中每一个阶段的 feature map 转换到真实世界的坐标，每个 pixel 的特征此时标记为 ${(f_i, p_i):i=1，…,M}$ ，$f_i$为特征，$p_i$为该 pixel 点的坐标（看 Fig. 2 帮助理解，黄色点看作 pixel 对应的点，黑色点是真实点云）</p>
-<p>Q: 这样使用 PointNet++ 作为辅助表示和直接使用有什么区别？</p>
-<p>之后像 PointNet++ 一样对每一层都做 feature propagation （propagation是将 pixel point feature 传播到真实点云上，每一层的传播都是独立的）</p>
-<p><img src="/archives/fb8f23a/image-20210616110450507.png" style="zoom:67%;"></p>
-<p>N (pi) denotes a ball region, which has a radius of 0.05m, 0.1m, 0.2m, and 0.4m in each stage</p>
-<p>然后将所有层/stage得到特征连接起来，拿去做接下来的任务</p>
-<h4 id="Auxiliary-tasks"><a href="#Auxiliary-tasks" class="headerlink" title="Auxiliary tasks"></a>Auxiliary tasks</h4><ol>
-<li><p>We first introduce a point-wise foreground segmentation task to guide the backbone CNN learn more discriminative patterns in the object boundary</p>
-<p>The foreground segmentation task can be optimized with a focal loss</p>
-<p><img src="/archives/fb8f23a/image-20210616122610398.png" style="zoom:67%;"></p>
-<p>这里通过辅助网络想让 backbone 网络学习更多关于目标边界的信息，structure aware 的思想从这里可见一斑</p>
-<p>The above segmentation task enables the backbone network to more precisely detect the object boundary, as shown in Fig. 3(c).</p>
-</li>
-<li><p>To further improve the localization accuracy, we employ another auxiliary task to learn the relative position of each object point to the object center.</p>
-<p>As shown in Fig. 3(d), this intra-object relationship can help determine the scale and shape of the object, resulting in more precise localization.</p>
-<p>仅仅学习边界还不够，在 downsample 的条件下，我们还希望在有限的点中学习目标的中心来帮忙</p>
-<p>The center estimation task can be optimized with the following Smooth-l1</p>
-<p><img src="/archives/fb8f23a/image-20210616123302638.png" style="zoom:67%;"></p>
-<p>$\Delta p$ 是该点与其对应目标中心的偏移 offset</p>
-</li>
-</ol>
-<h3 id="Part-sensitive-warping"><a href="#Part-sensitive-warping" class="headerlink" title="Part-sensitive warping"></a>Part-sensitive warping</h3><p>起因：在单阶段检测中， feature map 和 anchor 的对齐问题是普遍存在的问题， 这样会导致预测出来的边界框的定位质量与置信度不匹配，这会影响在后处理阶段（NMS）时， 高置信度但低定位质量的框被保留， 而定位质量高却置信度低的框被丢弃。在 two-stage 的目标检测算法中，RPN 提取 proposal，然后会在 feature map 上对应的的位置提取特征（roi-pooling 或者 roi-align），这个时候新的特征和对应的 proposal 是对齐的</p>
-<p>解决思想：让 bounding box 的 confidence prediction 来自于 bounding box 位置对应的 classification map，而不是来自于 anchor，具体步骤如下</p>
+<p>为了解决信息丢失问题，可以使用 2-Stage 目标检测网络。在第二阶段可以利用更精细的空间信息，重点关注第一阶段提出的 RoI，从而预测更加精准，这揭示了利用点云的细粒度 fine-grained 空间信息的重要性。然而，对每个点进行操作并为每个 RoI 重新提取特征会大大增加计算成本，使得两阶段方法难以达到实时速度</p>
+<p>使用辅助任务来主任务的表现，在目标检测网络中也是非常常见的方法。例如在 PV-RCNN 中则进行了前景点任务，并利用该任务对不同点的特征进行权重分配，前景点将获得更大的权重。</p>
+<p>论文使用可分离辅助网络来补偿损失的空间信息。辅助网络的输入为 backbone 中不同分辨率的 feature map，将特征图谱的栅格化特征表示，使用特征传播 feature propagation 转化为逐点的特征表示，然后使用逐点的特征去做两个辅助任务：前景点分离和中心预测。在训练过程中辅助网络与主干网络进行联合优化，所以主干网络的 backbone 参数中将具有原始点云的语义信息。而在进行推理的时候，辅助网络将从主干网络中分离，故不增加任何的计算</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39732684/article/details/105147497">CSDN</a> 上对于这篇论文的代码解读，该网络的代码构建是基于 MMDetection 和 SECOND</p>
+<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><p>在网络中间插入辅助任务的做法，我在二维目标检测中的一篇文章（Hourglass Networks）中也看到过类似的结构。但在 Hourglass 中这种做法叫做中间监督 intermediate supervision，但该结构在推理中并没有被分离，其中的特征图谱经过转化过后再一次加入到了主干网络中</p>
+<p>如果将 SA-SSD 辅助网络中学习的特征再次送入主干网络之中效果会更好吗？事实上，这样就回到了 2-Stage 目标检测网络结构。例如 PV-RCNN 也是将 voxel-wise 特征转化为 point-wise 特征，再使用 point-wise 特征根据 RoI 做选框细化。所以需要提出的问题为：什么样的辅助网络结构，能够让主干网络有效提取精细的空间信息。<strong>这个问题将又引申出两个疑问：如果辅助网络的对特征的转换过于复杂，那么更新到主干网络中的参数是否还有意义？如果采用与主干网络相似的结构作为辅助网络的结构，这种相似结构是否会帮助特征学习？</strong></p>
+<h2 id="SA-SSD-Architecture"><a href="#SA-SSD-Architecture" class="headerlink" title="SA-SSD Architecture"></a>SA-SSD Architecture</h2><p><img src="/archives/82cec617/image-20211012145648239.png"></p>
+<h3 id="Input-pre-process"><a href="#Input-pre-process" class="headerlink" title="Input pre-process"></a>Input pre-process</h3><p>论文采用了简单 floor 操作，将所有点的坐标映射到栅格点上。这样的预处理与 SECOND 相比，使用时间非常短，在最后的实验部分有图表</p>
+<script type="math/tex; mode=display">
+\overline{p_i} = (⌊ \frac{x_i}{d_x} ⌋, ⌊ \frac{y_i}{d_y} ⌋, ⌊ \frac{z_i}{d_z} ⌋)</script><h3 id="Backbone-network"><a href="#Backbone-network" class="headerlink" title="Backbone network"></a>Backbone network</h3><p>主干网络的结构比较简单，主要是基于 VoxelNet/SECOND 网络结构，使用 3D 稀疏卷积 sparse convolution 进行特征提取。将得到的 3D 特征图谱重塑 reshape 为二维 BEV 特征图谱表示，即将 z 轴方向的特征连接起来。最终使用该 BEV 特征图谱分为头，做选框预测任务和分类任务</p>
+<h3 id="Detachable-auxiliary-network"><a href="#Detachable-auxiliary-network" class="headerlink" title="Detachable auxiliary network"></a>Detachable auxiliary network</h3><p>辅助网络的目标是帮助主干网络感知 3D 点云的结构信息。下面详细地介绍辅助网络的使用动机</p>
+<h4 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h4><p>在主干网络提取点云特征的过程中，会不断地进行卷积操作，该操作也是一个下采样操作，将不可避免地丢失准确的空间信息。当仅使用部分点（由于下采样的原因）对 3D 选框进行预测时，如果添加一些其他信息进行辅助，能够更好地帮助预测结果，比如：每个点的是否为前景点、每个点的选框中心在何处。有了这些辅助信息，能够让预测的选框更加准确</p>
+<p><img src="/archives/82cec617/image-20211012165858427.png"></p>
+<p>受此启发，最简单操作为，直接使用更多的网络来完成对于辅助信息的预测，然后再将这些辅助特征、信息与主干网络的特征相连接，进行最终的预测。但是这些网络将会使用更多的计算资源，本论文则希望在不增加计算资源的同时获得这些辅助任务的特征与信息，基于此提出了可分离辅助网络。该辅助网络在训练时与主干网络联合优化，而在推理时将从主干网络中分离，也即在训练时由于辅助网络的引进会增加更多的计算，但在推理时没有其他多余的计算，保持主干网络的高效率</p>
+<h3 id="Point-wise-feature-representation"><a href="#Point-wise-feature-representation" class="headerlink" title="Point-wise feature representation"></a>Point-wise feature representation</h3><p>为解决以上提出的问题，论文的解决方案为：构建一个具有点级 point-level 监督的辅助网络，以引导主干网络在不分辨率的特征图谱去学习更细粒度的结构。该引导为隐性的引导，在训练过程中通过辅助任务和反向转播去调整主干网络中的参数，使得主干网络获得更细节的特征信息。具体方法如下：</p>
 <ol>
-<li><p>利用卷积网络将 classification map 升维至 K 维，K 是bounding box分割的份数，之后会详细提到</p>
-<p>modify the last classification layers to generate K part-sensitive classification maps,  denoted by ${X_k : k = 1, 2, …, K}$, each of which encodes information of a certain part of the object</p>
-<p>对于这个升维操作我还是不太能理解，直接用不行吗？</p>
+<li><p>使用特征传播 feature propagation，将不同分辨率下的 voxel-level 特征转化为 point-level 特征，该操作与 PointNet++ 中的特征传播是一致的，是基于空间距离的插值操作 inverse distance weighted average </p>
+<script type="math/tex; mode=display">
+f^{(j)}(x)=\frac{\sum_{i=1}^{k} w_{i}(x) f_{i}^{(j)}}{\sum_{i=1}^{k} w_{i}(x)} \quad \text { where } \quad w_{i}(x)=\frac{1}{d\left(x, x_{i}\right)^{p}}, j=1, \ldots, C</script><p>而这些插值点的来源论文中并没有提及，但是每一个 voxel-level 特征所转换出来的 point-level 特征应该都是相同形状的</p>
 </li>
-<li><p>将预测的 bounding box (xy平面投影) 均匀分成 K 个部分（文章分成了 4x7=28 个部分），取每个部分的中心点作为采样点  ${S_k : k = 1, 2, …, K}$ ，将 K 个采样点的 (classfication) confidence 的平均值作为最终结果。由于做回归的 feature map 和 classification map 是具有对应关系的，我们直接找到采样点在 classification map 中对应的点，通过  bilinear interpolation 就能得到该点的 confidence。需要注意的是因为我们将 classification map 升维到 K 维，每个采样点的 confidence 对应着 K 维中的一个。</p>
+<li><p>将不同分辨率下得到的 point-level 特征连接起来使用 shared MLP 进行编码（在论文的代码中并没有体现）</p>
+</li>
+<li>将编码得到的特征，使用 MLP 去预测两个结果：每个点的属于前景点的概率，前景点到目标中心的偏移量。这里的 unit point convolutions 应该还是</li>
+</ol>
+<p>两个任务的损失函数也是常规的 focal loss 和 smooth L1 loss，且 L1 loss 仅针对于前景点</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\mathrm{seg}}=\frac{1}{N_{\text {pos }}} \sum_{i}^{N}-\alpha\left(1-\hat{s}_{i}\right)^{\gamma} \log \left(\hat{s}_{i}\right)
+\\
+where \ 
+\hat{s}_{i}=\left\{\begin{array}{ll}
+\tilde{s}_{i} & \text { if } s_{i}=1 \\
+1-\tilde{s}_{i} & \text { otherwise. }
+\end{array}\right.</script><script type="math/tex; mode=display">
+\mathcal{L}_{\mathrm{ctr}}=\frac{1}{N_{\text {pos }}} \sum_{i}^{N} \text { Smooth- } l_{1}(\Delta \tilde{\mathbf{p}}-\Delta \mathbf{p}) \cdot \mathbb{1}\left[s_{i}=1\right]</script><h3 id="Part-sensitive-warping"><a href="#Part-sensitive-warping" class="headerlink" title="Part-sensitive warping"></a>Part-sensitive warping</h3><p>如果使用 anchor-based 方法进行目标检测，例如：Faster RCNN，会出现预测选框与分类置信度之间并不匹配。分类置信度的特征来源是由预先设值的 anchor 决定的，而不是来自所预测的选框。为解决这一问题，论文提出了 part-sensitive warping operation (PSWarp) 用于矫正这一不匹配现象，其中心思想为：让预测选框的分类置信度，来自于该选框区域对应的分类特征图谱区域。具体操作更加复杂一点（个人不太喜欢这一部分）</p>
+<ol>
+<li><p>将分类特征图谱改变维度，从 $(W, L, F)$ 至 $(W,L,C, K)$ 其中 C 表示类别数量，K 表示将预测选框的俯视图平均分成了 K 份（论文将选框分为了 4x7=28 份）</p>
+</li>
+<li><p>将预测选框的俯视图平均分为 K 份后，取每一个部分的中心点作为采样点，再使用双线性插值 bilinear interpolation 获得采样点的特征值。为了更具体的说明插值过程，将这 K 个采样点进行编号 $\{S_k: k=1, 2,…,K\}$，假设第 i 个采样点 $S_i$ 其插值参考的特征图谱 feature map $\mathcal{X}$ 也为第 i 个，即 $(W,L,C,i)$ 记为 $\mathcal{X^i}$。代数过程如下</p>
+<script type="math/tex; mode=display">
+\mathcal{C}_{p}=\frac{1}{K} \sum_{k=1}^{K} \sum_{i\in\{\lfloor{u^k}\rfloor ,\lfloor{u^k+1}\rfloor\}\atop  j\in\{\lfloor{v^k}\rfloor ,\lfloor{v^k+1}\rfloor\}} \mathcal{X_{ij}^k}\times b(i,j,u^k,v^k)</script><p>代码可以参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/themasterbi/article/details/106913582">CSDN</a>，这篇博客的所写的源代码注释，是众多博客中让我唯一理解的注释，不然通过论文中的文字很难理解 PSWarp 操作。最终获得输出 $(K, 1, N, 1)$，其中 $N$ 为该场景中预测选框的数量。图示如下</p>
+<p><img src="/archives/82cec617/image-20211013182126400.png" style="zoom:80%;"></p>
+</li>
+<li><p>取 K 个采样点特征值的平均值作为分类评分，最后使用 sigmoid 函数获得分类置信度</p>
 </li>
 </ol>
-<p>Q：对于这个升维操作我还是不太能理解，直接用不行吗？</p>
-<p>Given a predicted bounding box p and its corresponding sample points ${(u^k, v^k)=S_k : k = 1, 2, …, K}$the final confidence of this bounding box can be calculated by:</p>
-<p><img src="/archives/fb8f23a/image-20210617185934564.png" style="zoom:67%;"></p>
-<p>where b is a bilinear sampling kernel which has a form of</p>
-<p><img src="/archives/fb8f23a/image-20210617190023236.png" style="zoom:67%;"></p>
-<p>图解如下，对于为什么这里的 sample point 并不均匀我也不清楚，从代码来看就是均匀采样的</p>
-<p><img src="/archives/fb8f23a/image-20210617190125822.png" style="zoom:67%;"></p>
-<h3 id="Loss"><a href="#Loss" class="headerlink" title="Loss"></a>Loss</h3><p> Let $L<em>{box}$ and $L</em>{cls}$ be the two losses that impose on the regression branch and classification branch, respectively. $L<em>{box}$ is a Smooth-l1 loss [13] and $L</em>{cls}$ is a focal loss [12]. We jointly optimize the detection task and the auxiliary tasks by applying a gradient descent method to minimize the weighted sum of the following losses:</p>
-<p><img src="/archives/fb8f23a/image-20210617190616188.png" style="zoom:67%;"></p>
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="/archives/fb8f23a/image-20210617190315716.png" style="zoom:80%;"></p>
-<h3 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h3><ol>
-<li>Ground truth sampling</li>
-<li>random rotation and translation</li>
-<li>random flipping, global scaling</li>
-</ol>
-<p>这些操作都比较常规，之后实践再了解细节</p>
-<h3 id="Weight-selection-of-auxiliary-tasks"><a href="#Weight-selection-of-auxiliary-tasks" class="headerlink" title="Weight selection of auxiliary tasks"></a>Weight selection of auxiliary tasks</h3><p>we use µ = 0.9 and λ = 2.</p>
-<p><img src="/archives/fb8f23a/image-20210617192311678.png" style="zoom: 67%;"></p>
-<h3 id="Ablation-study"><a href="#Ablation-study" class="headerlink" title="Ablation study"></a>Ablation study</h3><p><img src="/archives/fb8f23a/image-20210617194546998.png" style="zoom:80%;"></p>
+<p>将辅助任务和主任务的损失函数乘以权重超参数，相加后得到整个网络的损失函数</p>
+<script type="math/tex; mode=display">
+\mathcal{L}=\mathcal{L}_{\text {cls }}+\omega \mathcal{L}_{\text {box }}+\mu \mathcal{L}_{\text {seg }}+\lambda \mathcal{L}_{\text {ctr }}</script><p>前两项即为主任务的分类任务和预测选框任务，后两项为辅助任务的分割任务和预测中心任务。所有的分类任务和回归任务都是 focal loss 和 smooth L1 loss</p>
+<p>损失函数没有使用到 IoU 相关的部分，IoU 其实是一个非常有效的综合评估标准，包含了不少的信息。之后可以考虑加入预测 IoU 的任务，该任务或许对原网络有不错的优化</p>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Train"><a href="#Train" class="headerlink" title="Train"></a>Train</h3><p>在 RPN 网络训练过程中，由于 anchor-based 属性，需要提供 anchor 的 positive/negative 属性以进行分类任务的训练，其 IoU 阈值分别为0.6和0.45。在推理阶段使用阈值为0.1的 NMS 操作 </p>
+<h3 id="KITTI"><a href="#KITTI" class="headerlink" title="KITTI"></a>KITTI</h3><p><img src="/archives/82cec617/image-20211013184635247.png"></p>
+<h3 id="Weight-selection-of-auxiliary-tasks"><a href="#Weight-selection-of-auxiliary-tasks" class="headerlink" title="Weight selection of auxiliary tasks"></a>Weight selection of auxiliary tasks</h3><p><img src="/archives/82cec617/image-20211013184733794.png"></p>
+<p>论文采用 $\mu=0.9,\lambda=2$</p>
+<h3 id="Ablation-study-amp-compare"><a href="#Ablation-study-amp-compare" class="headerlink" title="Ablation study &amp; compare"></a>Ablation study &amp; compare</h3><p><img src="/archives/82cec617/image-20211013185112410.png"></p>
 <p>可以看出3个特殊设计各有0.5%左右的提升，最终提供了接近1.5%的提升，同时网络速度也保持得相当不错</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>论文创新性地使用了可分离辅助网络，在推理时不增加额外计算量，同时提升了最终的表现。可以感觉该思想是一个不错的突破口，但是这背后留下了更多的疑问：辅助网络的具体结构应该如何设计，是该简单，还是该复杂，或者都不是；该方法是否能称为一种主流的方法，将整个目标检测的框架带到一个新的台阶上；细粒度信息应该以怎样的表示方法加入到其中，尤其与 2-Stage 方法做比较，直接的特征加入和间接的特征引导学习，两者该怎么衡量…</p>
+<p>PSWarp 方法想要解决的困难是真实存在的，也就是置信度与选框不匹配问题。但该方法是否为解决该问题最好的，或许其他论文有更优雅的解决方案，还有待继续学习</p>
 
                 
             </div>
@@ -527,7 +520,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://hongkun.space/archives/fb8f23a.html">https://hongkun.space/archives/fb8f23a.html</a>
+                    <a href="https://hongkun.space/archives/82cec617.html">https://hongkun.space/archives/82cec617.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -564,10 +557,6 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/Point-Cloud/">
-                                    <span class="chip bg-color">Point Cloud</span>
-                                </a>
                             
                                 <a href="/tags/SA-SSD/">
                                     <span class="chip bg-color">SA-SSD</span>
@@ -754,13 +743,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/88f138aa.html">
+                <a href="/archives/774e60d7.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Pytorch cn231n note (dev)">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="SE-SSD">
                         
-                        <span class="card-title">Pytorch cn231n note (dev)</span>
+                        <span class="card-title">SE-SSD</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -771,18 +760,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-18
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
-                                    编程
-                                </a>
-                            
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Pytorch/" class="post-category">
-                                    Pytorch
+                            <a href="/categories/papers/" class="post-category">
+                                    papers
                                 </a>
                             
                             
@@ -792,12 +777,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Pytorch/">
-                        <span class="chip bg-color">Pytorch</span>
-                    </a>
-                    
-                    <a href="/tags/CS231N/">
-                        <span class="chip bg-color">CS231N</span>
+                    <a href="/tags/SE-SSD/">
+                        <span class="chip bg-color">SE-SSD</span>
                     </a>
                     
                 </div>
@@ -811,13 +792,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/7cb0d5f5.html">
+                <a href="/archives/807a20df.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="SE-SSD (dev)">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="CenterPoint">
                         
-                        <span class="card-title">SE-SSD (dev)</span>
+                        <span class="card-title">CenterPoint</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -849,8 +830,8 @@
                         <span class="chip bg-color">Point Cloud</span>
                     </a>
                     
-                    <a href="/tags/SE-SSD/">
-                        <span class="chip bg-color">SE-SSD</span>
+                    <a href="/tags/CenterPoint/">
+                        <span class="chip bg-color">CenterPoint</span>
                     </a>
                     
                 </div>
@@ -1005,7 +986,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.3k</span>&nbsp;字
+                class="white-color">84.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

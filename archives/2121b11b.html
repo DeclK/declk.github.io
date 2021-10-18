@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2k
+                    2.3k
                 </div>
                 
 
@@ -441,7 +441,7 @@
 <p>整理来自：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FE411P7B3?from=search&amp;seid=1905221215711628694">bilibili</a> <a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰教程</a></p>
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>当遇到国外资源下载很慢的时候，可以考虑使用镜像资源</p>
 <p>视频里使用了淘宝镜像安装 windows 版本 <a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/">https://npm.taobao.org/mirrors/</a></p>
-<p>ubuntu 直接使用 apt install git 使用阿里云镜像</p>
+<p>ubuntu 直接使用 <code>apt install git</code> 使用阿里云镜像</p>
 <h2 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h2><p>首先要理解的是，在windows 中 git bash 的基本操作命令和 Linux  terminal 是一样的。在 Linux 中 git 是集成到 terminal 当中的</p>
 <h3 id="git-config"><a href="#git-config" class="headerlink" title="git  config"></a>git  config</h3><p>配置用户名和邮箱</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> config --global user.name <span class="token string">'your_name'</span>
@@ -456,62 +456,58 @@
 <span class="token function">git</span> config --global --unset http.proxy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="Git-基本理论"><a href="#Git-基本理论" class="headerlink" title="Git 基本理论"></a>Git 基本理论</h2><p>直接上图，重点关注左侧命令</p>
 <p><img src="/archives/2121b11b/image-20210628141830141.png" style="zoom:80%;"></p>
-<p>从工作区 -&gt; 暂存区：git add</p>
-<p>从暂存区 -&gt; 本地仓库：git commit</p>
-<p>从本地仓库 -&gt; 远程仓库：git push</p>
+<p>从工作区 -&gt; 暂存区：<code>git add</code></p>
+<p>从暂存区 -&gt; 本地仓库：<code>git commit</code></p>
+<p>从本地仓库 -&gt; 远程仓库：<code>git push</code></p>
 <p>这三个命令就能够让你感受到 git 版本控制的基本流程</p>
 <h2 id="Git-仓库搭建"><a href="#Git-仓库搭建" class="headerlink" title="Git 仓库搭建"></a>Git 仓库搭建</h2><h3 id="git-init-amp-git-clone"><a href="#git-init-amp-git-clone" class="headerlink" title="git init &amp; git clone"></a>git init &amp; git clone</h3><p>生成仓库(master 分支)的两种方法</p>
 <ol>
-<li><p>git init 初始化，生成 .git 文件</p>
+<li><p><code>git init</code> 初始化，生成 .git 文件</p>
 </li>
-<li><p>git clone url 克隆远程仓库</p>
+<li><p><code>git clone url</code> 克隆远程仓库</p>
 </li>
 </ol>
 <p>删除仓库则只需要删除 .git 文件夹即可</p>
-<h2 id="Git-文件基本操作"><a href="#Git-文件基本操作" class="headerlink" title="Git 文件基本操作"></a>Git 文件基本操作</h2><h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p>git status 查看 git 文件状态，git status file_name 可指定文件</p>
+<h2 id="Git-文件基本操作"><a href="#Git-文件基本操作" class="headerlink" title="Git 文件基本操作"></a>Git 文件基本操作</h2><h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p><code>git status</code> 查看 git 文件状态，<code>git status file_name</code> 可指定文件</p>
 <p>文件的几种状态：</p>
 <ol>
 <li>untracked 文件在文件夹中，从没有 add 过</li>
-<li>unmodify 文件已经 commit 且库中最新版本和当前文件是一致的，可以通过 git rm 将其移出版本库管理</li>
-<li>modified 文件在 commit 或者 add 过后有过修改，可以使用 git checkout 丢弃修改</li>
+<li>unmodify 文件已经 commit 且库中最新版本和当前文件是一致的，可以通过 <code>git rm</code> 将其移出版本库管理</li>
+<li>modified 文件在 commit 或者 add 过后有过修改，可以使用 <code>git checkout</code> 丢弃修改</li>
 <li>staged (文件在之前 commit 过后有过修改) 经过 add，没有 commit</li>
 </ol>
 <p>当存在文件为中文命名时 git status 会显示为转义数字串形如 \351\237… 解决方法如下</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> config --global core.quotepath <span class="token boolean">false</span>
 <span class="token comment"># core.quotepath的作用是控制路径是否编码显示的选项, 当字符为中文时会转义输出</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p>有些时候我们不想把某些文件纳入版本控制中，可在主目录下建立 .gitignore 文件，例如你不详把 txt 类型文件进行版本控制，则在 .gitignore 文件中写入 *.txt 即可，其他具体规则不作介绍，也比较简单。</p>
-<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><p>git add file_name 将文件加入暂存区，文件成为 staged 状态</p>
-<p>git add . 将当前文件夹 add，比较方便快捷</p>
-<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p>git commit -m ‘massage you want to say’ 将暂存区所有文件加入到版本库中，并留下此次提交的 message</p>
-<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p>将已经 commit 的文件从版本库中移除变为 untracked 文件</p>
-<p>git rm —cached file_name</p>
-<h2 id="Git-版本回退"><a href="#Git-版本回退" class="headerlink" title="Git 版本回退"></a>Git 版本回退</h2><h3 id="git-log-amp-git-reflog"><a href="#git-log-amp-git-reflog" class="headerlink" title="git log &amp; git reflog"></a>git log &amp; git reflog</h3><p>git log 查看 commit 历史记录，id，作者等信息</p>
-<p>git reflog 查看所有的操作</p>
-<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>回退到某一个 commit 版本，id 只用写前几位，git 自动识别</p>
-<p>git reset —hard commit_id</p>
-<p>回退到上一个 commit 版本，如果回退两个则是 HEAD^^</p>
-<p>git reset —hard HEAD^</p>
-<p>—hard 参数其实代表回退到某个 commit 后，该 commit 之后的记录都会被丢弃。但 git 永远都有后悔药吃，如果回退到以前的版本想要再回来，使用 git reflog 查看所有命令</p>
-<h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h3><p>git checkout 能够让文件回到最近一次 add 或者 commit 时的状态</p>
-<p>git checkout file_name</p>
+<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><p><code>git add file_name</code> 将文件加入暂存区，文件成为 staged 状态</p>
+<p><code>git add .</code> 将当前文件夹 add，比较方便快捷</p>
+<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p><code>git commit -m 'message content'</code> 将暂存区所有文件加入到版本库中，并留下此次提交的 message</p>
+<p><code>git commit -am 'message content'</code> 将同时完成 <code>git add all</code>（即将所有改动文件加入暂存区）和 <code>git commit</code> 操作</p>
+<p><code>git commit -amend</code> 可以修改上一次提交的 commit message</p>
+<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p><code>git rm --cached file_name</code> 将已经 commit 的文件从版本库中移除变为 untracked 文件</p>
+<p><code>git rm file_name</code> 不使用参数则代表彻底删除该文件</p>
+<h2 id="Git-版本回退"><a href="#Git-版本回退" class="headerlink" title="Git 版本回退"></a>Git 版本回退</h2><h3 id="git-log-amp-git-reflog"><a href="#git-log-amp-git-reflog" class="headerlink" title="git log &amp; git reflog"></a>git log &amp; git reflog</h3><p><code>git log</code> 查看 commit 历史记录，id，作者等信息</p>
+<p><code>git reflog</code> 查看所有的操作</p>
+<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p><code>git reset --hard commit_id</code> 将回退到某一个 commit 版本，id 只用写前几位，git 自动识别</p>
+<p><code>git reset --hard HEAD^</code> 将回退到上一个 commit 版本，如果回退两个则是 HEAD^^</p>
+<p><code>--hard</code> 参数其实代表回退到某个 commit 后，该 commit 之后的记录都会被丢弃。但 git 永远都有后悔药吃，如果回退到以前的版本想要再回来，使用 git reflog 查看所有命令</p>
+<h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h3><p><code>git checkout filename</code> 能够让文件回到最近一次 add 或者 commit 时的状态</p>
 <h2 id="分支与冲突"><a href="#分支与冲突" class="headerlink" title="分支与冲突"></a>分支与冲突</h2><h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><p>从这里我们可以更加深入理解 git 的工作形象，working tree</p>
 <p>除了 master 分支，我们还可以创建其他分支，HEAD 所指的就是 working tree “生长”的地方，然后我们将分支合并，也即让 master “赶上来”，再删除 dev 分支。git 分支还有一个一般规则是，master 分支永远是最稳定的分支，开发都在 dev 或其他分支上进行</p>
 <p><img src="/archives/2121b11b/branch_1.png" style="zoom: 50%;"></p>
 <p><img src="/archives/2121b11b/branch_2.png" style="zoom: 50%;"></p>
 <p><img src="/archives/2121b11b/branch_3.png" style="zoom:50%;"></p>
-<p>使用 git branch 查看分支情况，也可用于删除分支</p>
-<p>git branch -d branch_name</p>
-<h3 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h3><p>使用 git swich 来创建和切换分支</p>
-<p>git switch -c branch_name</p>
-<p># 复制远程的分支到本地</p>
-<p>git switch -c branch_name origin/branch_name</p>
-<p>git switch branch_name</p>
-<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p>将某个分支合并到当前分支</p>
-<p>git merge branch_name</p>
+<p><code>git branch</code> 可以查看分支情况</p>
+<p><code>git branch -d branch_name</code> 用于删除分支</p>
+<h3 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h3><p><code>git switch -c branch_name</code> 使用 git swich 来创建分支</p>
+<p><code>git switch branch_name</code> 使用 git swich 来切换分支</p>
+<p><code>git switch -c branch_name origin/branch_name</code> 创建分支并复制远程的分支到本地</p>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p><code>git merge branch_name</code> 将某个分支合并到当前分支</p>
 <p>如果发生了冲突：两个 branch 中在同一个文件中有不同的修改而无法合并，那么需要解决冲突。（判断文件是否有修改，是根据 commit id 之类的标记节点来判断的，但是否存在冲突则是根据文件的内容）</p>
 <p><img src="/archives/2121b11b/branch_4.png" style="zoom:50%;"></p>
-<p>先使用 git status 查看哪个文件发生冲突，然后使用 vim 编辑，git 会自动在文档中标明冲突的地方。怎样修改无所谓，只要你 add &amp; commit 过后，git 就会默认冲突解决，并将你的文件作为最新的版本加入版本库中，更新 working tree</p>
-<p>如果对于 git 中 recursive 3-way merge 算法感兴趣，可以参看<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Merge_(version_control">维基百科</a></p>
+<p>先使用 <code>git status</code> 查看哪个文件发生冲突，然后使用 vim 编辑，git 会自动在文档中标明冲突的地方。怎样修改无所谓，只要你 add &amp; commit 过后，git 就会默认冲突解决，并将你的文件作为最新的版本加入版本库中，更新 working tree</p>
+<p>如果对于 git 中 recursive 3-way merge 算法感兴趣，可以参看 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Merge_(version_control">维基百科</a>)</p>
 <h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="添加远程仓库-github-or-gitee"><a href="#添加远程仓库-github-or-gitee" class="headerlink" title="添加远程仓库 github or gitee"></a>添加远程仓库 github or gitee</h3><p>gitee 为国内网站，传输速度更快。通过以下步骤将本机与远程连接（以 github 为例）：</p>
 <ol>
 <li><p>注册 github 账号</p>
@@ -531,21 +527,23 @@
 </ol>
 <p>这样就把本机和远程仓库连接起来了，具体的说是将本机与你的 github 账号通过 ssh 连接起来了</p>
 <h3 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h3><p>你的账号里可以有很多的仓库，我们想要将本地仓库与某一个指定仓库链接使用以下命令即可</p>
-<p>git remote add origin [url]</p>
+<p><code>git remote add origin [url]</code></p>
 <p>远程仓库的名字叫 origin，这是 git 的默认叫法，url 是仓库的 https 或者 ssh</p>
-<p>如果已经添加 remote 仓库，可以通过以下命令查看</p>
-<p>git remote -v</p>
-<p>移除与远程仓库的链接</p>
-<p>git remote remove origin</p>
+<p><code>git remote -v</code> 查看添加的远程仓库，<code>-v</code> 代表 verbose 模式，该不带参数仅返回远程仓库的名字 <code>origin</code> </p>
+<p><code>git remote remove origin</code> 移除与远程仓库的链接</p>
 <h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>把本地库的内容推送到远程仓库，使用下面命令</p>
-<p>git push -u orgin master</p>
-<p>这样就把本地 master 分支内容推送到了远程新的 master 分支。-u 参数为 set upstream 的意思，在推送的同时将我们的本地 master 分支和远程 master 分支联系起来（相当于作了 <code>git branch -u origin</code> ），今后则可以直接输入 git push 来简化推送命令，强烈建议在第一次 push 的时候带上 -u 参数</p>
-<p>其他本地分支与远程分支的 push 和连接也是一样的，把上面命令的 master 改为对应分支的名字（例如：dev 分支）即可，前提是本地要切换到那个分支，且远程存在同名的分支。</p>
-<p>个人认为 git push 一般是在同名的本地分支和远程分支之间进行</p>
-<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p>文件冲突不仅出现在本地的 merge 当中，也存在在 push 操作当中。push 的本质也是将本地和远程这两个 branch 进行融合。当这个远程仓库只有你一个人在 push 时，是不会有冲突的，因为远程的 working tree 只会一直往前延伸；当有多个人都在对某一个文件进行修改，working tree 就相当于有了多个分支，在 push 的时候就会形成冲突。如果有远端的冲突形成，就需要使用 git pull</p>
-<p>git pull 有两个作用，一个是拉取代码到本地，另一个是尝试与本地代码合并，如果不能使用 fast forward 合并，则需要自己来修改冲突部分，这部分和 git merge 是一样的</p>
-<h2 id="Git-IDE"><a href="#Git-IDE" class="headerlink" title="Git + IDE"></a>Git + IDE</h2><p>现在 git 和很多 IDE 都有联动，可以直接在 IDE 中方便的操作 git！</p>
-<p>以 pycharm 为例，只需要在你的项目文件夹下 git init 就可以 </p>
+<p><code>git push -u orgin master</code></p>
+<p>这样就把本地 master 分支内容推送到了远程的 master 分支。-u 参数为 set upstream 的意思，在推送的同时将我们的本地 master 分支和远程 master 分支联系起来（相当于作了 <code>git branch -u origin/master</code> ），今后则可以直接输入 git push 来简化推送命令，强烈建议在第一次 push 的时候带上 -u 参数</p>
+<p>其他本地分支与远程分支的 push 和连接也是一样的，把上面命令的 master 改为对应分支的名字（例如：dev 分支）即可，前提是本地要切换到那个分支，且远程存在同名的分支</p>
+<p>个人认为 <code>git push</code> 一般是在同名的本地分支和远程分支之间进行</p>
+<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p>文件冲突不仅出现在本地的 merge 当中，也存在在 push 操作当中。push 的本质也是将本地和远程这两个 branch 进行融合。当这个远程仓库只有你一个人在 push 时，是不会有冲突的，因为远程的 working tree 只会一直往前延伸；当有多个人都在对某一个文件进行修改，working tree 就相当于有了多个分支，在 push 的时候就会形成冲突。如果有远端的冲突形成，就需要使用 <code>git pull</code></p>
+<p><code>git pull</code> 有两个作用，一个是拉取代码到本地，另一个是尝试与本地代码合并，如果不能使用 fast forward 合并，则需要自己来修改冲突部分，这部分和 <code>git merge</code> 是一样的</p>
+<h3 id="搭建自己的远程仓库"><a href="#搭建自己的远程仓库" class="headerlink" title="搭建自己的远程仓库"></a>搭建自己的远程仓库</h3><blockquote>
+<p>远程仓库实际上和本地仓库没啥不同，纯粹为了7x24小时开机并交换大家的修改。GitHub就是一个免费托管开源代码的远程仓库。但是对于某些视源代码如生命的商业公司来说，既不想公开源代码，又舍不得给GitHub交保护费，那就只能自己搭建一台Git服务器作为私有仓库使用。</p>
+</blockquote>
+<p>依旧是参考 <a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/899998870925664">廖雪峰教程</a>，不过自己在实现时有一些区别。在进行 git clone 操作时，克隆的链接不应该使用绝对路径 <code>git clone git@server:/srv/sample.git</code> 应该去掉第一个斜杠 <code>git clone git@server:srv/sample.git</code></p>
+<h2 id="Git-IDE"><a href="#Git-IDE" class="headerlink" title="Git + IDE"></a>Git + IDE</h2><p>现在 git 和很多 IDE 都有联动，可以直接在 IDE 中方便的操作 git，甚至将 git 可视化，可以直观看到你对文件的修改</p>
+<p>以 pycharm 和 vscode 为例，只要在你的项目文件夹下有 .git 文件即可，如果没有则使用 git init 新建 </p>
 
                 
             </div>
@@ -1051,7 +1049,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.3k</span>&nbsp;字
+                class="white-color">84.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

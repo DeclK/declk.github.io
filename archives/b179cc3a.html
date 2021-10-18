@@ -459,7 +459,7 @@
 </ol>
 <p>中间两点提得比较笼统，需要具体看看 PV-RCNN 的结构才能有一个形象的了解</p>
 <h2 id="PV-RCNN-Architecture"><a href="#PV-RCNN-Architecture" class="headerlink" title="PV-RCNN Architecture"></a>PV-RCNN Architecture</h2><p><img src="/archives/b179cc3a/ee6744b0-bff5-448b-a317-1557749f9588.png"></p>
-<h3 id="3D-voxel-CNN"><a href="#3D-voxel-CNN" class="headerlink" title="3D voxel CNN"></a>3D voxel CNN</h3><p>首先将输入点云 P 划分为空间分辨率为 $L × W × H$ 的小体素/栅格，其中非空体素的特征直接计算为所有内部点的逐点特征的平均值。常用的特征是 3D 坐标 coordinate 和反射强度 reflectance intensity。Voxel CNN 能够在多个下采样分辨率下 (1x, 2x, 4x, 8x) 进行特征提取，得到不同 level 的 voxel-wise feature vectors，这就是体素化方法的好处，可以直接采用成熟的二维网络方法</p>
+<h3 id="3D-voxel-CNN"><a href="#3D-voxel-CNN" class="headerlink" title="3D voxel CNN"></a>3D voxel CNN</h3><p>首先将输入点云 P 划分为空间分辨率为 $L × W × H$ 的小体素/栅格，其中非空体素的特征直接计算为所有内部点的逐点特征的平均值。常用的特征是 3D 坐标 coordinate 和反射强度 reflectance intensity。Voxel CNN 能够在多个下采样分辨率下 (1x, 2x, 4x, 8x) 进行特征提取，得到不同 level 的 voxel-wise feature vectors，这就是体素化方法的好处，可以直接采用成熟的卷积方法</p>
 <p>但是使用 voxel CNN 也会有一定的局限性：</p>
 <ol>
 <li>这些特征通常为低分辨率的空间特征，损失了大量的空间信息，阻碍了对象的准确定位</li>
@@ -467,7 +467,7 @@
 </ol>
 <h3 id="Proposal-generation"><a href="#Proposal-generation" class="headerlink" title="Proposal generation"></a>Proposal generation</h3><p>将提取的 3D 特征转换 reshape 为 2D 俯视特征图 bird-view feature maps，按照基于锚 anchor 的方法生成高质量的 3D proposal (e.g. PointPillars)。这里可以尝试使用其他的生成算法，例如将 anchor-based 换为 anchor-free，提升效率和准确率</p>
 <h3 id="Voxel-to-keypoint-encoding"><a href="#Voxel-to-keypoint-encoding" class="headerlink" title="Voxel-to-keypoint encoding"></a>Voxel-to-keypoint encoding</h3><p>了解了 voxel CNN 的一些局限性，是否有方法去补偿损失的空间信息呢？这里论文将提出一种全新的 encoding 方法 <strong>voxel set abstraction (VSA)</strong>，来将整个场景的编码从 voxel-like 转换为 point-like，具体来说 voxel set abstraction 使用 PointNet++ 网络中的 set abstraction 思想，将 voxel 特征聚合到场景中的关键点集 $K$上，这些关键点由 FurthestPoint-Sampling (FPS) 算法采样得出。这一操作我认为是整个论文里最具创意的操作，将 set abstraction 的操作进行了更广的拓展，从原来的 point-to-point 特征聚合操作，到这里为 voxel-to-point。更详细的动机可以参考原作者在 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148942116">知乎</a> 上的回答</p>
-<p>现在以更加数学化的语言来表达 <strong>voxel set abstraction (VSA)</strong>。关键点集合 $K={p_1,…,p_n}$，对于每个关键点 $p_i$ ，我们在多个半径 $r_k$ 内寻找其相邻的非空体素 $v_j^{(l_k)}$ 其对特征为 $f_j^{(l_k)}$，$l_k$ 代表的是在 voxel CNN 阶段中的不同分辨率阶段</p>
+<p>现在以更加数学化的语言来表达 <strong>voxel set abstraction (VSA)</strong>。关键点集合 $K=\{p_1,…,p_n\}$，对于每个关键点 $p_i$ ，我们在多个半径 $r_k$ 内寻找其相邻的非空体素 $v_j^{(l_k)}$ 其对特征为 $f_j^{(l_k)}$，$l_k$ 代表的是在 voxel CNN 阶段中的不同分辨率阶段</p>
 <script type="math/tex; mode=display">
 S_{i}^{\left(l_{k}\right)}=\left
 \{\left[f_{j}^{\left(l_{k}\right)} ; v_{j}^{\left(l_{k}\right)}-p_{i}\right]^{T}
@@ -497,7 +497,7 @@ f_{i}^{(p)}=\left[f_{i}^{(p v)}, f_{i}^{(r a w)}, f_{i}^{(b e v)}\right], \text 
 
 \tilde{f}_{i}^{(g)}=\max \{G(\mathcal{M}(\tilde{\Psi}))\}
 \end{array}</script><p>为什么这里还要再次进行编码，而不是直接使用选框内的所有点进行聚合，得到一个全局的表达？原因可能是为了获得多尺度的特征，利于之后的细化 refinement 和评分 score 而且当半径取得较大的时候，还能聚合到选框之外的特征点</p>
-<h3 id="Refinement-and-confidence-prediction"><a href="#Refinement-and-confidence-prediction" class="headerlink" title="Refinement and confidence prediction"></a>Refinement and confidence prediction</h3><p>采用2层MLP，去做置信度预测和选框细化两个任务。采用 3D RoI/proposal 与其对应的真实选框 ground truth 之间的 3D IoU 作为训练目标，并采用二元交叉熵损失函数</p>
+<h3 id="Refinement-and-confidence-prediction"><a href="#Refinement-and-confidence-prediction" class="headerlink" title="Refinement and confidence prediction"></a>Refinement and confidence prediction</h3><p>采用2层 MLP，去做置信度预测和选框细化两个任务。采用 3D RoI/proposal 与其对应的真实选框 ground truth 之间的 3D IoU 作为训练目标，并采用二元交叉熵损失函数</p>
 <script type="math/tex; mode=display">
 y_{k}=\min \left(1, \max \left(0,2 \mathrm{IoU}_{k}-0.5\right)\right)
 \\
@@ -771,13 +771,13 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/786d359c.html">
+                <a href="/archives/88f138aa.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="D2L 01 前言">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Pytorch cn231n note (dev)">
                         
-                        <span class="card-title">D2L 01 前言</span>
+                        <span class="card-title">Pytorch cn231n note (dev)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -794,12 +794,12 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
-                                    课程
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
                                 </a>
                             
-                            <a href="/categories/%E8%AF%BE%E7%A8%8B/Dive-into-deep-learning/" class="post-category">
-                                    Dive into deep learning
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Pytorch/" class="post-category">
+                                    Pytorch
                                 </a>
                             
                             
@@ -809,12 +809,12 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">深度学习</span>
+                    <a href="/tags/Pytorch/">
+                        <span class="chip bg-color">Pytorch</span>
                     </a>
                     
-                    <a href="/tags/Dive-into-deep-learning/">
-                        <span class="chip bg-color">Dive into deep learning</span>
+                    <a href="/tags/CS231N/">
+                        <span class="chip bg-color">CS231N</span>
                     </a>
                     
                 </div>
@@ -828,13 +828,13 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/19c6ccbf.html">
+                <a href="/archives/c57b6bd2.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Numpy Cheat Sheet">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="应用软件开发基础论文报告">
                         
-                        <span class="card-title">Numpy Cheat Sheet</span>
+                        <span class="card-title">应用软件开发基础论文报告</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -851,12 +851,8 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
-                                    编程
-                                </a>
-                            
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/" class="post-category">
-                                    Python
+                            <a href="/categories/%E7%94%9F%E6%B4%BB/" class="post-category">
+                                    生活
                                 </a>
                             
                             
@@ -866,12 +862,8 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
-                    <a href="/tags/Numpy/">
-                        <span class="chip bg-color">Numpy</span>
+                    <a href="/tags/%E6%9C%9F%E6%9C%AB%E4%BD%9C%E4%B8%9A/">
+                        <span class="chip bg-color">期末作业</span>
                     </a>
                     
                 </div>
@@ -1026,7 +1018,7 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.3k</span>&nbsp;字
+                class="white-color">84.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SE-SSD (dev), ">
+    <meta name="keywords" content="SE-SSD, ">
     <meta name="description" content=" ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SE-SSD (dev) | </title>
+    <title>SE-SSD | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SE-SSD (dev)</h1>
+                    <h1 class="description center-align post-title">SE-SSD</h1>
                 </div>
             </div>
         </div>
@@ -370,10 +370,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Point-Cloud/">
-                                <span class="chip bg-color">Point Cloud</span>
-                            </a>
-                        
                             <a href="/tags/SE-SSD/">
                                 <span class="chip bg-color">SE-SSD</span>
                             </a>
@@ -399,7 +395,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-10-08
+                    2021-10-18
                 </div>
                 
 
@@ -408,7 +404,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.7k
+                    2.8k
                 </div>
                 
 
@@ -433,102 +429,104 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SE-SSD-note"><a href="#SE-SSD-note" class="headerlink" title="SE-SSD note"></a>SE-SSD note</h1><p>这篇文章提出了新的概念：student &amp; teacher SSD，感觉有点强化学习 Actor Critic 以及 GAN 这样引入了相互指导，迭代提升的思想。最终实验结果又快又好，速度和准度均超过 PV-RCNN</p>
-<p><img src="/archives/7cb0d5f5/image-20210618123602924.png" style="zoom:80%;"></p>
-<p>如果不采用自身提供的软目标会如何呢？如果使用效果最好的网络进行自身的学习能够成功吗？等训练到一定程度的时候，再进行 self-embedding</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><strong>Our key focus is on exploiting both soft and hard targets with our formulated constraints to jointly optimize the model, without introducing extra computation in the inference.</strong></p>
-<p>Point-GNN, TANet…Though these approaches give significant insights, the delicate designs are often complex and could slow down the inference, especially for the two-stage detectors.</p>
-<p>SASSD [8] and Associate-3Ddet [5], aim to exploit auxiliary tasks or further constraints to improve the feature representation, without introducing additional computational overhead during the inference.</p>
-<p><strong>本文受到 SA-SSD 启发，引入辅助网络/任务提升性能而不增加推理时间，总体来讲思想如下</strong></p>
-<p>we design the SE-SSD framework with a pair of teacher SSD and student SSD, as inspired by [27] (Mean teachers are better role models). </p>
-<p><strong>Q: Why soft targets?</strong>  The teacher SSD is ensembled from the student. It produces relatively more precise bounding boxes and confidence, which serve as soft targets to supervise the student. Compared with manually-annotated hard targets (labels), soft targets from the teacher often have higher entropy, thus offering more information [9] for the student to learn from.</p>
-<p>在这里就已经是一种 two-stage 的替代品，持续提供高质量注意力机制。</p>
-<h3 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a>Contribution</h3><p> (i) <strong>the Self-Ensembling Single-Stage object Detector (SE-SSD) framework,</strong> optimized by our formulated <strong>consistency constraint</strong> to better align predictions with the soft targets; </p>
-<p>(ii) a new augmentation scheme to produce <strong>shape-aware augmented ground-truth objects</strong></p>
-<p>(iii) <strong>an Orientation-aware Distance-IoU (ODIoU) loss to supervise the detector using hard targets.</strong> </p>
-<h2 id="Self-Ensembling-Single-Stage-Detector"><a href="#Self-Ensembling-Single-Stage-Detector" class="headerlink" title="Self-Ensembling Single Stage Detector"></a>Self-Ensembling Single Stage Detector</h2><p><img src="/archives/7cb0d5f5/image-20210619023108854.png" style="zoom:80%;"></p>
-<p>Figure 2 shows the framework of our self-ensembling single-stage object detector (SE-SSD), which has a teacher SSD (left) and a student SSD (right).</p>
-<p><strong>To train the whole SESSD, we first initialize both the teacher and student with a pre-trained SSD model. Then, started from an input point cloud, our framework has two processing paths:(以左上角为起点)</strong></p>
+                <h1 id="SE-SSD"><a href="#SE-SSD" class="headerlink" title="SE-SSD"></a>SE-SSD</h1><hr>
+<p>Zheng, Wu, Weiliang Tang, Li Jiang, and Chi-Wing Fu. “SE-SSD: Self-Ensembling Single-Stage Object Detector From Point Cloud.” <em>ArXiv:2104.09804 [Cs]</em>, April 20, 2021. <a target="_blank" rel="noopener" href="http://arxiv.org/abs/2104.09804">http://arxiv.org/abs/2104.09804</a>.</p>
+<hr>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>本论文的核心为使用知识蒸馏 <strong>Knowledge Distill</strong> + <strong>Mean Teacher</strong>的思想，加入软目标 soft target 对网络的预测结果进行监督学习。生成该 soft target 不是使用原始方法，将不同模型的 prediction 进行集成，而是先将模型进行集成，再使用集成模型进行预测 prediction。集成模型结构 ensemble model 与原始网络相同，称为 Teacher-SSD，而原始网络称为 Student-SSD，其中 Teacher-SSD 的参数为 Student-SSD 参数的集成，这也是为什么模型名叫自嵌入 SSD (self-embedding)</p>
+<h3 id="Why-soft-target"><a href="#Why-soft-target" class="headerlink" title="Why soft target"></a>Why soft target</h3><p>手动注释的硬目标（即标签 hard target/label）相比，软目标通常具有更高的熵，从而为学生提供更多信息以供学习，弥补了监督信号的不足。并且论文的软目标来自于自身模型的集成，所以与自身的预测结果比较相似，避免了梯度的剧烈变化。而所谓更高的熵该如何去理解？参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/390167950">知乎</a></p>
+<p>展开分析一下软目标的作用，以分类任务为例，总结如下：</p>
 <ol>
-<li><p>In the first path (blue arrows in Figure 2), <strong>the teacher produces relatively precise predictions</strong> from the raw input point cloud. Then, we apply a set of global transformations on the prediction results and <strong>take them as soft targets to supervise the student SSD.</strong></p>
+<li>分类标签为 one hot 向量，仅为一个点，也即该目标所属类别。而使用 teacher model 对于每个样本输出一个连续的 label 分布，这样可以利用的监督信息就远比 one hot 的多了</li>
+<li>软目标还供了其他分类的得分/可能性，含有了类别与类别之间的信息</li>
+<li>（在本论文中）将学习曲线变得更加平滑，减少了梯度方差，帮助更好的微调</li>
+</ol>
+<p>除了该核心思想外，论文还提出了新的数据增强的方式和新的损失函数以提升网络表现：</p>
+<ol>
+<li>Shape-aware data augmentation</li>
+<li>Consistency loss for soft target</li>
+<li>Orientation-aware distance-IoU loss for hard target </li>
+</ol>
+<h2 id="SE-SSD-Architecture"><a href="#SE-SSD-Architecture" class="headerlink" title="SE-SSD Architecture"></a>SE-SSD Architecture</h2><p><img src="/archives/774e60d7/image-20211014170119221.png"></p>
+<p>SE-SSD 的整体结构非常的简洁。网络的计算有两条路线，teacher 路线 &amp; student 路线</p>
+<ol>
+<li><p>Teacher 路线（图中标以蓝色箭头）：将原始点云输入到 Teacher SSD 中产生预测结果 predictions，对预测选框进行全局变换 global transformation (including a random translation, flipping, and scaling) 生成软目标 soft target</p>
 </li>
-<li><p>In the second path (green arrows in Figure 2), we perturb the same input by the same global transformations as in the first path plus our <strong>shape-aware data augmentation</strong> (Section 3.4). Then, we feed the augmented input to the student, and <strong>train it with (i) our consistency loss</strong> (Section 3.2) to align the student predictions with the soft targets; and <strong>(ii)</strong> when we augment the input, we bring along its hard targets (Figure 2 (top right)) to supervise the student <strong>with our orientation-aware distance-IoU loss</strong> </p>
+<li><p>Student 路线（途中标以绿色箭头）：将原始点云进行全局变换 global transformation，然后进行数据增强 shape aware data augmentation，生成增强过后的输入和硬目标。将增强后的数据输入 Student SSD 做多任务：回归任务和分类任务，最终得到预测结果 student predictions。该预测结果将与硬目标和软目标同时输入损失函数，进行计算并优化网络参数</p>
 </li>
 </ol>
-<p>上面基本上覆盖了本文的3个亮点，用加粗标出：</p>
+<p>以上就是整体的流程，下面需要对 Student SSD，数据增强方法以及损失函数进行详细的了解</p>
+<h3 id="Architecture-of-Student-SSD"><a href="#Architecture-of-Student-SSD" class="headerlink" title="Architecture of Student SSD"></a>Architecture of Student SSD</h3><p>SSD 的结构与作者的前作文章 CIA-SSD 是一致的。该网络为一个轻量型结构，但是推理效果依然很好。按理来讲 SA-SSD 已经很快了，但是该模型比其更快更好。论文中解释了速度的原因：CIA-SSD 使用的 channel 数大部分都是 SA-SSD 的一半，但是将语义和空间信息的学习移到了主干网络中，综合之下胜出。还有一篇论文 Voxel R-CNN 的表现也非常优秀，都在速度和准确率上超越了 SA-SSD。这些结果是否意味着辅助网络的彻底失败呢？</p>
+<p>我认为辅助网络提供了一种可能性：即使是小模型也能够使用更好的参数达到一流的效果。并且辅助网络的思想很简单，能够轻松地加入到大部分的结构当中，而不需要花费大量的时间进行结构设计</p>
+<p>下面对 CIA-SSD 的重要结构进行简要的介绍</p>
+<p><img src="/archives/774e60d7/image-20211016161605882.png" style="zoom: 80%;"></p>
 <ol>
-<li><strong>Teacher &amp; student SSD</strong> </li>
-<li><p><strong>Consistency loss &amp; orientation-aware distance loss</strong></p>
+<li>使用稀疏卷积将体素化点云进行编码，并转化为 BEV 特征图谱</li>
+<li>使用 SSFA 模块对 BEV 特征图谱进行进一步特征提取：<ol>
+<li>保持原 BEV 特征图谱的形状，进行多次卷积继续提取小尺度的空间特征 spatial group，假设最终得到空间特征图谱 $F_{spatial}$</li>
+<li>将 $F_{spatial}$ 作为输入，进一步提取高级/感受野更大的语义特征 semantic group，假设最终得到语义特征图谱 $F_{semantic}$</li>
+<li>将语义特征进行上采样/反卷积 upsampling/deconvolution 达到和空间特征一样的形状，以准备融合</li>
+<li>融合阶段，将两个特征图谱的通道数压缩为1，并使用 sigmoid 函数映射至 0-1 区间，得到两个新的权重特征图谱。然后将权重特征图谱与原来的特征图谱逐元素相乘，得到最终用于多任务的特征图谱 $F$</li>
+</ol>
 </li>
-<li><p>Shape aware augmentation</p>
+<li>进行多任务预测：分类任务、IoU 预测任务、box 回归预测任务、方向分类任务</li>
+</ol>
+<p>CIA-SSD 中提到了一些 trick 在本论文之中均没有使用，个人觉得比较复杂，不太好理解，就不继续深入研究了，而且如是好 trick 的话本论文应该会沿用。总体来看 CIA-SSD 的结构依然是加强对多尺度信息的提取并进行融合</p>
+<h3 id="Shape-aware-data-augmentation"><a href="#Shape-aware-data-augmentation" class="headerlink" title="Shape-aware data augmentation"></a>Shape-aware data augmentation</h3><p>由于点云数据的不规则性，很多物体表面上的点都没有被采集到，这是物理层面的原因。为了模拟这种数据缺失并增加样本多样性，论文采取了下图所示的做法</p>
+<p><img src="/archives/774e60d7/image-20211016165328812.png" style="zoom: 80%;"></p>
+<p>用语言简要叙述：</p>
+<ol>
+<li>在进行操作前先对数据集进行基本的数据增强 global transformation (including a random translation, flipping, and scaling)</li>
+<li>将每个3D选框分为6个子区域，方法为将选框顶点与选框中心相连接，形成六个四棱锥</li>
+<li>对每个3D选框，在6个子区域中随机选择一个剔除，以模拟采集时点云丢失的情况</li>
+<li>将不同3D选框之间的子区域进行交换，子区域的相对位置是一样的，例如将两个选框的右侧的四棱锥进行交换。该操作增加样本的多样性</li>
+<li>对每个3D选框，随机选择一个子区域进行下采样，使其更加稀疏。采样方法为 farthest point sampling (FPS)</li>
+</ol>
+<h3 id="Consistency-loss"><a href="#Consistency-loss" class="headerlink" title="Consistency loss"></a>Consistency loss</h3><p>为了让软目标不会对预测选框进行错误引导，需要先对软目标和预测选框同时进行筛选：</p>
+<ol>
+<li>去掉置信度低于阈值 $\tau_c$ 的软目标和预测选框</li>
+<li>仅匹配 IoU 高的软目标和预测选框，二者 IoU 低于阈值 $\tau_I$ 的不进行损失函数 consistency loss 计算</li>
+</ol>
+<p>数学表现形式如下：</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}
+\mathcal{L}_{b o x}^{c}=\frac{1}{N^{\prime}} \sum_{i=1}^{N} \mathbb{1}\left(I o U_{i}>\tau_{I}\right) \sum_{e} \frac{1}{7} \mathcal{L}_{\delta_{e}}^{c} \\
+\\
+
+\delta_{e}=\left\{\begin{array}{ll}
+\left|e_{s}-e_{t}\right| & \text { if } e \in\{x, y, z, w, l, h\} \\
+\left|\sin \left(e_{s}-e_{t}\right)\right| & \text { if } e \in\{r\}
+\end{array}\right.
+\end{array}</script><p>$\mathcal{L}_{\delta_e}^c$ 为 smooth L1 loss，$N$ 和 $N’$ 为起始预测选框数和筛选后的选框数。对于分类也使用类似的损失函数</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{c l s}^{c}=\frac{1}{N^{\prime}} \sum_{i=1}^{N} \mathbb{1}\left(I o U_{i}>\tau_{I}\right) \mathcal{L}_{\delta_{c}}^{c}
+\\
+\delta_{c}=\left|\sigma\left(c_{s}\right)-\sigma\left(c_{t}\right)\right|</script><h3 id="Orientation-aware-distance-IoU-loss"><a href="#Orientation-aware-distance-IoU-loss" class="headerlink" title="Orientation-aware distance-IoU loss"></a>Orientation-aware distance-IoU loss</h3><p>为了让预测选框的几何参数更关注目标中心和旋转方向，论文设计了相关的损失函数，引导选框与硬目标对齐</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{b o x}^{s}=1-\operatorname{IoU}\left(B_{p}, B_{g}\right)+\frac{c^{2}}{d^{2}}+\gamma(1-|\cos (\Delta r)|)</script><p>$B_p$ 和 $B_g$ 代表预测选框和硬目标/标签，$c$ 代表中心距离，$d$ 代表包围两个选框的最小长方体的对角线，$\Delta r$ 代表两个选框 BEV 相差的角度，$\gamma$ 为超参数，图示如下</p>
+<p><img src="/archives/774e60d7/image-20211016191827057.png"></p>
+<p>论文画出了 $(1-|cos(\Delta r)|)$ 的图像，方向差别越大损失函数越大</p>
+<p><img src="/archives/774e60d7/image-20211016193642630.png" style="zoom: 80%;"></p>
+<p>除了回归任务，还有选框的分类任务，以及选框朝向的分类任务，两个任务的损失函数分别为 focal loss 和 binary cross entropy loss。故整个网络的全部损失函数写为</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\text {student }}=\mathcal{L}_{\text {cls }}^{s}+\omega_{1} \mathcal{L}_{\text {box }}^{s}+\omega_{2} \mathcal{L}_{\text {dir }}^{s}+\mu_{t}\left(\mathcal{L}_{\text {cls }}^{c}+\mathcal{L}_{\text {box }}^{c}\right)</script><p>前三项为预测选框与硬目标的损失函数，分别对应：选框分类任务，选框 $(x, y ,z ,w, l, h, \theta)$ 回归任务，选框朝向分类任务</p>
+<p>后两项为预测选框与软目标的损失函数 consistency loss，分别对应：分类一致损失，选框一致损失。其余参数为权重超参数，其中 $\mu_t$ 随时间从0增长至1</p>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="KITTI"><a href="#KITTI" class="headerlink" title="KITTI"></a>KITTI</h3><p><img src="/archives/774e60d7/image-20211016200424581.png" style="zoom: 80%;"></p>
+<p>目前（2021/10/16） SE-SSD 依旧在 KITTI 榜单上排名顶尖 $9^{th}$</p>
+<h3 id="Ablation-study"><a href="#Ablation-study" class="headerlink" title="Ablation study"></a>Ablation study</h3><p><img src="/archives/774e60d7/image-20211016202758864.png"></p>
+<p>论文中的三个重要结构，在验证集上 Easy 难度提升是最小的，因为已经比较准了，而在 Moderate 和 Hard 难度中都提升了 3% 左右。其中可以看到单独作用最大的结构为 consistency loss，而且在该结构的加持下， ODIoU loss 的效果似乎也变得更好</p>
+<p>对于 ODIoU 不能直接去掉，论文使用的是 smooth L1 loss 代替</p>
+<h3 id="Consistency-loss-1"><a href="#Consistency-loss-1" class="headerlink" title="Consistency loss"></a>Consistency loss</h3><p><img src="/archives/774e60d7/image-20211016203125284.png" style="zoom:80%;"></p>
+<p>两个表分别说明了：</p>
+<ol>
+<li><p>分类和回归，两个任务的预测结果同时对齐软目标时效果最好</p>
+</li>
+<li><p>并且对软目标进行筛选时，基于 IoU 策略的筛选能够保留更多的信息。其中 nms filter 代表的是使用 NMS 策略对软目标进行筛选， gt filter 代表的是剔除与 ground truth 标签重叠的软目标</p>
 </li>
 </ol>
-<p>In the training, we iteratively update the two SSD models: optimize the student with the above two losses and <strong>update the teacher using only the student parameters by a standard exponential moving average (EMA)</strong>. Thus, the teacher can obtain distilled knowledge from student and produce soft targets to supervise student. So, we call the final trained student a self-ensembling single-stage object detector</p>
-<p>下面对于每个部分详细介绍</p>
-<h3 id="Architecture-of-Teacher-amp-Student-SSD"><a href="#Architecture-of-Teacher-amp-Student-SSD" class="headerlink" title="Architecture of Teacher &amp; Student SSD"></a>Architecture of Teacher &amp; Student SSD</h3><p>The model has the same structure as CIA-SSD to efficiently encode point cloud</p>
-<p>有几个主要部分组成 (在之前的网络中都比较常规了)：</p>
-<ol>
-<li>A sparse convolution network (SPConvNet)</li>
-<li>A BEV convolution network (BEVConvNet)</li>
-<li>A multi-task head (MT-Head)</li>
-</ol>
-<p>Q: 为什么这样的设计推理起来就比之前的快，和之前有什么不同？</p>
-<h3 id="Consistency-Loss"><a href="#Consistency-Loss" class="headerlink" title="Consistency Loss"></a>Consistency Loss</h3><p><strong>Problem：</strong>The patterns of point clouds in pre-defined anchors may vary significantly due to distances and different forms of object occlusion. 还是因为 anchors 的缺点，不能够提供更好的 proposal 以供学习</p>
-<p><strong>Solution:</strong> This motivates us to treat the relatively more precise teacher predictions as soft targets and employ them to jointly optimize the student with hard targets. </p>
-<p>Accordingly, <strong>we formulate a consistency loss to optimize the student network with soft targets</strong>.</p>
-<p><strong>the consistency loss, aiming to pair the non-axis-aligned teacher and student boxes</strong></p>
-<p><strong>具体步骤如下：</strong></p>
-<ol>
-<li><p>filter out those predicted bounding boxes (for both teacher and student) with confidence less than threshold $\tau_c$</p>
-</li>
-<li><p>filter out the pairs with IoUs less than threshold $\tau_I$, thus avoiding to mislead the student with unrelated soft targets</p>
-</li>
-<li><p>We adopt Smooth-L1 loss to formulate our consistency loss for bounding boxes to minimize the misalignment errors between each pair of teacher and student bounding boxes:</p>
-<p><img src="/archives/7cb0d5f5/image-20210619040800291.png" style="zoom:80%;"></p>
-<p>$L_{\delta_e}^c$ denotes Smooth-L1 loss of $\delta_e$, 上标 c for consistency</p>
-<p>N and N’ as the initial and final number of box pairs, respectively.</p>
-<p>Q: 这里是否可以加上得分不高的 proposal 惩罚项？</p>
-</li>
-<li><p>We also formulate the Smooth-L1 loss for classification score to minimize the difference in predicted confidence of student and teacher:</p>
-<p><img src="/archives/7cb0d5f5/image-20210619041522375.png" style="zoom:80%;"></p>
-<p>$\sigma$ denotes the sigmoid classification score</p>
-</li>
-</ol>
-<p><strong>Compared with hard targets (labels):</strong> the filtered soft targets are often closer to the student predictions, as they are predicted based on similar features. So, soft targets can better guide the student to fine-tune the predictions and reduce the gradient variance for better training.</p>
-<h3 id="Orientation-Aware-Distance-IoU-Loss"><a href="#Orientation-Aware-Distance-IoU-Loss" class="headerlink" title="Orientation-Aware Distance-IoU Loss"></a>Orientation-Aware Distance-IoU Loss</h3><p>We design the Orientation-aware Distance-IoU loss (ODIoU) to focus more attention on the alignment of box centers and orientations <strong>between the predicted and ground-truth bounding boxes</strong>; see Figure 3.</p>
-<p><img src="/archives/7cb0d5f5/image-20210619042210095.png" style="zoom:80%;"></p>
-<p>Overall, our ODIoU loss is formulated as</p>
-<p><img src="/archives/7cb0d5f5/image-20210619042257868.png" style="zoom:80%;"></p>
-<p>$B_p$ and $B_g$ denote the predicted and ground-truth bounding boxes, respectively</p>
-<p>c denotes the distance between the 3D centers of the two bounding boxes</p>
-<p>d denotes the diagonal length |AC| of the minimum cuboid that encloses both bounding boxes</p>
-<p>$\Delta r$ denotes the BEV orientation difference between $B_p$ and $B_g$ ; and $\gamma$ is a hyper-parameter weight.</p>
-<p>对于 Orientation 部分的 loss 设计使用了 1 - cos(·)，是为了使得在角度相差大的时候惩罚更大，如下图所示</p>
-<p><img src="/archives/7cb0d5f5/image-20210619042913961.png" style="zoom:80%;"></p>
-<p>Besides, we use the Focal loss [14] and cross-entropy loss for the bounding box classification $(L^s<em>{cls})$ and direction classification  $(L^s</em>{dir})$ , respectively. Hence, the overall loss to train the student SSD is</p>
-<p><img src="/archives/7cb0d5f5/image-20210619043028174.png" style="zoom:80%;"></p>
-<p>前面三项都是 ground truth 和 students predicted boxes 之间的 Loss，后两项是 consistency loss，注意  $\mu_t$ 是一个随迭代次数变化的值，从0开始逐渐增加到1，这也是一个合理的变化。</p>
-<h3 id="Shape-Aware-Data-Augmentation"><a href="#Shape-Aware-Data-Augmentation" class="headerlink" title="Shape-Aware Data Augmentation"></a>Shape-Aware Data Augmentation</h3><p>We design the shape-aware data augmentation scheme to mimic how point clouds are affected by these factors when augmenting the data samples.</p>
-<p>因为真实的点云数据，并没有非常规则，很多表面上的点都没有被采集到，这是物理层面的原因。于是对于这种缺失进行，文章想要用 data augmentation 的方式进行补偿，同时发现这样的 augmentation 也可能有其他好处。</p>
-<p><img src="/archives/7cb0d5f5/image-20210619135903559.png" style="zoom:80%;"></p>
-<p>步骤如下：</p>
-<ol>
-<li><p><strong>Before the shape-aware augmentation, we perform a set of global transformations</strong> on the input point cloud, including a random translation, flipping, and scaling</p>
-</li>
-<li><p>For each object in a point cloud, we find its ground-truth bounding box centroid and connect the centroid with the box faces to form pyramidal volumes that <strong>divide the object points into six subsets</strong></p>
-</li>
-<li><p><strong>Random dropout, removes all points (blue) in a randomly-chosen pyramid</strong> (Figure 5 (top-left)), mimicking a partial object occlusion to help the network to infer a complete shape from the remained points</p>
-</li>
-<li><p><strong>Random swap, randomly selects another input object in the current scene and swap a point subset (green) with the point subset (yellow) in the same pyramid of the other input object</strong> (Figure 5 (middle)), thus increasing the diversity of object samples by exploiting the surface similarity across objects.</p>
-</li>
-<li><p><strong>Random sparsifying, subsamples points in a randomly-chosen pyramid using farthest point sampling</strong> [22], mimicking the sparsity variation of points due to changes in distance from LiDAR camera</p>
-</li>
-</ol>
-<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p><img src="/archives/7cb0d5f5/image-20210619140608690.png" style="zoom:80%;"></p>
-<h3 id="Ablation-Study"><a href="#Ablation-Study" class="headerlink" title="Ablation Study"></a>Ablation Study</h3><p>Table 3 summarizes the ablation results on our consistency loss (“Cons loss”), ODIoU loss (“ODIoU”), and shape-aware data augmentation (“SA-DA”). For ODIoU loss, we replace it with the Smooth-L1 loss in this ablation study, since we cannot simply remove it like Cons loss and SA-DA. All reported APs are with 40 recall points.</p>
-<p><img src="/archives/7cb0d5f5/image-20210619151322622.png" style="zoom: 80%;"></p>
-<p>Q: 为什么 validation 集的提升这么小？而且 baseline 都很高？</p>
-<p><img src="/archives/7cb0d5f5/image-20210620002511847.png" style="zoom: 50%;"></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>SE-SSD 的表现可以说是非常的惊艳，所使用的 Teacher-SSD &amp; Student-SSD &amp; soft target 思想简单且有效，或许在之后能够成为一种常用的提升网络效果的手段。论文设计的数据增强和损失函数也在一定程度上增加了网络准确率，这也说明了除了网络结构本身，<strong>其他的信息（标签、样本）以及评估模型的方式</strong>也是相当重要的。在阅读期间也有一些疑问和想法产生</p>
+<p><strong>Q:</strong> 同时软目标相对于预先设定的 anchor，具有更精确的边界框和置信度，这里是否可以借鉴 2-Stage 中的思想，对于软目标进一步的利用，将其作为更高级的注意力机制</p>
+<p><strong>Q:</strong> 对于软目标是否一定要来自于自身的集成，使用其他模型的效果会如何。对于集成模型的参数更新方式不一定使用 EWA，可否借鉴强化学习中的方法。对于 consistency loss 能否进一步改进，比如增加 IoU 相关损失</p>
+<p><strong>Q:</strong> （与 SA-SSD 联动）辅助任务与软目标的异步进行，先使用辅助函数进行基础学习，再使用软目标进行知识蒸馏</p>
 
                 
             </div>
@@ -555,7 +553,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://hongkun.space/archives/7cb0d5f5.html">https://hongkun.space/archives/7cb0d5f5.html</a>
+                    <a href="https://hongkun.space/archives/774e60d7.html">https://hongkun.space/archives/774e60d7.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -592,10 +590,6 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/Point-Cloud/">
-                                    <span class="chip bg-color">Point Cloud</span>
-                                </a>
                             
                                 <a href="/tags/SE-SSD/">
                                     <span class="chip bg-color">SE-SSD</span>
@@ -778,17 +772,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/archives/fb8f23a.html">
+                <a href="/archives/774e60d7.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="SA-SSD (dev)">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="SE-SSD">
                         
-                        <span class="card-title">SA-SSD (dev)</span>
+                        <span class="card-title">SE-SSD</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -798,9 +793,59 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/papers/" class="post-category">
+                                    papers
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SE-SSD/">
+                        <span class="chip bg-color">SE-SSD</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/82cec617.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="SA-SSD">
+                        
+                        <span class="card-title">SA-SSD</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -816,61 +861,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Point-Cloud/">
-                        <span class="chip bg-color">Point Cloud</span>
-                    </a>
-                    
                     <a href="/tags/SA-SSD/">
                         <span class="chip bg-color">SA-SSD</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/archives/c57b6bd2.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="应用软件开发基础论文报告">
-                        
-                        <span class="card-title">应用软件开发基础论文报告</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%94%9F%E6%B4%BB/" class="post-category">
-                                    生活
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%9C%9F%E6%9C%AB%E4%BD%9C%E4%B8%9A/">
-                        <span class="chip bg-color">期末作业</span>
                     </a>
                     
                 </div>
@@ -1025,7 +1017,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.3k</span>&nbsp;字
+                class="white-color">84.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

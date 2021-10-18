@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    419
+                    474
                 </div>
                 
 
@@ -450,7 +450,7 @@
 <p><code>conda clean --all</code>  Remove index cache, lock files, unused cache packages, and tarballs.</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="禁用自动启动-base-环境"><a href="#禁用自动启动-base-环境" class="headerlink" title="禁用自动启动 base 环境"></a>禁用自动启动 base 环境</h3><p>每次打开新的 shell 都会自动进入 base 环境，用下面的命令行禁用</p>
 <p><code>conda config --set auto_activate_base false</code></p>
-<h3 id="镜像源设置"><a href="#镜像源设置" class="headerlink" title="镜像源设置"></a>镜像源设置</h3><p>编辑 <code>~/.condarc</code> 文件，设置镜像源</p>
+<h3 id="镜像源设置"><a href="#镜像源设置" class="headerlink" title="镜像源设置"></a>镜像源设置</h3><p>编辑 <code>~/.condarc</code> 文件，设置镜像源，如没有该文件可使用 <code>conda config</code> 创建</p>
 <p><a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/help/anaconda">南京大学镜像源官方帮助文档</a></p>
 <pre class="line-numbers language-.condarc" data-language=".condarc"><code class="language-.condarc">channels:
   - defaults
@@ -467,6 +467,13 @@ custom_channels:
   pytorch: https://mirror.nju.edu.cn/anaconda/cloud
   simpleitk: https://mirror.nju.edu.cn/anaconda/cloud<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>当然也可以使用其他镜像源，例如：<a target="_blank" rel="noopener" href="https://mirrors.bfsu.edu.cn/help/anaconda/">北京外国语大学镜像源</a> 速度也很快</p>
+<p>同时也更新一下 pypi 源</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 先更新 pip</span>
+pip <span class="token function">install</span> pip -U	<span class="token comment"># Linux</span>
+pip <span class="token function">install</span> pip -U --user	<span class="token comment"># Windows</span>
+
+<span class="token comment"># 设置镜像</span>
+pip config <span class="token builtin class-name">set</span> global.index-url https://mirror.nju.edu.cn/pypi/web/simple<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -960,7 +967,7 @@ custom_channels:
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.3k</span>&nbsp;字
+                class="white-color">84.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

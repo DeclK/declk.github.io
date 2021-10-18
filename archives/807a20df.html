@@ -370,12 +370,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/CenterPoint/">
-                                <span class="chip bg-color">CenterPoint</span>
-                            </a>
-                        
                             <a href="/tags/Point-Cloud/">
                                 <span class="chip bg-color">Point Cloud</span>
+                            </a>
+                        
+                            <a href="/tags/CenterPoint/">
+                                <span class="chip bg-color">CenterPoint</span>
                             </a>
                         
                     </div>
@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.9k
+                    2.1k
                 </div>
                 
 
@@ -469,7 +469,7 @@ Y_{xyc}=\exp \left(-\frac{\left(x-\tilde{p}_{x}\right)^{2}+\left(y-\tilde{p}_{y}
 <li><strong>选框方向</strong> and a yaw rotation angle $(sin(α), cos(α)) \in R^2$ </li>
 </ol>
 <p>损失函数对于中心 center 使用的一般 L1 loss，对于选框大小 size 实际预测的是对数大小 logarithmic size，然后再计算 L1 loss。使用对数大小，对于不同形状的选框更可能更有优势，损失函数的曲线会更平滑一些</p>
-<p>还有一点需要注意的是，在第一阶段，所有的损失函数仅在标签位置 keypoint location 进行，也就是说没有进行额外的筛选操作，直接将标签点所在的 bin 的预测的结果进行损失函数的计算（以上为根据 CenterNet 的推测，原文似乎并未提及）</p>
+<p>还有一点需要注意的是，在第一阶段，所有的损失函数仅在标签位置 keypoint location 进行，即直接将标签点所在的 bin 的预测的结果进行损失函数的计算，这个思想和 PointRCNN, SECOND 等一致，仅对 positive proposals 做回归损失计算（以上为根据 CenterNet 的推测，原文似乎并未提及）</p>
 <h3 id="Stage-2"><a href="#Stage-2" class="headerlink" title="Stage-2"></a>Stage-2</h3><p>第二阶段有两个任务，细化 refinement 和评分 score。我们从预测选框的每个面的中心提取一个点特征，这样就有6个特征点，但在俯视图中上下表面中心点重合，故只有5个特征点。对于每个点，使用双线性插值  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/xpvincent/archive/2013/03/15/2961448.html">bilinear interpolation</a> 从 feature map 中提取出各自的特征，然后将所有特征连接 concat 送入 MLP 中预测置信度 confidence score $I$ &amp; 3D bounding box</p>
 <h4 id="置信度"><a href="#置信度" class="headerlink" title="置信度"></a>置信度</h4><p>其中的置信度 $I$ 与分类无关 class-agnostic，仅与 IoU 相关，计算公式如下</p>
 <script type="math/tex; mode=display">
@@ -495,6 +495,13 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
 <p>Two-stage refinement does not bring an improvement over the single-stage CenterPoint model on nuScenes in our experiments. Similar results have been observed in previous two-stage methods like PointRCNN [45] and PV-RCNN [44].</p>
 </blockquote>
 <p>nuScenes 对于 2-Stage 模型反馈并不好，原因可能在于其采样点较少，限制了进一步的精确细化</p>
+<h3 id="Effects-of-different-feature-components"><a href="#Effects-of-different-feature-components" class="headerlink" title="Effects of different feature components"></a>Effects of different feature components</h3><p>对于第二阶段的细化，论文直接使用了双线性插值得到的 BEV 特征，实际上还有其他的方法得到各个采样点的特征。比如：</p>
+<ol>
+<li>PV-RCNN 中采用的 voxel set abstraction (VSA) 操作，也可以将周围 voxel 特征提取到采样点上</li>
+<li>SA-SSD 中采用的基于空间距离的插值 inverse distance weighted average 也可以将 voxel 特征传播到采样点上</li>
+</ol>
+<p>论文将这两种方式在第二阶段的细化环节中与论文采用的 BEV 插值法进行对比实验，虽然效果不是最好，但差距不大，胜在用时</p>
+<p><img src="/archives/807a20df/image-20211014212255839.png"></p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>CenterPoint 的结构其实相对简单，但取得了很好的效果，似乎在告诉我更多的参数就让网络自己去预测好了，或许当人为引入一些 anchor 相关的参数，反而让网络不好学习。并且由于其结构的简单，计算时间相对其他 2-Stage 网络来讲更少，不知道这种 center-based 思想有机会能否运用到更广泛的地方</p>
 
                 
@@ -560,12 +567,12 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/CenterPoint/">
-                                    <span class="chip bg-color">CenterPoint</span>
-                                </a>
-                            
                                 <a href="/tags/Point-Cloud/">
                                     <span class="chip bg-color">Point Cloud</span>
+                                </a>
+                            
+                                <a href="/tags/CenterPoint/">
+                                    <span class="chip bg-color">CenterPoint</span>
                                 </a>
                             
                         </div>
@@ -745,18 +752,17 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/807a20df.html">
+                <a href="/archives/82cec617.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="CenterPoint">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="SA-SSD">
                         
-                        <span class="card-title">CenterPoint</span>
+                        <span class="card-title">SA-SSD</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -766,9 +772,9 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -781,16 +787,11 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CenterPoint/">
-                        <span class="chip bg-color">CenterPoint</span>
-                    </a>
-                    
-                    <a href="/tags/Point-Cloud/">
-                        <span class="chip bg-color">Point Cloud</span>
+                    <a href="/tags/SA-SSD/">
+                        <span class="chip bg-color">SA-SSD</span>
                     </a>
                     
                 </div>
@@ -1002,7 +1003,7 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.3k</span>&nbsp;字
+                class="white-color">84.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
