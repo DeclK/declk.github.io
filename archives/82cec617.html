@@ -438,7 +438,7 @@
 <li>在进行卷积操作时，虽然进一步提取了局部特征，但同时也会丢失细节信息</li>
 </ol>
 <p>为了解决信息丢失问题，可以使用 2-Stage 目标检测网络。在第二阶段可以利用更精细的空间信息，重点关注第一阶段提出的 RoI，从而预测更加精准，这揭示了利用点云的细粒度 fine-grained 空间信息的重要性。然而，对每个点进行操作并为每个 RoI 重新提取特征会大大增加计算成本，使得两阶段方法难以达到实时速度</p>
-<p>使用辅助任务来主任务的表现，在目标检测网络中也是非常常见的方法。例如在 PV-RCNN 中则进行了前景点任务，并利用该任务对不同点的特征进行权重分配，前景点将获得更大的权重。</p>
+<p>使用辅助任务来提升主任务的表现，在目标检测网络中也是非常常见的方法。例如在 PV-RCNN 中则进行了前景点任务，并利用该任务对不同点的特征进行权重分配，前景点将获得更大的权重。</p>
 <p>论文使用可分离辅助网络来补偿损失的空间信息。辅助网络的输入为 backbone 中不同分辨率的 feature map，将特征图谱的栅格化特征表示，使用特征传播 feature propagation 转化为逐点的特征表示，然后使用逐点的特征去做两个辅助任务：前景点分离和中心预测。在训练过程中辅助网络与主干网络进行联合优化，所以主干网络的 backbone 参数中将具有原始点云的语义信息。而在进行推理的时候，辅助网络将从主干网络中分离，故不增加任何的计算</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39732684/article/details/105147497">CSDN</a> 上对于这篇论文的代码解读，该网络的代码构建是基于 MMDetection 和 SECOND</p>
 <h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><p>在网络中间插入辅助任务的做法，我在二维目标检测中的一篇文章（Hourglass Networks）中也看到过类似的结构。但在 Hourglass 中这种做法叫做中间监督 intermediate supervision，但该结构在推理中并没有被分离，其中的特征图谱经过转化过后再一次加入到了主干网络中</p>
@@ -792,13 +792,13 @@ where \
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/807a20df.html">
+                <a href="/archives/786d359c.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="CenterPoint">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="D2L 01 前言">
                         
-                        <span class="card-title">CenterPoint</span>
+                        <span class="card-title">D2L 01 前言</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -815,8 +815,12 @@ where \
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/papers/" class="post-category">
-                                    papers
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
+                                    课程
+                                </a>
+                            
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/Dive-into-deep-learning/" class="post-category">
+                                    Dive into deep learning
                                 </a>
                             
                             
@@ -826,12 +830,12 @@ where \
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Point-Cloud/">
-                        <span class="chip bg-color">Point Cloud</span>
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
-                    <a href="/tags/CenterPoint/">
-                        <span class="chip bg-color">CenterPoint</span>
+                    <a href="/tags/Dive-into-deep-learning/">
+                        <span class="chip bg-color">Dive into deep learning</span>
                     </a>
                     
                 </div>
@@ -986,7 +990,7 @@ where \
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">84.8k</span>&nbsp;字
+                class="white-color">83.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

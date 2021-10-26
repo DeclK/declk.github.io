@@ -370,12 +370,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Point-Cloud/">
-                                <span class="chip bg-color">Point Cloud</span>
-                            </a>
-                        
                             <a href="/tags/CenterPoint/">
                                 <span class="chip bg-color">CenterPoint</span>
+                            </a>
+                        
+                            <a href="/tags/Point-Cloud/">
+                                <span class="chip bg-color">Point Cloud</span>
                             </a>
                         
                     </div>
@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.1k
+                    2.2k
                 </div>
                 
 
@@ -478,7 +478,7 @@ I=\min \left(1, \max \left(0,2 \times I o U_{t}-0.5\right)\right)</script><p><im
 <script type="math/tex; mode=display">
 L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \log \left(1-\hat{I}_{t}\right)</script><p>最终的预测分数为如下公式</p>
 <script type="math/tex; mode=display">
-\hat{Q}_{t}=\sqrt{\hat{Y}_{t} * \hat{I}_{t}}</script><h4 id="细化"><a href="#细化" class="headerlink" title="细化"></a>细化</h4><p>（在训练时）对于细化应该是仅对正样本进行，而正负样本的标准判定为与标签 IoU 大于0.55，以 1:1 正负比例各采样128个</p>
+\hat{Q}_{t}=\sqrt{\hat{Y}_{t} * \hat{I}_{t}}</script><h4 id="细化"><a href="#细化" class="headerlink" title="细化"></a>细化</h4><p>该细化工作是在第一阶段的提议 proposal 之上进行，即回归预测第一阶段所预测的选框与真实选框之间的残差。并且（在训练时）细化应该是仅对正样本进行，正负样本的标准判定为预测选框与标签 IoU 大于0.55，以 1:1 正负比例各采样128个</p>
 <blockquote>
 <p>During the training of two-stage CenterPoint, we randomly sample 128 boxes with 1:1 positive negative ratio [43] from the first stage predictions.</p>
 </blockquote>
@@ -567,12 +567,12 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Point-Cloud/">
-                                    <span class="chip bg-color">Point Cloud</span>
-                                </a>
-                            
                                 <a href="/tags/CenterPoint/">
                                     <span class="chip bg-color">CenterPoint</span>
+                                </a>
+                            
+                                <a href="/tags/Point-Cloud/">
+                                    <span class="chip bg-color">Point Cloud</span>
                                 </a>
                             
                         </div>
@@ -756,55 +756,6 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/82cec617.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="SA-SSD">
-                        
-                        <span class="card-title">SA-SSD</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/papers/" class="post-category">
-                                    papers
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/SA-SSD/">
-                        <span class="chip bg-color">SA-SSD</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
                 <a href="/archives/786d359c.html">
                     <div class="card-image">
                         
@@ -821,9 +772,9 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -849,6 +800,63 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
                     
                     <a href="/tags/Dive-into-deep-learning/">
                         <span class="chip bg-color">Dive into deep learning</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/19c6ccbf.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Numpy Cheat Sheet">
+                        
+                        <span class="card-title">Numpy Cheat Sheet</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/Numpy/">
+                        <span class="chip bg-color">Numpy</span>
                     </a>
                     
                 </div>
@@ -1003,7 +1011,7 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">84.8k</span>&nbsp;字
+                class="white-color">83.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

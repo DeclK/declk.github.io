@@ -536,7 +536,7 @@ test<span class="token punctuation">(</span><span class="token operator">*</span
 test<span class="token punctuation">(</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
 <span class="token comment"># a b c</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>从上面的代码中可以看到，解包元组用  <code>*</code>，解包字典用 <code>**</code></p>
-<h3 id="lambda-匿名函数"><a href="#lambda-匿名函数" class="headerlink" title="lambda 匿名函数"></a>lambda 匿名函数</h3><p>所谓匿名，意即不再使用 def 语句这样标准的形式定义一个函数。lambda 只是一个表达式，函数体比 def 简单很多，所以只能封装有限的逻辑。lambda 函数的语法只有一句</p>
+<h3 id="lambda-匿名函数"><a href="#lambda-匿名函数" class="headerlink" title="lambda 匿名函数"></a>lambda 匿名函数</h3><p>lambda 只是一个表达式，函数体比 def 简单很多，所以只能封装有限的逻辑。lambda 函数的语法只有一句</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">lambda</span> <span class="token punctuation">[</span>args_list<span class="token punctuation">]</span><span class="token punctuation">:</span> expression<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><code>expression</code> 可以是表达式，也可以是一个函数。下面举一个例子来使用 lambda 函数</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">add <span class="token operator">=</span> <span class="token keyword">lambda</span> a<span class="token punctuation">,</span> b<span class="token punctuation">:</span> a <span class="token operator">+</span> b
@@ -547,7 +547,8 @@ test<span class="token punctuation">(</span><span class="token operator">**</spa
 <span class="token comment"># expression can be a function</span>
 exp_of_2 <span class="token operator">=</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> exp<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>exp_of_2<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="模块化管理"><a href="#模块化管理" class="headerlink" title="模块化管理"></a>模块化管理</h3><p>通过模块管理 python 文件/函数将会变得非常方便，需要使用的函数，使用关键字 <code>import</code> 导入即可，导入方法有如下：</p>
+<p>所谓匿名，意即不再使用 def 语句这样标准的形式定义一个函数，故没有函数名！</p>
+<h3 id="块化管理"><a href="#块化管理" class="headerlink" title="块化管理"></a>块化管理</h3><p>通过模块管理 python 文件/函数将会变得非常方便，需要使用的函数，使用关键字 <code>import</code> 导入即可，导入方法有如下：</p>
 <ol>
 <li><code>import module</code>：导入模块，以 <code>module.func</code> 使用模块中的函数等内容</li>
 <li><code>import module ad md</code>：导入模块，命名为 md，使用方法类似1</li>
@@ -1075,7 +1076,7 @@ module_func<span class="token punctuation">(</span><span class="token punctuatio
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">84.8k</span>&nbsp;字
+                class="white-color">83.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

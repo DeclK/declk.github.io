@@ -476,7 +476,7 @@ S_{i}^{\left(l_{k}\right)}=\left
 \forall f_{j}^{\left(l_{k}\right)} \in \mathcal{F}^{\left(l_{k}\right)}
 \end{array}\right\}</script><p>然后使用 PointNet++ 中的 set abstraction 操作，将这些特征聚合为一个特征向量</p>
 <script type="math/tex; mode=display">
-f_{i}^{\left(p v_{k}\right)}=\max \left\{G\left(\mathcal{M}\left(S_{i}^{\left(l_{k}\right)}\right)\right)\right\}</script><p>其中 $M(·)$ 表示从相邻集合 $S^{(l_k)}_i$ 中随机采样最多 $T_k$ 个体素以节省计算，$G(·)$ 表示一个多层感知器网络 MLP。将多个半径的特征向量连接起来就能得到多尺度的特征，类似于 PointNet++ 中的 multi-scale grouping (MSG)</p>
+f_{i}^{\left(p v_{k}\right)}=\max \left\{G\left(\mathcal{M}\left(S_{i}^{\left(l_{k}\right)}\right)\right)\right\}</script><p>其中 $M(·)$ 表示从相邻集合 $S^{(l_k)}_i$ 中随机采样最多 $T_k$ 个体素以节省计算，$G(·)$ 表示一个多层感知器网络 MLP（区别于 PoinNet 中的 Shared MLP）。将多个半径的特征向量连接起来就能得到多尺度的特征，类似于 PointNet++ 中的 multi-scale grouping (MSG)</p>
 <p>现在将不同分辨率的特征连接起来，原论文有4个不同的分辨率</p>
 <script type="math/tex; mode=display">
 f_{i}^{(p v)}=\left[f_{i}^{\left(p v_{1}\right)}, f_{i}^{\left(p v_{2}\right)}, f_{i}^{\left(p v_{3}\right)}, f_{i}^{\left(p v_{4}\right)}\right], \text { for } i=1, \cdots, n</script><p>再添加一些特征：原点云数据 raw point feature 和对应点的俯视图特征 bird-eye view feature，得到最终的整个点云的特征集合</p>
@@ -771,13 +771,13 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/88f138aa.html">
+                <a href="/archives/19c6ccbf.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Pytorch cn231n note (dev)">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Numpy Cheat Sheet">
                         
-                        <span class="card-title">Pytorch cn231n note (dev)</span>
+                        <span class="card-title">Numpy Cheat Sheet</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -798,8 +798,8 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                                     编程
                                 </a>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Pytorch/" class="post-category">
-                                    Pytorch
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/" class="post-category">
+                                    Python
                                 </a>
                             
                             
@@ -809,12 +809,12 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Pytorch/">
-                        <span class="chip bg-color">Pytorch</span>
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
-                    <a href="/tags/CS231N/">
-                        <span class="chip bg-color">CS231N</span>
+                    <a href="/tags/Numpy/">
+                        <span class="chip bg-color">Numpy</span>
                     </a>
                     
                 </div>
@@ -828,13 +828,13 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/c57b6bd2.html">
+                <a href="/archives/74da7df7.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="应用软件开发基础论文报告">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Point-GNN">
                         
-                        <span class="card-title">应用软件开发基础论文报告</span>
+                        <span class="card-title">Point-GNN</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -851,8 +851,8 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%94%9F%E6%B4%BB/" class="post-category">
-                                    生活
+                            <a href="/categories/papers/" class="post-category">
+                                    papers
                                 </a>
                             
                             
@@ -862,8 +862,12 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%9C%9F%E6%9C%AB%E4%BD%9C%E4%B8%9A/">
-                        <span class="chip bg-color">期末作业</span>
+                    <a href="/tags/Point-Cloud/">
+                        <span class="chip bg-color">Point Cloud</span>
+                    </a>
+                    
+                    <a href="/tags/Point-GNN/">
+                        <span class="chip bg-color">Point-GNN</span>
                     </a>
                     
                 </div>
@@ -1018,7 +1022,7 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">84.8k</span>&nbsp;字
+                class="white-color">83.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
