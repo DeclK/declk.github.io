@@ -545,7 +545,7 @@ DICT <span class="token operator">=</span> <span class="token builtin">dict</spa
 </li>
 </ol>
 <h3 id="字典内建函数"><a href="#字典内建函数" class="headerlink" title="字典内建函数"></a>字典内建函数</h3><ol>
-<li><code>dict.get(key, default=None)</code>，返回指定键的值，如果 key 值不在字典中则自动添加 key 并返回 default 值作为其 value。这既是一种获取 value 的方法，也是创建新 key 的方法。比较类似的，如果字典中不存在某个 key，那么使用 <code>dict[key] = value</code> 也会自动在字典中创建 key, value 对</li>
+<li><code>dict.get(key, default=None)</code>，返回指定键的值，如果 key 值不在字典中则返回 default 值。如果希望不存在 key 值时，不仅返回 default 值，还创建该 key 值，则使用 <code>dict.setdefault(key, default=None)</code>。比较类似的，如果字典中不存在某个 key，那么使用 <code>dict[key] = value</code> 也会自动在字典中创建 key, value 对</li>
 <li><code>dict.items()</code> 返回可遍历的 (key, value) 元组组成的列表</li>
 <li><p><code>dict.keys()</code> &amp; <code>dict.values()</code> 返回 key/value 列表</p>
 </li>
@@ -1145,7 +1145,7 @@ f <span class="token operator">=</span> x <span class="token keyword">for</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.3k</span>&nbsp;字
+                class="white-color">87.6k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

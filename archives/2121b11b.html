@@ -370,12 +370,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Git/">
-                                <span class="chip bg-color">Git</span>
-                            </a>
-                        
                             <a href="/tags/%E6%95%99%E7%A8%8B/">
                                 <span class="chip bg-color">教程</span>
+                            </a>
+                        
+                            <a href="/tags/Git/">
+                                <span class="chip bg-color">Git</span>
                             </a>
                         
                     </div>
@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.3k
+                    2.4k
                 </div>
                 
 
@@ -462,12 +462,12 @@
 <p>这三个命令就能够让你感受到 git 版本控制的基本流程</p>
 <h2 id="Git-仓库搭建"><a href="#Git-仓库搭建" class="headerlink" title="Git 仓库搭建"></a>Git 仓库搭建</h2><h3 id="git-init-amp-git-clone"><a href="#git-init-amp-git-clone" class="headerlink" title="git init &amp; git clone"></a>git init &amp; git clone</h3><p>生成仓库(master 分支)的两种方法</p>
 <ol>
-<li><p><code>git init</code> 初始化，生成 .git 文件</p>
-</li>
-<li><p><code>git clone url</code> 克隆远程仓库</p>
-</li>
+<li><code>git init</code> 初始化，生成 .git 文件</li>
+<li><code>git clone url</code> 克隆远程仓库</li>
+<li><code>git clone -b branch_name url</code> 克隆指定分支</li>
 </ol>
-<p>删除仓库则只需要删除 .git 文件夹即可</p>
+<p>删除仓库则只需要删除 .git 文件夹即可。如果在 clone 项目的时候发现速度很慢，推荐使用国内的镜像源，如：<a target="_blank" rel="noopener" href="https://gitclone.com/">gitclone</a> <a target="_blank" rel="noopener" href="https://doc.fastgit.org/zh-cn/">fastgit</a></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> config --global url.<span class="token string">"https://hub.fastgit.org/"</span>.insteadOf <span class="token string">"https://github.com/"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="Git-文件基本操作"><a href="#Git-文件基本操作" class="headerlink" title="Git 文件基本操作"></a>Git 文件基本操作</h2><h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p><code>git status</code> 查看 git 文件状态，<code>git status file_name</code> 可指定文件</p>
 <p>文件的几种状态：</p>
 <ol>
@@ -608,12 +608,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Git/">
-                                    <span class="chip bg-color">Git</span>
-                                </a>
-                            
                                 <a href="/tags/%E6%95%99%E7%A8%8B/">
                                     <span class="chip bg-color">教程</span>
+                                </a>
+                            
+                                <a href="/tags/Git/">
+                                    <span class="chip bg-color">Git</span>
                                 </a>
                             
                         </div>
@@ -1049,7 +1049,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.3k</span>&nbsp;字
+                class="white-color">87.6k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

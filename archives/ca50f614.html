@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    824
+                    849
                 </div>
                 
 
@@ -444,13 +444,14 @@
 </li>
 <li><p>vscode 支持插件扩展，能够实现多种功能来提高编程效率，如下载不同语言，高亮代码等等，推荐的插件：Python, Gitlens, Remote SSH</p>
 </li>
-<li><p>通过快捷键 palette 查找文件 Ctrl + P，查找命令 Ctrl + Shift + P</p>
+<li><p>通过快捷键 palette 查找文件 Ctrl + P，查找命令 Ctrl + Shift + P，折叠左侧工具栏 Ctrl + B</p>
 <p>可以修改一些你常用命令的快捷键，我修改了如下命令：</p>
 <ol>
 <li>Run in python file: Ctrl + enter</li>
 <li>Start debugging: Shift +enter</li>
 <li>Close panels: Ctrl + Alt + P</li>
 <li>Insert Line Above/Below: Ctrl + Shifg + \ or Enter</li>
+<li>Collapse folders: Ctrl + Shift + F</li>
 </ol>
 </li>
 <li><p>设置面板快捷键 Ctrl + ,</p>
@@ -489,21 +490,22 @@
 <h3 id="Get-Started"><a href="#Get-Started" class="headerlink" title="Get Started"></a>Get Started</h3><ol>
 <li><p>在底部的 status bar 添加 python 解释器，也可以使用 palette 来添加 interpreter。会自动检测到电脑上的 python interpreter (包括 anaconda 中创建的环境)</p>
 </li>
-<li><p>建立 debug 环境 craete a launch.json file，直接使用默认值就好，详细说明在 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142642410">知乎链接</a></p>
-<p>补充：默认配置只 debug 当前 folder 下的代码（“自己”的代码），如果是 pip/conda install 安装的代码（“别人”的代码），是不会进行 debug 的。如果想要 debug 所有代码则配置文件需要加上 <code>"justMyCode": false</code> <a target="_blank" rel="noopener" href="https://blog.csdn.net/g534441921/article/details/102743393">CSDN 参考链接</a></p>
+<li><p>建立 debug 环境 craete a launch.json file，直接使用默认值就好，详细说明在 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142642410">知乎</a></p>
+<p>补充：默认配置只 debug 当前 folder 下的代码（“自己”的代码），如果是 pip/conda install 安装的代码（“别人”的代码），是不会进行 debug 的。如果想要 debug 所有代码则配置文件需要加上 <code>"justMyCode": false</code> <a target="_blank" rel="noopener" href="https://blog.csdn.net/g534441921/article/details/102743393">CSDN</a></p>
+<p>补充：对于需要传参数的 python 脚本调试可以参考 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/50700473">知乎</a></p>
 </li>
 <li><p>Jupyter notebook 是插件里自带的功能，直接打开 ipynb 文件就可以运行代码块！通过选择 notebook 中的 kernel (具体一点说就是选择 conda 中的环境) 就能在你想要的环境中运行了，非常方便</p>
 </li>
 </ol>
 <h3 id="连接到远程服务器"><a href="#连接到远程服务器" class="headerlink" title="连接到远程服务器"></a>连接到远程服务器</h3><p>由于要跑一些模型，自己的电脑显卡根本跑不动，那就<del>白嫖</del>连接到实验室的服务器​</p>
-<p>通过 vscode Extensions: <code>Remote-SSH</code> 完成，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141205262">知乎教程</a></p>
+<p>通过 vscode Extensions: <code>Remote-SSH</code> 完成，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141205262">知乎</a></p>
 <p>在 Remote Expolorer -&gt; SSH TARGETS -&gt; config 中添加配置</p>
 <pre class="line-numbers language-config" data-language="config"><code class="language-config"># Read more about SSH config files: https://linux.die.net/man/5/ssh_config
 Host random_name
     HostName host_ip
     User user_name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>遇到了报错 <code>Resolver error: Error: Running the contributed command: '_workbench.downloadResource' failed.</code> 无法连接到服务器。原因可能在于服务器是在内网，没有办法在服务器上自动下载好 vscode-server，于是只能本地下载，然后上传</p>
-<p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/ibless/article/details/118610776">CSDN 链接</a> 解决问题</p>
+<p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/ibless/article/details/118610776">CSDN</a> 解决问题</p>
 
                 
             </div>
@@ -989,7 +991,7 @@ Host random_name
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">83.3k</span>&nbsp;字
+                class="white-color">87.6k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
