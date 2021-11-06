@@ -726,7 +726,7 @@ work_dirs/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py/latest.pth <span cl
 <li>在 B 站上找到了一个官方 <a target="_blank" rel="noopener" href="https://space.bilibili.com/630319191/channel/detail?cid=179690&amp;ctype=0">学习讲座系列</a>，这个讲座不太和我胃口，又在 B 站上找了一个西交的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Jb4y1r7ir?p=1">教学视频</a>，这个视频就比较友好，对我帮助更大</li>
 </ol>
 <p>我一直都很不理解这些类是怎么注册的，为什么有的代码似乎没有“明显”地运行，但是这些模块就已经被注册到 Registry 当中了？看完 MMCV 文档之后才大概明白了，重点就在于 <code>__init__.py</code> 文件以及 <code>__all__</code> 变量。可以看到在许多文件夹下都有 <code>__init__.py</code> 文件，例如 <code>mmdet/models/__init__.py</code>, <code>mmdet/models/backbones/__init__.py</code></p>
-<p>如果 import 文件夹/模块下又 init.py 文件，那么就会在 import 该模块之前先运行 init.py 文件，就是在这个文件之中完成了各个模块的注册，其中 <code>__all__</code> 变量包含了需要导入的模块列表</p>
+<p>如果 import 文件夹/模块下有 init.py 文件，那么就会在 import 该模块之前先运行 init.py 文件，就是在这个文件之中完成了各个模块的注册，其中 <code>__all__</code> 变量包含了需要导入的模块列表</p>
 <p>具体看一下其中的内容</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span>backbones <span class="token keyword">import</span> <span class="token operator">*</span>  <span class="token comment"># noqa: F401,F403</span>
 <span class="token keyword">from</span> <span class="token punctuation">.</span>builder <span class="token keyword">import</span> <span class="token punctuation">(</span>BACKBONES<span class="token punctuation">,</span> DETECTORS<span class="token punctuation">,</span> HEADS<span class="token punctuation">,</span> LOSSES<span class="token punctuation">,</span> NECKS<span class="token punctuation">,</span>
@@ -1262,7 +1262,7 @@ __all__ <span class="token operator">=</span> <span class="token punctuation">[<
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.6k</span>&nbsp;字
+                class="white-color">87.7k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

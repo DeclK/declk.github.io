@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    548
+                    603
                 </div>
                 
 
@@ -538,6 +538,16 @@ C <span class="token operator">=</span> np<span class="token punctuation">.</spa
 D <span class="token operator">=</span> A <span class="token operator">+</span> B <span class="token operator">+</span> A <span class="token operator">*</span> C	<span class="token comment"># B &amp; C will broadcast to (2, 3, 4, 5)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>使用 <code>tofile &amp; fromfile</code> 将 ndarray 存储为二进制文件</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> pathlib <span class="token keyword">import</span> Path
+
+bin_file <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">'./xxx.bin'</span><span class="token punctuation">)</span>
+a <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>binfile<span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    a<span class="token punctuation">.</span>tofile<span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+b <span class="token operator">=</span> np<span class="token punctuation">.</span>fromfile<span class="token punctuation">(</span>binfile<span class="token punctuation">,</span> dtype<span class="token operator">=</span>a<span class="token punctuation">.</span>dtype<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -791,13 +801,13 @@ D <span class="token operator">=</span> A <span class="token operator">+</span> 
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/807a20df.html">
+                <a href="/archives/786d359c.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="CenterPoint">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="D2L 01 前言">
                         
-                        <span class="card-title">CenterPoint</span>
+                        <span class="card-title">D2L 01 前言</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -814,8 +824,12 @@ D <span class="token operator">=</span> A <span class="token operator">+</span> 
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/papers/" class="post-category">
-                                    papers
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
+                                    课程
+                                </a>
+                            
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/Dive-into-deep-learning/" class="post-category">
+                                    Dive into deep learning
                                 </a>
                             
                             
@@ -825,12 +839,12 @@ D <span class="token operator">=</span> A <span class="token operator">+</span> 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CenterPoint/">
-                        <span class="chip bg-color">CenterPoint</span>
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
-                    <a href="/tags/Point-Cloud/">
-                        <span class="chip bg-color">Point Cloud</span>
+                    <a href="/tags/Dive-into-deep-learning/">
+                        <span class="chip bg-color">Dive into deep learning</span>
                     </a>
                     
                 </div>
@@ -1031,7 +1045,7 @@ D <span class="token operator">=</span> A <span class="token operator">+</span> 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.6k</span>&nbsp;字
+                class="white-color">87.7k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

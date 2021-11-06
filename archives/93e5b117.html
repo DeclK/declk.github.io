@@ -403,7 +403,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-11-04
+                    2021-11-06
                 </div>
                 
 
@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4.2k
+                    4.3k
                 </div>
                 
 
@@ -498,13 +498,22 @@ cuda execution failed with error <span class="token number">2</span><span aria-h
 </li>
 </ol>
 <p>其他操作和一般 remote-ssh 是一样的，按默认填写配置文件即可，不需要配置 <code>IdentityFile</code> 关键字</p>
-<pre class="line-numbers language-config" data-language="config"><code class="language-config">Host Arbitrary_Nane  HostName Host_ip  User User_Name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-config" data-language="config"><code class="language-config">Host Arbitrary_Nane
+  HostName Host_ip
+  User User_Name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="VSCode-X11-forward"><a href="#VSCode-X11-forward" class="headerlink" title="VSCode X11 forward"></a>VSCode X11 forward</h3><p>使用 X server 解决无法可视化图形界面的问题。一般来讲使用 ssh 连接到服务器后是不能使用图形化界面服务的，例如使用  firefox 浏览器。一些软件自带 X server，例如 MobaXterm，当连接上服务器后，可以直接在命令行输入 <code>firefox</code>，然后就能弹出浏览器窗口。如果电脑上没有 X server 则需要自行安装，或者直接把 MobaXterm 挂在旁边即可。更多科普内容参考 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1a296191a122">博客</a></p>
 <p>现在在 VSCode Remote-SSH 上也支持了 X11 forwarding，可以通过以下步骤完成</p>
 <p>首先修改配置 vscode <code>settings.json</code> 中 <code>terminal.integrated.env.windows</code> 字段，添加本地显示变量</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"terminal.integrated.env.windows"</span><span class="token operator">:</span> <span class="token punctuation">{</span>        <span class="token property">"DISPLAY"</span><span class="token operator">:</span> <span class="token string">"127.0.0.1:0.0"</span> <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">   <span class="token property">"terminal.integrated.env.windows"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+       <span class="token property">"DISPLAY"</span><span class="token operator">:</span> <span class="token string">"127.0.0.1:0.0"</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>然后在 ssh 配置文件中加入相关字段</p>
-<pre class="line-numbers language-config" data-language="config"><code class="language-config">Host Arbitrary_Nane  HostName Host_ip  User User_Name  ForwardAgent yes  ForwardX11 yes  ForwardX11Trusted yes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-config" data-language="config"><code class="language-config">Host Arbitrary_Nane
+  HostName Host_ip
+  User User_Name
+  ForwardAgent yes
+  ForwardX11 yes
+  ForwardX11Trusted yes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最后在服务器上指定 <code>DISPLAY</code> 环境变量</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">DISPLAY</span></span><span class="token operator">=</span><span class="token string">"localhost:10.0"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>使用 <code>xeyes</code> 测试一下，如果看到一个眼睛窗口就成功了😎</p>
@@ -529,10 +538,36 @@ cuda execution failed with error <span class="token number">2</span><span aria-h
 <li><p>下载 <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection3d/blob/master/configs/second/README.md">SECOND</a> 模型</p>
 </li>
 <li><p>根据 <a target="_blank" rel="noopener" href="https://mmdetection3d.readthedocs.io/en/latest/datasets/kitti_det.html">doc</a> 生成数据集，其中生成了一些 pkl 文件用于存储数据集每个样本的相关信息，关于 pkl 文件可以参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/Ving_x/article/details/114488844">CSDN</a>。下面是程序运行中最后的输出</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">load <span class="token number">2207</span> Pedestrian database infosload <span class="token number">14357</span> Car database infosload <span class="token number">734</span> Cyclist database infosload <span class="token number">1297</span> Van database infosload <span class="token number">488</span> Truck database infosload <span class="token number">224</span> Tram database infosload <span class="token number">337</span> Misc database infosload <span class="token number">56</span> Person_sitting database infos<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">load <span class="token number">2207</span> Pedestrian database infos
+load <span class="token number">14357</span> Car database infos
+load <span class="token number">734</span> Cyclist database infos
+load <span class="token number">1297</span> Van database infos
+load <span class="token number">488</span> Truck database infos
+load <span class="token number">224</span> Tram database infos
+load <span class="token number">337</span> Misc database infos
+load <span class="token number">56</span> Person_sitting database infos<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>Test SECOND on KITTI val，其中 <code>AP@0.5 0.5 0.5</code> 代表 bbox, bev, 3d 任务的 IoU 阈值分别为 0.5, 0.5, 0.5，列出 Car 相关的部分</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Result is saved to /tmp/tmp50avi_bh/results.pkl.Car AP@0.70, <span class="token number">0.70</span>, <span class="token number">0.70</span>:bbox AP:98.1839, <span class="token number">89.7606</span>, <span class="token number">88</span>.7837bev  AP:89.6905, <span class="token number">87.4570</span>, <span class="token number">85</span>.48653d   AP:87.4561, <span class="token number">76.7570</span>, <span class="token number">74</span>.1302aos  AP:97.70, <span class="token number">88.73</span>, <span class="token number">87</span>.34Car AP@0.70, <span class="token number">0.50</span>, <span class="token number">0.50</span>:bbox AP:98.1839, <span class="token number">89.7606</span>, <span class="token number">88</span>.7837bev  AP:98.4400, <span class="token number">90.1218</span>, <span class="token number">89</span>.62703d   AP:98.3329, <span class="token number">90.0209</span>, <span class="token number">89</span>.4035aos  AP:97.70, <span class="token number">88.73</span>, <span class="token number">87</span>.34Overall AP@easy, moderate, hard:bbox AP:84.0061, <span class="token number">75.7857</span>, <span class="token number">73</span>.6821bev  AP:80.2144, <span class="token number">72.7919</span>, <span class="token number">69</span>.15383d   AP:76.7926, <span class="token number">66.6667</span>, <span class="token number">62</span>.3905aos  AP:80.79, <span class="token number">72.30</span>, <span class="token number">70.19</span><span class="token punctuation">{</span><span class="token string">'KITTI/Car_3D_easy_strict'</span><span class="token builtin class-name">:</span> <span class="token number">87.45610724795893</span>, <span class="token string">'KITTI/Car_BEV_easy_strict'</span><span class="token builtin class-name">:</span> <span class="token number">89.69046011671303</span>, <span class="token string">'KITTI/Car_2D_easy_strict'</span><span class="token builtin class-name">:</span> <span class="token number">98.18389028596552</span>, <span class="token string">'KITTI/Car_3D_moderate_strict'</span><span class="token builtin class-name">:</span> <span class="token number">76.75701107649772</span>, <span class="token string">'KITTI/Car_BEV_moderate_strict'</span><span class="token builtin class-name">:</span> <span class="token number">87.45702960861706</span>, <span class="token string">'KITTI/Car_2D_moderate_strict'</span><span class="token builtin class-name">:</span> <span class="token number">89.76058109581083</span>, <span class="token string">'KITTI/Car_3D_hard_strict'</span><span class="token builtin class-name">:</span> <span class="token number">74.13015065869207</span>, <span class="token string">'KITTI/Car_BEV_hard_strict'</span><span class="token builtin class-name">:</span> <span class="token number">85.4865455582404</span>, <span class="token string">'KITTI/Car_2D_hard_strict'</span><span class="token builtin class-name">:</span> <span class="token number">88.78373491728972</span>, <span class="token string">'KITTI/Car_3D_easy_loose'</span><span class="token builtin class-name">:</span> <span class="token number">98.33288257217502</span>, <span class="token string">'KITTI/Car_BEV_easy_loose'</span><span class="token builtin class-name">:</span> <span class="token number">98.4400221898542</span>, <span class="token string">'KITTI/Car_2D_easy_loose'</span><span class="token builtin class-name">:</span> <span class="token number">98.18389028596552</span>, <span class="token string">'KITTI/Car_3D_moderate_loose'</span><span class="token builtin class-name">:</span> <span class="token number">90.02090501786836</span>, <span class="token string">'KITTI/Car_BEV_moderate_loose'</span><span class="token builtin class-name">:</span> <span class="token number">90.12184507731126</span>, <span class="token string">'KITTI/Car_2D_moderate_loose'</span><span class="token builtin class-name">:</span> <span class="token number">89.76058109581083</span>, <span class="token string">'KITTI/Car_3D_hard_loose'</span><span class="token builtin class-name">:</span> <span class="token number">89.40349529357029</span>, <span class="token string">'KITTI/Car_BEV_hard_loose'</span><span class="token builtin class-name">:</span> <span class="token number">89.62702775979791</span>, <span class="token string">'KITTI/Car_2D_hard_loose'</span><span class="token builtin class-name">:</span> <span class="token number">88.78373491728972</span>, <span class="token string">'KITTI/Overall_3D_easy'</span><span class="token builtin class-name">:</span> <span class="token number">76.79258397928281</span>, <span class="token string">'KITTI/Overall_BEV_easy'</span><span class="token builtin class-name">:</span> <span class="token number">80.21439732105783</span>, <span class="token string">'KITTI/Overall_2D_easy'</span><span class="token builtin class-name">:</span> <span class="token number">84.00606839712997</span>, <span class="token string">'KITTI/Overall_3D_moderate'</span><span class="token builtin class-name">:</span> <span class="token number">66.6666643647041</span>, <span class="token string">'KITTI/Overall_BEV_moderate'</span><span class="token builtin class-name">:</span> <span class="token number">72.7919003517221</span>, <span class="token string">'KITTI/Overall_2D_moderate'</span><span class="token builtin class-name">:</span> <span class="token number">75.78568527747004</span>, <span class="token string">'KITTI/Overall_3D_hard'</span><span class="token builtin class-name">:</span> <span class="token number">62.39046573028369</span>, <span class="token string">'KITTI/Overall_BEV_hard'</span><span class="token builtin class-name">:</span> <span class="token number">69.15381069261458</span>, <span class="token string">'KITTI/Overall_2D_hard'</span><span class="token builtin class-name">:</span> <span class="token number">73.68210872556001</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Result is saved to /tmp/tmp50avi_bh/results.pkl.
+
+Car AP@0.70, <span class="token number">0.70</span>, <span class="token number">0.70</span>:
+bbox AP:98.1839, <span class="token number">89.7606</span>, <span class="token number">88.7837</span>
+bev  AP:89.6905, <span class="token number">87.4570</span>, <span class="token number">85.4865</span>
+3d   AP:87.4561, <span class="token number">76.7570</span>, <span class="token number">74.1302</span>
+aos  AP:97.70, <span class="token number">88.73</span>, <span class="token number">87.34</span>
+Car AP@0.70, <span class="token number">0.50</span>, <span class="token number">0.50</span>:
+bbox AP:98.1839, <span class="token number">89.7606</span>, <span class="token number">88.7837</span>
+bev  AP:98.4400, <span class="token number">90.1218</span>, <span class="token number">89.6270</span>
+3d   AP:98.3329, <span class="token number">90.0209</span>, <span class="token number">89.4035</span>
+aos  AP:97.70, <span class="token number">88.73</span>, <span class="token number">87.34</span>
+
+Overall AP@easy, moderate, hard:
+bbox AP:84.0061, <span class="token number">75.7857</span>, <span class="token number">73.6821</span>
+bev  AP:80.2144, <span class="token number">72.7919</span>, <span class="token number">69.1538</span>
+3d   AP:76.7926, <span class="token number">66.6667</span>, <span class="token number">62.3905</span>
+aos  AP:80.79, <span class="token number">72.30</span>, <span class="token number">70.19</span>
+
+<span class="token punctuation">{</span><span class="token string">'KITTI/Car_3D_easy_strict'</span><span class="token builtin class-name">:</span> <span class="token number">87.45610724795893</span>, <span class="token string">'KITTI/Car_BEV_easy_strict'</span><span class="token builtin class-name">:</span> <span class="token number">89.69046011671303</span>, <span class="token string">'KITTI/Car_2D_easy_strict'</span><span class="token builtin class-name">:</span> <span class="token number">98.18389028596552</span>, <span class="token string">'KITTI/Car_3D_moderate_strict'</span><span class="token builtin class-name">:</span> <span class="token number">76.75701107649772</span>, <span class="token string">'KITTI/Car_BEV_moderate_strict'</span><span class="token builtin class-name">:</span> <span class="token number">87.45702960861706</span>, <span class="token string">'KITTI/Car_2D_moderate_strict'</span><span class="token builtin class-name">:</span> <span class="token number">89.76058109581083</span>, <span class="token string">'KITTI/Car_3D_hard_strict'</span><span class="token builtin class-name">:</span> <span class="token number">74.13015065869207</span>, <span class="token string">'KITTI/Car_BEV_hard_strict'</span><span class="token builtin class-name">:</span> <span class="token number">85.4865455582404</span>, <span class="token string">'KITTI/Car_2D_hard_strict'</span><span class="token builtin class-name">:</span> <span class="token number">88.78373491728972</span>, <span class="token string">'KITTI/Car_3D_easy_loose'</span><span class="token builtin class-name">:</span> <span class="token number">98.33288257217502</span>, <span class="token string">'KITTI/Car_BEV_easy_loose'</span><span class="token builtin class-name">:</span> <span class="token number">98.4400221898542</span>, <span class="token string">'KITTI/Car_2D_easy_loose'</span><span class="token builtin class-name">:</span> <span class="token number">98.18389028596552</span>, <span class="token string">'KITTI/Car_3D_moderate_loose'</span><span class="token builtin class-name">:</span> <span class="token number">90.02090501786836</span>, <span class="token string">'KITTI/Car_BEV_moderate_loose'</span><span class="token builtin class-name">:</span> <span class="token number">90.12184507731126</span>, <span class="token string">'KITTI/Car_2D_moderate_loose'</span><span class="token builtin class-name">:</span> <span class="token number">89.76058109581083</span>, <span class="token string">'KITTI/Car_3D_hard_loose'</span><span class="token builtin class-name">:</span> <span class="token number">89.40349529357029</span>, <span class="token string">'KITTI/Car_BEV_hard_loose'</span><span class="token builtin class-name">:</span> <span class="token number">89.62702775979791</span>, <span class="token string">'KITTI/Car_2D_hard_loose'</span><span class="token builtin class-name">:</span> <span class="token number">88.78373491728972</span>, <span class="token string">'KITTI/Overall_3D_easy'</span><span class="token builtin class-name">:</span> <span class="token number">76.79258397928281</span>, <span class="token string">'KITTI/Overall_BEV_easy'</span><span class="token builtin class-name">:</span> <span class="token number">80.21439732105783</span>, <span class="token string">'KITTI/Overall_2D_easy'</span><span class="token builtin class-name">:</span> <span class="token number">84.00606839712997</span>, <span class="token string">'KITTI/Overall_3D_moderate'</span><span class="token builtin class-name">:</span> <span class="token number">66.6666643647041</span>, <span class="token string">'KITTI/Overall_BEV_moderate'</span><span class="token builtin class-name">:</span> <span class="token number">72.7919003517221</span>, <span class="token string">'KITTI/Overall_2D_moderate'</span><span class="token builtin class-name">:</span> <span class="token number">75.78568527747004</span>, <span class="token string">'KITTI/Overall_3D_hard'</span><span class="token builtin class-name">:</span> <span class="token number">62.39046573028369</span>, <span class="token string">'KITTI/Overall_BEV_hard'</span><span class="token builtin class-name">:</span> <span class="token number">69.15381069261458</span>, <span class="token string">'KITTI/Overall_2D_hard'</span><span class="token builtin class-name">:</span> <span class="token number">73.68210872556001</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 <p>但是想要的预测结果 <code>pred.obj</code> 以及 <code>result.pkl</code> 好像并没有保存，并且查看了输出中的路径 <code>/tmp/tmp50avi_bh/results.pkl</code> 甚至都找不到这个路径 ，再次查看了官方文档，有以下描述</p>
@@ -562,23 +597,46 @@ cuda execution failed with error <span class="token number">2</span><span aria-h
 <h4 id="Install-by-docker-deprecate"><a href="#Install-by-docker-deprecate" class="headerlink" title="Install by docker (deprecate)"></a>Install by docker (deprecate)</h4><p>首先想要通过 docker 来下载 spconv，但是由于 spconv 的镜像从不打 tag，如果根据原 Dockerfile 会默认拉取最新的镜像，所以 CUDA 版本并不是我想要下载的 10.1。而且实验室 Ubuntu 的 Nvidia Driver 版本不够新，所以更高版本的 CUDA 镜像是没办法启动的。于是就尝试根据 github 中最晚的更新时间，下载老版本的镜像，这里我安装的 tag 是</p>
 <p><img src="/archives/93e5b117/image-20211031204629220.png" style="zoom:80%;"></p>
 <p>下载好该镜像后就能正常运行 CUDA 镜像了，然后就根据 OpenPCDet 官方 <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/OpenPCDet/blob/master/docs/INSTALL.md">Install</a> 文档进行安装</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> clone https://github.com/open-mmlab/OpenPCDet.gitpip <span class="token function">install</span> -r requirements.txt python setup.py develop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> clone https://github.com/open-mmlab/OpenPCDet.git
+pip <span class="token function">install</span> -r requirements.txt 
+python setup.py develop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>但之后在安装 mayavi 库的时候出现了问题，因为需要使用 python3.7，而镜像是 python3.8，并且镜像没有 conda 命令，个人不是很习惯，于是打算放弃通过 spconv docker 安装。考虑使用 mmdetection3d 提供的镜像，作为基础镜像从零开始安装，因为该镜像的功能更多一些，环境更完整，其部分 Dockerfile 如下</p>
-<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">ARG PYTORCH="1.6.0"ARG CUDA="10.1"ARG CUDNN="7"FROM pytorch/pytorch:${PYTORCH}-cuda${CUDA}-cudnn${CUDNN}-develENV TORCH_CUDA_ARCH_LIST="6.0 6.1 7.0+PTX"ENV TORCH_NVCC_FLAGS="-Xfatbin -compress-all"ENV CMAKE_PREFIX_PATH="$(dirname $(which conda))/../"RUN apt-get update &amp;&amp; apt-get install -y ffmpeg libsm6 libxext6 git ninja-build libglib2.0-0 libsm6 libxrender-dev libxext6 \    &amp;&amp; apt-get clean \    &amp;&amp; rm -rf /var/lib/apt/lists/*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">ARG PYTORCH="1.6.0"
+ARG CUDA="10.1"
+ARG CUDNN="7"
+
+FROM pytorch/pytorch:${PYTORCH}-cuda${CUDA}-cudnn${CUDNN}-devel
+
+ENV TORCH_CUDA_ARCH_LIST="6.0 6.1 7.0+PTX"
+ENV TORCH_NVCC_FLAGS="-Xfatbin -compress-all"
+ENV CMAKE_PREFIX_PATH="$(dirname $(which conda))/../"
+
+RUN apt-get update &amp;&amp; apt-get install -y ffmpeg libsm6 libxext6 git ninja-build libglib2.0-0 libsm6 libxrender-dev libxext6 \
+    &amp;&amp; apt-get clean \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="Install-cmake"><a href="#Install-cmake" class="headerlink" title="Install cmake"></a>Install cmake</h4><p>首先遇到的难题是安装 cmake，发现原来通过 pip 安装才是最快的方式，而且版本很新，参考 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/49859457/how-to-reinstall-the-latest-cmake-version">stackoverflow</a></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">(</span>base<span class="token punctuation">)</span> root@fb873089e53c:/spconv<span class="token comment"># cmake --versioncmake version 3.21.3CMake suite maintained and supported by Kitware (kitware.com/cmake).</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">(</span>base<span class="token punctuation">)</span> root@fb873089e53c:/spconv<span class="token comment"># cmake --version</span>
+cmake version <span class="token number">3.21</span>.3
+
+CMake suite maintained and supported by Kitware <span class="token punctuation">(</span>kitware.com/cmake<span class="token punctuation">)</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="Git-clone"><a href="#Git-clone" class="headerlink" title="Git clone"></a>Git clone</h4><p>一定要使用 <code>git clone ... --recursive</code> 命令来 clone 该项目，<code>--recursive</code> 命令意思是这个项目还有一些子项目也需要 clone，我尝试使用过 <code>cp</code> 命令复制项目，但该似乎无法完整复制。并且需要加上 <code>-b</code> 参数指定 clone 的 branch，不然会默认 clone master 分支，而不是我需要的 v1.2.1 版本。整个下载的过程可能会很慢，强烈建议使用国内的镜像源，可以参考我的 <a href="https://hongkun.space/archives/2121b11b.html#toc-heading-1">git 笔记</a>（题外话，自己就是因为 clone 操作没有弄对，在安装的时候除了好多错…心态爆炸）</p>
 <h4 id="Setup-py"><a href="#Setup-py" class="headerlink" title="Setup.py"></a>Setup.py</h4><p>运行 <code>setup.py</code> 进行编译，然后进入 <code>./dist</code> 文件夹下载 <code>xxx.whl</code> 不同版本的 spconv 会有不同的 <code>.whl</code> 文件 </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python setup.py bdist_wheelcd ./distpython xxx.whl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python setup.py bdist_wheel
+<span class="token builtin class-name">cd</span> ./dist
+python xxx.whl<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="Install-OpenPCDet"><a href="#Install-OpenPCDet" class="headerlink" title="Install OpenPCDet"></a>Install OpenPCDet</h3><p>下载好了 spconv 继续前往 OpenPCDet 项目继续安装吧</p>
 <h4 id="Install-requirements"><a href="#Install-requirements" class="headerlink" title="Install requirements"></a>Install requirements</h4><p><code>git clone https://github.com/open-mmlab/OpenPCDet.git</code> 下载项目，然后安装环境</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> -r requirements.txt <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在下载 requirements 的时候发现莫名其妙地下载了最新版的 torch==1.10.0 替换了原来的 torch==1.6.0，<code>requirements.txt</code> 部分内容如下</p>
-<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">torch&gt;=1.1kornia<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">torch&gt;=1.1
+kornia<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>一般情况下 pip 是不会自动替换已经满足要求的包的，我使用了另一个 docker 也没有复现出这个错误过程，所以就暂时不要担心这个操作了。在 torch==1.10.0 的情况下运行 <code>setup.py</code> 可能遇到如下报错，更换对应的 torch 版本就好</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">RuntimeError:The detected CUDA version <span class="token punctuation">(</span><span class="token number">10.1</span><span class="token punctuation">)</span> mismatches the version that was used to compilePyTorch <span class="token punctuation">(</span><span class="token number">10.2</span><span class="token punctuation">)</span>. Please <span class="token function">make</span> sure to use the same CUDA versions.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>并且由于 kornia 对于 Pytorch 低版本兼容性问题，根据 <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/OpenPCDet/issues/544">github issue</a> 选择下载 <code>kornia==0.5</code> 版本。现在重新安装 torch==1.6.0 &amp; kornia==0.5</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> <span class="token assign-left variable">torch</span><span class="token operator">==</span><span class="token number">1.6</span>.0+cu101 <span class="token assign-left variable">torchvision</span><span class="token operator">==</span><span class="token number">0.7</span>.0+cu101 -f https://download.pytorch.org/whl/torch_stable.htmlpip <span class="token function">install</span> <span class="token assign-left variable">kornia</span><span class="token operator">==</span><span class="token number">0.5</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">RuntimeError:
+The detected CUDA version <span class="token punctuation">(</span><span class="token number">10.1</span><span class="token punctuation">)</span> mismatches the version that was used to compile
+PyTorch <span class="token punctuation">(</span><span class="token number">10.2</span><span class="token punctuation">)</span>. Please <span class="token function">make</span> sure to use the same CUDA versions.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>并且由于 kornia 对于 Pytorch 低版本兼容性问题，根据 <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/OpenPCDet/issues/544">github issue</a> 选择下载 <code>kornia==0.5</code> 版本，如果你不需要使用 CaDNN 也可以选择不下载 kornia。现在重新安装 torch==1.6.0 &amp; kornia==0.5</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> <span class="token assign-left variable">torch</span><span class="token operator">==</span><span class="token number">1.6</span>.0+cu101 <span class="token assign-left variable">torchvision</span><span class="token operator">==</span><span class="token number">0.7</span>.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
+pip <span class="token function">install</span> <span class="token assign-left variable">kornia</span><span class="token operator">==</span><span class="token number">0.5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h4 id="Setup-py-1"><a href="#Setup-py-1" class="headerlink" title="Setup.py"></a>Setup.py</h4><p>运行 <code>setup.py</code> 进行编译</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python setup.py develop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="Install-mayavi"><a href="#Install-mayavi" class="headerlink" title="Install mayavi"></a>Install mayavi</h3><p>这个库是用于可视化的，其安装也有一些注意事项的，列举如下：</p>
@@ -596,13 +654,55 @@ cuda execution failed with error <span class="token number">2</span><span aria-h
 </ol>
 <p>通过不断地尝试不断地折腾可算是安装好了😀先来进行测试吧！</p>
 <h2 id="Demo-on-OpenPCDet"><a href="#Demo-on-OpenPCDet" class="headerlink" title="Demo on OpenPCDet"></a>Demo on OpenPCDet</h2><h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>先将原来的 KITTI 数据集放到 data 目录下，已经使用 MMDetection3d 生成了基本数据，但 OpenPCDet 暂时还不需要生成，Demo 只需要原始数据集就可以了。准备好模型和数据集后，运行以下命令测试一下 SECOND</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">import</span> osCONFIG_FILE <span class="token operator">=</span> <span class="token string">'/OpenPCDet/tools/cfgs/kitti_models/second.yaml'</span>CKPT <span class="token operator">=</span> <span class="token string">'/OpenPCDet/checkpoints/second_7862.pth'</span>POINT_CLOUD_DATA <span class="token operator">=</span> <span class="token string">'/OpenPCDet/data/kitti/training/velodyne/000007.bin'</span>os.system<span class="token punctuation">(</span>f<span class="token string">'python demo.py --cfg_file {CONFIG_FILE} \    --ckpt {CKPT} \    --data_path {POINT_CLOUD_DATA}'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">import</span> os
+
+CONFIG_FILE <span class="token operator">=</span> <span class="token string">'/OpenPCDet/tools/cfgs/kitti_models/second.yaml'</span>
+CKPT <span class="token operator">=</span> <span class="token string">'/OpenPCDet/checkpoints/second_7862.pth'</span>
+POINT_CLOUD_DATA <span class="token operator">=</span> <span class="token string">'/OpenPCDet/data/kitti/training/velodyne/000007.bin'</span>
+
+os.system<span class="token punctuation">(</span>f<span class="token string">'python demo.py --cfg_file {CONFIG_FILE} \
+    --ckpt {CKPT} \
+    --data_path {POINT_CLOUD_DATA}'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>运行 <code>Demo.py</code> 后获得了如下预测结果，看上去还挺不错的</p>
 <p><img src="/archives/93e5b117/image-20211102173223643.png" style="zoom:80%;"></p>
 <h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><p>直接测试 SECOND 在 KITTI 验证集上的结果，列出 Car 相关的部分</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Car AP@0.70, <span class="token number">0.70</span>, <span class="token number">0.70</span>:bbox AP:90.7803, <span class="token number">89.8999</span>, <span class="token number">89</span>.0433bev  AP:90.0097, <span class="token number">87.9282</span>, <span class="token number">86</span>.45283d   AP:88.6137, <span class="token number">78.6245</span>, <span class="token number">77</span>.2243aos  AP:90.76, <span class="token number">89.77</span>, <span class="token number">88</span>.82Car AP_R40@0.70, <span class="token number">0.70</span>, <span class="token number">0.70</span>:bbox AP:95.6261, <span class="token number">94.1728</span>, <span class="token number">91</span>.7683bev  AP:92.4184, <span class="token number">88.5586</span>, <span class="token number">87</span>.64793d   AP:88.6137, <span class="token number">78.6245</span>, <span class="token number">77</span>.2243aos  AP:95.59, <span class="token number">94.01</span>, <span class="token number">91</span>.52Car AP@0.70, <span class="token number">0.50</span>, <span class="token number">0.50</span>:bbox AP:90.7803, <span class="token number">89.8999</span>, <span class="token number">89</span>.0433bev  AP:90.7940, <span class="token number">90.1441</span>, <span class="token number">89</span>.51733d   AP:90.7940, <span class="token number">90.0886</span>, <span class="token number">89</span>.4014aos  AP:90.76, <span class="token number">89.77</span>, <span class="token number">88</span>.82Car AP_R40@0.70, <span class="token number">0.50</span>, <span class="token number">0.50</span>:bbox AP:95.6261, <span class="token number">94.1728</span>, <span class="token number">91</span>.7683bev  AP:95.6751, <span class="token number">94.8476</span>, <span class="token number">94</span>.24783d   AP:95.6623, <span class="token number">94.7450</span>, <span class="token number">94</span>.0537aos  AP:95.59, <span class="token number">94.01</span>, <span class="token number">91.52</span><span class="token punctuation">..</span>.2021-11-01 <span class="token number">11</span>:48:15,756   INFO  Result is save to /OpenPCDet/output/OpenPCDet/tools/cfgs/kitti_models/second/default/eval/epoch_7862/val/default2021-11-01 <span class="token number">11</span>:48:15,756   INFO  ****************Evaluation done.*****************<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Car AP@0.70, <span class="token number">0.70</span>, <span class="token number">0.70</span>:
+bbox AP:90.7803, <span class="token number">89.8999</span>, <span class="token number">89.0433</span>
+bev  AP:90.0097, <span class="token number">87.9282</span>, <span class="token number">86.4528</span>
+3d   AP:88.6137, <span class="token number">78.6245</span>, <span class="token number">77.2243</span>
+aos  AP:90.76, <span class="token number">89.77</span>, <span class="token number">88.82</span>
+Car AP_R40@0.70, <span class="token number">0.70</span>, <span class="token number">0.70</span>:
+bbox AP:95.6261, <span class="token number">94.1728</span>, <span class="token number">91.7683</span>
+bev  AP:92.4184, <span class="token number">88.5586</span>, <span class="token number">87.6479</span>
+3d   AP:88.6137, <span class="token number">78.6245</span>, <span class="token number">77.2243</span>
+aos  AP:95.59, <span class="token number">94.01</span>, <span class="token number">91.52</span>
+Car AP@0.70, <span class="token number">0.50</span>, <span class="token number">0.50</span>:
+bbox AP:90.7803, <span class="token number">89.8999</span>, <span class="token number">89.0433</span>
+bev  AP:90.7940, <span class="token number">90.1441</span>, <span class="token number">89.5173</span>
+3d   AP:90.7940, <span class="token number">90.0886</span>, <span class="token number">89.4014</span>
+aos  AP:90.76, <span class="token number">89.77</span>, <span class="token number">88.82</span>
+Car AP_R40@0.70, <span class="token number">0.50</span>, <span class="token number">0.50</span>:
+bbox AP:95.6261, <span class="token number">94.1728</span>, <span class="token number">91.7683</span>
+bev  AP:95.6751, <span class="token number">94.8476</span>, <span class="token number">94.2478</span>
+3d   AP:95.6623, <span class="token number">94.7450</span>, <span class="token number">94.0537</span>
+aos  AP:95.59, <span class="token number">94.01</span>, <span class="token number">91.52</span>
+<span class="token punctuation">..</span>.
+
+<span class="token number">2021</span>-11-01 <span class="token number">11</span>:48:15,756   INFO  Result is save to /OpenPCDet/output/OpenPCDet/tools/cfgs/kitti_models/second/default/eval/epoch_7862/val/default
+<span class="token number">2021</span>-11-01 <span class="token number">11</span>:48:15,756   INFO  ****************Evaluation done.*****************<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>与 MMDetection3D 的结果进行对比，整体上来看还是相近的</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># OpenPCDetCar AP@0.50, 0.703d   AP:90.7940, 90.0886, 89.40143d   AP:88.6137, 78.6245, 77.2243Car AP_R40@0.50, 0.703d   AP:95.6623, 94.7450, 94.05373d   AP:88.6137, 78.6245, 77.2243# MMDetection3dCar AP@0.50, 0.703d   AP:98.3329, 90.0209, 89.40353d   AP:87.4561, 76.7570, 74.1302</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># OpenPCDet</span>
+Car AP@0.50, <span class="token number">0.70</span>
+3d   AP:90.7940, <span class="token number">90.0886</span>, <span class="token number">89.4014</span>
+3d   AP:88.6137, <span class="token number">78.6245</span>, <span class="token number">77.2243</span>
+Car AP_R40@0.50, <span class="token number">0.70</span>
+3d   AP:95.6623, <span class="token number">94.7450</span>, <span class="token number">94.0537</span>
+3d   AP:88.6137, <span class="token number">78.6245</span>, <span class="token number">77.2243</span>
+
+<span class="token comment"># MMDetection3d</span>
+Car AP@0.50, <span class="token number">0.70</span>
+3d   AP:98.3329, <span class="token number">90.0209</span>, <span class="token number">89.4035</span>
+3d   AP:87.4561, <span class="token number">76.7570</span>, <span class="token number">74.1302</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="Train"><a href="#Train" class="headerlink" title="Train"></a>Train</h3><p>查看一下 SECOND 训练的基本情况，这里改了一个配置：USE_ROAD_PLANE: False</p>
 <p><img src="/archives/93e5b117/image-20211102184034692.png"></p>
 <p>训练速度还是不错的，此时的 batch size per GPU = 4 比 MMDetection3D 效率更高，下面是 GPU 使用情况</p>
@@ -880,7 +980,7 @@ cuda execution failed with error <span class="token number">2</span><span aria-h
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-06
                             </span>
                         <span class="publish-author">
                             
@@ -1104,7 +1204,7 @@ cuda execution failed with error <span class="token number">2</span><span aria-h
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.6k</span>&nbsp;字
+                class="white-color">87.7k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
