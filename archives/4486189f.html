@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.1k
+                    2.3k
                 </div>
                 
 
@@ -478,6 +478,23 @@ where \ d^{a}=\sqrt{\left(l^{a}\right)^{2}+\left(w^{a}\right)^{2}}</script><p>�
 <p>其核心思想也是和 hash table 类似，创建一个 RuleBook 记录下每个体素块的输入位置在哪里、输出位置在哪里、对应相乘的卷积核权重在哪里。通过遍历这个 RuleBook 即可完成三维卷积操作</p>
 <p>下面仅留一张示意图以便快速复习（如果没看过参考链接应该是很难看懂）</p>
 <p><img src="/archives/4486189f/v2-80514738ec783b83d56a2506a0a2150b_r.jpg"></p>
+<p>为什么要引入子流形卷积？因为普通的稀疏卷积会让感受野迅速增加，许多 inactive 的点经过卷积过后变得 active，而子流形卷积则保证了 active 点的个数不变，参考 <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/SparseConvNet">github</a></p>
+<p><img src="/archives/4486189f/i.gif" alt="sparse convolution"></p>
+<p><img src="/archives/4486189f/img.gif" alt="submanifold convolution"></p>
+<p>除了稀疏卷积的内容之外，SECOND 还贡献有两个重要贡献：</p>
+<ol>
+<li><p>对于方向损失函数的改进</p>
+<script type="math/tex; mode=display">
+L_{\theta}=\operatorname{SmoothL1}\left(\sin \left(\theta_{p}-\theta_{t}\right)\right)</script><p>使用正弦 L1 loss 再加上方向二元分类损失，以达到精确的方向定位</p>
+</li>
+<li><p>对于数据增强的改进</p>
+<ol>
+<li>从标签池中随机采样 Sample Ground Truths from the Database</li>
+<li>对每个标签随机旋转 Object Noise</li>
+<li>对整个点云随机旋转和随机缩放  Global Rotation and Scaling</li>
+</ol>
+</li>
+</ol>
 <h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p><img src="/archives/4486189f/image-20211018213219777.png" alt="image-20211018213219777"></p>
 <p>SECOND 在速度上相比于 VoxelNet 提升了接近5倍，已经能够达到实时检测的标准（20+ fps），这在速度上是完全的碾压，而且在准确率上也远远领先</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>以上则是对 VoxelNet 和 SECOND 的总结，这两篇已经是好几年前的文章了，也是三维点云体素化方向的奠基之作。在很多论文中都将到了这两篇的身影，所以了解一下其中的实现细节，能够帮助更好地理解其他论文的结构</p>
@@ -981,7 +998,7 @@ where \ d^{a}=\sqrt{\left(l^{a}\right)^{2}+\left(w^{a}\right)^{2}}</script><p>�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">87.7k</span>&nbsp;字
+                class="white-color">92k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
