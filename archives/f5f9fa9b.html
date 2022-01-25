@@ -527,7 +527,8 @@ docker <span class="token function">cp</span> ctn_id:src_path dst_path	<span cla
 <p>以上的 <code>ctn_id</code> 指的时容器 id，也可以用容器名替代，如果有的话</p>
 <p>补充：自己担心下载的镜像太多了会占用 C 盘，所以使用目录连接，将 docker appdata 移到了 D 盘</p>
 <pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd"># 管理员权限
-mklink /j Docker D:\AppData\Docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+mklink /j Docker D:\AppData\Docker
+mklink /j target source<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="Docker-镜像讲解"><a href="#Docker-镜像讲解" class="headerlink" title="Docker 镜像讲解"></a>Docker 镜像讲解</h2><h3 id="镜像加载原理"><a href="#镜像加载原理" class="headerlink" title="镜像加载原理"></a>镜像加载原理</h3><p>UnionFS 是一种分层、轻量级并且高性能的文件系统。支持对文件系统的修改作为一次提交来一层层的叠加，同时可以将不同目录挂载到同一个虚拟文件系统下。在这种层级结构下，如果有涉及到相同的文件，那么层与层间就可以共用了，极大节省资源</p>
 <p>docker 的镜像实际上由一层一层的文件系统组成，这种层级文件系统就是上述的 UnionFS。接着，在内部又分为2部分：</p>
 <ul>
@@ -1129,7 +1130,7 @@ docker <span class="token builtin class-name">logout</span>
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2022</span>
             
             <a href="/about" target="_blank">Declan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1137,7 +1138,7 @@ docker <span class="token builtin class-name">logout</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">101k</span>&nbsp;字
+                class="white-color">130k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

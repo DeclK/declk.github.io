@@ -541,9 +541,10 @@ y=W·x, \frac{\partial{L}}{\partial y} = d_y\\
 </li>
 <li><p>最重要的定律莫过于乘法求导法则 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Product_rule">product rule</a> 以及链式求导法则 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Chain_rule">chain rule</a>。如果习惯按照分母式求导，那么链式求导时顺序要倒过来，并且常数在提出来时应该放在后面并且转置</p>
 </li>
-<li><p>再来看上面得出的结论，对于 x 的求导变得相对容易，但对于 W 的求导还是有点复杂，因为是对于矩阵求导。其中会遇到 vector by matrix 的情况，这该怎么处理？事实上，这种情况需要将 upper gradient or unit 1 vector 与需要求导的 vector 相乘 $\frac{\partial (d_yWx)}{\partial W}$，将其转换为 scalar by matrix</p>
+<li><p>再来看上面得出的结论，对于 x 的求导变得相对容易，但对于 W 的求导还是有点复杂，因为是对于矩阵求导。其中会遇到 vector by matrix 的情况，这该怎么处理？事实上，这种情况需要将 upper gradient or unit 1 vector 与需要求导的 vector 相乘 $\frac{\partial (d_y^TWx)}{\partial W}$，将其转换为 scalar by matrix</p>
 </li>
 </ol>
+<p>之后可以结合 cs231n 的练习以及 RNN 中的实践来加深熟练度</p>
 <h2 id="数值稳定性和模型初始化"><a href="#数值稳定性和模型初始化" class="headerlink" title="数值稳定性和模型初始化"></a>数值稳定性和模型初始化</h2><p>在 MLP 的模型下，加入所有隐藏变量和输入都是向量，那么求解其中任一参数 W 的梯度将面临如下的过程</p>
 <p><img src="/archives/fc6001ca/image-20211123190427465.png" alt="image-20211123190427465" style="zoom: 50%;"></p>
 <p><img src="/archives/fc6001ca/image-20211123190439856.png" alt="image-20211123190439856" style="zoom: 50%;"></p>
@@ -1051,7 +1052,7 @@ y=W·x, \frac{\partial{L}}{\partial y} = d_y\\
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2022</span>
             
             <a href="/about" target="_blank">Declan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1059,7 +1060,7 @@ y=W·x, \frac{\partial{L}}{\partial y} = d_y\\
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">101k</span>&nbsp;字
+                class="white-color">130k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

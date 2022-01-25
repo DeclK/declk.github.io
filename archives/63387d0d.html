@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.7k
+                    3.1k
                 </div>
                 
 
@@ -473,7 +473,7 @@
 <h3 id="Shared-MLP-Max-Pooling-的合理性"><a href="#Shared-MLP-Max-Pooling-的合理性" class="headerlink" title="Shared MLP + Max Pooling 的合理性"></a>Shared MLP + Max Pooling 的合理性</h3><p>该论文提出了如下的定理，该定理基于万能近似定理（Universal Approximate Theorem）</p>
 <p><img src="/archives/63387d0d/3b3fa29d-44f5-4724-af23-8438e1961530.png" style="zoom: 67%;"></p>
 <p>对于文章证明理解，有2个概念需要进一步了解，一个是 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hausdorff_distance">Hausdorff_distance</a> 一个是 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Power_set">Power set</a>，前者表示了两个集合的距离，后者表示了一个集合的所有子集</p>
-<p>该定理的结论是，论文提出的结构，能够拟合任意的连续集合函数。这个定理的结论，并没有什么特殊意义，因为万能近似定理早就告诉我们，足够多节点的 MLP 能够近似任何连续函数。重点在于论文的证明过程，给出了 Shared MLP + Max Pooling 的合理性，该合理性总结为如下</p>
+<p>该定理的结论是，论文提出的结构，能够拟合任意的连续集合函数。这个定理的结论，并没有什么特殊意义，因为万能近似定理告诉我们，足够多节点的 MLP 能够近似任何连续函数。重点在于论文的证明过程，给出了 Shared MLP + Max Pooling 的合理性，该合理性总结为如下</p>
 <blockquote>
 <p>The proof to this theorem can be found in our supplementary material. The key idea is that in the worst case the network can learn to convert a point cloud into a volumetric representation, by partitioning the space into equal-sized voxels. In practice, however, the network learns a much smarter strategy to probe the space, as we shall see in point function visualizations.</p>
 </blockquote>
@@ -483,6 +483,9 @@
 <li>此时还需要使用新的 MLP 完成对原连续集函数的拟合。该 MLP 和第一步中的 MLP 可以叠加起来，作为一个整体的 MLP，在公式中即表示为 γ 函数</li>
 </ol>
 <p>通过人为设置的学习路径，解释了该结构的合理性。但通过网络自身的学习，能够获得更好的效果，剩下的就交给优化算法吧！</p>
+<h4 id="更新：从升维的角度来看待-PointNet"><a href="#更新：从升维的角度来看待-PointNet" class="headerlink" title="更新：从升维的角度来看待 PointNet"></a>更新：从升维的角度来看待 PointNet</h4><p>为什么要将每一个点的位置使用全连接网络进行升维度？BTW，因为每一个点都共用一个全连接网络所以叫 shared MLP</p>
+<p>这样的升维操作我在 one-hot 编码中看到过，即用一个多维的，由 {0,1} 组成的向量来表示属于某一个类，这里会不会是相同的道理？将空间分割成多个子空间，用一个多维向量表示这个点是否处于某个子空间中，如果由则对应维度的数值就高，最后使用 maxpooling 将这个特征提取出来，再使用 MLP 进行各种任务</p>
+<p>这个思想（可能）起源于传统的滤波，也可能来自于看了马毅教授的一些说法：把滤波/卷积核看作是一个高维度向量，而卷积操作实际上是该部分数据与该向量的点积，也就是在该方向上的投影，寻找卷积核就是在寻找不同的高维向量，对高维空间进行分割，原始特征落在高维空间的不同区域，它们与高维向量的点积代表了它们在这些方向上的投影，如果方向相同那么投影值肯定会打，如果方向垂直或者相反投影值则会变小，这样落在不同区域的特征将会被识别出来（通过 ReLU or maxpooling），这些投影值可能就是我们常说的提取得到的“特征”</p>
 <h2 id="PointNet-1"><a href="#PointNet-1" class="headerlink" title="PointNet++"></a>PointNet++</h2><p>PointNet++ 的提出源于 PointNet 的缺点——缺失局部特征。PointNet对于场景的分割效果十分一般，由于其网络直接暴力地将所有的点最大池化为了一个全局特征，因此局部点与点之间的联系并没有被网络学习到。PointNet++ 中主要借鉴了 CNN 的多层感受野的思想，增强了网络对于局部特征的提取能力</p>
 <p>具体来讲就是：对于点云数据，将点云数据进行采样和分组，使用原 PointNet 对这些分组后的点云子集进行特征提取（而非之前的全局特征提取），得到了新的特征集合，对于新的特征集合，可以重复之前的采样、分组、提取过程，不断地迭代。随着迭代次数的增加，PointNet 的感受野也越来越大，下图为 PointNet++  (single scale grouping) 的结构图，能够有一个更加直观的感受</p>
 <p><img src="/archives/63387d0d/a4bc72c1-997d-4536-b50a-78a1917af8d6.png" style="zoom: 67%;"></p>
@@ -1001,7 +1004,7 @@ f^{(j)}(x)=\frac{\sum_{i=1}^{k} w_{i}(x) f_{i}^{(j)}}{\sum_{i=1}^{k} w_{i}(x)} \
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2022</span>
             
             <a href="/about" target="_blank">Declan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1009,7 +1012,7 @@ f^{(j)}(x)=\frac{\sum_{i=1}^{k} w_{i}(x) f_{i}^{(j)}}{\sum_{i=1}^{k} w_{i}(x)} \
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">101k</span>&nbsp;字
+                class="white-color">130k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MMDetection3D &amp; OpenPCDet installation, ">
+    <meta name="keywords" content="MMDetection3D &amp; OpenPCDet Installation, ">
     <meta name="description" content=" ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MMDetection3D &amp; OpenPCDet installation | </title>
+    <title>MMDetection3D &amp; OpenPCDet Installation | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MMDetection3D &amp; OpenPCDet installation</h1>
+                    <h1 class="description center-align post-title">MMDetection3D &amp; OpenPCDet Installation</h1>
                 </div>
             </div>
         </div>
@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4.3k
+                    4.4k
                 </div>
                 
 
@@ -443,7 +443,7 @@ docker build -t mmdetection3d docker/
 
 docker run --gpus all --shm-size<span class="token operator">=</span>8g -it -v <span class="token punctuation">{</span>DATA_DIR<span class="token punctuation">}</span>:/mmdetection3d/data mmdetection3d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>由于每次启动 docker 都要传入很多参数，所以在这里记录启动容器的命令，以后直接复制粘贴</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">docker run --gpus all --shm-size<span class="token operator">=</span>8g -it -v /home/chk/data:/shared -v /home/chk/.Xauthority:/root/.Xauthority -e <span class="token environment constant">DISPLAY</span> --net<span class="token operator">=</span>host -w /mmdetection --name
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">docker run --gpus all --shm-size<span class="token operator">=</span>8g -it -v /home/chk/data:/shared -v /home/chk/.Xauthority:/root/.Xauthority -e <span class="token environment constant">DISPLAY</span> --net<span class="token operator">=</span>host --name
 <span class="token comment"># 其中 -e 和 --net 是为了设置图形化操作，在之后详细介绍</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>在安装的过程中出现了两个问题</p>
 <ol>
@@ -516,6 +516,10 @@ cuda execution failed with error <span class="token number">2</span><span aria-h
   ForwardX11Trusted yes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最后在服务器上指定 <code>DISPLAY</code> 环境变量</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">DISPLAY</span></span><span class="token operator">=</span><span class="token string">"localhost:10.0"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注意，10.0 这个数字是根据 .Xauthority 文件确定，可以通过 xauth list 命令查看。得到列表可能会比较长，我对这一块不是很了解…经验来看，关注的是最后一行，或者 unix:index 最小的那一行</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">user@linux xauth list
+linux/unix:12  MIT-MAGIC-COOKIE-1  78cbc********************c64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>这里看到 <code>unix:12</code> 所以我们配置 <code>DISPLAY</code> 变量时应该为 <code>export DISPLAY="localhost:12.0"</code></p>
 <p>使用 <code>xeyes</code> 测试一下，如果看到一个眼睛窗口就成功了😎</p>
 <h3 id="Docker-with-GUI"><a href="#Docker-with-GUI" class="headerlink" title="Docker with GUI"></a>Docker with GUI</h3><p>如果能够在 Docker 中使用 GUI app 岂不是美滋滋？既然能够在 VSCode 中通过 X11 forward 协议运行图形界面，那么理论上 Docker 也是可以的！根据这两个博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/larva-zhh/p/10531824.html">Link-1</a> <a target="_blank" rel="noopener" href="https://medium.com/@SaravSun/running-gui-applications-inside-docker-containers-83d65c0db110">Link-2</a> 进行配置，意想不到地成功了，说明博客中的原理是正确的，只要将 Host 中的 X11 服务器分享给 Docker 就可以，具体步骤如下：</p>
 <ol>
@@ -1190,7 +1194,7 @@ Car AP@0.50, <span class="token number">0.70</span>
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2022</span>
             
             <a href="/about" target="_blank">Declan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1198,7 +1202,7 @@ Car AP@0.50, <span class="token number">0.70</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">101k</span>&nbsp;字
+                class="white-color">130k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -468,6 +468,7 @@
 \\
 \text{where }p_{t}=\left\{\begin{array}{ll}p & \text { for forground point } \\ 1-p & \text { otherwise }\end{array}\right.</script><p>focal loss 在三维目标检测中是一个很常见的损失函数，下图可以清楚地看到，在 γ 比较大时，大部分的loss值都是比较低的，除非网络的预测非常的离谱，惩罚才会急剧增加。可以说 focal loss 能够减轻惩罚，对于正负样本不均匀的数据来说会很有用</p>
 <p><img src="/archives/51543c70/a8c1f242-8cf0-4310-bd10-a488658a3463-16335112903811.png" style="zoom: 80%;"></p>
+<p>更详细的说明，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/122542747">知乎</a></p>
 <h4 id="选框生成"><a href="#选框生成" class="headerlink" title="选框生成"></a>选框生成</h4><p>经过了前景点和背景点的二元分类任务，网络就要正式进行选框生成。需要注意的是，网络仅采用前景点来生成选框，尽管在网络训练之初，前景点和背景点的分类结果并不靠谱，但随着训练的深入会越来越准确</p>
 <p>怎样通过前景点生成选框呢？一个简单的想法就是：每一个点都去回归预测该点所属的选框。论文在某些目标上采取了回归的思想，在一些重要目标上采用了分类+回归的预测方法，论文称这种思想为 bin-based。现在来看看在这一阶段网络想要预测的目标是什么，</p>
 <script type="math/tex; mode=display">
@@ -1039,7 +1040,7 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2022</span>
             
             <a href="/about" target="_blank">Declan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1047,7 +1048,7 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">101k</span>&nbsp;字
+                class="white-color">130k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

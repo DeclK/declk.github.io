@@ -580,8 +580,8 @@ clone<span class="token punctuation">.</span>load_state_dict<span class="token p
 
 <span class="token comment"># 获得 GPU 设备，返回值为字符串 'cpu' or 'cuda' or f'cuda:{idx}'</span>
 torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cpu'</span><span class="token punctuation">)</span> 
-torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cuda'</span><span class="token punctuation">)</span>	<span class="token comment"># equals torch.cuda.device('cuda:0')</span>
-torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cuda:1'</span><span class="token punctuation">)</span>s
+torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cuda'</span><span class="token punctuation">)</span>	<span class="token comment"># equals torch.device('cuda:0')</span>
+torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cuda:1'</span><span class="token punctuation">)</span>
 
 torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>device_count<span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment"># GPU 数量</span>
 torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment"># GPU 是否可用</span>
@@ -1091,7 +1091,7 @@ net<span class="token punctuation">.</span>to<span class="token punctuation">(</
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2022</span>
             
             <a href="/about" target="_blank">Declan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1099,7 +1099,7 @@ net<span class="token punctuation">.</span>to<span class="token punctuation">(</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">101k</span>&nbsp;字
+                class="white-color">130k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

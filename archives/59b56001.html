@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.6k
+                    2.7k
                 </div>
                 
 
@@ -508,19 +508,18 @@
 <p>现在正在证明一件事：可以使用神经网络实现最大值分类/回归问题，下面介绍一下我的实验结果：</p>
 <ol>
 <li>实验数据为1000个数对，从 (0， 20000) 中进行采样</li>
-<li><p>ReLU 需要输入大多数为正数，负数太多梯度会迅速消失，当然数据的归一化也有很不错的效果</p>
-</li>
-<li><p>通过一个简单网络，我可以很好的训练出一个最大最小值分类模型，但是对于回归模型仍然需要更多努力</p>
-</li>
-<li><p>显然原始数据对于最大值回归问题是很重要的，或许对于其他的回归问题也很重要。如果得到了最大最小值的分类，只需要将分类结果与原始数据相乘即可得到最大值。按照这个思路我也得到期望的结果，但是学习率非常非常小大概到了 1e-8 次方级别，最终损失在 5 左右</p>
-</li>
-<li><p>依然需要使用原始数据，即使不使用“相乘”操作，实际上我也能人工构造出一个网络，得到不错的结果，按照我的想法，网络没办法通过优化算法获得我所设计的参数，但是这个问题很快在更多的网络层下被解决，实际的 loss 在 0.05 左右，我认为这是一个相当不错的结果</p>
-</li>
+<li>ReLU 需要输入大多数为正数，负数太多梯度会迅速消失，当然数据的归一化也有很不错的效果</li>
+<li>通过一个简单网络，我可以很好的训练出一个最大最小值分类模型，但是对于回归模型仍然需要更多努力</li>
+<li><del>显然原始数据对于最大值回归问题是很重要的，或许对于其他的回归问题也很重要</del>。如果得到了最大最小值的分类，只需要将分类结果与原始数据相乘即可得到最大值。按照这个思路我也得到期望的结果，但是学习率非常非常小大概到了 1e-8 次方级别，最终损失在 5 左右</li>
+<li>即使不使用“相乘”操作，实际上我也能人工构造出一个网络，得到不错的结果，按照我的想法，网络没办法通过优化算法获得我所设计的参数，但是这个问题很快在<strong>更宽更多</strong>的网络层下被解决，实际的 loss 在 0.05 左右，我认为这是一个相当不错的结果</li>
+<li>使用 SGD 无法得到优化结果，只能使用 Adam，对于稀疏数据/模型可能需要自适应的学习率，可以先用 Adam 快速收敛再用 SGD 调整</li>
+<li>使用 mini-batch 无法得到优化结果，batch size 只能等于一，batch size 越大越容易搜索到 sharp minimum，参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/64864995">知乎</a></li>
 </ol>
 <p>根据以上实验，我认为 strided convolution 具有替代 max pooling 的能力，另一些笼统的感受是：</p>
 <ol>
 <li>分类任务想比回归任务更加简单</li>
 <li>可能对于有<strong>高精度</strong>的（回归）任务深度学习是需要一定辅助的，但在大量复杂数据的情景下，深度学习相比人类具有无法比拟的优势</li>
+<li>一开始认为需要使用原始数据进行回归，尝试了 ResNet，但实际上并不需要，普通的全连接层即可完成</li>
 </ol>
 <h2 id="LeNet"><a href="#LeNet" class="headerlink" title="LeNet"></a>LeNet</h2><p>当时， LeNet 取得了与支持向量机（support vector machines）性能相媲美的成果，成为监督学习的主流方法。直接上图和代码就能够清楚其结构</p>
 <p><img src="/archives/59b56001/image-20211127204926151.png" style="zoom:80%;"></p>
@@ -788,18 +787,17 @@ net <span class="token operator">=</span> torch<span class="token punctuation">.
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/59b56001.html">
+                <a href="/archives/d08db5b4.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="D2L 06 卷积神经网络">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="D2L 07 现代卷积神经网络">
                         
-                        <span class="card-title">D2L 06 卷积神经网络</span>
+                        <span class="card-title">D2L 07 现代卷积神经网络</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -809,9 +807,9 @@ net <span class="token operator">=</span> torch<span class="token punctuation">.
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-27
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-28
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -828,7 +826,6 @@ net <span class="token operator">=</span> torch<span class="token punctuation">.
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1033,7 +1030,7 @@ net <span class="token operator">=</span> torch<span class="token punctuation">.
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2022</span>
             
             <a href="/about" target="_blank">Declan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1041,7 +1038,7 @@ net <span class="token operator">=</span> torch<span class="token punctuation">.
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">101k</span>&nbsp;字
+                class="white-color">130k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

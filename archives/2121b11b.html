@@ -466,7 +466,8 @@
 <li><code>git clone url</code> 克隆远程仓库</li>
 <li><code>git clone -b branch_name url</code> 克隆指定分支</li>
 </ol>
-<p>删除仓库则只需要删除 .git 文件夹即可。如果在 clone 项目的时候发现速度很慢，推荐使用国内的镜像源，如：<a target="_blank" rel="noopener" href="https://gitclone.com/">gitclone</a> <a target="_blank" rel="noopener" href="https://doc.fastgit.org/zh-cn/">fastgit</a></p>
+<p>删除仓库则只需要删除 .git 文件夹即可</p>
+<h3 id="git-proxy-代理"><a href="#git-proxy-代理" class="headerlink" title="git proxy 代理"></a>git proxy 代理</h3><p>如果在 clone 项目的时候发现速度很慢，推荐使用国内的镜像源，如：<a target="_blank" rel="noopener" href="https://gitclone.com/">gitclone</a> <a target="_blank" rel="noopener" href="https://doc.fastgit.org/zh-cn/">fastgit</a></p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> config --global url.<span class="token string">"https://hub.fastgit.org/"</span>.insteadOf <span class="token string">"https://github.com/"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="Git-文件基本操作"><a href="#Git-文件基本操作" class="headerlink" title="Git 文件基本操作"></a>Git 文件基本操作</h2><h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p><code>git status</code> 查看 git 文件状态，<code>git status file_name</code> 可指定文件</p>
 <p>文件的几种状态：</p>
@@ -484,7 +485,7 @@
 <p><code>git add .</code> 将当前文件夹 add，比较方便快捷</p>
 <h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p><code>git commit -m 'message content'</code> 将暂存区所有文件加入到版本库中，并留下此次提交的 message</p>
 <p><code>git commit -am 'message content'</code> 将同时完成 <code>git add all</code>（即将所有改动文件加入暂存区）和 <code>git commit</code> 操作</p>
-<p><code>git commit -amend</code> 可以修改上一次提交的 commit message</p>
+<p><code>git commit --amend</code> 可以修改上一次提交的 commit message</p>
 <h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p><code>git rm --cached file_name</code> 将已经 commit 的文件从版本库中移除变为 untracked 文件</p>
 <p><code>git rm file_name</code> 不使用参数则代表彻底删除该文件</p>
 <h2 id="Git-版本回退"><a href="#Git-版本回退" class="headerlink" title="Git 版本回退"></a>Git 版本回退</h2><h3 id="git-log-amp-git-reflog"><a href="#git-log-amp-git-reflog" class="headerlink" title="git log &amp; git reflog"></a>git log &amp; git reflog</h3><p><code>git log</code> 查看 commit 历史记录，id，作者等信息</p>
@@ -835,16 +836,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">安装教程</span>
-                    </a>
-                    
                     <a href="/tags/Linux/">
                         <span class="chip bg-color">Linux</span>
                     </a>
                     
                     <a href="/tags/Windows/">
                         <span class="chip bg-color">Windows</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">安装教程</span>
                     </a>
                     
                 </div>
@@ -1041,7 +1042,7 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2022</span>
             
             <a href="/about" target="_blank">Declan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1049,7 +1050,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">101k</span>&nbsp;字
+                class="white-color">130k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -1,0 +1,1394 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="D2L 09 现代循环神经网络, ">
+    <meta name="description" content=" ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>D2L 09 现代循环神经网络 | </title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span"></span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name"></div>
+        <div class="logo-desc">
+            
+             
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">D2L 09 现代循环神经网络</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Dive-into-deep-learning/">
+                                <span class="chip bg-color">Dive into deep learning</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
+                                课程
+                            </a>
+                        
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/Dive-into-deep-learning/" class="post-category">
+                                Dive into deep learning
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-12-13
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    4.2k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="D2L-09-现代循环神经网络"><a href="#D2L-09-现代循环神经网络" class="headerlink" title="D2L 09 现代循环神经网络"></a>D2L 09 现代循环神经网络</h1><p>循环神经网络在实践中一个常见问题是数值不稳定性。 尽管我们已经应用了梯度裁剪等技巧来缓解这个问题， 但是仍需要通过设计更复杂的序列模型可以进一步处理它。 具体来说，我们将引入两个广泛使用的网络， 即门控循环单元（gated recurrent units，GRU）和 长短期记忆网络（long short-term memory，LSTM）。 然后，我们将基于一个单向隐藏层来扩展循环神经网络架构。 我们将描述具有多个隐藏层的深层架构， 并讨论基于前向和后向循环计算的双向设计。 现代循环网络经常采用这种扩展</p>
+<p>事实上，语言建模只揭示了序列学习能力的冰山一角。 在各种序列学习问题中，如自动语音识别、文本到语音转换和机器翻译， 输入和输出都是任意长度的序列。 为了阐述如何拟合这种类型的数据， 我们将以机器翻译为例介绍基于循环神经网络的 “编码器－解码器”架构和束搜索，并用它们来生成序列</p>
+<p><strong>由于我对于 RNN 的研究甚少，所以这些章节整理将会比较粗糙</strong></p>
+<h2 id="门控循环单元（GRU）"><a href="#门控循环单元（GRU）" class="headerlink" title="门控循环单元（GRU）"></a>门控循环单元（GRU）</h2><p>对于一个系列来说，不是每一个观察值都是同等重要，我们希望循环神经网络能够记住想要的观察，忽略不重要观察。GRU 使用了两个门：更新门和重置门来达到这样的目的，两个门具有以下两个显著特征：</p>
+<ul>
+<li>重置门有助于捕获序列中的短期依赖关系</li>
+<li>更新门有助于捕获序列中的长期依赖关系</li>
+</ul>
+<p>这意味着模型有专门的机制来确定应该何时更新隐状态， 以及应该何时重置隐状态。 这些机制是可学习的，并且能够解决了上面列出的问题。 例如，如果第一个词元非常重要， 模型将学会在第一次观测之后不更新隐状态。 同样，模型也可以学会跳过不相关的临时观测</p>
+<h3 id="门控隐状态"><a href="#门控隐状态" class="headerlink" title="门控隐状态"></a>门控隐状态</h3><h4 id="重置门和更新门"><a href="#重置门和更新门" class="headerlink" title="重置门和更新门"></a>重置门和更新门</h4><p>先看一个简单图解</p>
+<p><img src="/archives/5c4d4ee5/image-20211209195253434.png" style="zoom:80%;"></p>
+<p>再来看其数学表达，对于给定的时间步 t，假设输入是一个小批量 $X_t∈R^{n×d}$， 上一个时间步的隐状态是 $H_{t−1}∈R^{n×h}$ ，重置门 $R_t∈R^{n×h}$和更新门 $Z_t∈R^{n×h}$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbf{R}_{t} &=\sigma\left(\mathbf{X}_{t} \mathbf{W}_{x r}+\mathbf{H}_{t-1} \mathbf{W}_{h r}+\mathbf{b}_{r}\right), \\
+\mathbf{Z}_{t} &=\sigma\left(\mathbf{X}_{t} \mathbf{W}_{x z}+\mathbf{H}_{t-1} \mathbf{W}_{h z}+\mathbf{b}_{z}\right),
+\end{aligned}</script><p>使用 sigmoid 函数将输入值转换到区间 (0,1)，权重将 $X_t$ 和 $H_{t-1}$ 转化到维度为 $h$ 的隐状态</p>
+<h4 id="候选隐状态"><a href="#候选隐状态" class="headerlink" title="候选隐状态"></a>候选隐状态</h4><p>将重置门 $R_t$ 与常规隐状态更新机制集成， 得到在时间步 t 的候选隐状态（candidate hidden state） $\tilde{H}_t \in R^{n \times h}$</p>
+<script type="math/tex; mode=display">
+\tilde{\mathbf{H}}_{t}=\tanh \left(\mathbf{X}_{t} \mathbf{W}_{x h}+\left(\mathbf{R}_{t} \odot \mathbf{H}_{t-1}\right) \mathbf{W}_{h h}+\mathbf{b}_{h}\right)</script><p>符号 ⊙ 是 Hadamard 积（按元素乘积）运算符，我们使用 tanh 非线性激活函数来确保候选隐状态中的值保持在区间 (−1,1) 中</p>
+<p>当重置门接近为1就回到普通的循环神经网络，若重置门为0则放弃之前的隐状态</p>
+<h4 id="隐状态"><a href="#隐状态" class="headerlink" title="隐状态"></a>隐状态</h4><p>更新门将 $H_{t-1}$ 和 $\tilde{H}_t$ 之间进行按元素的凸组合，以确定保留多少上一步的隐状态，到此就得出了门控循环单元的最终更新公式</p>
+<script type="math/tex; mode=display">
+\mathbf{H}_{t}=\mathbf{Z}_{t} \odot \mathbf{H}_{t-1}+\left(1-\mathbf{Z}_{t}\right) \odot \tilde{\mathbf{H}}_{t}</script><p>最后放一个“花哨”的图示，来表示整个流程，实际上并没有数学表达看起来清晰</p>
+<p><img src="/archives/5c4d4ee5/image-20211209202833640.png" style="zoom: 80%;"></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>以上四个公式就是 GRU 的核心，贴一下从零实现的 GRU 核心代码，略去数据的初始化和隐状态的初始化</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">gru</span><span class="token punctuation">(</span>inputs<span class="token punctuation">,</span> state<span class="token punctuation">,</span> params<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    W_xz<span class="token punctuation">,</span> W_hz<span class="token punctuation">,</span> b_z<span class="token punctuation">,</span> W_xr<span class="token punctuation">,</span> W_hr<span class="token punctuation">,</span> b_r<span class="token punctuation">,</span> W_xh<span class="token punctuation">,</span> W_hh<span class="token punctuation">,</span> b_h<span class="token punctuation">,</span> W_hq<span class="token punctuation">,</span> b_q <span class="token operator">=</span> params
+    H<span class="token punctuation">,</span> <span class="token operator">=</span> state
+    outputs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> X <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
+        Z <span class="token operator">=</span> torch<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span><span class="token punctuation">(</span>X @ W_xz<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>H @ W_hz<span class="token punctuation">)</span> <span class="token operator">+</span> b_z<span class="token punctuation">)</span>
+        R <span class="token operator">=</span> torch<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span><span class="token punctuation">(</span>X @ W_xr<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>H @ W_hr<span class="token punctuation">)</span> <span class="token operator">+</span> b_r<span class="token punctuation">)</span>
+        H_tilda <span class="token operator">=</span> torch<span class="token punctuation">.</span>tanh<span class="token punctuation">(</span><span class="token punctuation">(</span>X @ W_xh<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>R <span class="token operator">*</span> H<span class="token punctuation">)</span> @ W_hh<span class="token punctuation">)</span> <span class="token operator">+</span> b_h<span class="token punctuation">)</span>
+        H <span class="token operator">=</span> Z <span class="token operator">*</span> H <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> Z<span class="token punctuation">)</span> <span class="token operator">*</span> H_tilda
+        Y <span class="token operator">=</span> H @ W_hq <span class="token operator">+</span> b_q
+        outputs<span class="token punctuation">.</span>append<span class="token punctuation">(</span>Y<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>H<span class="token punctuation">,</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>简洁实现 GRU 只需要一行，将其替换上一节的 RNN 单元，即可得到新的 RNN 模型</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">num_inputs <span class="token operator">=</span> vocab_size
+gru_layer <span class="token operator">=</span> nn<span class="token punctuation">.</span>GRU<span class="token punctuation">(</span>num_inputs<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">)</span>
+model <span class="token operator">=</span> d2l<span class="token punctuation">.</span>RNNModel<span class="token punctuation">(</span>gru_layer<span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>vocab<span class="token punctuation">)</span><span class="token punctuation">)</span>
+model <span class="token operator">=</span> model<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+d2l<span class="token punctuation">.</span>train_ch8<span class="token punctuation">(</span>model<span class="token punctuation">,</span> train_iter<span class="token punctuation">,</span> vocab<span class="token punctuation">,</span> lr<span class="token punctuation">,</span> num_epochs<span class="token punctuation">,</span> device<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="长短期记忆网络（LSTM）"><a href="#长短期记忆网络（LSTM）" class="headerlink" title="长短期记忆网络（LSTM）"></a>长短期记忆网络（LSTM）</h2><p>长期以来，隐变量模型存在着长期信息保存和短期输入缺失的问题。 解决这一问题的最早方法之一是长短期存储器（long short-term memory，LSTM），有趣的是，长短期记忆网络的设计比门控循环单元稍微复杂一些， 却比门控循环单元早诞生了近20年</p>
+<h3 id="门控记忆元"><a href="#门控记忆元" class="headerlink" title="门控记忆元"></a>门控记忆元</h3><p>该记忆元的实现比 GRU 稍微复杂一点，下面具体来看看</p>
+<h4 id="输入门、遗忘门和输出门"><a href="#输入门、遗忘门和输出门" class="headerlink" title="输入门、遗忘门和输出门"></a>输入门、遗忘门和输出门</h4><p>同样先看一个简单图解</p>
+<p><img src="/archives/5c4d4ee5/image-20211209203459078.png" style="zoom:80%;"></p>
+<p>再来看其数学表达式</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbf{I}_{t} &=\sigma\left(\mathbf{X}_{t} \mathbf{W}_{x i}+\mathbf{H}_{t-1} \mathbf{W}_{h i}+\mathbf{b}_{i}\right) \\
+\mathbf{F}_{t} &=\sigma\left(\mathbf{X}_{t} \mathbf{W}_{x f}+\mathbf{H}_{t-1} \mathbf{W}_{h f}+\mathbf{b}_{f}\right) \\
+\mathbf{O}_{t} &=\sigma\left(\mathbf{X}_{t} \mathbf{W}_{x o}+\mathbf{H}_{t-1} \mathbf{W}_{h o}+\mathbf{b}_{o}\right)
+\end{aligned}</script><p>就是和 GRU 的更新门和重置门一样的公式</p>
+<h4 id="候选记忆元"><a href="#候选记忆元" class="headerlink" title="候选记忆元"></a>候选记忆元</h4><p>类似于 GRU 的候选隐状态，也是受用 tanh 作为激活函数，但是不同的是没有其他门控的参与</p>
+<script type="math/tex; mode=display">
+\tilde{\mathbf{C}}_{t}=\tanh \left(\mathbf{X}_{t} \mathbf{W}_{x c}+\mathbf{H}_{t-1} \mathbf{W}_{h c}+\mathbf{b}_{c}\right)</script><h4 id="记忆元"><a href="#记忆元" class="headerlink" title="记忆元"></a>记忆元</h4><p>现在基础的材料准备完毕，开始进行组合控制。类似于 GRU 的最后隐状态更新，但是使用的是记忆元和两个门，其表达式如下</p>
+<script type="math/tex; mode=display">
+\mathbf{C}_{t}=\mathbf{F}_{t} \odot \mathbf{C}_{t-1}+\mathbf{I}_{t} \odot \tilde{\mathbf{C}}_{t}</script><h4 id="隐状态-1"><a href="#隐状态-1" class="headerlink" title="隐状态"></a>隐状态</h4><p>最终的隐状态更新公式为</p>
+<script type="math/tex; mode=display">
+\mathbf{H}_{t}=\mathbf{O}_{t} \odot \tanh \left(\mathbf{C}_{t}\right)</script><h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><p>从零实现的核心代码如下，同样这里忽略数据初始化和隐状态初始化</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">lstm</span><span class="token punctuation">(</span>inputs<span class="token punctuation">,</span> state<span class="token punctuation">,</span> params<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token punctuation">[</span>W_xi<span class="token punctuation">,</span> W_hi<span class="token punctuation">,</span> b_i<span class="token punctuation">,</span> W_xf<span class="token punctuation">,</span> W_hf<span class="token punctuation">,</span> b_f<span class="token punctuation">,</span> W_xo<span class="token punctuation">,</span> W_ho<span class="token punctuation">,</span> b_o<span class="token punctuation">,</span> W_xc<span class="token punctuation">,</span> W_hc<span class="token punctuation">,</span> b_c<span class="token punctuation">,</span>
+     W_hq<span class="token punctuation">,</span> b_q<span class="token punctuation">]</span> <span class="token operator">=</span> params
+    <span class="token punctuation">(</span>H<span class="token punctuation">,</span> C<span class="token punctuation">)</span> <span class="token operator">=</span> state
+    outputs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> X <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
+        I <span class="token operator">=</span> torch<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span><span class="token punctuation">(</span>X @ W_xi<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>H @ W_hi<span class="token punctuation">)</span> <span class="token operator">+</span> b_i<span class="token punctuation">)</span>
+        F <span class="token operator">=</span> torch<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span><span class="token punctuation">(</span>X @ W_xf<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>H @ W_hf<span class="token punctuation">)</span> <span class="token operator">+</span> b_f<span class="token punctuation">)</span>
+        O <span class="token operator">=</span> torch<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span><span class="token punctuation">(</span>X @ W_xo<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>H @ W_ho<span class="token punctuation">)</span> <span class="token operator">+</span> b_o<span class="token punctuation">)</span>
+        C_tilda <span class="token operator">=</span> torch<span class="token punctuation">.</span>tanh<span class="token punctuation">(</span><span class="token punctuation">(</span>X @ W_xc<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>H @ W_hc<span class="token punctuation">)</span> <span class="token operator">+</span> b_c<span class="token punctuation">)</span>
+        C <span class="token operator">=</span> F <span class="token operator">*</span> C <span class="token operator">+</span> I <span class="token operator">*</span> C_tilda
+        H <span class="token operator">=</span> O <span class="token operator">*</span> torch<span class="token punctuation">.</span>tanh<span class="token punctuation">(</span>C<span class="token punctuation">)</span>
+        Y <span class="token operator">=</span> <span class="token punctuation">(</span>H @ W_hq<span class="token punctuation">)</span> <span class="token operator">+</span> b_q
+        outputs<span class="token punctuation">.</span>append<span class="token punctuation">(</span>Y<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>H<span class="token punctuation">,</span> C<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看可以看到 LSTM 除了隐状态 $H_t$ 需要传递到下一个时间步，还需要传递记忆元 $C_t$，简洁实现如下</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">num_inputs <span class="token operator">=</span> vocab_size
+lstm_layer <span class="token operator">=</span> nn<span class="token punctuation">.</span>LSTM<span class="token punctuation">(</span>num_inputs<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">)</span>
+model <span class="token operator">=</span> d2l<span class="token punctuation">.</span>RNNModel<span class="token punctuation">(</span>lstm_layer<span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>vocab<span class="token punctuation">)</span><span class="token punctuation">)</span>
+model <span class="token operator">=</span> model<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+d2l<span class="token punctuation">.</span>train_ch8<span class="token punctuation">(</span>model<span class="token punctuation">,</span> train_iter<span class="token punctuation">,</span> vocab<span class="token punctuation">,</span> lr<span class="token punctuation">,</span> num_epochs<span class="token punctuation">,</span> device<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>教材仅仅是简单介绍了这些结构，对于这些结构为什么有用并没有深入分析。在吴恩达讲解的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FT4y1E74V?p=159">GRU</a> 讲解了一个简化版本，即没有重置门的版本，这就让重置门的作用变得更加模糊了。以我愚蠢的见解来看，GRU 的两个门控作用可能来自以下直觉：</p>
+<ol>
+<li>以残差网络的观点来理解更新门，能够让网络更好学习恒等变换，即方便保留历史信息</li>
+<li>重置门进一步增加网络灵活性，对隐状态加以权重，是否放弃历史状态以专注当前输入</li>
+</ol>
+<h2 id="深度循环神经网路"><a href="#深度循环神经网路" class="headerlink" title="深度循环神经网路"></a>深度循环神经网路</h2><p>到目前为止，我们只讨论了具有一个单向隐藏层的循环神经网络， 而在循环神经网络中，我们首先需要确定如何添加更多的层， 以及在哪里添加额外的非线性</p>
+<p>下面描述了一个具有 L 个隐藏层的深度循环神经网络， 每个隐状态都连续地传递到当前层的下一个时间步和下一层的当前时间步</p>
+<p><img src="/archives/5c4d4ee5/image-20211210150421071.png" style="zoom:80%;"></p>
+<p>数学表示如下：</p>
+<script type="math/tex; mode=display">
+\mathbf{H}_{t}^{(l)}=\phi_{l}\left(\mathbf{H}_{t}^{(l-1)} \mathbf{W}_{x h}^{(l)}+\mathbf{H}_{t-1}^{(l)} \mathbf{W}_{h h}^{(l)}+\mathbf{b}_{h}^{(l)}\right)\\
+\mathbf{O}_{t}=\mathbf{H}_{t}^{(L)} \mathbf{W}_{h q}+\mathbf{b}_{q}</script><p>与多层感知机一样，隐藏层数目 L 和隐藏单元数目 h 都是超参数</p>
+<h3 id="简介实现"><a href="#简介实现" class="headerlink" title="简介实现"></a>简介实现</h3><p>只需要多加一个参数 <code>num_layers</code> 就可以搞定了</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">vocab_size<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">,</span> num_layers <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>vocab<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">2</span>
+num_inputs <span class="token operator">=</span> vocab_size
+device <span class="token operator">=</span> d2l<span class="token punctuation">.</span>try_gpu<span class="token punctuation">(</span><span class="token punctuation">)</span>
+lstm_layer <span class="token operator">=</span> nn<span class="token punctuation">.</span>LSTM<span class="token punctuation">(</span>num_inputs<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">,</span> num_layers<span class="token punctuation">)</span>
+model <span class="token operator">=</span> d2l<span class="token punctuation">.</span>RNNModel<span class="token punctuation">(</span>lstm_layer<span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>vocab<span class="token punctuation">)</span><span class="token punctuation">)</span>
+model <span class="token operator">=</span> model<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>由于使用了长短期记忆网络模型来实例化两个层，因此训练速度被大大降低了（左侧为单层 GRU，右侧为两层 GRU）</p>
+<p><img src="/archives/5c4d4ee5/image-20211210151851947.png" style="zoom:80%;"></p>
+<h2 id="双向循环神经网络"><a href="#双向循环神经网络" class="headerlink" title="双向循环神经网络"></a>双向循环神经网络</h2><p>双向循环神经网络的一个关键特性是：使用来自序列两端的信息来估计输出。 也就是说，我们<strong>使用来自过去和未来的观测信息来预测当前的观测</strong>。 但是在对下一个词元进行预测的情况中，这样的模型并不是我们所需的</p>
+<p>双向层的使用在实践中非常少，并且仅仅应用于部分场合。 例如，填充缺失的单词、词元注释（例如，用于命名实体识别） 以及作为序列处理流水线中的一个步骤对序列进行编码（<strong>例如，用于机器翻译</strong>）</p>
+<p><img src="/archives/5c4d4ee5/image-20211210154429643.png" style="zoom: 80%;"></p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+\overrightarrow{\mathbf{H}}_{t}=\phi\left(\mathbf{X}_{t} \mathbf{W}_{x h}^{(f)}+\overrightarrow{\mathbf{H}}_{t-1} \mathbf{W}_{h h}^{(f)}+\mathbf{b}_{h}^{(f)}\right) \\
+\overleftarrow{\mathbf{H}}_{t}=\phi\left(\mathbf{X}_{t} \mathbf{W}_{x h}^{(b)}+\overleftarrow{\mathbf{H}}_{t+1} \mathbf{W}_{h h}^{(b)}+\mathbf{b}_{h}^{(b)}\right)
+\end{array}</script><p>将两个方向的隐状态连接起来进行对输出的预测</p>
+<script type="math/tex; mode=display">
+\mathbf{O}_{t}=\mathbf{H}_{t} \mathbf{W}_{h q}+\mathbf{b}_{q}</script><h2 id="机器翻译与数据集"><a href="#机器翻译与数据集" class="headerlink" title="机器翻译与数据集"></a>机器翻译与数据集</h2><p>需要了解的点：</p>
+<ol>
+<li><p>机器翻译的数据集是由源语言和目标语言的文本序列对组成的</p>
+</li>
+<li><p>在机器翻译中，我们更喜欢单词级词元化 （最先进的模型可能使用更高级的词元化技术）其中每个词元要么是一个词，要么是一个标点符号</p>
+</li>
+<li><p>由于机器翻译数据集由语言对组成， 因此我们可以分别为源语言和目标语言构建两个词表</p>
+</li>
+<li><p>我们还指定了额外的特定词元， 例如在小批量时用于将序列填充到相同长度的填充词元（“<pad>”）， 以及序列的开始词元（“<bos>”）和结束词元（“<eos>”）。 这些特殊词元在自然语言处理任务中比较常用</eos></bos></pad></p>
+</li>
+<li><p>在机器翻译中，每个样本都是由源和目标组成的文本序列对， 其中的每个文本序列可能具有不同的长度。为了提高计算效率，我们仍然可以通过截断（truncation）和 填充（padding）方式实现一次只处理一个小批量的文本序列</p>
+</li>
+</ol>
+<h2 id="编码器-解码器架构"><a href="#编码器-解码器架构" class="headerlink" title="编码器-解码器架构"></a>编码器-解码器架构</h2><p> 为了处理这种类型的输入和输出， 我们可以设计一个包含两个主要组件的架构： 第一个组件是一个编码器（encoder）： 它接受一个长度可变的序列作为输入， 并将其转换为具有固定形状的编码状态。 第二个组件是解码器（decoder）： 它将固定形状的编码状态映射到长度可变的序列。 这被称为编码器-解码器（encoder-decoder）架构</p>
+<p><img src="/archives/5c4d4ee5/image-20211210160641142.png" style="zoom:80%;"></p>
+<h2 id="序列到序列学习（seq2seq）"><a href="#序列到序列学习（seq2seq）" class="headerlink" title="序列到序列学习（seq2seq）"></a>序列到序列学习（seq2seq）</h2><p> 本节，我们将使用两个循环神经网络的编码器和解码器， 并将其应用于序列到序列（sequence to sequence，seq2seq）类的学习任务</p>
+<p>循环神经网络<strong>编码器</strong>使用长度可变的序列作为输入， 将其转换为固定形状的隐状态。 为了连续生成输出序列的词元， 独立的循环神经网络<strong>解码器</strong>是基于输入序列的编码信息和输出序列已经看见的（train mode）或者生成的词元（test mode）来预测下一个词元</p>
+<p><img src="/archives/5c4d4ee5/image-20211210164750436.png" style="zoom:80%;"></p>
+<p>需要了解的点：</p>
+<ol>
+<li><p>图示结构中，编码器最终的隐状态在每一个时间步都作为解码器的输入序列的一部分。具体来说是和 input 进行维度连接 <code>torch.cat</code></p>
+</li>
+<li><p>编码器 RNN 是没有输出层的，并且可以是双向 RNN</p>
+</li>
+<li><p>在训练时解码器使用标签作为输入；推理时解码器使用上一时间步的输出作为输入</p>
+</li>
+<li><p>衡量生成序列的好坏使用 BLEU (bilingual evaluation understudy)</p>
+<script type="math/tex; mode=display">
+\exp \left(\min \left(0,1-\frac{\text { len }_{\text {label }}}{\text { len }_{\text {pred }}}\right)\right) \prod_{n=1}^{k} p_{n}^{1 / 2^{n}}</script><p>关于 BLEU:</p>
+<ol>
+<li><p>BLEU 值越大表示结果越好</p>
+</li>
+<li><p>其中 len 表示词元数，k 是用于匹配的最长的 n 元语法。 另外，用 $p_n$ 表示 n 元语法的精确度，它是两个数量的比值：</p>
+<script type="math/tex; mode=display">
+\frac{\text{matched n-gram number}}{\text{total predicted n-gram number}}</script><p>第一个是预测序列与标签序列中匹配的 n 元语法的数量， 第二个是预测序列中 n 元语法的数量。看个小例子，来自教材的讲解视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16g411L7FG?p=1">bilibili</a></p>
+<p><img src="/archives/5c4d4ee5/image-20211210173916201.png" style="zoom: 33%;"></p>
+</li>
+<li><p>n-gram 语法中，n 越大对其越重视（BLEU 中指数的原因）</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>看看编码器和解码器的代码</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#@save</span>
+<span class="token keyword">class</span> <span class="token class-name">Seq2SeqEncoder</span><span class="token punctuation">(</span>d2l<span class="token punctuation">.</span>Encoder<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""用于序列到序列学习的循环神经网络编码器"""</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> vocab_size<span class="token punctuation">,</span> embed_size<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">,</span> num_layers<span class="token punctuation">,</span>
+                 dropout<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>Seq2SeqEncoder<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+        <span class="token comment"># 嵌入层</span>
+        self<span class="token punctuation">.</span>embedding <span class="token operator">=</span> nn<span class="token punctuation">.</span>Embedding<span class="token punctuation">(</span>vocab_size<span class="token punctuation">,</span> embed_size<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>rnn <span class="token operator">=</span> nn<span class="token punctuation">.</span>GRU<span class="token punctuation">(</span>embed_size<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">,</span> num_layers<span class="token punctuation">,</span>
+                          dropout<span class="token operator">=</span>dropout<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> X<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 输出'X'的形状：(batch_size,num_steps,embed_size)</span>
+        X <span class="token operator">=</span> self<span class="token punctuation">.</span>embedding<span class="token punctuation">(</span>X<span class="token punctuation">)</span>
+        <span class="token comment"># 在循环神经网络模型中，第一个轴对应于时间步</span>
+        X <span class="token operator">=</span> X<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token comment"># 如果未提及状态，则默认为0</span>
+        output<span class="token punctuation">,</span> state <span class="token operator">=</span> self<span class="token punctuation">.</span>rnn<span class="token punctuation">(</span>X<span class="token punctuation">)</span>
+        <span class="token comment"># output的形状:(num_steps,batch_size,num_hiddens)</span>
+        <span class="token comment"># state[0]的形状:(num_layers,batch_size,num_hiddens)</span>
+        <span class="token keyword">return</span> output<span class="token punctuation">,</span> state
+
+<span class="token keyword">class</span> <span class="token class-name">Seq2SeqDecoder</span><span class="token punctuation">(</span>d2l<span class="token punctuation">.</span>Decoder<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""用于序列到序列学习的循环神经网络解码器"""</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> vocab_size<span class="token punctuation">,</span> embed_size<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">,</span> num_layers<span class="token punctuation">,</span>
+                 dropout<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>Seq2SeqDecoder<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>embedding <span class="token operator">=</span> nn<span class="token punctuation">.</span>Embedding<span class="token punctuation">(</span>vocab_size<span class="token punctuation">,</span> embed_size<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>rnn <span class="token operator">=</span> nn<span class="token punctuation">.</span>GRU<span class="token punctuation">(</span>embed_size <span class="token operator">+</span> num_hiddens<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">,</span> num_layers<span class="token punctuation">,</span>
+                          dropout<span class="token operator">=</span>dropout<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>dense <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>num_hiddens<span class="token punctuation">,</span> vocab_size<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">init_state</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> enc_outputs<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> enc_outputs<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> X<span class="token punctuation">,</span> state<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 输出'X'的形状：(batch_size,num_steps,embed_size)</span>
+        X <span class="token operator">=</span> self<span class="token punctuation">.</span>embedding<span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token comment"># 广播context，使其具有与X相同的num_steps</span>
+        context <span class="token operator">=</span> state<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>repeat<span class="token punctuation">(</span>X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        X_and_context <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> context<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+        output<span class="token punctuation">,</span> state <span class="token operator">=</span> self<span class="token punctuation">.</span>rnn<span class="token punctuation">(</span>X_and_context<span class="token punctuation">,</span> state<span class="token punctuation">)</span>
+        output <span class="token operator">=</span> self<span class="token punctuation">.</span>dense<span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token comment"># output的形状:(batch_size,num_steps,vocab_size)</span>
+        <span class="token comment"># state[0]的形状:(num_layers,batch_size,num_hiddens)</span>
+        <span class="token keyword">return</span> output<span class="token punctuation">,</span> state<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="束搜索（beam-search）"><a href="#束搜索（beam-search）" class="headerlink" title="束搜索（beam search）"></a>束搜索（beam search）</h2><h3 id="贪心搜索"><a href="#贪心搜索" class="headerlink" title="贪心搜索"></a>贪心搜索</h3><p>对于输出序列的每一时间步 t′， 我们都将基于贪心搜索从输出中找到具有最高条件概率的词元</p>
+<script type="math/tex; mode=display">
+y_{t^{\prime}}=\underset{y \in \mathcal{Y}}{\operatorname{argmax}} P\left(y \mid y_{1}, \ldots, y_{t^{\prime}-1}, \mathbf{c}\right)</script><p>那么贪心搜索存在的问题是什么呢？ 现实中，最优序列（optimal sequence）应该是最大化</p>
+<script type="math/tex; mode=display">
+\prod_{t^{\prime}=1}^{T^{\prime}} P\left(y_{t^{\prime}} \mid y_{1}, \ldots, y_{t^{\prime}-1}, \mathbf{c}\right)</script><p>这是基于输入序列生成输出序列的条件概率。 然而，贪心搜索无法保证得到最优序列</p>
+<h3 id="穷举搜索"><a href="#穷举搜索" class="headerlink" title="穷举搜索"></a>穷举搜索</h3><p>虽然穷举搜索能保证最优解，但其计算量是不可接受的，为 $O(|Y|^{T’})$ 其中 Y 为词表长度，T’ 为输出最大长度</p>
+<h3 id="束搜索"><a href="#束搜索" class="headerlink" title="束搜索"></a>束搜索</h3><p>束搜索（beam search）是贪心搜索的一个改进版本。 它有一个超参数，名为束宽（beam size）k。 在时间步1，我们选择具有最高条件概率的 k 个词元。 在随后的每个时间步，基于上一时间步的 k 个候选输出序列， 我们将继续从 k|Y| 个可能的选择中挑出具有最高条件概率的 k 个候选输出序列，图示如下</p>
+<p><img src="/archives/5c4d4ee5/image-20211210180349192.png" style="zoom:80%;"></p>
+<p>束搜索的计算量为 $O(k|Y|T’)$</p>
+<p>对于我们获得最终候选输出序列集合（不仅仅是最后 k 个集合，还可以包含之前的候选系列），选择其中条件概率乘积最高的序列作为输出序列</p>
+<script type="math/tex; mode=display">
+\frac{1}{L^{\alpha}} \log P\left(y_{1}, \ldots, y_{L} \mid \mathbf{c}\right)=\frac{1}{L^{\alpha}} \sum_{t^{\prime}=1}^{L} \log P\left(y_{t^{\prime}} \mid y_{1}, \ldots, y_{t^{\prime}-1}, \mathbf{c}\right)</script><p>其中 L 部分是对长句的奖励，就像 BLEU 一样</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Declan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://hongkun.space/archives/5c4d4ee5.html">https://hongkun.space/archives/5c4d4ee5.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Declan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Dive-into-deep-learning/">
+                                    <span class="chip bg-color">Dive into deep learning</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+        <div class="card">
+	    <script src="https://utteranc.es/client.js"
+	    repo="DeclK/declk.github.io"
+	    issue-term="pathname"
+	    theme="github-light"
+	    crossorigin="anonymous"
+	    async>
+	    </script>
+            
+
+            
+
+            
+
+            
+
+            
+			
+			
+
+            
+
+        </div>
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/archives/5c4d4ee5.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="D2L 09 现代循环神经网络">
+                        
+                        <span class="card-title">D2L 09 现代循环神经网络</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
+                                    课程
+                                </a>
+                            
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/Dive-into-deep-learning/" class="post-category">
+                                    Dive into deep learning
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Dive-into-deep-learning/">
+                        <span class="chip bg-color">Dive into deep learning</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/a67a203a.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="D2L 08 循环神经网络">
+                        
+                        <span class="card-title">D2L 08 循环神经网络</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
+                                    课程
+                                </a>
+                            
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/Dive-into-deep-learning/" class="post-category">
+                                    Dive into deep learning
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Dive-into-deep-learning/">
+                        <span class="chip bg-color">Dive into deep learning</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">Declan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">130k</span>&nbsp;字
+            
+            <span id="sitetime"></span>
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/DeclK" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hongkun20sme@smail.nju.edu.cn" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="https://space.bilibili.com/385931953" class="tooltipped" target="_blank" data-tooltip="访问我的bilibili" data-position="top" data-delay="50">
+        <i class="fas fa-bold"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        var t1 = Date.UTC(2021, 06, 30, 00, 00, 00); //起始北京时间
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 180;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 200;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substring(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

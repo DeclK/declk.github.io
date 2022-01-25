@@ -1,0 +1,1685 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="OpenPCDet VoxelRCNN, ">
+    <meta name="description" content=" ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>OpenPCDet VoxelRCNN | </title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span"></span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name"></div>
+        <div class="logo-desc">
+            
+             
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">OpenPCDet VoxelRCNN</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/OpenPCDet/">
+                                <span class="chip bg-color">OpenPCDet</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                编程
+                            </a>
+                        
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/OpenMMLab/" class="post-category">
+                                OpenMMLab
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-12-20
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    4k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Voxel-R-CNN"><a href="#Voxel-R-CNN" class="headerlink" title="Voxel R-CNN"></a>Voxel R-CNN</h1><h2 id="VoxelRCNN"><a href="#VoxelRCNN" class="headerlink" title="VoxelRCNN"></a>VoxelRCNN</h2><p>来看看 Voxel R-CNN 的实现，由于高度的抽象化和良好的封装，其模型代码和 SECOND 相比，仅多一行 <code>loss_rcnn, tb_dict = self.roi_head.get_loss(tb_dict)</code> 与 roi 相关</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">VoxelRCNN</span><span class="token punctuation">(</span>Detector3DTemplate<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> model_cfg<span class="token punctuation">,</span> num_class<span class="token punctuation">,</span> dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>model_cfg<span class="token operator">=</span>model_cfg<span class="token punctuation">,</span> num_class<span class="token operator">=</span>num_class<span class="token punctuation">,</span> dataset<span class="token operator">=</span>dataset<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>module_list <span class="token operator">=</span> self<span class="token punctuation">.</span>build_networks<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> batch_dict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> cur_module <span class="token keyword">in</span> self<span class="token punctuation">.</span>module_list<span class="token punctuation">:</span>
+            batch_dict <span class="token operator">=</span> cur_module<span class="token punctuation">(</span>batch_dict<span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>training<span class="token punctuation">:</span>
+            loss<span class="token punctuation">,</span> tb_dict<span class="token punctuation">,</span> disp_dict <span class="token operator">=</span> self<span class="token punctuation">.</span>get_training_loss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+            ret_dict <span class="token operator">=</span> <span class="token punctuation">{</span>
+                <span class="token string">'loss'</span><span class="token punctuation">:</span> loss
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> ret_dict<span class="token punctuation">,</span> tb_dict<span class="token punctuation">,</span> disp_dict
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            pred_dicts<span class="token punctuation">,</span> recall_dicts <span class="token operator">=</span> self<span class="token punctuation">.</span>post_processing<span class="token punctuation">(</span>batch_dict<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> pred_dicts<span class="token punctuation">,</span> recall_dicts
+
+    <span class="token keyword">def</span> <span class="token function">get_training_loss</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        disp_dict <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        loss <span class="token operator">=</span> <span class="token number">0</span>
+        
+        loss_rpn<span class="token punctuation">,</span> tb_dict <span class="token operator">=</span> self<span class="token punctuation">.</span>dense_head<span class="token punctuation">.</span>get_loss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        loss_rcnn<span class="token punctuation">,</span> tb_dict <span class="token operator">=</span> self<span class="token punctuation">.</span>roi_head<span class="token punctuation">.</span>get_loss<span class="token punctuation">(</span>tb_dict<span class="token punctuation">)</span>
+
+        loss <span class="token operator">=</span> loss <span class="token operator">+</span> loss_rpn <span class="token operator">+</span> loss_rcnn
+        <span class="token keyword">return</span> loss<span class="token punctuation">,</span> tb_dict<span class="token punctuation">,</span> disp_dict<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="MeanVFE-VFE"><a href="#MeanVFE-VFE" class="headerlink" title="MeanVFE (VFE)"></a>MeanVFE (VFE)</h2><p>将体素中每个点的特征进行平均，batch_dict 添加了 vfe_features 关键字</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> batch_dict<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token string">""</span>"
+    Args<span class="token punctuation">:</span>
+        batch_dict<span class="token punctuation">:</span>
+            voxels<span class="token punctuation">:</span> <span class="token punctuation">(</span>num_voxels<span class="token punctuation">,</span> max_points_per_voxel<span class="token punctuation">,</span> C<span class="token punctuation">)</span>
+            voxel_num_points<span class="token punctuation">:</span> optional <span class="token punctuation">(</span>num_voxels<span class="token punctuation">)</span>
+        <span class="token operator">**</span>kwargs<span class="token punctuation">:</span>
+
+    Returns<span class="token punctuation">:</span>
+        vfe_features<span class="token punctuation">:</span> <span class="token punctuation">(</span>num_voxels<span class="token punctuation">,</span> C<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="VoxelBackBone8x-BACKBONE-3D"><a href="#VoxelBackBone8x-BACKBONE-3D" class="headerlink" title="VoxelBackBone8x (BACKBONE_3D)"></a>VoxelBackBone8x (BACKBONE_3D)</h2><h3 id="Spconv"><a href="#Spconv" class="headerlink" title="Spconv"></a>Spconv</h3><p>首先总结一下 spconv1.2 的操作逻辑</p>
+<ol>
+<li><p>生成 <code>SparseConvTensor</code> </p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> spconv
+
+features <span class="token operator">=</span> <span class="token comment"># [N, num_channels]</span>
+indices <span class="token operator">=</span> <span class="token comment"># your indices/coordinates with shape [N, ndim + 1] (in 3D ndim=3), batch index must be put in indices[:, 0]</span>
+spatial_shape <span class="token operator">=</span> <span class="token comment"># spatial shape of your sparse tensor, (in 3D its shape=[3]) .</span>
+batch_size <span class="token operator">=</span> <span class="token comment"># batch size of your sparse tensor.</span>
+x <span class="token operator">=</span> spconv<span class="token punctuation">.</span>SparseConvTensor<span class="token punctuation">(</span>features<span class="token punctuation">,</span> indices<span class="token punctuation">,</span> spatial_shape<span class="token punctuation">,</span> batch_size<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>像 Pytorch 一样使用卷积，常用两种卷积 <code>SparseConv3d &amp; SubMconv3d</code>，常用一个容器模块 <code>spconv.SparseSequential</code>，<code>indice_key</code> 可以用于节省相同形状/相同索引的稀疏卷积层建立时间</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">self<span class="token punctuation">.</span>net <span class="token operator">=</span> spconv<span class="token punctuation">.</span>SparseSequential<span class="token punctuation">(</span>
+            spconv<span class="token punctuation">.</span>SparseConv3d<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment"># just like nn.Conv3d but don't support group</span>
+            nn<span class="token punctuation">.</span>BatchNorm1d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment"># non-spatial layers can be used directly in SparseSequential.</span>
+            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            spconv<span class="token punctuation">.</span>SubMConv3d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> indice_key<span class="token operator">=</span><span class="token string">"subm0"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>BatchNorm1d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token comment"># when use submanifold convolutions, their indices can be shared to save indices generation time.</span>
+            spconv<span class="token punctuation">.</span>SubMConv3d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> indice_key<span class="token operator">=</span><span class="token string">"subm0"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>BatchNorm1d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            spconv<span class="token punctuation">.</span>SparseConvTranspose3d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>BatchNorm1d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            spconv<span class="token punctuation">.</span>ToDense<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment"># convert spconv tensor to dense and convert it to NCHW format.</span>
+            nn<span class="token punctuation">.</span>Conv3d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>BatchNorm1d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>将 <code>SparseConvTensor</code> 转变为正常的 dense tensor</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x_dense_NCHW <span class="token operator">=</span> x<span class="token punctuation">.</span>dense<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># convert sparse tensor to dense (N,C,D,H,W) tensor.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ol>
+<h3 id="VoxelBackBone8x"><a href="#VoxelBackBone8x" class="headerlink" title="VoxelBackBone8x"></a>VoxelBackBone8x</h3><p>这部分直接看前向方程会有更直观的理解，最终返回了一个字典，不仅包含了输出的特征图谱，还有在卷积过程中每一个分辨率的特征图谱也保存下来了 <code>encoded_spconv_tensor &amp; multi_scale_3d_features</code>，卷积层的具体设置请直接看源码</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> batch_dict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Args:
+        batch_dict:
+            batch_size: int
+            vfe_features: (num_voxels, C)
+            voxel_coords: (num_voxels, 4), [batch_idx, z_idx, y_idx, x_idx]
+    Returns:
+        batch_dict:
+            - encoded_spconv_tensor: sparse tensor
+                To be exact: in KITTI, spatial shape is [200, 176, 2], channel num is 128
+                But haven't converted to dense format yet
+            - encoded_spconv_tensor_stride
+            - multi_scale_3d_features
+            - multi_scale_3d_strides
+    """</span>
+    voxel_features<span class="token punctuation">,</span> voxel_coords <span class="token operator">=</span> batch_dict<span class="token punctuation">[</span><span class="token string">'voxel_features'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> batch_dict<span class="token punctuation">[</span><span class="token string">'voxel_coords'</span><span class="token punctuation">]</span>
+    batch_size <span class="token operator">=</span> batch_dict<span class="token punctuation">[</span><span class="token string">'batch_size'</span><span class="token punctuation">]</span>
+    input_sp_tensor <span class="token operator">=</span> spconv<span class="token punctuation">.</span>SparseConvTensor<span class="token punctuation">(</span>
+        features<span class="token operator">=</span>voxel_features<span class="token punctuation">,</span>
+        indices<span class="token operator">=</span>voxel_coords<span class="token punctuation">.</span><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        spatial_shape<span class="token operator">=</span>self<span class="token punctuation">.</span>sparse_shape<span class="token punctuation">,</span>
+        batch_size<span class="token operator">=</span>batch_size
+    <span class="token punctuation">)</span>
+
+    x <span class="token operator">=</span> self<span class="token punctuation">.</span>conv_input<span class="token punctuation">(</span>input_sp_tensor<span class="token punctuation">)</span>
+
+    x_conv1 <span class="token operator">=</span> self<span class="token punctuation">.</span>conv1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    x_conv2 <span class="token operator">=</span> self<span class="token punctuation">.</span>conv2<span class="token punctuation">(</span>x_conv1<span class="token punctuation">)</span>
+    x_conv3 <span class="token operator">=</span> self<span class="token punctuation">.</span>conv3<span class="token punctuation">(</span>x_conv2<span class="token punctuation">)</span>
+    x_conv4 <span class="token operator">=</span> self<span class="token punctuation">.</span>conv4<span class="token punctuation">(</span>x_conv3<span class="token punctuation">)</span>
+
+    <span class="token comment"># for detection head</span>
+    <span class="token comment"># [200, 176, 5] -&gt; [200, 176, 2]</span>
+    out <span class="token operator">=</span> self<span class="token punctuation">.</span>conv_out<span class="token punctuation">(</span>x_conv4<span class="token punctuation">)</span>
+
+    batch_dict<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token string">'encoded_spconv_tensor'</span><span class="token punctuation">:</span> out<span class="token punctuation">,</span>
+        <span class="token string">'encoded_spconv_tensor_stride'</span><span class="token punctuation">:</span> <span class="token number">8</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    batch_dict<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token string">'multi_scale_3d_features'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'x_conv1'</span><span class="token punctuation">:</span> x_conv1<span class="token punctuation">,</span>
+            <span class="token string">'x_conv2'</span><span class="token punctuation">:</span> x_conv2<span class="token punctuation">,</span>
+            <span class="token string">'x_conv3'</span><span class="token punctuation">:</span> x_conv3<span class="token punctuation">,</span>
+            <span class="token string">'x_conv4'</span><span class="token punctuation">:</span> x_conv4<span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    batch_dict<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token string">'multi_scale_3d_strides'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'x_conv1'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token string">'x_conv2'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token string">'x_conv3'</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+            <span class="token string">'x_conv4'</span><span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> batch_dict
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>发现代码库里实现了残差模块 <code>VoxelResBackBone8x</code>，但是在论文当中并没有使用残差网络</p>
+<h2 id="HeightCompression-MAP-TO-BEV"><a href="#HeightCompression-MAP-TO-BEV" class="headerlink" title="HeightCompression (MAP_TO_BEV)"></a>HeightCompression (MAP_TO_BEV)</h2><p>这部分就是将 <code>SparseConvTensor</code> 转为 dense tensor 并将高度的特征堆叠</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> batch_dict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Args:
+        batch_dict:
+            encoded_spconv_tensor: sparse tensor
+    Returns:
+        batch_dict:
+            - spatial_features: shape is (N, C * D, H, W)
+            - spatial_feature_stride: encoded_spconv_tensor_stride
+
+    """</span>
+    encoded_spconv_tensor <span class="token operator">=</span> batch_dict<span class="token punctuation">[</span><span class="token string">'encoded_spconv_tensor'</span><span class="token punctuation">]</span>
+    spatial_features <span class="token operator">=</span> encoded_spconv_tensor<span class="token punctuation">.</span>dense<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    N<span class="token punctuation">,</span> C<span class="token punctuation">,</span> D<span class="token punctuation">,</span> H<span class="token punctuation">,</span> W <span class="token operator">=</span> spatial_features<span class="token punctuation">.</span>shape
+    spatial_features <span class="token operator">=</span> spatial_features<span class="token punctuation">.</span>view<span class="token punctuation">(</span>N<span class="token punctuation">,</span> C <span class="token operator">*</span> D<span class="token punctuation">,</span> H<span class="token punctuation">,</span> W<span class="token punctuation">)</span>
+    batch_dict<span class="token punctuation">[</span><span class="token string">'spatial_features'</span><span class="token punctuation">]</span> <span class="token operator">=</span> spatial_features
+    batch_dict<span class="token punctuation">[</span><span class="token string">'spatial_features_stride'</span><span class="token punctuation">]</span> <span class="token operator">=</span> batch_dict<span class="token punctuation">[</span><span class="token string">'encoded_spconv_tensor_stride'</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> batch_dict<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="BaseBEVBackbone-BACKBONE-2D"><a href="#BaseBEVBackbone-BACKBONE-2D" class="headerlink" title="BaseBEVBackbone (BACKBONE_2D)"></a>BaseBEVBackbone (BACKBONE_2D)</h2><p>接下来进入 2D 卷积网络，对 <code>encoded_spconv_tensor</code> 进行特征提取，这里用配置文件进行说明比较方便</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">BACKBONE_2D</span><span class="token punctuation">:</span>
+    <span class="token key atrule">NAME</span><span class="token punctuation">:</span> BaseBEVBackbone
+
+    <span class="token comment"># 5 convolution layers, input channel == output channel == nun_filters[idx], stride = 1</span>
+    <span class="token key atrule">LAYER_NUMS</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+    <span class="token key atrule">LAYER_STRIDES</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
+    <span class="token key atrule">NUM_FILTERS</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">]</span>
+    <span class="token key atrule">UPSAMPLE_STRIDES</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
+    <span class="token key atrule">NUM_UPSAMPLE_FILTERS</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用了两个卷积块，每个卷积块由 (5 + 1) 个卷积层组成，+1 代表的卷积层用于通道数的转换，两个卷积块有不同的 stride 以获得不同分辨率。之后使用上采样将两个不同分辨率的特征图谱转换成相同的特征图谱，然后将二者进行通道连接</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data_dict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Args:
+        data_dict:
+            spatial_features: shape is (N, C * D, H, W)
+    Returns:
+        data_dict: spatial_features_2d (N, channels, H, W)
+    """</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="AnchorHeadSingle-DENSE-HEAD"><a href="#AnchorHeadSingle-DENSE-HEAD" class="headerlink" title="AnchorHeadSingle (DENSE_HEAD)"></a>AnchorHeadSingle (DENSE_HEAD)</h2><p>这将会比较复杂的部分。anchor 生成，target 分配，损失函数的计算，预测结果，都将在这个 <code>DENSE_HEAD</code> 中完成。该类的实现也是有基类的 <code>AnchorHeadTemplate</code></p>
+<h3 id="AnchorHeadTemplate"><a href="#AnchorHeadTemplate" class="headerlink" title="AnchorHeadTemplate"></a>AnchorHeadTemplate</h3><p>这个基类功能也非常多，我暂且把它的功能分为两大类：anchor 相关和 loss 相关</p>
+<h4 id="Anchor-相关"><a href="#Anchor-相关" class="headerlink" title="Anchor 相关"></a>Anchor 相关</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">AnchorHeadTemplate</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> model_cfg<span class="token punctuation">,</span> num_class<span class="token punctuation">,</span> class_names<span class="token punctuation">,</span> grid_size<span class="token punctuation">,</span> point_cloud_range<span class="token punctuation">,</span> predict_boxes_when_training<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        Attributes:
+        	- self.anchors
+            - self.box_coder
+            - self.target_assigner
+            - self.forward_ret_dict
+        """</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol>
+<li><p><code>anchors</code>：一个列表，每个成员对一个类别，一般成员的张量形状都是一样的，<code>anchors[0].shape = (z, y, x, num_anchor_size, num_anchor_rotation, 7)</code>，anchors 的生成就不过多介绍了</p>
+</li>
+<li><p><code>box_encoder</code>：可以看作生成回归目标的类，有两个主要功能：输入 anchors 和 gt_boxes，将返回二者的残差；输入残差和 anchors 返回真实的 boxes</p>
+</li>
+<li><p><code>target_assigner</code>：其 <code>assign_targets</code> 方法返回一个字典</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">all_targets_dict <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token string">'box_cls_labels'</span><span class="token punctuation">:</span> cls_labels<span class="token punctuation">,</span>   	<span class="token comment"># shape is (4, 211200) in KITTI, bg box is 0, fg box is int like (1, 2, 3)</span>
+    											<span class="token comment"># those don't care is -1</span>
+            <span class="token string">'box_reg_targets'</span><span class="token punctuation">:</span> bbox_targets<span class="token punctuation">,</span>    <span class="token comment"># (4, 211200, 7) to be exact, (4, 200*176*2*3, 7)</span>
+            <span class="token string">'reg_weights'</span><span class="token punctuation">:</span> reg_weights			<span class="token comment"># 1 or 1 / positive_anchors (if normalize), negative anchors are 0</span>
+    											<span class="token comment"># regression weights 在之后似乎并没有用到，而是直接从 cls_label 里进行判断</span>
+        <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>发现这里没有使用 $sin(\Delta \theta)$ 对 target 进行编码，而是直接使用 $\Delta \theta$ 表示方向残差，之后单独用 <code>add_sin_difference</code> 处理。这里贴一下其中的核心代码，因为制作 targets 的过程比较细，不好好看一下真的不清晰</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">labels <span class="token operator">=</span> torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span>num_anchors<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>int32<span class="token punctuation">,</span> device<span class="token operator">=</span>anchors<span class="token punctuation">.</span>device<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token operator">-</span><span class="token number">1</span>
+gt_ids <span class="token operator">=</span> torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span>num_anchors<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>int32<span class="token punctuation">,</span> device<span class="token operator">=</span>anchors<span class="token punctuation">.</span>device<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token operator">-</span><span class="token number">1</span>
+
+<span class="token comment"># 返回与 gt 重叠最大的 anchor index 一般形状为 (num_gt,)</span>
+anchors_with_max_overlap <span class="token operator">=</span> <span class="token punctuation">(</span>anchor_by_gt_overlap <span class="token operator">==</span> gt_to_anchor_max<span class="token punctuation">)</span><span class="token punctuation">.</span>nonzero<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token comment"># 返回被选中的 gt index, anchor_to_gt_argmax.shape = (num_anchors,)</span>
+gt_inds_force <span class="token operator">=</span> anchor_to_gt_argmax<span class="token punctuation">[</span>anchors_with_max_overlap<span class="token punctuation">]</span>
+<span class="token comment"># 标记 max_overlap anchor 并记录其 gt index</span>
+labels<span class="token punctuation">[</span>anchors_with_max_overlap<span class="token punctuation">]</span> <span class="token operator">=</span> gt_classes<span class="token punctuation">[</span>gt_inds_force<span class="token punctuation">]</span>
+gt_ids<span class="token punctuation">[</span>anchors_with_max_overlap<span class="token punctuation">]</span> <span class="token operator">=</span> gt_inds_force<span class="token punctuation">.</span><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 需要注意的是 positive anchor 与 anchors_with_max_overlap 是两个不同的集合</span>
+pos_inds <span class="token operator">=</span> anchor_to_gt_max <span class="token operator">&gt;=</span> matched_threshold
+gt_inds_over_thresh <span class="token operator">=</span> anchor_to_gt_argmax<span class="token punctuation">[</span>pos_inds<span class="token punctuation">]</span>
+<span class="token comment"># 标记 positive anchor 并记录其 gt index</span>
+labels<span class="token punctuation">[</span>pos_inds<span class="token punctuation">]</span> <span class="token operator">=</span> gt_classes<span class="token punctuation">[</span>gt_inds_over_thresh<span class="token punctuation">]</span>
+gt_ids<span class="token punctuation">[</span>pos_inds<span class="token punctuation">]</span> <span class="token operator">=</span> gt_inds_over_thresh<span class="token punctuation">.</span><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 需要注意的是 negative thres 和 positive thres 之间是有间隙的，二者不相等</span>
+bg_inds <span class="token operator">=</span> <span class="token punctuation">(</span>anchor_to_gt_max <span class="token operator">&lt;</span> unmatched_threshold<span class="token punctuation">)</span><span class="token punctuation">.</span>nonzero<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token comment"># 标记 background anchor</span>
+labels<span class="token punctuation">[</span>bg_inds<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token comment"># 综上 fg_inds 是 positive_inds | anchors_with_max_overlap - bg_inds</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>forward_ret_dict</code>: 虽然这是与 loss 相关的部分，暂且先放在这里。该字典存储向前传播中的预测结果及其标签，用于之后计算 loss</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cls_preds
+box_preds
+dir_cls_preds
+box_cls_labels
+box_reg_targets
+reg_weights<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<h4 id="Loss-相关"><a href="#Loss-相关" class="headerlink" title="Loss 相关"></a>Loss 相关</h4><p>有了 anchor 和对应的 target 还需要预测结果 prediction 才能够计算，需要注意的是：预测的结果是选框残差，还需要 <code>generate_predicted_boxes</code> 产生实际的选框结果。</p>
+<p><code>get_loss</code> 将获得每个 batch 的损失函数，需要注意的是，loss 相关的方法一般不会在 AnchorHeadSingle 的前向方程中使用，<strong>而是在总模型的前向方程中调用（即：在 VoxelRCNN 类中）</strong>。下面具体看看其组成内容，也不做细节了解</p>
+<ol>
+<li><p><code>get_loss</code> 将返回分类损失和回归损失，其中方向分类损失是在回归损失中计算的。<code>get_loss</code> 的调用一般是在模型的 <code>get_training_loss</code> 中，请查看该笔记之前记录的 <code>SECOND</code> 部分中的 <code>forward</code> 代码 </p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_loss</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 获得分类损失 (batch, num_anchors_all)</span>
+    cls_loss<span class="token punctuation">,</span> tb_dict <span class="token operator">=</span> self<span class="token punctuation">.</span>get_cls_layer_loss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># 获得回归损失</span>
+    box_loss<span class="token punctuation">,</span> tb_dict_box <span class="token operator">=</span> self<span class="token punctuation">.</span>get_box_reg_layer_loss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    tb_dict<span class="token punctuation">.</span>update<span class="token punctuation">(</span>tb_dict_box<span class="token punctuation">)</span>
+    rpn_loss <span class="token operator">=</span> cls_loss <span class="token operator">+</span> box_loss
+
+    tb_dict<span class="token punctuation">[</span><span class="token string">'rpn_loss'</span><span class="token punctuation">]</span> <span class="token operator">=</span> rpn_loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> rpn_loss<span class="token punctuation">,</span> tb_dict<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可学习的技巧：使用 weight 来进行筛选，因为在并行运算的情况下，乘法比索引筛选更快</p>
+</li>
+<li><p><code>generate_predicted_boxes</code></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">generate_predicted_boxes</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> batch_size<span class="token punctuation">,</span> cls_preds<span class="token punctuation">,</span> box_preds<span class="token punctuation">,</span> dir_cls_preds<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+   <span class="token triple-quoted-string string">"""
+   Args:
+       batch_size:
+       cls_preds: (N, H, W, C1)
+       box_preds: (N, H, W, C2)
+       dir_cls_preds: (N, H, W, C3)
+   
+   Returns:
+       batch_cls_preds: (B, num_boxes, num_classes)
+       batch_box_preds: (B, num_boxes, 7+C)
+   """</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因为 target 是残差，所以在预测了结果过后需要 <code>box_coder</code> 进行解码，变为真实的 box</p>
+</li>
+</ol>
+<h3 id="AnchorHeadSingle"><a href="#AnchorHeadSingle" class="headerlink" title="AnchorHeadSingle"></a>AnchorHeadSingle</h3><p>有了基类的功能，<code>AnchorHeadSingle</code> 就可以把中心放在网络的搭建之上了，模块在 <code>__init__</code> 中定义了三个卷积层：<code>conv_cls &amp; conv_box &amp; conv_dir_cls</code> 分别对类别，bbox，朝向进行预测，注意这里并没有全连接层的存在，直接把各个 channel 中的结果作为预测结果。获得预测结果过后：</p>
+<ol>
+<li>如果是单阶段检测器基本前向方程就结束了，接下来回到 <code>Detector</code> 模块中计算损失函数。如果是测试阶段，需要将预测结果进一步生成最终选框（因为预测的结果是残差），然后进行 NMS 后处理</li>
+<li>如果是两阶段检测器，也是将预测结果进一步生成选框，然后继续向前计算</li>
+</ol>
+<p>下面来看看前向方程，有一个具体感受</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data_dict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 获得 BEV 特征图谱</span>
+    spatial_features_2d <span class="token operator">=</span> data_dict<span class="token punctuation">[</span><span class="token string">'spatial_features_2d'</span><span class="token punctuation">]</span>
+
+    <span class="token comment"># 分类和回归图谱</span>
+    cls_preds <span class="token operator">=</span> self<span class="token punctuation">.</span>conv_cls<span class="token punctuation">(</span>spatial_features_2d<span class="token punctuation">)</span>
+    box_preds <span class="token operator">=</span> self<span class="token punctuation">.</span>conv_box<span class="token punctuation">(</span>spatial_features_2d<span class="token punctuation">)</span>
+
+    <span class="token comment"># 把 channel 移动到最后一个维度</span>
+    cls_preds <span class="token operator">=</span> cls_preds<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># [N, H, W, C]</span>
+    box_preds <span class="token operator">=</span> box_preds<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># [N, H, W, C]</span>
+
+    self<span class="token punctuation">.</span>forward_ret_dict<span class="token punctuation">[</span><span class="token string">'cls_preds'</span><span class="token punctuation">]</span> <span class="token operator">=</span> cls_preds
+    self<span class="token punctuation">.</span>forward_ret_dict<span class="token punctuation">[</span><span class="token string">'box_preds'</span><span class="token punctuation">]</span> <span class="token operator">=</span> box_preds
+
+    <span class="token comment"># 方向分类图谱</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>conv_dir_cls <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        dir_cls_preds <span class="token operator">=</span> self<span class="token punctuation">.</span>conv_dir_cls<span class="token punctuation">(</span>spatial_features_2d<span class="token punctuation">)</span>
+        dir_cls_preds <span class="token operator">=</span> dir_cls_preds<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>forward_ret_dict<span class="token punctuation">[</span><span class="token string">'dir_cls_preds'</span><span class="token punctuation">]</span> <span class="token operator">=</span> dir_cls_preds
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        dir_cls_preds <span class="token operator">=</span> <span class="token boolean">None</span>
+
+    <span class="token comment"># targets_dict 返回值在 anchor 相关部分里</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>training<span class="token punctuation">:</span>
+        targets_dict <span class="token operator">=</span> self<span class="token punctuation">.</span>assign_targets<span class="token punctuation">(</span>
+            gt_boxes<span class="token operator">=</span>data_dict<span class="token punctuation">[</span><span class="token string">'gt_boxes'</span><span class="token punctuation">]</span>
+        <span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>forward_ret_dict<span class="token punctuation">.</span>update<span class="token punctuation">(</span>targets_dict<span class="token punctuation">)</span>
+
+    <span class="token comment"># 如果是测试或者是两阶段检测器，则需要生成选框预测</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>training <span class="token keyword">or</span> self<span class="token punctuation">.</span>predict_boxes_when_training<span class="token punctuation">:</span>
+        batch_cls_preds<span class="token punctuation">,</span> batch_box_preds <span class="token operator">=</span> self<span class="token punctuation">.</span>generate_predicted_boxes<span class="token punctuation">(</span>
+            batch_size<span class="token operator">=</span>data_dict<span class="token punctuation">[</span><span class="token string">'batch_size'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            cls_preds<span class="token operator">=</span>cls_preds<span class="token punctuation">,</span> box_preds<span class="token operator">=</span>box_preds<span class="token punctuation">,</span> dir_cls_preds<span class="token operator">=</span>dir_cls_preds
+        <span class="token punctuation">)</span>
+        data_dict<span class="token punctuation">[</span><span class="token string">'batch_cls_preds'</span><span class="token punctuation">]</span> <span class="token operator">=</span> batch_cls_preds
+        data_dict<span class="token punctuation">[</span><span class="token string">'batch_box_preds'</span><span class="token punctuation">]</span> <span class="token operator">=</span> batch_box_preds
+        data_dict<span class="token punctuation">[</span><span class="token string">'cls_preds_normalized'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span>
+
+    <span class="token keyword">return</span> data_dict<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="VoxelRCNNHead-ROI-HEAD"><a href="#VoxelRCNNHead-ROI-HEAD" class="headerlink" title="VoxelRCNNHead (ROI_HEAD)"></a>VoxelRCNNHead (ROI_HEAD)</h2><p>从配置文件看，这一部分也是最复杂的。不过不要担心，有了足够的理论知识和对之前代码的解读，咱也能大致掌握其中的重要的流程🤨先来看基类 <code>RoIHeadTemplate</code> 实现</p>
+<h3 id="RoIHeadTemplate"><a href="#RoIHeadTemplate" class="headerlink" title="RoIHeadTemplate"></a>RoIHeadTemplate</h3><p>还是按照之前 AnchorHeadTemplate 的总结方式，分为两类：proposal 相关和 loss 相关</p>
+<h4 id="Proposal-相关"><a href="#Proposal-相关" class="headerlink" title="Proposal 相关"></a>Proposal 相关</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">RoIHeadTemplate</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> num_class<span class="token punctuation">,</span> model_cfg<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        Attribute:
+            - self.box_coder: ResidualCoder
+            - self.proposal_target_layer
+            - self.forward_ret_dict
+        """</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以上是初始化函数，<code>box_coder</code> 和之前的是一样的 <code>ResidualCoder</code>；比较重要的是 <code>proposal_target_layer</code>，这部分对应的配置是 <code>TARGET_CONFIG</code>，其功能是对 NMS 筛选过后的 proposal（此时应该叫 rois）进行采样并制作其标签；<code>forward_ret_dict</code> 用于存储向前传播中的预测结果及其标签，用于之后计算 loss。下面进行进一步介绍 proposal 相关方法：</p>
+<ol>
+<li><code>proposal_layer</code> 该方法将使用 NMS，（通常）返回 512 个 rois</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> batch_dict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Args:
+        batch_dict:
+            batch_size:
+            rois: (B, num_rois, 7 + C)
+            roi_scores: (B, num_rois)
+            gt_boxes: (B, N, 7 + C + 1)
+            roi_labels: (B, num_rois)
+    Returns:
+        batch_dict:
+            rois: (B, M, 7 + C)
+            gt_of_rois: (B, M, 7 + C)
+            gt_iou_of_rois: (B, M)
+            roi_scores: (B, M)
+            roi_labels: (B, M) cls-based label
+            reg_valid_mask: (B, M) positive bbox
+            rcnn_cls_labels: (B, M) iou-based label
+    """</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol>
+<li><p><code>assign_targets</code> 方法完成了两个事情：</p>
+<ol>
+<li><p>在 rois 采样 M 个 roi，并获得其对应的 gt 标签。通常采样 128 个 roi，以 1:1 正负比例，并优先保障正样本。操作通过另一个类的前向方程来完成的 <code>ProposalTargetLayer</code></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">targets_dict <span class="token operator">=</span> self<span class="token punctuation">.</span>proposal_target_layer<span class="token punctuation">.</span>forward<span class="token punctuation">(</span>batch_dict<span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">"""
+Args:
+    batch_dict:
+        batch_size:
+        rois: (B, num_rois, 7 + C)
+        roi_scores: (B, num_rois)
+        gt_boxes: (B, N, 7 + C + 1)
+        roi_labels: (B, num_rois)
+Returns:
+    batch_dict:
+        rois: (B, M, 7 + C)
+        gt_of_rois: (B, M, 7 + C)
+        gt_iou_of_rois: (B, M)
+        roi_scores: (B, M) cls-based score
+        roi_labels: (B, M) cls-based label
+        reg_valid_mask: (B, M) positive bbox
+        rcnn_cls_labels: (B, M) iou-based label
+"""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>将 gt 转换到对应的 roi 坐标系当中（平移+旋转），需要注意的是还对方向相反的 gt 进行了 flip orientation 处理，以减少错误预测的损失。虽然这不是真实的标签，但损失太大可能不利于维护 R-CNN 训练的稳定</p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="Loss-相关-1"><a href="#Loss-相关-1" class="headerlink" title="Loss 相关"></a>Loss 相关</h4><p>与 AnchorHeadTemplate 一样，这里也是两个主要方法：</p>
+<ol>
+<li><code>get_loss</code> 计算分类损失和回归损失，有趣的是在回归损失中还使用了一个 <code>corner_loss</code>，这是论文中没有提到的，而且在代码的注释中也写了 <code>TODO: NEED TO BE CHECK</code></li>
+<li><code>generate_predicted_boxes</code>，将预测的残差结果，还原为真实选框</li>
+</ol>
+<p>这么一看是不是结构就清晰很多了呢？下面就看看 VoxelRCNNHead 干了些什么吧！</p>
+<h3 id="VoxelRCNNHead"><a href="#VoxelRCNNHead" class="headerlink" title="VoxelRCNNHead"></a>VoxelRCNNHead</h3><p>当有了基类 RoiHeadTemplate 过后就可以专注实现 R-CNN 的核心功能，即 roi pooling 提取特征</p>
+<h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><p>在搭建该部分的网络之前，先来看看需要哪些子模块需要定义</p>
+<ol>
+<li><code>pool_layer</code>，这是通过另一个类实现 <code>NeighborVoxelSAModuleMSG</code>。这个层用于 voxel query 寻找附近的非空体素，并对 grouping 特征进行特征提取</li>
+<li><code>shared_fc_layer</code>，过渡全连接层，<code>nn.Linear + nn.BatchNorm1d + nn.ReLU</code></li>
+<li><code>cls_fc_layer</code>，分类全连接层，<code>nn.Linear + nn.BatchNorm1d + nn.ReLU</code></li>
+<li><code>reg_fc_layer</code>，预测全连接层，<code>nn.Linear + nn.BatchNorm1d + nn.ReLU</code></li>
+</ol>
+<h4 id="roi-grid-pooling"><a href="#roi-grid-pooling" class="headerlink" title="roi_grid_pooling"></a>roi_grid_pooling</h4><p>这个功能函数基本上就是 roi grid pooling 的核心，其作用简单叙述为：在不同分辨率 feature source 下，对每个 grid point 进行 roi pooling，并将不同分辨率的结果连接起来。下面具体分析其中的步骤：</p>
+<ol>
+<li><p>获得 roi 中的 grid point 在当前 feature source 特征图谱的 voxel 坐标 (B, x, y, z) 以及 lidar 坐标 (BxN, 6x6x6, 3)，用于之后的 grouping</p>
+</li>
+<li><p>获得 <code>pooled_feature_list</code>，即对每个分辨率的 feature source，使用 <code>pool_layer</code> 对每个 grid point 进行 roi pooling。然后将所有分辨率的特征连接起来 <code>torch.concat</code> 得到每个 grid point 最终的特征。<code>pool_layer</code> 是比较复杂的一个层，其有四个子模块</p>
+<ol>
+<li><p><code>mlp_in</code>，对所有的 grid point 进行统一特征提取，由 kernel size = 1 的 <code>Conv1d</code> 完成</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">##################### Note ########################</span>
+<span class="token comment"># Mi = 128x6x6x6 = roi numbers * grid points per roi 是个常数</span>
+<span class="token comment"># 并且本笔记中没有对 channel 数量进行区分，都用 C 表示</span>
+<span class="token comment">##################### Note ########################</span>
+<span class="token comment"># features_in: (1, C, M1+M2+...)</span>
+features_in <span class="token operator">=</span> self<span class="token punctuation">.</span>mlps_in<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">(</span>features_in<span class="token punctuation">)</span>
+features_in <span class="token operator">=</span> features_in<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment"># features_in: (1, M1+M2+..., C)</span>
+features_in <span class="token operator">=</span> features_in<span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> features_in<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>	<span class="token comment"># features_in: (M1+M2+..., C)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>获得了 <code>features_in</code> 之后将会输入到 <code>self.groupers</code> 当中</p>
+</li>
+<li><p><code>self.groupers</code>，执行 grouping 操作，由类 <code>VoxelQueryAndGrouping</code> 实现。当邻居数量没有 nsample 这么多时使用第一个邻居 sample 进行补位。再通过标注 <code>empty_ball_mask</code> 得知该 grid point 是否有邻居，在之后使用 MLP 提取特征时把空 grid point 的特征设置为 0 即可。该类的前向方程获得的结果如下</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> new_coords<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span> xyz<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span> xyz_batch_cnt<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span>
+            new_xyz<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span> new_xyz_batch_cnt<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span>
+            features<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span> voxel2point_indices<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Args:
+        # voxel data
+        xyz: (N1 + N2 ..., 3) xyz coordinates of the features
+        xyz_batch_cnt: (batch_size), [N1, N2, ...]
+        features: (N1 + N2 ..., C) tensor of features to group
+        voxel2point_indices: (B, Z, Y, X) tensor of points indices of feature source voxels
+      
+        # grid point data
+        new_coords: (M1 + M2 ..., 3) centers voxel indices of the ball query
+        new_xyz: (M1 + M2 ..., 3) centers of the ball query
+        new_xyz_batch_cnt: (batch_size), [M1, M2, ...] Mi = 128x6x6x6
+      
+    Returns:
+        grouped_xyz: (M1 + M2 ..., 3, nsample)
+        empty_ball_mask: (M1 + M2 ...,)
+        grouped_features: (M1 + M2 ..., C, nsample)
+    """</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>mlp_pos</code>，对 group 得到的 nsample 个 voxel positions 进行特征提取，由 kernel size = 1 的  <code>Conv2d</code> 完成 <code>grouped_xyz: (1, 3, M1+M2+..., nsample)</code></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># grouped_xyz: (1, 3, M1+M2, nsample)</span>
+position_features <span class="token operator">=</span> self<span class="token punctuation">.</span>mlps_pos<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">(</span>grouped_xyz<span class="token punctuation">)</span>	<span class="token comment"># position_features: (1, C, M1+M2, nsample)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>mlp_out</code>，在使用该 MLP 之前，需要将前两个 MLP 提取的特征加起来 <code>mlp_in + mpl_out</code>，然后使用 max pooling 消除 nsample 维度，得到汇聚特征 (1, C, M1+M2+…)。然后再进行特征提取，由 <code>Conv1d</code> 完成</p>
+</li>
+</ol>
+<p><strong>下面整体来看看 <code>pool_layer</code> 层的输入和输出</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"> pooled_features <span class="token operator">=</span> pool_layer<span class="token punctuation">(</span>
+                xyz<span class="token operator">=</span>cur_voxel_xyz<span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                xyz_batch_cnt<span class="token operator">=</span>cur_voxel_xyz_batch_cnt<span class="token punctuation">,</span>
+                new_xyz<span class="token operator">=</span>roi_grid_xyz<span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                new_xyz_batch_cnt<span class="token operator">=</span>roi_grid_batch_cnt<span class="token punctuation">,</span>
+                new_coords<span class="token operator">=</span>cur_roi_grid_coords<span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                features<span class="token operator">=</span>cur_sp_tensors<span class="token punctuation">.</span>features<span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                voxel2point_indices<span class="token operator">=</span>v2p_ind_tensor
+            <span class="token punctuation">)</span>
+<span class="token comment"># return:</span>
+<span class="token comment"># new_xyz: (M1 + M2 ..., 3) tensor of the new features' xyz</span>
+<span class="token comment"># new_features: (M1 + M2 ..., C) tensor of the new_features descriptors</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>连接不同的 feature source 下得到的 roi pooling 特征并改变其维度得到 (BxMi, 6x6x6, C)</p>
+</li>
+</ol>
+<h4 id="forward"><a href="#forward" class="headerlink" title="forward"></a>forward</h4><p>看完了之前的复杂模块，感觉头都要晕了…好消息是到了这一步，基本上就没有其他复杂模块了，事情变成了简单的组合。有了基类处理 proposal &amp; target &amp; loss，有了 roi grid pooling 获得 grid point features，还要有的就是使用 MLP 进行预测</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> batch_dict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    :param input_data: input dict
+    :return:
+    """</span>
+
+    <span class="token comment"># 根据 NMS 获得 512 个得分最高的选框</span>
+    targets_dict <span class="token operator">=</span> self<span class="token punctuation">.</span>proposal_layer<span class="token punctuation">(</span>
+        batch_dict<span class="token punctuation">,</span> nms_config<span class="token operator">=</span>self<span class="token punctuation">.</span>model_cfg<span class="token punctuation">.</span>NMS_CONFIG<span class="token punctuation">[</span><span class="token string">'TRAIN'</span> <span class="token keyword">if</span> self<span class="token punctuation">.</span>training <span class="token keyword">else</span> <span class="token string">'TEST'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">)</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>training<span class="token punctuation">:</span>
+        <span class="token comment"># 采样 128 个 rois 并获得 gt，并将 gt 移动到对应 rois 的坐标系当中</span>
+        targets_dict <span class="token operator">=</span> self<span class="token punctuation">.</span>assign_targets<span class="token punctuation">(</span>batch_dict<span class="token punctuation">)</span>
+        batch_dict<span class="token punctuation">[</span><span class="token string">'rois'</span><span class="token punctuation">]</span> <span class="token operator">=</span> targets_dict<span class="token punctuation">[</span><span class="token string">'rois'</span><span class="token punctuation">]</span>
+        batch_dict<span class="token punctuation">[</span><span class="token string">'roi_labels'</span><span class="token punctuation">]</span> <span class="token operator">=</span> targets_dict<span class="token punctuation">[</span><span class="token string">'roi_labels'</span><span class="token punctuation">]</span>
+
+    <span class="token comment"># RoI aware pooling</span>
+    pooled_features <span class="token operator">=</span> self<span class="token punctuation">.</span>roi_grid_pool<span class="token punctuation">(</span>batch_dict<span class="token punctuation">)</span>  <span class="token comment"># (BxN, 6x6x6, C)</span>
+
+    <span class="token comment"># Box Refinement</span>
+    pooled_features <span class="token operator">=</span> pooled_features<span class="token punctuation">.</span>view<span class="token punctuation">(</span>pooled_features<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># (BxN, -1)</span>
+    shared_features <span class="token operator">=</span> self<span class="token punctuation">.</span>shared_fc_layer<span class="token punctuation">(</span>pooled_features<span class="token punctuation">)</span>
+    rcnn_cls <span class="token operator">=</span> self<span class="token punctuation">.</span>cls_pred_layer<span class="token punctuation">(</span>self<span class="token punctuation">.</span>cls_fc_layers<span class="token punctuation">(</span>shared_features<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    rcnn_reg <span class="token operator">=</span> self<span class="token punctuation">.</span>reg_pred_layer<span class="token punctuation">(</span>self<span class="token punctuation">.</span>reg_fc_layers<span class="token punctuation">(</span>shared_features<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>training<span class="token punctuation">:</span>
+        batch_cls_preds<span class="token punctuation">,</span> batch_box_preds <span class="token operator">=</span> self<span class="token punctuation">.</span>generate_predicted_boxes<span class="token punctuation">(</span>
+            batch_size<span class="token operator">=</span>batch_dict<span class="token punctuation">[</span><span class="token string">'batch_size'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rois<span class="token operator">=</span>batch_dict<span class="token punctuation">[</span><span class="token string">'rois'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> cls_preds<span class="token operator">=</span>rcnn_cls<span class="token punctuation">,</span> box_preds<span class="token operator">=</span>rcnn_reg
+        <span class="token punctuation">)</span>
+        batch_dict<span class="token punctuation">[</span><span class="token string">'batch_cls_preds'</span><span class="token punctuation">]</span> <span class="token operator">=</span> batch_cls_preds
+        batch_dict<span class="token punctuation">[</span><span class="token string">'batch_box_preds'</span><span class="token punctuation">]</span> <span class="token operator">=</span> batch_box_preds
+        batch_dict<span class="token punctuation">[</span><span class="token string">'cls_preds_normalized'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        targets_dict<span class="token punctuation">[</span><span class="token string">'rcnn_cls'</span><span class="token punctuation">]</span> <span class="token operator">=</span> rcnn_cls
+        targets_dict<span class="token punctuation">[</span><span class="token string">'rcnn_reg'</span><span class="token punctuation">]</span> <span class="token operator">=</span> rcnn_reg
+
+        self<span class="token punctuation">.</span>forward_ret_dict <span class="token operator">=</span> targets_dict
+
+    <span class="token keyword">return</span> batch_dict
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="感言"><a href="#感言" class="headerlink" title="感言"></a>感言</h2><p>至此，Voxel R-CNN 的框架就总结完了😭一路上真的有太多的困难了，但是整个代码看下来感觉自己还是收获不少！虽然路还很长，但是至少迈出了第一步</p>
+<p>过程中遇到了代码之外的问题，例如 localhost:10.0 问题，一般是因为没能找到本机的显示器，把所有的东西都重启一遍，包括你自己的电脑！</p>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ol>
+<li>整理损失函数</li>
+<li>整理常用功能函数 utils 以及三方库</li>
+<li>pytorch 技巧总结</li>
+<li>Summary SPG, Lidar R-CNN</li>
+<li>SA-SSD 代码阅读</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Declan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://hongkun.space/archives/c3e4f95d.html">https://hongkun.space/archives/c3e4f95d.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Declan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/OpenPCDet/">
+                                    <span class="chip bg-color">OpenPCDet</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+        <div class="card">
+	    <script src="https://utteranc.es/client.js"
+	    repo="DeclK/declk.github.io"
+	    issue-term="pathname"
+	    theme="github-light"
+	    crossorigin="anonymous"
+	    async>
+	    </script>
+            
+
+            
+
+            
+
+            
+
+            
+			
+			
+
+            
+
+        </div>
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/archives/c3e4f95d.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="OpenPCDet VoxelRCNN">
+                        
+                        <span class="card-title">OpenPCDet VoxelRCNN</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/OpenMMLab/" class="post-category">
+                                    OpenMMLab
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/OpenPCDet/">
+                        <span class="chip bg-color">OpenPCDet</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/6b4af7d3.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="OpenPCDet review">
+                        
+                        <span class="card-title">OpenPCDet review</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/OpenMMLab/" class="post-category">
+                                    OpenMMLab
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/OpenPCDet/">
+                        <span class="chip bg-color">OpenPCDet</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">Declan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">130k</span>&nbsp;字
+            
+            <span id="sitetime"></span>
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/DeclK" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hongkun20sme@smail.nju.edu.cn" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="https://space.bilibili.com/385931953" class="tooltipped" target="_blank" data-tooltip="访问我的bilibili" data-position="top" data-delay="50">
+        <i class="fas fa-bold"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        var t1 = Date.UTC(2021, 06, 30, 00, 00, 00); //起始北京时间
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 180;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 200;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substring(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

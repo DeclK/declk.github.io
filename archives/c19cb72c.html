@@ -420,7 +420,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.2k
+                    3.4k
                 </div>
                 
 
@@ -640,7 +640,8 @@ show the params: True<span aria-hidden="true" class="line-numbers-rows"><span></
 <p>当然还有更多的参数，就不列举了，遇到了就去查文档</p>
 <h2 id="re-模块"><a href="#re-模块" class="headerlink" title="re 模块"></a>re 模块</h2><p>re 为正则表达式的缩写，所以需要了解正则表达式的一些基础知识。正则表达式可以匹配某些特定模式的数据，在编辑文件、爬虫等方面有着广泛应用，以下内容参考 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19t4y1y7qP/">bilibili</a> &amp; <a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-syntax.html">菜鸟教程</a> 学习，这里记录一些基本的语法规则，仅供复习</p>
 <h3 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h3><h4 id="字符组"><a href="#字符组" class="headerlink" title="字符组"></a>字符组</h4><p><code>[]</code>，字符组，匹配集合中的任意字符，如果想表示特殊字符则需要转义字符 <code>\</code></p>
-<p> <code>^</code>，在字符组内表示取反，在字符组外表示匹配开头 <code>$</code>，匹配字符串的末尾</p>
+<p> <code>^</code>，在字符组内表示取反，在字符组外表示匹配开头</p>
+<p><code>$</code>，匹配字符串的末尾</p>
 <h4 id="快捷表示"><a href="#快捷表示" class="headerlink" title="快捷表示"></a>快捷表示</h4><p><code>\d</code>，数字</p>
 <p><code>\s</code>，空格</p>
 <p><code>\w</code>，字符（字母、数字、下划线）</p>
@@ -706,6 +707,44 @@ sub <span class="token operator">=</span> pattern<span class="token punctuation"
 <span class="token comment"># RE short for REgular expREssion</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
+<h2 id="发送邮件"><a href="#发送邮件" class="headerlink" title="发送邮件"></a>发送邮件</h2><p>参考链接：[廖雪峰][<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017790702398272">https://www.liaoxuefeng.com/wiki/1016959663602400/1017790702398272</a>], <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24285815/article/details/98945385">CSDN</a></p>
+<p>直接上代码</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">
+<span class="token keyword">import</span> smtplib
+<span class="token keyword">from</span> email<span class="token punctuation">.</span>header <span class="token keyword">import</span> Header
+<span class="token keyword">from</span> email<span class="token punctuation">.</span>mime<span class="token punctuation">.</span>text <span class="token keyword">import</span> MIMEText
+<span class="token keyword">from</span> email<span class="token punctuation">.</span>utils <span class="token keyword">import</span> parseaddr<span class="token punctuation">,</span> formataddr
+
+msg <span class="token operator">=</span> MIMEText<span class="token punctuation">(</span><span class="token string">'hello, send by Python...'</span><span class="token punctuation">,</span> <span class="token string">'plain'</span><span class="token punctuation">,</span> <span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 输入Email地址和口令:</span>
+from_addr <span class="token operator">=</span> <span class="token string">'hongkun20sme@smail.nju.edu.cn'</span>
+password <span class="token operator">=</span> <span class="token string">'your_passwd'</span>
+<span class="token comment"># 输入收件人地址:</span>
+to_addr <span class="token operator">=</span> <span class="token string">'hongkun20sme@smail.nju.edu.cn'</span>
+<span class="token comment"># 输入SMTP服务器地址: smtp.exmail.qq.com(使用SSL，端口号465)</span>
+smtp_server <span class="token operator">=</span> <span class="token string">'smtp.exmail.qq.com'</span>
+port <span class="token operator">=</span> <span class="token number">465</span>
+
+<span class="token comment"># 编码名字和地址</span>
+<span class="token keyword">def</span> <span class="token function">_format_addr</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name<span class="token punctuation">,</span> addr <span class="token operator">=</span> parseaddr<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> formataddr<span class="token punctuation">(</span><span class="token punctuation">(</span>Header<span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> addr<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+msg <span class="token operator">=</span> MIMEText<span class="token punctuation">(</span><span class="token string">'hello, send by Python...'</span><span class="token punctuation">,</span> <span class="token string">'plain'</span><span class="token punctuation">,</span> <span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+<span class="token comment"># 发件人（仅作内容，不实际参与 SMTP 服务）</span>
+msg<span class="token punctuation">[</span><span class="token string">'From'</span><span class="token punctuation">]</span> <span class="token operator">=</span> _format_addr<span class="token punctuation">(</span><span class="token string">'MailBot &lt;%s&gt;'</span> <span class="token operator">%</span> from_addr<span class="token punctuation">)</span>
+<span class="token comment"># 收件人</span>
+msg<span class="token punctuation">[</span><span class="token string">'To'</span><span class="token punctuation">]</span> <span class="token operator">=</span> _format_addr<span class="token punctuation">(</span><span class="token string">'Declan Chen &lt;%s&gt;'</span> <span class="token operator">%</span> to_addr<span class="token punctuation">)</span>
+<span class="token comment"># 主题</span>
+msg<span class="token punctuation">[</span><span class="token string">'Subject'</span><span class="token punctuation">]</span> <span class="token operator">=</span> Header<span class="token punctuation">(</span><span class="token string">'来自SMTP的问候……'</span><span class="token punctuation">,</span> <span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 这里与原廖雪峰教程中使用的 SMTP() 方法不一样，使用了 SMTP_SSL() 方法</span>
+server <span class="token operator">=</span> smtplib<span class="token punctuation">.</span>SMTP_SSL<span class="token punctuation">(</span>smtp_server<span class="token punctuation">,</span> port<span class="token punctuation">)</span>
+server<span class="token punctuation">.</span>set_debuglevel<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+server<span class="token punctuation">.</span>login<span class="token punctuation">(</span>from_addr<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
+server<span class="token punctuation">.</span>sendmail<span class="token punctuation">(</span>from_addr<span class="token punctuation">,</span> <span class="token punctuation">[</span>to_addr<span class="token punctuation">]</span><span class="token punctuation">,</span> msg<span class="token punctuation">.</span>as_string<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+server<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><h3 id="时间和日期"><a href="#时间和日期" class="headerlink" title="时间和日期"></a>时间和日期</h3><h3 id="进程、线程"><a href="#进程、线程" class="headerlink" title="进程、线程"></a>进程、线程</h3><h3 id="Python-爬虫"><a href="#Python-爬虫" class="headerlink" title="Python 爬虫"></a>Python 爬虫</h3>
                 
             </div>
@@ -1219,7 +1258,7 @@ sub <span class="token operator">=</span> pattern<span class="token punctuation"
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2022</span>
             
             <a href="/about" target="_blank">Declan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1227,7 +1266,7 @@ sub <span class="token operator">=</span> pattern<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">101k</span>&nbsp;字
+                class="white-color">130k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
