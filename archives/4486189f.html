@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.3k
+                    2.4k
                 </div>
                 
 
@@ -478,6 +478,12 @@ where \ d^{a}=\sqrt{\left(l^{a}\right)^{2}+\left(w^{a}\right)^{2}}</script><p>�
 <p>其核心思想也是和 hash table 类似，创建一个 RuleBook 记录下每个体素块的输入位置在哪里、输出位置在哪里、对应相乘的卷积核权重在哪里。通过遍历这个 RuleBook 即可完成三维卷积操作</p>
 <p>下面仅留一张示意图以便快速复习（如果没看过参考链接应该是很难看懂）</p>
 <p><img src="/archives/4486189f/v2-80514738ec783b83d56a2506a0a2150b_r.jpg"></p>
+<p>个人再重新总结一下：</p>
+<ol>
+<li>构建稀疏向量 sparse tensor</li>
+<li>通过稀疏向量构建 RuleBook (hash in table &amp; hash out table 包括其中)，从逻辑上理解：该 RuleBook 记录了输入的稀疏向量位置和对应<strong>卷积核位置</strong> $(i, j)$ 以及其输出稀疏向量的位置，但实际上是以卷积核位置 $(i, j)$ 为主导建立的</li>
+<li>同时并行计算所有的输入稀疏向量，并获得输出稀疏向量</li>
+</ol>
 <p>为什么要引入子流形卷积？因为普通的稀疏卷积会让感受野迅速增加，许多 inactive 的点经过卷积过后变得 active，而子流形卷积则保证了 active 点的个数不变，参考 <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/SparseConvNet">github</a></p>
 <p><img src="/archives/4486189f/i.gif" alt="sparse convolution"></p>
 <p><img src="/archives/4486189f/img.gif" alt="submanifold convolution"></p>
@@ -998,7 +1004,7 @@ L_{\theta}=\operatorname{SmoothL1}\left(\sin \left(\theta_{p}-\theta_{t}\right)\
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

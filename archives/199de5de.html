@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Pytorch cn231n note (dev), ">
+    <meta name="keywords" content="SPG &amp; BtcDet, ">
     <meta name="description" content=" ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Pytorch cn231n note (dev) | </title>
+    <title>SPG &amp; BtcDet | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Pytorch cn231n note (dev)</h1>
+                    <h1 class="description center-align post-title">SPG &amp; BtcDet</h1>
                 </div>
             </div>
         </div>
@@ -370,12 +370,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Pytorch/">
-                                <span class="chip bg-color">Pytorch</span>
+                            <a href="/tags/SPG/">
+                                <span class="chip bg-color">SPG</span>
                             </a>
                         
-                            <a href="/tags/CS231N/">
-                                <span class="chip bg-color">CS231N</span>
+                            <a href="/tags/BtcDet/">
+                                <span class="chip bg-color">BtcDet</span>
                             </a>
                         
                     </div>
@@ -386,16 +386,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
-                                编程
-                            </a>
-                        
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/" class="post-category">
-                                Python
-                            </a>
-                        
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Pytorch/" class="post-category">
-                                Pytorch
+                            <a href="/categories/papers/" class="post-category">
+                                papers
                             </a>
                         
                     </div>
@@ -407,7 +399,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-10-08
+                    2022-03-21
                 </div>
                 
 
@@ -416,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    2.2k
                 </div>
                 
 
@@ -441,99 +433,94 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Pytorch-cs231n-note"><a href="#Pytorch-cs231n-note" class="headerlink" title="Pytorch cs231n note"></a>Pytorch cs231n note</h1><p>跟着作业过一遍，看看有哪些需要熟悉的 pytorch 知识点，笔记里的英文是从 notebook 中的原文</p>
-<p>现在看来2017年的 cs231n 课程视频已经有很多内容需要补充了，尤其是现在 transformer 很火的情况下</p>
-<p>原来这个老师 <strong>Justin Johnson</strong> 已经不在 Stanford 了，现在在UMich <a target="_blank" rel="noopener" href="https://web.eecs.umich.edu/~justincj/">个人主页</a> 开了一个计算机视觉的课程 <a target="_blank" rel="noopener" href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/">Deep Learning for Computer Vision</a>，这个课程比较新，有2020年的教学资源</p>
-<h2 id="How-do-I-learn-PyTorch"><a href="#How-do-I-learn-PyTorch" class="headerlink" title="How do I learn PyTorch?"></a>How do I learn PyTorch?</h2><p>One of our former instructors, Justin Johnson, made an excellent <a target="_blank" rel="noopener" href="https://github.com/jcjohnson/pytorch-examples">tutorial</a> for PyTorch. (这个 github 仓库感觉好老了，可以看看 pytorch <a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/">官方 tutorial</a>)</p>
-<p>You can also find the detailed <a target="_blank" rel="noopener" href="http://pytorch.org/docs/stable/index.html">API doc</a> here. If you have other questions that are not addressed by the API docs, the <a target="_blank" rel="noopener" href="https://discuss.pytorch.org/">PyTorch forum</a> is a much better place to ask than StackOverflow.</p>
-<h2 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h2><p>检查 cuda</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># basic check</span>
-torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span>
-torch<span class="token punctuation">.</span>version<span class="token punctuation">.</span>cuda
-<span class="token comment"># cuda device</span>
-torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cuda'</span><span class="token punctuation">,</span> device_oridinal<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Part-1-Preparation"><a href="#Part-1-Preparation" class="headerlink" title="Part 1: Preparation"></a>Part 1: Preparation</h2><h3 id="torchvision-transform"><a href="#torchvision-transform" class="headerlink" title="torchvision.transform"></a>torchvision.transform</h3><p><strong>torchvision 独立于 torch。torchvision 包由流行的数据集（torchvision.datasets）、模型架构(torchvision.models)和用于计算机视觉的常见图像转换组成 t(torchvision.transforms)</strong></p>
-<p>The torchvision.transforms package provides tools for preprocessing data and for performing data augmentation</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torchvison<span class="token punctuation">.</span>transfoms <span class="token keyword">as</span> T
-<span class="token comment"># T.Compose: Composes several transforms together</span>
-<span class="token comment"># T.ToTensor: Converts a PIL Image or numpy.ndarray (H x W x C) in the range</span>
-<span class="token comment"># T.Normalize: Normalize a tensor image with mean and standard deviation</span>
-<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">]</span> to a torch<span class="token punctuation">.</span>FloatTensor of shape <span class="token punctuation">(</span>C x H x W<span class="token punctuation">)</span> <span class="token keyword">in</span> the <span class="token builtin">range</span> <span class="token punctuation">[</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">]</span>
-transform <span class="token operator">=</span> T<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
-                T<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                T<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0.4914</span><span class="token punctuation">,</span> <span class="token number">0.4822</span><span class="token punctuation">,</span> <span class="token number">0.4465</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0.2023</span><span class="token punctuation">,</span> <span class="token number">0.1994</span><span class="token punctuation">,</span> <span class="token number">0.2010</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="torchvision-dataset"><a href="#torchvision-dataset" class="headerlink" title="torchvision.dataset"></a>torchvision.dataset</h3><p>使用 CIFAR10 数据集</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>datasets <span class="token keyword">as</span> dset
-<span class="token comment"># args</span>
-<span class="token comment"># root: root directory of dataset where it might exist or will be saved to if download</span>
-<span class="token comment"># train: if true create dataset from traning set</span>
-<span class="token comment"># transform: A function/transform that takes in an PIL image and returns a transformed version</span>
-cifar10_train <span class="token operator">=</span> dset<span class="token punctuation">.</span>CIFAR10<span class="token punctuation">(</span><span class="token string">'./cs231n/datasets'</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transform<span class="token punctuation">)</span>
-cifar10_test <span class="token operator">=</span> dset<span class="token punctuation">.</span>CIFAR10<span class="token punctuation">(</span><span class="token string">'./cs231n/datasets'</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transform<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这里需要学习处理数据集常用的几个方法</p>
-<h4 id="DataLoader-amp-Sampler"><a href="#DataLoader-amp-Sampler" class="headerlink" title="DataLoader &amp; Sampler"></a>DataLoader &amp; Sampler</h4><blockquote>
-<p>DataLoader: Combines a dataset and a sampler, and provides single- or multi-process iterators over the dataset.</p>
-</blockquote>
-<p>创建 train, val, test 三个 DataLoader</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">NUM_TRAIN <span class="token operator">=</span> <span class="token number">49000</span>
-
-<span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> DataLoader
-fromt torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> sampler
-
-loader_train <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>cifar10_train<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> sampler<span class="token operator">=</span>sampler<span class="token punctuation">.</span>SubsetRandomSampler<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span>NUM_TRAIN<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-loader_val <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>cifar10_train<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> sampler<span class="token operator">=</span>sampler<span class="token punctuation">.</span>SubsetRandomSampler<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span>NUM_TRAIN<span class="token punctuation">,</span> <span class="token number">50000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-loader_test <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>cifar10_test<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如何使用？</p>
-<h3 id="train-a-model"><a href="#train-a-model" class="headerlink" title="train a model"></a>train a model</h3><h2 id="Part-2-Barebones-by-PyTorch"><a href="#Part-2-Barebones-by-PyTorch" class="headerlink" title="Part 2: Barebones by PyTorch"></a>Part 2: Barebones by PyTorch</h2><h3 id="Autograd-engine"><a href="#Autograd-engine" class="headerlink" title="Autograd engine"></a>Autograd engine</h3><blockquote>
-<p>When we create a PyTorch Tensor with <code>requires_grad=True</code>, then operations involving that Tensor will not just compute values; they will also build up a computational graph in the background</p>
-</blockquote>
-<h3 id="torch-nn-functional"><a href="#torch-nn-functional" class="headerlink" title="torch.nn.functional"></a>torch.nn.functional</h3><p>各种函数都在这个文件当中，作业里用了 relu, conv2d</p>
-<h4 id="Bug"><a href="#Bug" class="headerlink" title="Bug"></a>Bug</h4><p>Run into errors when using  F.conv2d</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>funtional <span class="token keyword">as</span> F
-filters <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
-inputs <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
-<span class="token comment"># the next line produce error: Illegal instruction (core dumped)</span>
-x <span class="token operator">=</span> F<span class="token punctuation">.</span>conv2d<span class="token punctuation">(</span>inputs<span class="token punctuation">,</span> filters<span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>通过更换 pytorch 版本得到解决，卸载 <code>conda uninstall pytorch</code></p>
-<p>重新下载 <code>conda install pytorch==1.2.0 torchvision==0.4.0</code></p>
-<p>nn.Conv2d 和 nn.function.conv2d 有什么区别？尤其是传入的参数看</p>
-<h3 id="Kaiming-normalization"><a href="#Kaiming-normalization" class="headerlink" title="Kaiming normalization"></a>Kaiming normalization</h3><p>这个初始化是什么？待整理</p>
-<h3 id="bug"><a href="#bug" class="headerlink" title="bug"></a>bug</h3><p>使用 cuda 调用 GPU 失败 </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># run: torch.randn(shape, device=device, dtype=dtype)</span>
-RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>检查了 <code>torch.cuda.is_available()</code> 还有 <code>torch.version.cuda</code> 都是好的，网上也没有什么好的方法，在 StackOverflow 上找到了方法：<strong>重启!!!</strong> （可恶，重启确实管用）</p>
-<h3 id="to-device"><a href="#to-device" class="headerlink" title="to_device"></a>to_device</h3><h3 id="with-no-grad-with-torch-no-grad-什么意思？"><a href="#with-no-grad-with-torch-no-grad-什么意思？" class="headerlink" title="with no_grad(), with torch.no_grad() 什么意思？"></a>with no_grad(), with torch.no_grad() 什么意思？</h3><h3 id="格式化输出-2f-什么意思"><a href="#格式化输出-2f-什么意思" class="headerlink" title="格式化输出 %.2f%% 什么意思"></a>格式化输出 %.2f%% 什么意思</h3><h2 id="Part-3-Pytorch-Module-API"><a href="#Part-3-Pytorch-Module-API" class="headerlink" title="Part 3: Pytorch Module API"></a>Part 3: Pytorch Module API</h2><p>上面的 Barebone 要求我们手动跟踪所有参数张量，非常不方便，Pytorch 提供了 <code>nn.Module</code> API 能够让我们定义任意的网络结构，同时追踪所有网络中的参数</p>
-<p>还有优化策略的选择 <code>torch.optim</code> </p>
-<p>使用步骤：</p>
+                <h1 id="SPG-amp-BtcDet"><a href="#SPG-amp-BtcDet" class="headerlink" title="SPG &amp; BtcDet"></a>SPG &amp; BtcDet</h1><hr>
+<p>Xu, Qiangeng, et al. “SPG: Unsupervised Domain Adaptation for 3D Object Detection via Semantic Point Generation.” <em>ArXiv:2108.06709 [Cs]</em>, Aug. 2021. <em>arXiv.org</em>, <a target="_blank" rel="noopener" href="http://arxiv.org/abs/2108.06709">http://arxiv.org/abs/2108.06709</a>.</p>
+<p>Xu, Qiangeng, et al. “Behind the Curtain: Learning Occluded Shapes for 3D Object Detection.” <em>ArXiv:2112.02205 [Cs]</em>, Dec. 2021. <em>arXiv.org</em>, <a target="_blank" rel="noopener" href="http://arxiv.org/abs/2112.02205">http://arxiv.org/abs/2112.02205</a>.</p>
+<hr>
+<p>这两篇论文有着非常相似的思路，它们都是从点云的稀疏性出发，尝试在场景当中生成前景点，或者在特征图谱中融合前景点存在的概率</p>
+<h2 id="SPG"><a href="#SPG" class="headerlink" title="SPG"></a>SPG</h2><h3 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h3><p>论文首先提出了问题：domain shifts，也就是说数据集之间，样本的分布是有差异的。有的点云样本密度较大，而有的点云采集可能由于天气的原因，密度较小。使用检测器在点云较少的场景中进行预测，表现将会大大降低</p>
+<p>论文提出解决方法：Semantic Point Generation (SPG)，使用轻量级神经网络在相关场景 (generation area) 中生成前景点，以补偿点云消失的部分</p>
+<h3 id="Domian-gap"><a href="#Domian-gap" class="headerlink" title="Domian gap"></a>Domian gap</h3><p>在我理解 domain gap 就是在于数据集分布的差异。在看论文的时候看到了 feature misalign 问题，这里也总结一下：</p>
 <ol>
-<li><p><code>nn.Module</code> 作为子类继承</p>
-<p>Q: 这个类有什么作用呢？如果不定义这个类，直接组合这个类</p>
+<li>多尺度问题。一个特征点对应了多个尺度，该问题可以使用 FPN 解决，有一种分治的思想在里面，小目标使用高分辨率特征，大目标使用低分辨率特征</li>
+<li>anchor &amp; 分类得分不匹配。可以通过 RCNN 的细化解决</li>
+<li>遮挡。无法解决这样的问题</li>
+</ol>
+<p>除了使用特征对齐的方法，还有的论文将数据从一个域转到另一个域，本文也应该受到该方法的启发</p>
+<p>另外还提到了使用对抗生成网络来解决的方法，不过没有深入</p>
+<h3 id="Semantic-Point-Generation"><a href="#Semantic-Point-Generation" class="headerlink" title="Semantic Point Generation"></a>Semantic Point Generation</h3><p>定义原始点云输入</p>
+<script type="math/tex; mode=display">
+PC_{raw}={p_1,..,p_n} \in \mathbb R^{3+F}</script><p>F，代表其他的原始特征，例如反射强度。将点云场景进行体素化，对于每一个体素，都将生成一个置信度 $\tilde P^f$ 以及一个特征 $\tilde \phi$ ，前者表示该体素有前景点的概率，后者表示该点的特征 $(x, y, z, f)$</p>
+<p>虽然对每一个体素都进行了预测，但并不是所有的体素都参与生成点云。需要满足两个条件：</p>
+<ol>
+<li>在生成区域内的体素 generation area。生成区域定义为原始非空体素附近的区域</li>
+<li>置信度大于阈值的体素</li>
+</ol>
+<h4 id="SPG-trainning-targets"><a href="#SPG-trainning-targets" class="headerlink" title="SPG trainning targets"></a>SPG trainning targets</h4><p>前面对于 SPG 的目的已经介绍了一部分。标签这部分比较简单，就是使用了原始点云中的非空体素以及在选框内的体素作为前景体素标签，进行训练</p>
+<h4 id="Model-structure"><a href="#Model-structure" class="headerlink" title="Model structure"></a>Model structure</h4><p>模型是基于 PointPillars，不过在最后将 Pillars 还原成为了体素，进行了两部分的预测</p>
+<p><img src="/archives/199de5de/image-20220316211604579.png" alt="image-20220316211604579" style="zoom: 50%;"></p>
+<h4 id="Hide-and-predict"><a href="#Hide-and-predict" class="headerlink" title="Hide and predict"></a>Hide and predict</h4><p>这是论文中的一个训练策略：将一部分的体素移除，但是其标签仍然保持。这样天然形成了一些空体素，希望网络去学习生成点</p>
+<p>个人认为，这里仍有改进空间：这并没有明确让网络去学习稀疏 -&gt; 密集这样的一个过程。仅仅是简单的下采样，不能够模拟出点云中的稀疏场景，更难以表达稀疏特征和密集特征之间的关系。当然这样的操作肯定是对网络有益的，增加了 robustness</p>
+<h4 id="Loss-functions"><a href="#Loss-functions" class="headerlink" title="Loss functions"></a>Loss functions</h4><p>对于分类的损失函数，需要特殊处理的有两部分：1. $V_e^f$ empty foreground voxel; 2. hidden voxel 给它们加上了不同的权重即可。其他的 observed voxel &amp; empty background voxel 照常处理</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+L_{c l s} &=\frac{1}{\left|V_{o} \cup V_{e}^{b}\right|} \sum_{V_{o} \cup V_{e}^{b}} L_{\text {focal }} \\
+&+\frac{\alpha}{\left|V_{e}^{f}\right|} \sum_{V_{e}^{f}} L_{\text {focal }}+\frac{\beta}{\left|V_{\text {hide }}\right|} \sum_{V_{\text {hide }}} L_{\text {focal }}
+\end{aligned}</script><p>对于回归的损失函数，仅对 observed voxel &amp; hidden voxel 做回归损失</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+L_{r e g} &=\frac{1}{\left|V_{o}^{f}\right|} \sum_{V_{o}^{f}} L_{\text {smooth-L1 }}(\tilde{\psi}, \psi) \\
+&+\frac{\beta}{\left|V_{h i d e}^{f}\right|} \sum_{V_{\text {hide }}^{f}} L_{\text {smooth }-L 1}(\tilde{\psi}, \psi)
+\end{aligned}</script><p>其中 $\alpha = 0.5, \beta =2.0$，并且<strong>所有的体素都必须是 generation area 之内的体素</strong></p>
+<h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h3><p>训练是在 Waymo Open Dataset 上训练的，并在 Waymo Open Dataset &amp; KirK 上都进行了测试</p>
+<p><img src="/archives/199de5de/image-20220316214602575.png" alt="image-20220316214602575" style="zoom: 50%;"></p>
+<p>在 KITTI 测试集上也进行了实验</p>
+<p><img src="/archives/199de5de/image-20220316214637192.png" alt="image-20220316214637192" style="zoom:50%;"></p>
+<p>KITTI 验证集</p>
+<p><img src="/archives/199de5de/image-20220316214808815.png" alt="image-20220316214808815" style="zoom:50%;"></p>
+<p>SPG 与各种策略的比较</p>
+<p><img src="/archives/199de5de/image-20220316214710727.png" alt="image-20220316214710727" style="zoom:50%;"></p>
+<p>其中 k-frames 是将 k 帧点云进行叠加，也是一个稳定涨点技巧但是需要大量的内存和处理时间。SPG 很轻量，只加入了 8k 个点，并且参数少速度快</p>
+<h2 id="BtcDet"><a href="#BtcDet" class="headerlink" title="BtcDet"></a>BtcDet</h2><p>这篇论文相对于 SPG 感觉更晦涩更细致，但是出发点依然是对于消失点云的补偿。本文更进一步对消失点云以及<strong>消失形状</strong>进行学习</p>
+<h3 id="Causes-of-shape-miss"><a href="#Causes-of-shape-miss" class="headerlink" title="Causes of shape miss"></a>Causes of shape miss</h3><ol>
+<li>Signal miss，信号消失。这里我理解为激光穿过了玻璃类似的物质，或者反射角太大，或者被物质吸收，没办法进行返回</li>
+<li>Occlusion，遮挡。后方物体被前方物体遮挡</li>
+<li>信号发散。这是点云自身特点造成，越远处的地方，点云将越稀疏</li>
+</ol>
+<p>论文指出，在点云密集的地方，现在的 SOTA 检测器能够非常非常精准地识别出来，这也是对点云补偿的出发点</p>
+<h3 id="Learning-shapes-for-3D-object-detection"><a href="#Learning-shapes-for-3D-object-detection" class="headerlink" title="Learning shapes for 3D object detection"></a>Learning shapes for 3D object detection</h3><p>在之前的论文如 SA-SSD &amp; PV-RCNN 已经证明学习结构信息（前景点分割，中心点预测）对于目标检测是有提升的。但是它们忽略了消失形状的影响</p>
+<h3 id="Learning-shapes-in-occlusion"><a href="#Learning-shapes-in-occlusion" class="headerlink" title="Learning shapes in occlusion"></a>Learning shapes in occlusion</h3><h4 id="Approximate-the-complete-shapes"><a href="#Approximate-the-complete-shapes" class="headerlink" title="Approximate the complete shapes"></a>Approximate the complete shapes</h4><p>首先我们得知道完整的形状是什么样的，这样才能更好地学习。论文采取的策略有两个</p>
+<ol>
+<li><p>镜像。因为大多数目标都是镜像对称的，对称将补充部分点云</p>
 </li>
-<li><p>在 constructor <code>__init__()</code> 中定义好需要的网络层作为类的属性，<strong>注意，一定要运行 </strong><code>super().__init__()</code></p>
-<p>还可以用 <code>nn.init</code> 对网络参数进行不同的初始化</p>
-</li>
-<li><p>在 <code>forward()</code> 方法中定义网络的连接</p>
+<li><p>向其他同类 object “借”。论文构造了一个函数 $H(A,B)$ 来评估B 物体是否尽可能补全 A 物体</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal{H}(A, B) &=\sum_{x \in P_{A}} \min _{y \in P_{B}}\|x-y\|-\alpha \operatorname{IoU}\left(\mathcal{D}_{A}, \mathcal{D}_{B}\right) \\
+&+\beta /\left|\left\{x: x \in \operatorname{Vox}\left(P_{B}\right), x \notin \operatorname{Vox}\left(P_{A}\right)\right\}\right|
+\end{aligned}</script><p>第一项希望 B 的点尽量覆盖 A 的点</p>
+<p>第二项希望二者的 IoU 尽量大</p>
+<p>第三项希望 B 中的 voxel 尽量多的不属于 A</p>
+<p>启发式函数越低越好，代表 B 更能覆盖和填补 A。对 A 物体，选择得分最高的3个物体，并将它们的点云借给 A 作为补充</p>
 </li>
 </ol>
-<p>优化的时候要先清零梯度 <code>optimizer.zero_grad()</code></p>
-<h2 id="Part-4-Pytorch-Sequential-API"><a href="#Part-4-Pytorch-Sequential-API" class="headerlink" title="Part 4: Pytorch Sequential API"></a>Part 4: Pytorch Sequential API</h2><p>Pytorch 定义了一个更方便的 Module: <code>nn.Sequential</code>，来实现顺序连接网络，不需要像 <code>nn.Module</code> 一样做三个步骤</p>
-<p><code>nn.Sequential</code> 自身也是可以嵌套的</p>
-<h2 id="Part-5-CIFAR-10-open-ended-challenge"><a href="#Part-5-CIFAR-10-open-ended-challenge" class="headerlink" title="Part 5: CIFAR-10 open-ended challenge"></a>Part 5: CIFAR-10 open-ended challenge</h2><h3 id="Things-you-might-try"><a href="#Things-you-might-try" class="headerlink" title="Things you might try:"></a>Things you might try:</h3><ul>
-<li><strong>Filter size</strong>: Above we used 5x5; would smaller filters be more efficient?</li>
-<li><strong>Number of filters</strong>: Above we used 32 filters. Do more or fewer do better?</li>
-<li><strong>Pooling vs Strided Convolution</strong>: Do you use max pooling or just stride convolutions?</li>
-<li><strong>Batch normalization</strong>: Try adding spatial batch normalization after convolution layers and vanilla batch normalization after affine layers. Do your networks train faster?</li>
-<li><strong>Network architecture</strong>: The network above has two layers of trainable parameters. Can you do better with a deep network? Good architectures to try include:<ul>
-<li>[conv-relu-pool]xN -&gt; [affine]xM -&gt; [softmax or SVM]</li>
-<li>[conv-relu-conv-relu-pool]xN -&gt; [affine]xM -&gt; [softmax or SVM]</li>
-<li>[batchnorm-relu-conv]xN -&gt; [affine]xM -&gt; [softmax or SVM]</li>
-</ul>
-</li>
-<li><strong>Global Average Pooling</strong>: Instead of flattening and then having multiple affine layers, perform convolutions until your image gets small (7x7 or so) and then perform an average pooling operation to get to a 1x1 image picture (1, 1 , Filter#), which is then reshaped into a (Filter#) vector. This is used in <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1512.00567">Google’s Inception Network</a> (See Table 1 for their architecture).</li>
-<li><strong>Regularization</strong>: Add l2 weight regularization, or perhaps use Dropout.</li>
-</ul>
-<p>上面的这些选择都非常有意义，我需要能够逐个回答他们</p>
+<h4 id="Identify-R-oc-cup-R-sm-in-spherical-coordinate"><a href="#Identify-R-oc-cup-R-sm-in-spherical-coordinate" class="headerlink" title="Identify $R_{oc} \cup R_{sm}$ in spherical coordinate"></a>Identify $R_{oc} \cup R_{sm}$ in spherical coordinate</h4><p>这个极坐标系也是本文有点难以理解的。对于 occlusion 区域，是指某个非空弧形体素及其之后的弧形体素区域。对于 signal missing 区域需要使用 range view 来理解。理论上来讲 Lidar 的 range view 应该是铺满整个平面的，但由于 signal missing，range view 会缺失。如果 spherical voxel 映射到缺失区域中，就认定该 spherical voxel 属于 signal missing 区域</p>
+<p><img src="/archives/199de5de/image-20220317000714947.png" alt="image-20220317000714947" style="zoom:50%;"></p>
+<h4 id="Training-targets"><a href="#Training-targets" class="headerlink" title="Training targets"></a>Training targets</h4><p>此时 targets 就不是简单的使用原始点云场景了。而是使用经过目标补全的点云场景</p>
+<h4 id="Estimate-the-shape-occupancy"><a href="#Estimate-the-shape-occupancy" class="headerlink" title="Estimate the shape occupancy"></a>Estimate the shape occupancy</h4><p>BtcDet 将预测在遮挡和消失区域的 spherical voxel 含有点云的概率。它不作任何的点云生成，这也是与 SPG 的一个区别。SPG 关注的是在空体素处是否含有前景点（在 bbox 中即可），而本文关注的是在遮挡和信号消失的区域是否含有目标点（更精细）</p>
+<p>损失函数如下，仅关注遮挡和信号消失的区域</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\text {shape }}=\frac{\sum_{v \in \mathcal{R}_{\mathcal{O C}} \cup \mathcal{R}_{\mathcal{S M}}} w_{v} \cdot \mathcal{L}_{\text {focal }}\left(p_{v}\right)}{\left|\mathcal{R}_{\mathcal{O C}} \cup \mathcal{R}_{\mathcal{S M}}\right|} \text {, }
+\\
+where\  w_{v}=\left\{\begin{array}{ll}\delta & \text { if } v \in \text { regions of shape miss } \\ 1 & \text { otherwise. }\end{array}\right.</script><p> 对于借来的点以及空的 voxel 都使用权重 δ</p>
+<p>还值得提到是，论文使用的是极坐标系下的 3d 稀疏卷积来提取每一个体素的特征</p>
+<h3 id="Shape-Occupancy-Probability-Integration"><a href="#Shape-Occupancy-Probability-Integration" class="headerlink" title="Shape Occupancy Probability Integration"></a>Shape Occupancy Probability Integration</h3><p>得到了一个 spherical coordinate feature map $P(Occupancy)$，表示了各个弧形体素中是否包含目标点</p>
+<p>先把极坐标系转换到笛卡尔坐标系，这样方便和其他特征图谱进行融合，通过下采样可以得到和其他特征图谱相同分辨率</p>
+<p><img src="/archives/199de5de/image-20220317003143105.png" alt="image-20220317003143105" style="zoom:50%;"></p>
+<h3 id="Experiments-1"><a href="#Experiments-1" class="headerlink" title="Experiments"></a>Experiments</h3><p>在 KITTI 数据集上横扫</p>
+<p><img src="/archives/199de5de/image-20220317003314223.png" alt="image-20220317003314223" style="zoom:50%;"></p>
+<p>在 waymo 数据集上横扫</p>
+<p><img src="/archives/199de5de/image-20220317003337540.png" alt="image-20220317003337540" style="zoom:50%;"></p>
 
                 
             </div>
@@ -560,7 +547,7 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://hongkun.space/archives/88f138aa.html">https://hongkun.space/archives/88f138aa.html</a>
+                    <a href="https://hongkun.space/archives/199de5de.html">https://hongkun.space/archives/199de5de.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -598,12 +585,12 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Pytorch/">
-                                    <span class="chip bg-color">Pytorch</span>
+                                <a href="/tags/SPG/">
+                                    <span class="chip bg-color">SPG</span>
                                 </a>
                             
-                                <a href="/tags/CS231N/">
-                                    <span class="chip bg-color">CS231N</span>
+                                <a href="/tags/BtcDet/">
+                                    <span class="chip bg-color">BtcDet</span>
                                 </a>
                             
                         </div>
@@ -787,13 +774,13 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/51543c70.html">
+                <a href="/archives/6921f8d1.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="PointRCNN">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Leetcode-diary 3 Array &amp; Binary Search">
                         
-                        <span class="card-title">PointRCNN</span>
+                        <span class="card-title">Leetcode-diary 3 Array &amp; Binary Search</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -804,14 +791,18 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-21
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/papers/" class="post-category">
-                                    papers
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Leetcode/" class="post-category">
+                                    Leetcode
                                 </a>
                             
                             
@@ -821,12 +812,8 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Point-Cloud/">
-                        <span class="chip bg-color">Point Cloud</span>
-                    </a>
-                    
-                    <a href="/tags/PointRCNN/">
-                        <span class="chip bg-color">PointRCNN</span>
+                    <a href="/tags/Leetcode/">
+                        <span class="chip bg-color">Leetcode</span>
                     </a>
                     
                 </div>
@@ -840,13 +827,13 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/acef3112.html">
+                <a href="/archives/d99f910b.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="MMDetection 项目">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Pathlib">
                         
-                        <span class="card-title">MMDetection 项目</span>
+                        <span class="card-title">Pathlib</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -857,7 +844,7 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-21
                             </span>
                         <span class="publish-author">
                             
@@ -867,8 +854,12 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
                                     编程
                                 </a>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/OpenMMLab/" class="post-category">
-                                    OpenMMLab
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Package/" class="post-category">
+                                    Package
                                 </a>
                             
                             
@@ -878,8 +869,8 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MMDetection/">
-                        <span class="chip bg-color">MMDetection</span>
+                    <a href="/tags/Pathlib/">
+                        <span class="chip bg-color">Pathlib</span>
                     </a>
                     
                 </div>
@@ -1011,6 +1002,13 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
 </main>
 
 
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
 
 
     <footer class="page-footer bg-color">
@@ -1027,7 +1025,7 @@ RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable<span 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

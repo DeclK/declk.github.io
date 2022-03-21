@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    6.3k
+                    6.2k
                 </div>
                 
 
@@ -470,7 +470,7 @@ lines <span class="token operator">=</span> read_time_machine<span class="token 
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'# 文本总行数: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">len</span><span class="token punctuation">(</span>lines<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>lines<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>lines<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="词元化"><a href="#词元化" class="headerlink" title="词元化"></a>词元化</h3><p>下面的 <code>tokenize</code> 函数将文本行列表（<code>lines</code>）作为输入， 列表中的每个元素是一个文本序列（如一条文本行）。 每个文本序列又被拆分成一个词元列表，词元（token）是文本的基本单位（例如，可以选择单词或字母作为基本单位）</p>
+<h3 id="词元化"><a href="#词元化" class="headerlink" title="词元化"></a>词元化</h3><p>下面的 <code>tokenize</code> 函数将文本行列表（<code>lines</code>）作为输入，每个文本序列又被拆分成一个词元列表，词元（token）是文本的基本单位（例如，可以选择单词或字母作为基本单位）</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">tokenize</span><span class="token punctuation">(</span>lines<span class="token punctuation">,</span> token<span class="token operator">=</span><span class="token string">'word'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment">#@save</span>
     <span class="token triple-quoted-string string">"""将文本行拆分为单词或字符词元"""</span>
     <span class="token keyword">if</span> token <span class="token operator">==</span> <span class="token string">'word'</span><span class="token punctuation">:</span>
@@ -496,7 +496,7 @@ tokens <span class="token operator">=</span> tokenize<span class="token punctuat
         counter <span class="token operator">=</span> count_corpus<span class="token punctuation">(</span>tokens<span class="token punctuation">)</span>
         self<span class="token punctuation">.</span>_token_freqs <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>counter<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
                                    reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-        <span class="token comment"># 未知词元的索引为0</span>
+        <span class="token comment"># 初始化未知词元 &amp; reserved_tokens</span>
         self<span class="token punctuation">.</span>idx_to_token <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'&lt;unk&gt;'</span><span class="token punctuation">]</span> <span class="token operator">+</span> reserved_tokens
         self<span class="token punctuation">.</span>token_to_idx <span class="token operator">=</span> <span class="token punctuation">{</span>token<span class="token punctuation">:</span> idx
                              <span class="token keyword">for</span> idx<span class="token punctuation">,</span> token <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>idx_to_token<span class="token punctuation">)</span><span class="token punctuation">}</span>
@@ -551,7 +551,7 @@ vocab<span class="token punctuation">[</span>token<span class="token punctuation
 <li><p><code>token_freqs</code> 返回一个 list of tuple，用于存储 token 出现的次数 (token, freqs)，该功能是由 <code>collections.Counter + sorted</code> 实现</p>
 </li>
 </ol>
-<h3 id="语料库"><a href="#语料库" class="headerlink" title="语料库"></a>语料库</h3><p>将如下几个功能整合起来：将数据导入，生成词表，生成语料库（所谓语料库，就是一个 list of index 索引组成的列表，存储了文本中每一个 token 对应的 index）</p>
+<h3 id="语料库"><a href="#语料库" class="headerlink" title="语料库"></a>语料库</h3><p>将如下几个功能整合起来：将数据导入，生成词表，生成语料库（所谓语料库，就是一个 list of index，存储了文本中每一个 token 对应的 index）</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">load_corpus_time_machine</span><span class="token punctuation">(</span>max_tokens<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment">#@save</span>
     <span class="token triple-quoted-string string">"""返回时光机器数据集的词元索引列表和词表"""</span>
     lines <span class="token operator">=</span> read_time_machine<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -1316,7 +1316,7 @@ L=\frac{1}{T} \sum_{t=1}^{T} l\left(\mathbf{o}_{t}, y_{t}\right)</script><p>画�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -470,16 +470,16 @@ where \
 \tilde{s}_{i} & \text { if } s_{i}=1 \\
 1-\tilde{s}_{i} & \text { otherwise. }
 \end{array}\right.</script><script type="math/tex; mode=display">
-\mathcal{L}_{\mathrm{ctr}}=\frac{1}{N_{\text {pos }}} \sum_{i}^{N} \text { Smooth- } l_{1}(\Delta \tilde{\mathbf{p}}-\Delta \mathbf{p}) \cdot \mathbb{1}\left[s_{i}=1\right]</script><h3 id="Part-sensitive-warping"><a href="#Part-sensitive-warping" class="headerlink" title="Part-sensitive warping"></a>Part-sensitive warping</h3><p>如果使用 anchor-based 方法进行目标检测，例如：Faster RCNN，会出现预测选框与分类置信度之间并不匹配。分类置信度的特征来源是由预先设值的 anchor 决定的，而不是来自所预测的选框。为解决这一问题，论文提出了 part-sensitive warping operation (PSWarp) 用于矫正这一不匹配现象，其中心思想为：让预测选框的分类置信度，来自于该选框区域对应的分类特征图谱区域。具体操作更加复杂一点（个人不太喜欢这一部分）</p>
+\mathcal{L}_{\mathrm{ctr}}=\frac{1}{N_{\text {pos }}} \sum_{i}^{N} \text { Smooth- } l_{1}(\Delta \tilde{\mathbf{p}}-\Delta \mathbf{p}) \cdot \mathbb{1}\left[s_{i}=1\right]</script><h3 id="Part-sensitive-warping"><a href="#Part-sensitive-warping" class="headerlink" title="Part-sensitive warping"></a>Part-sensitive warping</h3><p>如果使用 anchor-based 方法进行目标检测，例如：Faster RCNN，会出现预测选框与分类置信度之间并不匹配。分类置信度的特征来源是由预先设值的 anchor 决定的，而不是来自所预测的选框。为解决这一问题，论文提出了 part-sensitive warping operation (PSWarp) 用于矫正这一不匹配现象，其中心思想为：让预测选框的分类置信度，来自于预测选框对应的分类特征图谱区域。具体操作更加复杂一点</p>
 <ol>
-<li><p>将分类特征图谱改变维度，从 $(W, L, F)$ 至 $(W,L,C, K)$ 其中 C 表示类别数量，K 表示将预测选框的俯视图平均分成了 K 份（论文将选框分为了 4x7=28 份）</p>
+<li><p>将分类特征图谱改变维度，从 $(W, L, F)$ 至 $(W,L,C, K)$ 其中 C 表示类别数量，K 表示将预测选框的俯视图平均分成了 K 份（论文将选框分为了 4x7=28 份），K 个维度里的每一个维度代表该点为选框某个部分的得分。例如当 K = 4 时，维度 (0, 1, 2, 3) 代表预测选框的 (左上，右上，左下，右下) 的得分</p>
 </li>
-<li><p>将预测选框的俯视图平均分为 K 份后，取每一个部分的中心点作为采样点，再使用双线性插值 bilinear interpolation 获得采样点的特征值。为了更具体的说明插值过程，将这 K 个采样点进行编号 $\{S_k: k=1, 2,…,K\}$，假设第 i 个采样点 $S_i$ 其插值参考的特征图谱 feature map $\mathcal{X}$ 也为第 i 个，即 $(W,L,C,i)$ 记为 $\mathcal{X^i}$。代数过程如下</p>
+<li><p>将预测选框的俯视图平均分为 K 份后，取每一个部分的中心点作为采样点，再使用双线性插值 bilinear interpolation 获得<strong>采样点在分类图谱中的特征值</strong>。为了更具体的说明插值过程，将这 K 个采样点进行编号 $\{S_k: k=1, 2,…,K\}$，假设第 i 个采样点 $S_i$ 其插值参考的特征图谱 feature map $\mathcal{X}$ 也为第 i 个，即 $(W,L,C,i)$ 记为 $\mathcal{X^i}$。代数过程如下</p>
 <script type="math/tex; mode=display">
 \mathcal{C}_{p}=\frac{1}{K} \sum_{k=1}^{K} \sum_{i\in\{\lfloor{u^k}\rfloor ,\lfloor{u^k+1}\rfloor\}\atop  j\in\{\lfloor{v^k}\rfloor ,\lfloor{v^k+1}\rfloor\}} \mathcal{X_{ij}^k}\times b(i,j,u^k,v^k)</script><p>代码可以参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/themasterbi/article/details/106913582">CSDN</a>，这篇博客的所写的源代码注释，是众多博客中让我唯一理解的注释，不然通过论文中的文字很难理解 PSWarp 操作。最终获得输出 $(K, 1, N, 1)$，其中 $N$ 为该场景中预测选框的数量。图示如下</p>
 <p><img src="/archives/82cec617/image-20211013182126400.png" style="zoom:80%;"></p>
 </li>
-<li><p>取 K 个采样点特征值的平均值作为分类评分，最后使用 sigmoid 函数获得分类置信度</p>
+<li><p>K 个采样点将会得到的 K 个得分，它们的平均值作为最终分类得分，最后使用 sigmoid 函数获得分类置信度</p>
 </li>
 </ol>
 <p>将辅助任务和主任务的损失函数乘以权重超参数，相加后得到整个网络的损失函数</p>
@@ -792,13 +792,13 @@ where \
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/786d359c.html">
+                <a href="/archives/807a20df.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="D2L 01 前言">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="CenterPoint">
                         
-                        <span class="card-title">D2L 01 前言</span>
+                        <span class="card-title">CenterPoint</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -815,12 +815,8 @@ where \
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
-                                    课程
-                                </a>
-                            
-                            <a href="/categories/%E8%AF%BE%E7%A8%8B/Dive-into-deep-learning/" class="post-category">
-                                    Dive into deep learning
+                            <a href="/categories/papers/" class="post-category">
+                                    papers
                                 </a>
                             
                             
@@ -830,12 +826,12 @@ where \
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">深度学习</span>
+                    <a href="/tags/CenterPoint/">
+                        <span class="chip bg-color">CenterPoint</span>
                     </a>
                     
-                    <a href="/tags/Dive-into-deep-learning/">
-                        <span class="chip bg-color">Dive into deep learning</span>
+                    <a href="/tags/Point-Cloud/">
+                        <span class="chip bg-color">Point Cloud</span>
                     </a>
                     
                 </div>
@@ -990,7 +986,7 @@ where \
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

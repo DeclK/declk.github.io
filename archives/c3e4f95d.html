@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4k
+                    4.2k
                 </div>
                 
 
@@ -594,7 +594,7 @@ x <span class="token operator">=</span> spconv<span class="token punctuation">.<
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">BACKBONE_2D</span><span class="token punctuation">:</span>
     <span class="token key atrule">NAME</span><span class="token punctuation">:</span> BaseBEVBackbone
 
-    <span class="token comment"># 5 convolution layers, input channel == output channel == nun_filters[idx], stride = 1</span>
+    <span class="token comment"># 5 convolution layers, input channel == output channel == num_filters[idx], stride = 1</span>
     <span class="token key atrule">LAYER_NUMS</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
     <span class="token key atrule">LAYER_STRIDES</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
     <span class="token key atrule">NUM_FILTERS</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">]</span>
@@ -633,7 +633,7 @@ x <span class="token operator">=</span> spconv<span class="token punctuation">.<
             <span class="token string">'reg_weights'</span><span class="token punctuation">:</span> reg_weights			<span class="token comment"># 1 or 1 / positive_anchors (if normalize), negative anchors are 0</span>
     											<span class="token comment"># regression weights 在之后似乎并没有用到，而是直接从 cls_label 里进行判断</span>
         <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>发现这里没有使用 $sin(\Delta \theta)$ 对 target 进行编码，而是直接使用 $\Delta \theta$ 表示方向残差，之后单独用 <code>add_sin_difference</code> 处理。这里贴一下其中的核心代码，因为制作 targets 的过程比较细，不好好看一下真的不清晰</p>
+<p>发现这里没有使用 $sin(\Delta \theta)$ 对 target 进行编码，而是直接使用 $\Delta \theta$ 表示方向残差，之后单独用 <code>add_sin_difference</code> 处理。assign targets 是<strong>分批分类</strong>进行处理的，这里贴一下其中的核心代码，了解处理一个 sample 一个类该怎么做，因为制作 targets 的过程比较细，不好好看一下真的不清晰</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">labels <span class="token operator">=</span> torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span>num_anchors<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>int32<span class="token punctuation">,</span> device<span class="token operator">=</span>anchors<span class="token punctuation">.</span>device<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token operator">-</span><span class="token number">1</span>
 gt_ids <span class="token operator">=</span> torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span>num_anchors<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>int32<span class="token punctuation">,</span> device<span class="token operator">=</span>anchors<span class="token punctuation">.</span>device<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token operator">-</span><span class="token number">1</span>
 
@@ -657,6 +657,7 @@ bg_inds <span class="token operator">=</span> <span class="token punctuation">(<
 <span class="token comment"># 标记 background anchor</span>
 labels<span class="token punctuation">[</span>bg_inds<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
 <span class="token comment"># 综上 fg_inds 是 positive_inds | anchors_with_max_overlap - bg_inds</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>重要的总结再说一遍：综上 <code>fg_inds</code> 是 <code>positive_inds | anchors_with_max_overlap - bg_inds</code></strong></p>
 </li>
 <li><p><code>forward_ret_dict</code>: 虽然这是与 loss 相关的部分，暂且先放在这里。该字典存储向前传播中的预测结果及其标签，用于之后计算 loss</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">cls_preds
@@ -713,7 +714,7 @@ reg_weights<span aria-hidden="true" class="line-numbers-rows"><span></span><span
     cls_preds <span class="token operator">=</span> self<span class="token punctuation">.</span>conv_cls<span class="token punctuation">(</span>spatial_features_2d<span class="token punctuation">)</span>
     box_preds <span class="token operator">=</span> self<span class="token punctuation">.</span>conv_box<span class="token punctuation">(</span>spatial_features_2d<span class="token punctuation">)</span>
 
-    <span class="token comment"># 把 channel 移动到最后一个维度</span>
+    <span class="token comment"># 把 channel 移动到最后一个维度，便于之后计算损失函数</span>
     cls_preds <span class="token operator">=</span> cls_preds<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># [N, H, W, C]</span>
     box_preds <span class="token operator">=</span> box_preds<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># [N, H, W, C]</span>
 
@@ -782,7 +783,7 @@ reg_weights<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <ol>
 <li><p><code>assign_targets</code> 方法完成了两个事情：</p>
 <ol>
-<li><p>在 rois 采样 M 个 roi，并获得其对应的 gt 标签。通常采样 128 个 roi，以 1:1 正负比例，并优先保障正样本。操作通过另一个类的前向方程来完成的 <code>ProposalTargetLayer</code></p>
+<li><p>在 rois 采样 M 个 roi，并获得其对应的 gt 标签。通常采样 128 个 roi，以 1:1 正负比例进行采样，正负判定条件依然为 iou 相关阈值，负采样仅参与置信度损失的计算，不参与回归损失的计算。Target 的分配是通过 <code>ProposalTargetLayer</code> 类的前向方程完成</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">targets_dict <span class="token operator">=</span> self<span class="token punctuation">.</span>proposal_target_layer<span class="token punctuation">.</span>forward<span class="token punctuation">(</span>batch_dict<span class="token punctuation">)</span>
 <span class="token triple-quoted-string string">"""
 Args:
@@ -804,6 +805,8 @@ Returns:
 """</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>将 gt 转换到对应的 roi 坐标系当中（平移+旋转），需要注意的是还对方向相反的 gt 进行了 flip orientation 处理，以减少错误预测的损失。虽然这不是真实的标签，但损失太大可能不利于维护 R-CNN 训练的稳定</p>
+</li>
+<li><p>这里提一下，所有获得的 target 都使用 detach 从计算图中分离，也就是不希望更新用于预测 roi 部分的网络参数，仅关注用于预测残差以及 backbone 中的网络参数。建议画一下计算图</p>
 </li>
 </ol>
 </li>
@@ -832,14 +835,15 @@ Returns:
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">##################### Note ########################</span>
 <span class="token comment"># Mi = 128x6x6x6 = roi numbers * grid points per roi 是个常数</span>
 <span class="token comment"># 并且本笔记中没有对 channel 数量进行区分，都用 C 表示</span>
+<span class="token comment"># k 表示 k 个不同分辨率的特征图谱</span>
 <span class="token comment">##################### Note ########################</span>
 <span class="token comment"># features_in: (1, C, M1+M2+...)</span>
 features_in <span class="token operator">=</span> self<span class="token punctuation">.</span>mlps_in<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">(</span>features_in<span class="token punctuation">)</span>
 features_in <span class="token operator">=</span> features_in<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>contiguous<span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment"># features_in: (1, M1+M2+..., C)</span>
-features_in <span class="token operator">=</span> features_in<span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> features_in<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>	<span class="token comment"># features_in: (M1+M2+..., C)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+features_in <span class="token operator">=</span> features_in<span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> features_in<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>	<span class="token comment"># features_in: (M1+M2+..., C)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>获得了 <code>features_in</code> 之后将会输入到 <code>self.groupers</code> 当中</p>
 </li>
-<li><p><code>self.groupers</code>，执行 grouping 操作，由类 <code>VoxelQueryAndGrouping</code> 实现。当邻居数量没有 nsample 这么多时使用第一个邻居 sample 进行补位。再通过标注 <code>empty_ball_mask</code> 得知该 grid point 是否有邻居，在之后使用 MLP 提取特征时把空 grid point 的特征设置为 0 即可。该类的前向方程获得的结果如下</p>
+<li><p><code>self.groupers</code>，执行 grouping 操作，由类 <code>VoxelQueryAndGrouping</code> 实现。当邻居数量没有 nsample 这么多时使用第一个 sample grid 进行补位。再通过标注 <code>empty_ball_mask</code> 得知该 grid point 是否有邻居，在之后使用 MLP 提取特征时把空 grid point 的特征设置为 0 即可。该类的前向方程获得的结果如下</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> new_coords<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span> xyz<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span> xyz_batch_cnt<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span>
             new_xyz<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span> new_xyz_batch_cnt<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span>
             features<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">,</span> voxel2point_indices<span class="token punctuation">:</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -864,9 +868,9 @@ features_in <span class="token operator">=</span> features_in<span class="token 
 </li>
 <li><p><code>mlp_pos</code>，对 group 得到的 nsample 个 voxel positions 进行特征提取，由 kernel size = 1 的  <code>Conv2d</code> 完成 <code>grouped_xyz: (1, 3, M1+M2+..., nsample)</code></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># grouped_xyz: (1, 3, M1+M2, nsample)</span>
-position_features <span class="token operator">=</span> self<span class="token punctuation">.</span>mlps_pos<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">(</span>grouped_xyz<span class="token punctuation">)</span>	<span class="token comment"># position_features: (1, C, M1+M2, nsample)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+position_features <span class="token operator">=</span> self<span class="token punctuation">.</span>mlps_pos<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">(</span>grouped_xyz<span class="token punctuation">)</span>	<span class="token comment"># position_features: (1, C, M1+M2+..., nsample)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
-<li><p><code>mlp_out</code>，在使用该 MLP 之前，需要将前两个 MLP 提取的特征加起来 <code>mlp_in + mpl_out</code>，然后使用 max pooling 消除 nsample 维度，得到汇聚特征 (1, C, M1+M2+…)。然后再进行特征提取，由 <code>Conv1d</code> 完成</p>
+<li><p><code>mlp_out</code>，在使用该 MLP 之前，需要将前两个 MLP 提取的特征加起来 <code>mlp_in + mpl_pos</code>，然后使用 max pooling 消除 nsample 维度，得到汇聚特征 (1, C, M1+M2+…)。然后再进行特征提取，由 <code>Conv1d</code> 完成</p>
 </li>
 </ol>
 <p><strong>下面整体来看看 <code>pool_layer</code> 层的输入和输出</strong></p>
@@ -1181,18 +1185,17 @@ position_features <span class="token operator">=</span> self<span class="token p
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/c3e4f95d.html">
+                <a href="/archives/fc1adef0.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="OpenPCDet VoxelRCNN">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Leetcode-diary 1">
                         
-                        <span class="card-title">OpenPCDet VoxelRCNN</span>
+                        <span class="card-title">Leetcode-diary 1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1202,9 +1205,9 @@ position_features <span class="token operator">=</span> self<span class="token p
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-20
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-01
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1213,20 +1216,19 @@ position_features <span class="token operator">=</span> self<span class="token p
                                     编程
                                 </a>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/OpenMMLab/" class="post-category">
-                                    OpenMMLab
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Leetcode/" class="post-category">
+                                    Leetcode
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/OpenPCDet/">
-                        <span class="chip bg-color">OpenPCDet</span>
+                    <a href="/tags/Leetcode/">
+                        <span class="chip bg-color">Leetcode</span>
                     </a>
                     
                 </div>
@@ -1434,7 +1436,7 @@ position_features <span class="token operator">=</span> self<span class="token p
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

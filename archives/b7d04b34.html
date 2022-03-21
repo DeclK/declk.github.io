@@ -482,7 +482,7 @@ tensor<span class="token punctuation">(</span><span class="token punctuation">[<
          <span class="token punctuation">[</span><span class="token number">0.2604</span><span class="token punctuation">,</span> <span class="token number">0.2631</span><span class="token punctuation">,</span> <span class="token number">0.4765</span><span class="token punctuation">,</span> <span class="token number">0.0000</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="加性注意力"><a href="#加性注意力" class="headerlink" title="加性注意力"></a>加性注意力</h3><p>当查询和键是不同长度的矢量时， 我们可以使用加性注意力（additive attention）作为评分函数</p>
 <script type="math/tex; mode=display">
-a(\mathbf{q}, \mathbf{k})=\mathbf{w}_{v}^{\top} \tanh \left(\mathbf{W}_{q} \mathbf{q}+\mathbf{W}_{k} \mathbf{k}\right) \in \mathbb{R}</script><p>上代码，注意代码中对 query, key, value 的数量（sequence length / time step）是没有限制的，更具有一般性，它们的形状表示为 (batch_size, seq_len, feature)，教材中使用的 query, key, value 具体形状为：(2, 1, 20)，(2, 10, 2) 和 (2, 10, 4)，具体走一遍会比较清晰</p>
+a(\mathbf{q}, \mathbf{k})=\mathbf{w}_{v}^{\top} \tanh \left(\mathbf{W}_{q} \mathbf{q}+\mathbf{W}_{k} \mathbf{k}\right) \in \mathbb{R}</script><p>上代码，注意代码中对 query, key, value 的数量（sequence length / time step）具有一般性，它们的形状表示为 (batch_size, seq_len, feature)，教材中使用的 query, key, value 具体形状为：(2, 1, 20)，(2, 10, 2) 和 (2, 10, 4)，具体走一遍会比较清晰</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#@save</span>
 <span class="token keyword">class</span> <span class="token class-name">AdditiveAttention</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token triple-quoted-string string">"""加性注意力"""</span>
@@ -550,7 +550,7 @@ a(\mathbf{q}, \mathbf{k})=\mathbf{q}^{\top} \mathbf{k} / \sqrt{d}</script><p>查
         self<span class="token punctuation">.</span>attention_weights <span class="token operator">=</span> masked_softmax<span class="token punctuation">(</span>scores<span class="token punctuation">,</span> valid_lens<span class="token punctuation">)</span>
         <span class="token keyword">return</span> torch<span class="token punctuation">.</span>bmm<span class="token punctuation">(</span>self<span class="token punctuation">.</span>dropout<span class="token punctuation">(</span>self<span class="token punctuation">.</span>attention_weights<span class="token punctuation">)</span><span class="token punctuation">,</span> values<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="Bahdanau-注意力"><a href="#Bahdanau-注意力" class="headerlink" title="Bahdanau 注意力"></a>Bahdanau 注意力</h2><p>之前教材讨论了机器翻译问题：通过编码器-解码器架构，用于序列到序列学习。具体来说，编码器将长度可变的序列转换为固定形状的上下文变量，然后解码器根据生成的词元和上下文变量按词元生成输出（目标）序列词元。然而，即使并非所有输入（源）词元都对解码某个词元都有用，但我们在每个解码步骤中仍使用编码相同的上下文变量</p>
-<p>有什么方法能在不同解码步骤中，<strong>使用不同的上下文变量</strong>呢？这个时候注意力机制就登场了，下面具体来看看吧</p>
+<p>有什么方法能在不同解码步骤中，<strong>使用不同的上下文变量</strong>呢？这个时候 Bahdanau 注意力机制就登场了，下面具体来看看吧</p>
 <h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>上下文变量任意解码时间步 $t’$ 会被替换为 $c_{t’}$</p>
 <script type="math/tex; mode=display">
 \mathbf{c}_{t^{\prime}}=\sum_{t=1}^{T} \alpha\left(\mathbf{s}_{t^{\prime}-1}, \mathbf{h}_{t}\right) \mathbf{h}_{t}</script><p>其中，$h_t$ 为<strong>编码器</strong> t 时间步的隐状态，它即使 key 又是 value；$s_{t’-1}$ 为<strong>解码器</strong> $t’-1$ 时刻步的隐状态；注意力权重 $\alpha$ 是之前定义的加性注意力打分函数。看一下模型代码</p>
@@ -1426,7 +1426,7 @@ decoder_blk<span class="token punctuation">(</span>X<span class="token punctuati
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

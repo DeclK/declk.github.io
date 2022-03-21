@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="PointPillars (dev), ">
+    <meta name="keywords" content="PointPillars, ">
     <meta name="description" content=" ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>PointPillars (dev) | </title>
+    <title>PointPillars | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">PointPillars (dev)</h1>
+                    <h1 class="description center-align post-title">PointPillars</h1>
                 </div>
             </div>
         </div>
@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    787
+                    645
                 </div>
                 
 
@@ -433,10 +433,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="PointPillars-note"><a href="#PointPillars-note" class="headerlink" title="PointPillars note"></a>PointPillars note</h1><p>这篇文章也经常在其他文章中被提到，该网络特点就是具有非常快的推理速度。</p>
-<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/nutonomy/second.pytorch">https://github.com/nutonomy/second.pytorch</a></p>
+                <h1 id="PointPillars-note"><a href="#PointPillars-note" class="headerlink" title="PointPillars note"></a>PointPillars note</h1><p>这篇文章也经常在其他文章中被提到，该网络特点就是具有非常快的推理速度。这篇文章的一个出发点之一，就是不想使用速度较慢的 3D convolution。这篇笔记比较潦草，但目的是梳理清楚模型的框架和流程</p>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>In this work we propose PointPillars, a novel encoder which <strong>utilizes PointNets to learn a representation of point clouds organized in vertical columns (pillars).</strong> While <strong>the encoded features can be used with any standard 2D convolutional detection architecture,</strong> we further propose a lean downstream network</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Recently SECOND  improved the inference speed of VoxelNet but the 3D convolutions remain a bottleneck. 这篇文章的一个出发点之一，就是不想使用3D convolution，文章的快速推理能力一部分也来自于没有使用3D convolution</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Recently SECOND  improved the inference speed of VoxelNet but the 3D convolutions remain a bottleneck. </p>
 <p>In this work we use a single stage method</p>
 <p>We show how all computations on pillars can be posed as dense 2D convolutions which enables <strong>inference at 62 Hz;</strong> a factor of 2-4 times faster than other methods</p>
 <h2 id="PointPillars-Network"><a href="#PointPillars-Network" class="headerlink" title="PointPillars Network"></a>PointPillars Network</h2><p>It consists of three main stages (Figure 2): </p>
@@ -448,25 +447,21 @@
 <p>The points in <strong>each pillar are then augmented with</strong> $x_c, y_c, z_c, x_p, y_p$ where the c subscript denotes distance to the arithmetic mean of all points in the pillar and the p subscript denotes the offset from the pillar x, y center. </p>
 <p>The augmented lidar point l is now <strong>D = 9</strong> dimensional $(x, y, z, r, x_c, y_c, z_c, x_p, y_p)$ </p>
 <p>The set of pillars will be mostly empty due to sparsity of the point cloud</p>
-<p>为了更近一步处理sparsity，规定了每个sample，最多有 P 个 non-empty Pillars，每个 pillar 最多有 N 个 points，多于就进行随机采样。最终得到 tensor of size (D, P, N)</p>
-<p>之后使用PointNet，将每个Pillar进行 aggreagte 得到 feature tensor (C, P)，再将这个 feature tensor 还原成为 feature map</p>
+<p><strong>为了更近一步处理 sparsity，规定了每个 sample，最多有 P 个 non-empty Pillars，每个 pillar 最多有 N 个 points，多于就进行随机采样。最终得到 tensor of size (D, P, N)。之后使用 PointNet，将每个 Pillar 进行 aggreagte 得到 feature tensor (C, P)，再将这个 feature tensor 还原成为 feature map</strong></p>
 <h3 id="Backbone"><a href="#Backbone" class="headerlink" title="Backbone"></a>Backbone</h3><p><strong>We use a similar backbone as VoxelNet</strong> and the structure is shown in Figure 2. The backbone has two sub-networks: one top-down network that produces features at increasingly small spatial resolution and a second network that performs upsampling and concatenation of the top-down features. </p>
 <p><strong>The top-down backbone can be characterized by a series of blocks Block(S, L, F).</strong> Each block operates at stride S (measured relative to the original input pseudo-image). A block has L 3x3 2D conv-layers with F output channels, each followed by BatchNorm and a ReLU</p>
-<h3 id="Detection-Head"><a href="#Detection-Head" class="headerlink" title="Detection Head"></a>Detection Head</h3><p>In this paper, we use the Single Shot Detector (SSD) [18] setup to perform 3D object detection. Similar to SSD, we match the priorboxes to the ground truth using 2D Intersection over Union (IoU) [4]. 使用 2D IoU 来计算 positive and negative anchors</p>
+<h3 id="Detection-Head"><a href="#Detection-Head" class="headerlink" title="Detection Head"></a>Detection Head</h3><p>In this paper, we use the Single Shot Detector (SSD) [18] setup to perform 3D object detection. Similar to SSD, we match the priorboxes to the ground truth using 2D Intersection over Union (IoU)</p>
 <h2 id="Loss"><a href="#Loss" class="headerlink" title="Loss"></a>Loss</h2><p>Ground truth boxes and anchors are defined by $(x, y, z, w, l, h, \theta)$. The localization regression residuals between ground truth and anchors are defined by:</p>
 <p><img src="/archives/f3e8f95c/image-20210615124243246.png" style="zoom:67%;"></p>
-<p>其中 $d^a = \sqrt{(w^a)^2+(l^a)^2}$ ，the total localization loss is: </p>
+<p>$d^a = \sqrt{(w^a)^2+(l^a)^2}$ ，the total localization loss is: </p>
 <p><img src="/archives/f3e8f95c/image-20210615124445132.png" style="zoom:67%;"></p>
-<p>为了辨别车子的朝向（朝前还是朝后），还要预测 direction，文章直接使用 softmax 分类</p>
 <p>For the object classification loss, we use the focal loss [16]:</p>
 <p><img src="/archives/f3e8f95c/image-20210615124612144.png" style="zoom:67%;"></p>
-<p> The total loss is therefore</p>
+<p>The total loss is therefore</p>
 <p><img src="/archives/f3e8f95c/image-20210615124700683.png" style="zoom:67%;"></p>
-<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p>重要参数：Unless explicitly varied in an experimental study, we use an xy resolution: 0.16 m, max number of pillars (P): 12000, and max number of points per pillar (N): 100.</p>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p><strong>Params:</strong> Unless explicitly varied in an experimental study, we use an xy resolution: 0.16 m, max number of pillars (P): 12000, and max number of points per pillar (N): 100.</p>
 <p><img src="/archives/f3e8f95c/image-20210615124819976.png" style="zoom:80%;"></p>
 <h3 id="Speed-v-s-resolution-amp-presicion"><a href="#Speed-v-s-resolution-amp-presicion" class="headerlink" title="Speed v.s. resolution &amp; presicion"></a>Speed v.s. resolution &amp; presicion</h3><p><img src="/archives/f3e8f95c/image-20210615124859420.png" style="zoom:80%;"></p>
-<h3 id="Ground-truth-sampling"><a href="#Ground-truth-sampling" class="headerlink" title="Ground truth sampling"></a>Ground truth sampling</h3><p>定义如下：following SECOND [28], we create a lookup table of the ground truth 3D boxes for all classes and the associated point clouds that falls inside these 3D boxes. Then for each sample, we randomly select 15, 0, 8 ground truth samples for cars, pedestrians, and cyclists respectively and place them into the current point cloud. We found these settings to perform better than the proposed settings </p>
-<p>文章提到这个技巧提升/解释很多方法的表现</p>
 
                 
             </div>
@@ -967,7 +962,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

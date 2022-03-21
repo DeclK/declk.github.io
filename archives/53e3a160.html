@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    836
+                    1.1k
                 </div>
                 
 
@@ -461,14 +461,15 @@
 <li><a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/help/anaconda">南京大学镜像源</a>（自家的镜像源，当然要推荐一下😎）</li>
 </ol>
 </li>
-<li><p>配置nvidia driver: 根据 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59618999">知乎链接</a> ，在命令行里下载推荐的driver。如果在配置nvidia driver的过程中出现连接不上显卡，可能需要关闭 security boot。参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/336429888">稚晖君</a> 的教程，下载安装CUDA，选择runfile。</p>
-<p>如果想移除所有cuda, cudnn, nvidia driver</p>
+<li><p>配置 nvidia driver: 根据 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59618999">知乎链接</a> ，在命令行里下载推荐的driver。如果在配置 nvidia driver 的过程中出现连接不上显卡，可能需要关闭 security boot。参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/336429888">稚晖君</a> 的教程，下载安装 CUDA，选择 runfile。</p>
+<p>如果想移除所有 cuda, cudnn, nvidia driver</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">apt-get</span> remove --purge nvidia*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>设置 cuda path</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">export</span> <span class="token assign-left variable">CUDA_HOME</span><span class="token operator">=</span>/usr/local/cuda
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token variable">${CUDA_HOME}</span>/lib64
 <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">${CUDA_HOME}</span>/bin:<span class="token variable">${<span class="token environment constant">PATH</span>}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>教程里还教了如何更新apt source为阿里云镜像源，镜像中的软件会持续而且下载速度很快，这里我选择更换为 <a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/help/ubuntu">南京大学镜像源</a> 如下所示。同时教程里也设置了 sudo，让每一次 sudo 都不需要输入密码</p>
+<p>(2022/1/31 更新) 尝试使用命令行在 ubuntu 16.04 上更新驱动，不太顺利，因为 ppa 中好像没有对这 16.04 进行支持，最新仅支持到 430，通过其他方法可能成功，但我就不进行过多尝试了。最终使用 <code>sudo apt install nvidia-418</code> 恢复了之前的驱动版本，其中遇到的报错 <code>NVIDIA NVML Driver/library version mismatch</code>，参考了 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/43022843/nvidia-nvml-driver-library-version-mismatch">StackOverflow </a> 中的第二个回答解决</p>
+<p>教程里还教了如何更新 apt source 为阿里云镜像源，镜像中的软件会持续而且下载速度很快，这里我选择更换为 <a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/help/ubuntu">南京大学镜像源</a> 如下所示。同时教程里也设置了 sudo，让每一次 sudo 都不需要输入密码</p>
   <pre class="line-numbers language-source.list" data-language="source.list"><code class="language-source.list"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
 deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}} main restricted universe multiverse
 # deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}} main restricted universe multiverse
@@ -528,11 +529,23 @@ deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-security main restricted 
 </ol>
 <h1 id="安装-Windows-笔记"><a href="#安装-Windows-笔记" class="headerlink" title="安装 Windows 笔记"></a>安装 Windows 笔记</h1><p>实验室有一个空的主机，比较老，想要重新清理一下自己用。我并没有选择重装整个系统，而是选择重置，即恢复出厂设置</p>
 <p>资源下载：<a target="_blank" rel="noopener" href="https://msdn.itellyou.cn/">MSDN</a> <a target="_blank" rel="noopener" href="https://rufus.ie/zh/">rufus</a> MSDN 提供了需要的各个 Windows 版本的 iso，使用 rufus 将 iso 烧入到U盘里</p>
-<p>教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DJ411D79y/?spm_id_from=333.788.recommend_more_video.-1">bilibili</a></p>
+<p>Win10 安装教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DJ411D79y/?spm_id_from=333.788.recommend_more_video.-1">bilibili</a></p>
 <p>Windows 激活：<a target="_blank" rel="noopener" href="https://github.com/TGSAN/CMWTAT_Digital_Edition/releases">github</a></p>
 <p>github 如果下载不够快，自行搜索 github 镜像，这里留一个参考 <a target="_blank" rel="noopener" href="https://ghproxy.com/">link</a></p>
 <p>磁盘管理：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Uj411f7wj">bilibili</a></p>
 <p>Office 下载：<a target="_blank" rel="noopener" href="https://otp.landian.vip/zh-cn/">Office Tool plus</a></p>
+<p>Office Tool plus <a target="_blank" rel="noopener" href="https://www.coolhub.top/archives/11">使用方法</a>：</p>
+<ol>
+<li><p>卸载原有的 office wps，并清除旧版本激活信息（激活页面 -&gt; 许可证管理 -&gt; 清除激活状态）</p>
+</li>
+<li><p>推荐 Microsoft 365 企业应用版</p>
+</li>
+<li><p>使用一键安装代码</p>
+<pre class="line-numbers language-none"><code class="language-none">deploy /addProduct O365ProPlusRetail_zh-cn_Access,Bing,Groove,Lync,OneDrive,OneNote,Outlook,Publisher,Teams /channel Current /downloadFirst<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>在之后使用过程中可能遇到许可证问题，可以使用工具箱中的<strong>修复Office许可证问题</strong>。此时需要一个 <a target="_blank" rel="noopener" href="https://www.coolhub.top/tech-articles/kms_list.html">KMS 地址</a>，填入即可</p>
+</li>
+</ol>
 
                 
             </div>
@@ -1034,7 +1047,7 @@ deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-security main restricted 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -501,7 +501,8 @@ file '/path/to/file3'<span aria-hidden="true" class="line-numbers-rows"><span></
 <p>视频分离成图片</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i input_test.mp4 -r <span class="token number">1</span> -f image2 output_image-%03d.png<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>图片也能合成为视频</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -f image2 -i output_image-%03d.png output_test.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -f image2 -r <span class="token number">15</span> -i output_image-%03d.png output_test.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这里的 <code>-r</code> 代表 rate 可以理解为帧率。<code>output_image-%03d.png</code> 是图片的命名格式，这种形式在 python 格式化字符串中经常看到</p>
 <p>注意，这里选择 png 格式而不是 jpg 格式是因为 png 为无损压缩图，这样在视频和图片的转换当中，就不会有损失</p>
 <p>(2) 水印</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ffmpeg -i video.mp4 -i qt.png -filter_complex <span class="token string">"overlay=20:80"</span> video_watermark.mp4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -1174,7 +1175,7 @@ Subtitle options:
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

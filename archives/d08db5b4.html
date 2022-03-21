@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4k
+                    4.1k
                 </div>
                 
 
@@ -545,7 +545,7 @@ net <span class="token operator">=</span> nn<span class="token punctuation">.</s
     nn<span class="token punctuation">.</span>AdaptiveAvgPool2d<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
     nn<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>NiN 设计的优点是，它显著减少了模型所需参数的数量，这也减少了过拟合。然而，在实践中，这种设计有时会增加训练模型的时间</p>
-<h2 id="GoogLeNet"><a href="#GoogLeNet" class="headerlink" title="GoogLeNet"></a>GoogLeNet</h2><p>在 GoogLeNet 中，基本的卷积块被称为 Inception块（Inception block）论文的一个观点是，有时使用不同大小的卷积核组合是有利的。其中 Google 中的 L 为大写，以致敬 LeNet </p>
+<h2 id="GoogLeNet"><a href="#GoogLeNet" class="headerlink" title="GoogLeNet"></a>GoogLeNet</h2><p>在 GoogLeNet 中，基本的卷积块被称为 Inception 块（Inception block）论文的一个观点是，有时使用不同大小的卷积核组合是有利的。其中 Google 中的 L 为大写，以致敬 LeNet </p>
 <p><img src="/archives/d08db5b4/image-20211128173254328.png" style="zoom:80%;"></p>
 <p>这四条路径都使用合适的填充来使输入与输出的高和宽一致，最后我们将每条线路的输出在通道维度上连结，并构成 Inception 块的输出。在 Inception 块中，通常调整的超参数是每层输出通道的数量（很难调，这也是 GoogLeNet 难以复现的原因之一）。下面是  Inception 块的代码</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
@@ -627,7 +627,7 @@ net <span class="token operator">=</span> nn<span class="token punctuation">.</s
     nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">120</span><span class="token punctuation">,</span> <span class="token number">84</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>BatchNorm1d<span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>Sigmoid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
     nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="批量归一化做了什么"><a href="#批量归一化做了什么" class="headerlink" title="批量归一化做了什么"></a>批量归一化做了什么</h3><ol>
-<li>固定小批量中的均值和方差，能加速收敛，但一般不改变模型精度</li>
+<li>固定小批量中的均值和方差，维护数值的相对稳定，能加速收敛，减缓了梯度消失/爆炸的情况，但一般不改变模型精度</li>
 <li>固定小批量中的均值和方差，引入了噪声，起到了正则化的作用。这是一个意想不到的“副作用”</li>
 </ol>
 <p>实际上对于批量归一化的原理并没有一个明确的答案，原论文提到的“减少内部协变量偏移”的动机似乎不是一个有效的解释。如果非要给这个问题给出自己的胡乱理解，我认为是控制输出分布能够让数值更稳定，在一个统一标准下的空间超平面的分割分会更好，或许这种数值稳定对于梯度爆炸和梯度消失也有一定作用</p>
@@ -1193,7 +1193,7 @@ b5 <span class="token operator">=</span> nn<span class="token punctuation">.</sp
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

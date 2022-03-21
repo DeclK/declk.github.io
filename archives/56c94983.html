@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.7k
+                    2.1k
                 </div>
                 
 
@@ -525,10 +525,10 @@ num_epochs <span class="token operator">=</span> <span class="token number">3</s
 <p><img src="/archives/56c94983/image-20211116172439239.png" style="zoom:80%;"></p>
 <p>导数是我们模型分配的概率（由 softmax 得到）与实际发生的情况（由独热标签向量表示）之间的差异。从这个意义上讲，与我们在回归中看到的非常相似</p>
 <h3 id="Fashion-MNIST-数据集"><a href="#Fashion-MNIST-数据集" class="headerlink" title="Fashion-MNIST 数据集"></a>Fashion-MNIST 数据集</h3><p>这一小节介绍了如何从 pytorch api 加载该数据集</p>
-<h3 id="Softmax-Pytorch-实现"><a href="#Softmax-Pytorch-实现" class="headerlink" title="Softmax Pytorch 实现"></a>Softmax Pytorch 实现</h3><h4 id="上溢下溢问题"><a href="#上溢下溢问题" class="headerlink" title="上溢下溢问题"></a>上溢下溢问题</h4><p>如何解决由于 exp 和 log 带来的数值上溢或者下溢问题？</p>
+<h3 id="Softmax-Pytorch-实现"><a href="#Softmax-Pytorch-实现" class="headerlink" title="Softmax Pytorch 实现"></a>Softmax Pytorch 实现</h3><h4 id="上溢下溢问题"><a href="#上溢下溢问题" class="headerlink" title="上溢下溢问题"></a>上溢下溢问题</h4><p>如何解决 exp 上溢和 log 下溢问题？</p>
 <ol>
-<li>softmax 上下同时除以 exp(max(x)) 可以解决上溢问题</li>
-<li>跳过 softmax 的表达，直接带入交叉熵损失函数（如上一节推导所示），log 和 exp 相互抵消，即可解决 log 的下溢问题</li>
+<li>softmax 上下同时除以 exp(max(x)) 可以解决上溢问题。但当 exp(max(x)) 比较大 (&gt;1000) 时，softmax 会直接返回 0，再进入 log 函数就会产生下溢</li>
+<li>解决方法是直接输入 logits 输出交叉熵，即不经过 softmax 运算。因为 log 和 exp 是一对反函数，它们可以相互抵消，log(exp(x)) = x</li>
 </ol>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
 <span class="token keyword">from</span> torch <span class="token keyword">import</span> nn
@@ -625,6 +625,20 @@ epoch: <span class="token number">10</span>, loss: <span class="token number">0.
 <li>通过 <code>nn.init</code> 模块可以对模型参数进行初始化</li>
 <li>通过 <code>nn.apply(fn)</code> 循环地对所有子模型 <code>model.children()</code> 进行操作</li>
 <li>需要将模型和数据都转移到相同的设备上才能进行运算，如果损失函数也是 <code>nn.Module</code> 的子类，则也需要转移</li>
+</ol>
+<h3 id="补充：为什么使用-CE-进行分类而不使用-MSE"><a href="#补充：为什么使用-CE-进行分类而不使用-MSE" class="headerlink" title="补充：为什么使用 CE 进行分类而不使用 MSE"></a>补充：为什么使用 CE 进行分类而不使用 MSE</h3><ol>
+<li><p>从梯度角度来看。分类问题的输出通常经过 sigmoid or softmax 函数，以 sigmoid 函数为例，函数的两端会非常非常的平缓，这就会导致梯度消失，网络无法进一步优化</p>
+</li>
+<li><p>交叉熵就是用于衡量两个分布之间的相似度。这里又要提一句 KL 散度和交叉熵之间的关系与区别：<strong>KL 散度可以被用于计算两个分布的差异，而在特定情况下最小化 KL 散度等价于最小化交叉熵。而交叉熵的运算更简单，所以用交叉熵来当做代价</strong>。再贴几个公式</p>
+<script type="math/tex; mode=display">
+S(v)=-\sum_{i} p\left(v_{i}\right) \log p\left(v_{i}\right)
+\\
+D_{K L}(A \| B)=\sum_{i} p_{A}\left(v_{i}\right) \log p_{A}\left(v_{i}\right)-p_{A}\left(v_{i}\right) \log p_{B}\left(v_{i}\right)
+\\
+H(A, B)=-\sum_{i} p_{A}\left(v_{i}\right) \log p_{B}\left(v_{i}\right)
+\\
+H(A, B)=D_{K L}(A \| B)+S_{A}</script><p>当 $S_A$ 为常数时，优化交叉熵等价于优化 KL 散度。最后提一句通过 Jensen 不等式可证明 KL 散度大于0</p>
+</li>
 </ol>
 
                 
@@ -959,8 +973,8 @@ epoch: <span class="token number">10</span>, loss: <span class="token number">0.
                                     Python
                                 </a>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Matplotlib/" class="post-category">
-                                    Matplotlib
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Package/" class="post-category">
+                                    Package
                                 </a>
                             
                             
@@ -1126,7 +1140,7 @@ epoch: <span class="token number">10</span>, loss: <span class="token number">0.
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

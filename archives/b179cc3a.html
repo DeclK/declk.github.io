@@ -496,7 +496,7 @@ f_{i}^{(p)}=\left[f_{i}^{(p v)}, f_{i}^{(r a w)}, f_{i}^{(b e v)}\right], \text 
 \end{array}\right\} \\
 
 \tilde{f}_{i}^{(g)}=\max \{G(\mathcal{M}(\tilde{\Psi}))\}
-\end{array}</script><p>为什么这里还要再次进行编码，而不是直接使用选框内的所有点进行聚合，得到一个全局的表达？原因可能是为了获得多尺度的特征，利于之后的细化 refinement 和评分 score 而且当半径取得较大的时候，还能聚合到选框之外的特征点</p>
+\end{array}</script><p>为什么这里还要再次进行编码，而不是直接使用选框内的所有点进行聚合，得到一个全局的表达？一个重要原因是因为使用 roi pooling 能够将特征聚合到一个固定的形状，便于之后输入到 MLP。同时也可能是为了获得多尺度的特征</p>
 <h3 id="Refinement-and-confidence-prediction"><a href="#Refinement-and-confidence-prediction" class="headerlink" title="Refinement and confidence prediction"></a>Refinement and confidence prediction</h3><p>采用2层 MLP，去做置信度预测和选框细化两个任务。采用 3D RoI/proposal 与其对应的真实选框 ground truth 之间的 3D IoU 作为训练目标，并采用二元交叉熵损失函数</p>
 <script type="math/tex; mode=display">
 y_{k}=\min \left(1, \max \left(0,2 \mathrm{IoU}_{k}-0.5\right)\right)
@@ -771,13 +771,13 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/74da7df7.html">
+                <a href="/archives/19c6ccbf.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Point-GNN">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Numpy Cheat Sheet">
                         
-                        <span class="card-title">Point-GNN</span>
+                        <span class="card-title">Numpy Cheat Sheet</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -794,8 +794,16 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/papers/" class="post-category">
-                                    papers
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Package/" class="post-category">
+                                    Package
                                 </a>
                             
                             
@@ -805,12 +813,12 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Point-Cloud/">
-                        <span class="chip bg-color">Point Cloud</span>
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
-                    <a href="/tags/Point-GNN/">
-                        <span class="chip bg-color">Point-GNN</span>
+                    <a href="/tags/Numpy/">
+                        <span class="chip bg-color">Numpy</span>
                     </a>
                     
                 </div>
@@ -824,13 +832,13 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/63387d0d.html">
+                <a href="/archives/74da7df7.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="PointNet &amp; PointNet++">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Point-GNN">
                         
-                        <span class="card-title">PointNet &amp; PointNet++</span>
+                        <span class="card-title">Point-GNN</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -862,8 +870,8 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
                         <span class="chip bg-color">Point Cloud</span>
                     </a>
                     
-                    <a href="/tags/PointNet/">
-                        <span class="chip bg-color">PointNet</span>
+                    <a href="/tags/Point-GNN/">
+                        <span class="chip bg-color">Point-GNN</span>
                     </a>
                     
                 </div>
@@ -1018,7 +1026,7 @@ L_{\mathrm{rpn}}=L_{\mathrm{cls}}+\beta \sum_{\mathrm{r} \in\{x, y, z, l, h, w, 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

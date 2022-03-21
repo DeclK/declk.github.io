@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4.2k
+                    4.3k
                 </div>
                 
 
@@ -458,6 +458,11 @@
 <script type="math/tex; mode=display">
 \mathbf{H}_{t}=\mathbf{Z}_{t} \odot \mathbf{H}_{t-1}+\left(1-\mathbf{Z}_{t}\right) \odot \tilde{\mathbf{H}}_{t}</script><p>最后放一个“花哨”的图示，来表示整个流程，实际上并没有数学表达看起来清晰</p>
 <p><img src="/archives/5c4d4ee5/image-20211209202833640.png" style="zoom: 80%;"></p>
+<p>到现在我都挺难以理解这两个门的作用，只能自己生硬理解了：</p>
+<ol>
+<li>重置门，决定当前候选隐状态对于当前输入的影响程度（及时），能够让网络更轻松地关注当下</li>
+<li>更新门，有点像残差一样，决定保留多少前一时刻隐状态的特征（长期），能够让网络更轻松地记住之前</li>
+</ol>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>以上四个公式就是 GRU 的核心，贴一下从零实现的 GRU 核心代码，略去数据的初始化和隐状态的初始化</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">gru</span><span class="token punctuation">(</span>inputs<span class="token punctuation">,</span> state<span class="token punctuation">,</span> params<span class="token punctuation">)</span><span class="token punctuation">:</span>
     W_xz<span class="token punctuation">,</span> W_hz<span class="token punctuation">,</span> b_z<span class="token punctuation">,</span> W_xr<span class="token punctuation">,</span> W_hr<span class="token punctuation">,</span> b_r<span class="token punctuation">,</span> W_xh<span class="token punctuation">,</span> W_hh<span class="token punctuation">,</span> b_h<span class="token punctuation">,</span> W_hq<span class="token punctuation">,</span> b_q <span class="token operator">=</span> params
@@ -1143,7 +1148,7 @@ y_{t^{\prime}}=\underset{y \in \mathcal{Y}}{\operatorname{argmax}} P\left(y \mid
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -420,7 +420,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.3k
+                    3.2k
                 </div>
                 
 
@@ -625,31 +625,32 @@ test<span class="token punctuation">(</span>name<span class="token punctuation">
 
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>test<span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token comment"># &lt;class 'function'&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>可以看到，就是在原函数之前加上 <code>@decorate</code> 就实现了对原函数的装饰，替代了 <code>test  = decorate(test)</code> 这一步。换句话说 <code>@</code> 关键字将下一行的函数/类，作为参数传给了 <code>decorate</code> 函数，这就是装饰器的关键之一。之前的装饰器只接受了原函数 <code>test</code> 作为参数，那如果想要实现传入多个参数，例如 <code>@decorate(*args)</code> 应该怎么办呢？接下来实现一个带参数的装饰器</p>
+<p>可以看到，就是在原函数之前加上 <code>@decorate</code> 就实现了对原函数的装饰，替代了 <code>test  = decorate(test)</code> 这一步，<strong>这就是装饰器的本质</strong>。换句话说 <code>@</code> 关键字将下一行的函数/类，作为参数传给了 <code>decorate</code> 函数，而 <code>decorate(test)</code> 通常将返回一个函数，此函数将能用 <code>test</code> 进行调用</p>
+<p>之前的装饰器只接受了原函数 <code>test</code> 作为参数，那如果想要实现传入多个参数，例如 <code>@decorate(*args)</code> 应该怎么办呢？接下来实现一个带参数的装饰器，也就是装饰器的装饰器🤣，虽然这么说很绕哈哈</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">name <span class="token operator">=</span> <span class="token string">'Declan'</span>
 age <span class="token operator">=</span> <span class="token number">23</span>
 
-<span class="token keyword">def</span> <span class="token function">param_decorate</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"It's running without test()"</span><span class="token punctuation">)</span>
-    <span class="token keyword">def</span> <span class="token function">wrap</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'This is a introduction.'</span><span class="token punctuation">)</span>
-        func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> <span class="token boolean">None</span>
-    <span class="token keyword">return</span> wrap
+<span class="token keyword">def</span> <span class="token function">param_decorate</span><span class="token punctuation">(</span>addtional<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"It's running before test(), and addtional is </span><span class="token interpolation"><span class="token punctuation">{</span>addtional<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">decorate</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">wrap</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'This is a introduction.'</span><span class="token punctuation">)</span>
+            func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">None</span>
+        <span class="token keyword">return</span> wrap
+    <span class="token keyword">return</span> decorate
 
-<span class="token decorator annotation punctuation">@param_decorate</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> age<span class="token punctuation">)</span>
+<span class="token decorator annotation punctuation">@param_decorate</span><span class="token punctuation">(</span><span class="token number">3.14</span><span class="token punctuation">)</span>
 <span class="token keyword">def</span> <span class="token function">test</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> age<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"My name is {}, and I'm {}."</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> age<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-<span class="token comment"># 使没有运行 test() 以上代码能够输出内容</span>
-<span class="token comment"># It's running without test()</span>
-<span class="token comment"># This is a introduction.</span>
-<span class="token comment"># My name is Declan, and I'm 23</span>
 
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>test<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment"># &lt;class 'NoneType'&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>使用以上代码会发现，即使没有运行 <code>test</code> 函数也输出了内容。这是因为给装饰器添加参数过后，那么 <code>@</code> 后跟随的就是一个执行函数，python 就会真实地执行该函数的内容。执行 <code>param_decorate</code> 函数返回的是一个函数名 <code>wrap</code>，那么此时相当于 <code>@wrap</code>，也即 <code>test</code> 函数会被作为参数传入到 <code>wrap()</code> 函数当中，此时 <code>test  = wrap(test)</code> 的返回对象是 <code>NoneType</code>，而之前 <code>test = decorate(test)</code> 返回对象是一个函数名</p>
-<p>还有一个方法来学习装饰器的内部逻辑，就是直接对代码 debug，一步步看程序是如何运行的</p>
+<span class="token comment"># It's running before test(), and addtional is 3.14</span>
+test<span class="token punctuation">(</span>name<span class="token punctuation">,</span> age<span class="token punctuation">)</span>
+<span class="token comment"># This is a introduction.</span>
+<span class="token comment"># My name is Declan, and I'm 23</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用以上代码会发现，即使没有运行 <code>test</code> 函数也输出了内容。这是因为给装饰器添加参数过后，那么 <code>@</code> 后跟随的就是一个执行函数，python 就会真实地执行该函数的内容。执行 <code>param_decorate</code> 函数返回的是一个函数名 <code>decorate</code>，那么此时 <code>@param_decorate()</code> 相当于 <code>@decorate</code></p>
+<p><strong>还有一个方法来学习装饰器的内部逻辑，就是直接对代码 debug，一步步看程序是如何运行的</strong></p>
 <h3 id="python-内置装饰器"><a href="#python-内置装饰器" class="headerlink" title="python 内置装饰器"></a>python 内置装饰器</h3><p>内置的装饰器和普通的装饰器原理是一样的，只不过一般用于类的方法当中，让类变得更灵活</p>
 <h4 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h4><p>参考 <a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-func-property.html">菜鸟教程</a> <a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/897692888725344/923030547069856">廖雪峰教程 </a>进行整理。<code>@property</code> 能够用于管理类的私有属性，方便读取属性、修改属性。下面看看如何使用该装饰器</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Student</span><span class="token punctuation">:</span>
@@ -1228,7 +1229,7 @@ date <span class="token operator">=</span> Date<span class="token punctuation">.
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

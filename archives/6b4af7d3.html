@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.5k
+                    2.6k
                 </div>
                 
 
@@ -460,7 +460,8 @@
 <h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><ol>
 <li><p>关于 python 类中的内置属性：<a target="_blank" rel="noopener" href="https://luobuda.github.io/2015/01/16/python-class/">class</a> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c390d591ce65">dict</a></p>
 </li>
-<li><p>关于  <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/44834/can-someone-explain-all-in-python">all &amp; init</a>：<code>__all__</code> 定义在 <code>__init__.py</code> 中，代表着仅在这一层 package，你想要暴露的接口，外部如果从这个包里 import，只能 import <code>__all__</code> 列表中包含的模块。如果确实希望导入某个模块，但该模块不再 <code>__all__</code> 中，可以通过具体的路径进行导入 </p>
+<li><p>关于  <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/44834/can-someone-explain-all-in-python">all &amp; init</a>：<code>__all__</code> 定义在 <code>__init__.py</code> 中，代表着在这一个 package，你想要暴露的接口/函数/类（但也要先导入到 package 中），外部如果从这个包里 import，只能 import <code>__all__</code> 列表中包含的接口。如果确实希望导入某个接口，但该模块不在 <code>__all__</code> 中，可以通过具体的路径进行导入 </p>
+<p>如果是嵌套的包内调用，需要从包的根路径开始调用</p>
 </li>
 </ol>
 <h2 id="KITTI-Dataset"><a href="#KITTI-Dataset" class="headerlink" title="KITTI Dataset"></a>KITTI Dataset</h2><h3 id="kitti-infos-train-pkl"><a href="#kitti-infos-train-pkl" class="headerlink" title="kitti_infos_train.pkl"></a>kitti_infos_train.pkl</h3><p>这里应该还有2个 pkl 文件 <code>kitti_infos_val.pkl &amp; kitti_dbinfos_train.pkl</code> 也很重要，这些 pkl 文件保存了 KITTI 的数据信息便于使用 python 进行操作，下面看看其中存储了什么</p>
@@ -550,7 +551,7 @@ score
         """</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在初始化的过程中，只有在 <code>data_augmentor</code> 中的 <code>gt_sampling</code> 实际处理了数据，即对 gt database 进行筛选，去除点少的和困难的样本</p>
 <p>该类中还定义了两个重要的方法，在之后调用：1. <code>prepare_data(self, data_dict)</code> 2. <code>collate_batch(batch_list)</code> </p>
-<h4 id="prepare-data"><a href="#prepare-data" class="headerlink" title="prepare_data"></a>prepare_data</h4><p><code>prepare_data(self, data_dict)</code> 通过该方法准备数据。数据的采样、增强和体素化都是在这一方法中完成。需要注意的是返回的 voxel 坐标排列为 zyx 而不是 xyz，这是由于 spconv 的设计导致的</p>
+<h4 id="prepare-data"><a href="#prepare-data" class="headerlink" title="prepare_data"></a>prepare_data</h4><p><code>prepare_data(self, data_dict)</code> 通过该方法准备数据。数据的采样、增强和体素化都是在这一方法中进行调用。需要注意的是返回的 voxel 坐标排列为 zyx 而不是 xyz，这是由于 spconv 的设计导致的</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">prepare_data</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data_dict<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token comment">################# IMPORTANT #################</span>
         <span class="token triple-quoted-string string">"""
@@ -579,7 +580,7 @@ score
         <span class="token comment"># num_points_per_voxel: [M] int32 tensor.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="collate-batch"><a href="#collate-batch" class="headerlink" title="collate_batch"></a>collate_batch</h4><p><code>collate_batch(batch_list)</code> 用于传入 <code>DataLoader</code> 中的 <code>collate_fn</code>，这样就能定义每一个 batch 返回的具体形式（为一个字典），关于 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/361830892">collate_fn</a>，核心的工作如下：</p>
 <ol>
-<li>将每个 sample 的数据 concatenate</li>
+<li>将 batch 每个 sample 的数据 concat</li>
 <li>在 points, voxel_coords… 中增加 batch 维度以区分是来自哪个 sample</li>
 <li>batch 中每个 sample 的 boxes 数量不一样，需要将形状统一然后合并起来</li>
 </ol>
@@ -692,7 +693,7 @@ image_shape <span class="token punctuation">(</span><span class="token number">4
 <li>载入参数方法，将 checkpoint 中的参数载入模型中</li>
 </ol>
 <p>这里主要对前两个方法进行整理</p>
-<h4 id="build-networks"><a href="#build-networks" class="headerlink" title="build_networks"></a>build_networks</h4><p>该方法最终返回一个 <code>module_list</code> 保存各个结构的模块，在之后的向前传播路径中，数据将按顺序经过各个模块。<code>model_into_dict</code> 还用于记录每个模块输出的特征数/通道数之类的信息，以便于传入下一个模块进行初始化，当然初始化过程还要结合 <code>self.model_cfg</code> 传入必要参数</p>
+<h4 id="build-networks"><a href="#build-networks" class="headerlink" title="build_networks"></a>build_networks</h4><p>该方法最终返回一个 <code>module_list</code> 保存各个结构的模块，在之后的向前传播路径中，数据将按顺序经过各个模块。<code>model_info_dict</code> 还用于记录每个模块输出的特征数/通道数之类的信息，以便于传入下一个模块进行初始化，当然初始化过程还要结合 <code>self.model_cfg</code> 传入必要参数</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">build_networks</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token comment"># 创建一个 module info dict 储存模型中的各个模块与模型信息</span>
     model_info_dict <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -1270,7 +1271,7 @@ image_shape <span class="token punctuation">(</span><span class="token number">4
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

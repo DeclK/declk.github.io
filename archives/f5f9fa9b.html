@@ -535,7 +535,7 @@ mklink /j target source<span aria-hidden="true" class="line-numbers-rows"><span>
 <li>boot file system （bootfs）：docker镜像的最底层是bootfs，主要包含 bootloader（加载器）和 kernel（内核）。bootloader 主要是引导加载 kernel。注意 kernel 是与宿主机共享的，而且不用像虚拟机一样模拟硬件，所以 docker 加载很快，是秒级的</li>
 <li>root file system （rootfs）：包含典型的目录结构，包括 /dev, /proc, /bin, /etc, /lib, /usr, and /tmp 等再加上要运行用户应用所需要的所有配置文件，二进制文件和库文件。这个文件系统在不同的Linux 发行版（Ubuntu, CentOS…）中是不同的。而且用户可以对这个文件进行修改，对比之下，用户就不会修改 bootfs</li>
 </ul>
-<p><img src="Docker/R-C.ff875ee1131ed5030cdf969e8a3c1ba8rik=wzeW33YFmj1oZA&amp;riu=http%3a%2f%2fimg.blog.csdn.net%2f20150618081016477&amp;ehk=Bi3E387Elx7weqFV2b16m8tk%2bwsL%2bdsCoXBEBPchK%2b8%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" style="zoom:80%;"></p>
+<p><img src="/archives/f5f9fa9b/image-20220129171824126.png" alt="image-20220129171824126" style="zoom: 50%;"></p>
 <p>Docker 镜像都是只读的，当启动容器时，一个新的可写层被加载到镜像的顶部，这一层就是通常说的容器层，容器之下的都叫镜像层</p>
 <h3 id="Commit-image"><a href="#Commit-image" class="headerlink" title="Commit image"></a>Commit image</h3><p>当你在容器中完成了你的应用，想要将该容器生成镜像，就可以使用 <code>docker commit</code> 命令。本质上就是把你的容器层变为镜像层，加入到原来的镜像层中（root file system）再打包保存起来。因为是分层文件管理系统，所以这样的操作很方便</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">docker commit -a <span class="token string">"author"</span> -m <span class="token string">"message"</span> ctn_id img_name:tag<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -1138,7 +1138,7 @@ docker <span class="token builtin class-name">logout</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

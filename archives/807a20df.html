@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.2k
+                    2.1k
                 </div>
                 
 
@@ -440,7 +440,7 @@
 <ol>
 <li><p>点云数据的稀疏性，有大量的空间没有点云 </p>
 </li>
-<li><p>选框的自由度高，不仅有更灵活的方向，还有更多的尺寸</p>
+<li><p><strong>选框的自由度高，不仅有更灵活的方向，还有更多的尺寸。Anchor-based RPN 难以满足这样的灵活性</strong> </p>
 </li>
 </ol>
 <h3 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a>Contribution</h3><p>CenterPoint 是一个 2-Stage 三维目标检测网络，是 center-based 系列思想在三维中的应用，其前作 CenterNet (Objects as Points) 在二维目标检测中有不错的效果，同时也在 CenterPoint 中发挥了重要作用。本论文提出的是一种基本框架，使用 center-based 思想能够不同程度提升 backbone 的表现（约 3-4 mAP）。再经过第二阶段的细化 refinement 还能够继续提升约 2 mAP 的表现，且牺牲的计算较少，控制在 10% 以内。下面简单介绍一下两个阶段的过程：</p>
@@ -469,7 +469,7 @@ Y_{xyc}=\exp \left(-\frac{\left(x-\tilde{p}_{x}\right)^{2}+\left(y-\tilde{p}_{y}
 <li><strong>选框方向</strong> and a yaw rotation angle $(sin(α), cos(α)) \in R^2$ </li>
 </ol>
 <p>损失函数对于中心 center 使用的一般 L1 loss，对于选框大小 size 实际预测的是对数大小 logarithmic size，然后再计算 L1 loss。使用对数大小，对于不同形状的选框更可能更有优势，损失函数的曲线会更平滑一些</p>
-<p>还有一点需要注意的是，在第一阶段，所有的损失函数仅在标签位置 keypoint location 进行，即直接将标签点所在的 bin 的预测的结果进行损失函数的计算，这个思想和 PointRCNN, SECOND 等一致，仅对 positive proposals 做回归损失计算（以上为根据 CenterNet 的推测，原文似乎并未提及）</p>
+<p>还有一点需要注意的是，在第一阶段，所有的损失函数仅在标签位置 keypoint location 进行，这个思想和 PointRCNN, SECOND 等一致，仅对 positive proposals 做回归损失计算（以上为根据 CenterNet 的推测，原文似乎并未提及）</p>
 <h3 id="Stage-2"><a href="#Stage-2" class="headerlink" title="Stage-2"></a>Stage-2</h3><p>第二阶段有两个任务，细化 refinement 和评分 score。我们从预测选框的每个面的中心提取一个点特征，这样就有6个特征点，但在俯视图中上下表面中心点重合，故只有5个特征点。对于每个点，使用双线性插值  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/xpvincent/archive/2013/03/15/2961448.html">bilinear interpolation</a> 从 feature map 中提取出各自的特征，然后将所有特征连接 concat 送入 MLP 中预测置信度 confidence score $I$ &amp; 3D bounding box</p>
 <h4 id="置信度"><a href="#置信度" class="headerlink" title="置信度"></a>置信度</h4><p>其中的置信度 $I$ 与分类无关 class-agnostic，仅与 IoU 相关，计算公式如下</p>
 <script type="math/tex; mode=display">
@@ -756,6 +756,55 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
+                <a href="/archives/82cec617.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="SA-SSD">
+                        
+                        <span class="card-title">SA-SSD</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/papers/" class="post-category">
+                                    papers
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SA-SSD/">
+                        <span class="chip bg-color">SA-SSD</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/archives/786d359c.html">
                     <div class="card-image">
                         
@@ -772,9 +821,9 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -800,67 +849,6 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
                     
                     <a href="/tags/Dive-into-deep-learning/">
                         <span class="chip bg-color">Dive into deep learning</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/archives/19c6ccbf.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Numpy Cheat Sheet">
-                        
-                        <span class="card-title">Numpy Cheat Sheet</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
-                                    编程
-                                </a>
-                            
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/" class="post-category">
-                                    Python
-                                </a>
-                            
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Numpy/" class="post-category">
-                                    Numpy
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
-                    <a href="/tags/Numpy/">
-                        <span class="chip bg-color">Numpy</span>
                     </a>
                     
                 </div>
@@ -1015,7 +1003,7 @@ L_{\text {score }}=-I_{t} \log \left(\hat{I}_{t}\right)-\left(1-I_{t}\right) \lo
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

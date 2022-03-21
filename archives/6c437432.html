@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4.3k
+                    4.5k
                 </div>
                 
 
@@ -937,6 +937,25 @@ model <span class="token operator">=</span> torch<span class="token punctuation"
 <h2 id="整体复习"><a href="#整体复习" class="headerlink" title="整体复习"></a>整体复习</h2><blockquote>
 <p>Congratulations! You have completed the PyTorch beginner tutorial! Try <a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html">revisting the first page</a> to see the tutorial in its entirety again. We hope this tutorial has helped you get started with deep learning on PyTorch. Good luck!</p>
 </blockquote>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>根据自己在实践中遇到的 torch 常用操作总结，torch 里面习惯使用 <code>dim=</code> 而不是 <code>axis=</code></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
+
+torch<span class="token punctuation">.</span>eye<span class="token punctuation">(</span>n<span class="token punctuation">,</span> m<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>	<span class="token comment"># n rows, m col</span>
+torch<span class="token punctuation">.</span>nonzero<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>	<span class="token comment"># return a 2D tensor (N, input.shape)</span>
+torch<span class="token punctuation">.</span>where<span class="token punctuation">(</span>condition<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+torch<span class="token punctuation">.</span>clamp<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> <span class="token builtin">min</span><span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token builtin">max</span><span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+torch<span class="token punctuation">.</span><span class="token builtin">max</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> <span class="token builtin">sum</span><span class="token punctuation">)</span>	<span class="token comment"># return a tuple (tensor, LongTensor)</span>
+torch<span class="token punctuation">.</span>norm<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+
+<span class="token comment"># x is a tensor</span>
+x<span class="token punctuation">.</span>repeat<span class="token punctuation">(</span><span class="token operator">*</span>sizes<span class="token punctuation">)</span>	<span class="token comment"># repeat times</span>
+x<span class="token punctuation">.</span>expand<span class="token punctuation">(</span><span class="token operator">*</span>sizes<span class="token punctuation">)</span>	<span class="token comment"># expand to sizes</span>
+x<span class="token punctuation">.</span>contigous<span class="token punctuation">(</span><span class="token punctuation">)</span>		<span class="token comment"># 连续空间</span>
+x<span class="token punctuation">.</span>repeat_interleave<span class="token punctuation">(</span>tensor<span class="token punctuation">)</span>	<span class="token comment"># numpy.repeat()</span>
+
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F
+F<span class="token punctuation">.</span>interpolate<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> size<span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token punctuation">)</span>
+F<span class="token punctuation">.</span>one_hot<span class="token punctuation">(</span>LongTensor<span class="token punctuation">,</span> num_classes<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -1221,8 +1240,8 @@ model <span class="token operator">=</span> torch<span class="token punctuation"
                                     Python
                                 </a>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Manim/" class="post-category">
-                                    Manim
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Package/" class="post-category">
+                                    Package
                                 </a>
                             
                             
@@ -1434,7 +1453,7 @@ model <span class="token operator">=</span> torch<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

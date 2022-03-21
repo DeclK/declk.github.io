@@ -515,9 +515,9 @@
 <script type="math/tex; mode=display">
 d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除了深度特征外，还增加了反射强度特征 r 和分割面罩 m。将这些规范变换并且增强后的特征，送入到一个 MLP 中进行转换得到一个输出，将该输出与 PointNet++ 中学习的语义特征连接起来，进行最后的细化工作</p>
 <p><img src="/archives/51543c70/image-20211006193601408.png" style="zoom: 80%;"></p>
-<h4 id="细化与分类"><a href="#细化与分类" class="headerlink" title="细化与分类"></a>细化与分类</h4><p>这里的学习过程和 Stage-1 中的学习过程是相似的。这里需要预测的目标依然是 bin-based 思想，不过是在规范变化后的坐标下进行，而且仅对在 Stage-1 产生的基础选框内的点进行计算。其具体预测目标值就不再赘述，论文里给出了规范变化后的 ground truth bounding box 如何计算</p>
+<h4 id="细化与分类"><a href="#细化与分类" class="headerlink" title="细化与分类"></a>细化与分类</h4><p>这里的学习过程和 Stage-1 中的学习过程是相似的。预测目标依然使用是 bin-based 思想，不过是在规范变化后的坐标下进行，而且仅对在 Stage-1 产生的基础选框内的点进行计算。其具体预测目标值就不再赘述，论文里给出了规范变化后的 ground truth bounding box 如何计算</p>
 <script type="math/tex; mode=display">
-\tilde{\mathbf{b}}_{i}^{\mathrm{gt}}=\left(x_{i}^{\mathrm{gt}}-x_{i}, y_{i}^{\mathrm{gt}}-y_{i}, z_{i}^{\mathrm{gt}}-z_{i}, h_{i}^{\mathrm{gt}}, w_{i}^{\mathrm{gt}}, l_{i}^{\mathrm{gt}}, \theta_{i}^{\mathrm{gt}}-\theta_{i}\right)</script><p>其中没有 gt 上标的值即为对应基础选框的参数。除了对选框进行进一步的精细化外，还要执行多分类任务，该多分类任务的网络论文并没有详细说明，应该可以参照 PointNet 系列</p>
+\tilde{\mathbf{b}}_{i}^{\mathrm{gt}}=\left(x_{i}^{\mathrm{gt}}-x_{i}, y_{i}^{\mathrm{gt}}-y_{i}, z_{i}^{\mathrm{gt}}-z_{i}, h_{i}^{\mathrm{gt}}, w_{i}^{\mathrm{gt}}, l_{i}^{\mathrm{gt}}, \theta_{i}^{\mathrm{gt}}-\theta_{i}\right)</script><p>其中没有 gt 上标的值即为对应基础选框的参数。除了对选框进行进一步的精细化外，还要执行多分类任务，该多分类任务的网络论文并没有详细说明，应该可以参照 PointNet 系列。Region pooling 的方法是在选框中的点里随机采样512个，便于之后输入 MLP </p>
 <p>最终将精细化任务和多分类任务的损失函数相加，得到最终的损失函数</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
@@ -797,9 +797,9 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="PointPillars (dev)">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="PointPillars">
                         
-                        <span class="card-title">PointPillars (dev)</span>
+                        <span class="card-title">PointPillars</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -846,13 +846,13 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/88f138aa.html">
+                <a href="/archives/acef3112.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Pytorch cn231n note (dev)">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="MMDetection 项目">
                         
-                        <span class="card-title">Pytorch cn231n note (dev)</span>
+                        <span class="card-title">MMDetection 项目</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -863,7 +863,7 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-28
                             </span>
                         <span class="publish-author">
                             
@@ -873,12 +873,8 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                                     编程
                                 </a>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/" class="post-category">
-                                    Python
-                                </a>
-                            
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Pytorch/" class="post-category">
-                                    Pytorch
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/OpenMMLab/" class="post-category">
+                                    OpenMMLab
                                 </a>
                             
                             
@@ -888,12 +884,8 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Pytorch/">
-                        <span class="chip bg-color">Pytorch</span>
-                    </a>
-                    
-                    <a href="/tags/CS231N/">
-                        <span class="chip bg-color">CS231N</span>
+                    <a href="/tags/MMDetection/">
+                        <span class="chip bg-color">MMDetection</span>
                     </a>
                     
                 </div>
@@ -1048,7 +1040,7 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

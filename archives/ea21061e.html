@@ -390,8 +390,8 @@
                                 Python
                             </a>
                         
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Matplotlib/" class="post-category">
-                                Matplotlib
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Package/" class="post-category">
+                                Package
                             </a>
                         
                     </div>
@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    834
+                    860
                 </div>
                 
 
@@ -444,6 +444,7 @@
 <li><code>plt.axis([xmin, xmax, ymin, ymax])</code>，<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.axis.html#matplotlib.pyplot.axis">axis doc</a>，通过 <code>plt.axis(False)</code> 也可以不显示坐标轴及其标签</li>
 </ol>
 <p>axis 除了范围可以设置，其 tick 也可设置，<code>plt.xticks(ticks=, labels=)</code> <a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xticks.html#matplotlib.pyplot.xticks">xticks doc</a></p>
+<p>补充：将 y 轴进行反转 <code>plt.gca().invert_yaxis()</code></p>
 <h2 id="Text"><a href="#Text" class="headerlink" title="Text"></a>Text</h2><div class="table-container">
 <table>
 <thead>
@@ -554,6 +555,7 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
 <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>image <span class="token keyword">as</span> mpimg
 
 img <span class="token operator">=</span> mpimg<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">'test.png'</span><span class="token punctuation">)</span>
+<span class="token comment"># img = plt.imread('test.png')</span>
 plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
 plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
@@ -568,9 +570,9 @@ x <span class="token operator">=</span> np<span class="token punctuation">.</spa
 k <span class="token operator">=</span> img<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">/</span> img<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
 y <span class="token operator">=</span> k <span class="token operator">*</span> x
 plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'red'</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/archives/ea21061e/image-20211115174301946.png" style="zoom: 67%;"></p>
-<p>除了绘制函数，一般的几何图形也能够绘制，请直接查看文档</p>
+<p>除了绘制函数，一般的几何图形也能够绘制，一般使用 patches 对象，具体操作可参考 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8d14238d402a">简书</a></p>
 
                 
             </div>
@@ -904,8 +906,8 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
                                     Python
                                 </a>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Matplotlib/" class="post-category">
-                                    Matplotlib
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Package/" class="post-category">
+                                    Package
                                 </a>
                             
                             
@@ -1064,7 +1066,7 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

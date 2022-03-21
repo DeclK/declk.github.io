@@ -484,7 +484,7 @@
 </ol>
 <p>通过人为设置的学习路径，解释了该结构的合理性。但通过网络自身的学习，能够获得更好的效果，剩下的就交给优化算法吧！</p>
 <h4 id="更新：从升维的角度来看待-PointNet"><a href="#更新：从升维的角度来看待-PointNet" class="headerlink" title="更新：从升维的角度来看待 PointNet"></a>更新：从升维的角度来看待 PointNet</h4><p>为什么要将每一个点的位置使用全连接网络进行升维度？BTW，因为每一个点都共用一个全连接网络所以叫 shared MLP</p>
-<p>这样的升维操作我在 one-hot 编码中看到过，即用一个多维的，由 {0,1} 组成的向量来表示属于某一个类，这里会不会是相同的道理？将空间分割成多个子空间，用一个多维向量表示这个点是否处于某个子空间中，如果由则对应维度的数值就高，最后使用 maxpooling 将这个特征提取出来，再使用 MLP 进行各种任务</p>
+<p>这样的升维操作我在 one-hot 编码中看到过，即用一个多维的，由 {0,1} 组成的向量来表示属于某一个类，这里会不会是相同的道理？MLP 的权重实际上是空间中的多个向量，这些向量将空间分割成多个子空间，如果输入向量落在该子空间中，则输入向量与分隔向量的点积数值就会较大，此时可以把则该子空间看作为<strong>某种特征</strong>。之后使用 maxpooling 堆所有输入向量进行全局的特征提取，最后使用 MLP 进行各种下游任务 </p>
 <p>这个思想（可能）起源于传统的滤波，也可能来自于看了马毅教授的一些说法：把滤波/卷积核看作是一个高维度向量，而卷积操作实际上是该部分数据与该向量的点积，也就是在该方向上的投影，寻找卷积核就是在寻找不同的高维向量，对高维空间进行分割，原始特征落在高维空间的不同区域，它们与高维向量的点积代表了它们在这些方向上的投影，如果方向相同那么投影值肯定会打，如果方向垂直或者相反投影值则会变小，这样落在不同区域的特征将会被识别出来（通过 ReLU or maxpooling），这些投影值可能就是我们常说的提取得到的“特征”</p>
 <h2 id="PointNet-1"><a href="#PointNet-1" class="headerlink" title="PointNet++"></a>PointNet++</h2><p>PointNet++ 的提出源于 PointNet 的缺点——缺失局部特征。PointNet对于场景的分割效果十分一般，由于其网络直接暴力地将所有的点最大池化为了一个全局特征，因此局部点与点之间的联系并没有被网络学习到。PointNet++ 中主要借鉴了 CNN 的多层感受野的思想，增强了网络对于局部特征的提取能力</p>
 <p>具体来讲就是：对于点云数据，将点云数据进行采样和分组，使用原 PointNet 对这些分组后的点云子集进行特征提取（而非之前的全局特征提取），得到了新的特征集合，对于新的特征集合，可以重复之前的采样、分组、提取过程，不断地迭代。随着迭代次数的增加，PointNet 的感受野也越来越大，下图为 PointNet++  (single scale grouping) 的结构图，能够有一个更加直观的感受</p>
@@ -765,13 +765,13 @@ f^{(j)}(x)=\frac{\sum_{i=1}^{k} w_{i}(x) f_{i}^{(j)}}{\sum_{i=1}^{k} w_{i}(x)} \
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/archives/b179cc3a.html">
+                <a href="/archives/74da7df7.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="PV-RCNN">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Point-GNN">
                         
-                        <span class="card-title">PV-RCNN</span>
+                        <span class="card-title">Point-GNN</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -803,8 +803,8 @@ f^{(j)}(x)=\frac{\sum_{i=1}^{k} w_{i}(x) f_{i}^{(j)}}{\sum_{i=1}^{k} w_{i}(x)} \
                         <span class="chip bg-color">Point Cloud</span>
                     </a>
                     
-                    <a href="/tags/PV-RCNN/">
-                        <span class="chip bg-color">PV-RCNN</span>
+                    <a href="/tags/Point-GNN/">
+                        <span class="chip bg-color">Point-GNN</span>
                     </a>
                     
                 </div>
@@ -822,9 +822,9 @@ f^{(j)}(x)=\frac{\sum_{i=1}^{k} w_{i}(x) f_{i}^{(j)}}{\sum_{i=1}^{k} w_{i}(x)} \
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="PointPillars (dev)">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="PointPillars">
                         
-                        <span class="card-title">PointPillars (dev)</span>
+                        <span class="card-title">PointPillars</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1012,7 +1012,7 @@ f^{(j)}(x)=\frac{\sum_{i=1}^{k} w_{i}(x) f_{i}^{(j)}}{\sum_{i=1}^{k} w_{i}(x)} \
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">130k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
