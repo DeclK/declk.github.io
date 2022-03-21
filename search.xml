@@ -807,9 +807,9 @@
       
         <tags>
             
-            <tag> CenterPoint </tag>
-            
             <tag> Point Cloud </tag>
+            
+            <tag> CenterPoint </tag>
             
         </tags>
       
@@ -1112,9 +1112,9 @@
       
         <tags>
             
-            <tag> MMDetection </tag>
-            
             <tag> MMLab </tag>
+            
+            <tag> MMDetection </tag>
             
         </tags>
       
@@ -1731,7 +1731,7 @@
           
           <category> 编程 </category>
           
-          <category> Linux </category>
+          <category> Tools </category>
           
       </categories>
       
