@@ -1,0 +1,1323 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="D2L 14 自然语言处理：预训练, ">
+    <meta name="description" content=" ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>D2L 14 自然语言处理：预训练 | </title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span"></span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name"></div>
+        <div class="logo-desc">
+            
+             
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">D2L 14 自然语言处理：预训练</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Dive-into-deep-learning/">
+                                <span class="chip bg-color">Dive into deep learning</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
+                                课程
+                            </a>
+                        
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/Dive-into-deep-learning/" class="post-category">
+                                Dive into deep learning
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-04-10
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    3.7k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="D2L-14-自然语言处理：预训练"><a href="#D2L-14-自然语言处理：预训练" class="headerlink" title="D2L 14 自然语言处理：预训练"></a>D2L 14 自然语言处理：预训练</h1><h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>词向量是用于表示单词意义的向量， 并且还可以被认为是单词的特征向量或表示。 将单词映射到实向量的技术称为词嵌入。 近年来，词嵌入逐渐成为自然语言处理的基础知识。<strong>虽然独热向量很容易构建，但它们通常不是一个好的选择</strong>。一个主要原因是独热向量不能准确表达不同词之间的相似度，比如我们经常使用的“余弦相似度”</p>
+<p><strong>word2vec 工具是为了解决上述问题而提出的</strong>。它将每个词映射到一个固定长度的向量，这些向量能更好地表达不同词之间的相似性和类比关系。word2vec 工具包含两个模型，即跳元模型（skip-gram）连续词袋（CBOW）</p>
+<h3 id="跳元模型（skip-gram）"><a href="#跳元模型（skip-gram）" class="headerlink" title="跳元模型（skip-gram）"></a>跳元模型（skip-gram）</h3><p>跳元模型假设一个词可以用来在文本序列中生成其周围的单词。以文本序列“the”、“man”、“loves”、“his”、“son”为例。假设中心词选择“loves”，并将上下文窗口设置为2，假设上下文词是在给定中心词的情况下独立生成的，联合条件概率可用如下图表示</p>
+<p><img src="/archives/736b157a/image-20220330215317546.png" alt="image-20220330215317546" style="zoom:50%;"></p>
+<p>在跳元模型中，每个词都有两个 d 维向量表示，用于计算条件概率。给定中心词 $w_c$（词典中的索引 c），生成任何上下文词 $w_o$（词典中的索引 o）的条件概率可以通过对向量点积的 softmax 操作来建模</p>
+<script type="math/tex; mode=display">
+P\left(w_{o} \mid w_{c}\right)=\frac{\exp \left(\mathbf{u}_{o}^{\top} \mathbf{v}_{c}\right)}{\sum_{i \in \mathcal{V}} \exp \left(\mathbf{u}_{i}^{\top} \mathbf{v}_{c}\right)}</script><p>其中词表索引集 $V={0,1,…,|V|−1}$。给定长度为 $T$ 的文本序列，其中时间步 t 处的词表示为 $w^{(t)}$。假设上下文词是在给定任何中心词的情况下独立生成的。对于上下文窗口 m，跳元模型的似然函数是在给定任何中心词的情况下生成所有上下文词的概率：</p>
+<script type="math/tex; mode=display">
+\prod_{t=1}^{T} \prod_{-m \leq j \leq m, j \neq 0} P\left(w^{(t+j)} \mid w^{(t)}\right)</script><p>做深度学习久了，感觉所有东西必须要有一个标签才能计算损失函数，然后使用梯度下降算法进行优化，看到这里还有点不太习惯😂实际上该似然函数就是我们的目标函数，我们可以通过优化神经网络的参数获得似然函数的最优解</p>
+<h3 id="连续词袋（CBOW）模型"><a href="#连续词袋（CBOW）模型" class="headerlink" title="连续词袋（CBOW）模型"></a>连续词袋（CBOW）模型</h3><p>连续词袋类似于完形填空，给定上下文推理出空缺词。</p>
+<p><img src="/archives/736b157a/image-20220409162215687.png" alt="image-20220409162215687" style="zoom:50%;"></p>
+<p>由于连续词袋模型中存在多个上下文词，因此在计算条件概率时对这些上下文词向量进行平均，假设有 2m 个上下文词</p>
+<script type="math/tex; mode=display">
+P\left(w_{c} \mid w_{o 1}, \ldots, w_{o 2 m}\right)=\frac{\exp \left(\frac{1}{2 m} \mathbf{u}_{c}^{\top}\left(\mathbf{v}_{o 1}+\ldots,+\mathbf{v}_{o 2 m}\right)\right)}{\sum_{i \in \mathcal{V}} \exp \left(\frac{1}{2 m} \mathbf{u}_{i}^{\top}\left(\mathbf{v}_{o 1}+\ldots,+\mathbf{v}_{o 2 m}\right)\right)}</script><p>连续词袋模型的似然函数是在给定其上下文词的情况下生成所有中心词的概率</p>
+<script type="math/tex; mode=display">
+\prod_{t=1}^{T} P\left(w^{(t)} \mid w^{(t-m)}, \ldots, w^{(t-1)}, w^{(t+1)}, \ldots, w^{(t+m)}\right)</script><h2 id="近似训练"><a href="#近似训练" class="headerlink" title="近似训练"></a>近似训练</h2><p>可以看一看 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV154411S7Tf?p=16">官方视频</a>，比教材还要讲得更清楚。由于跳元模型和连续词袋模型非常相像，之后都以跳元模型进行说明</p>
+<p>如果我们对跳元模型的目标函数进行求导可得：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial \log P\left(w_{o} \mid w_{c}\right)}{\partial \mathbf{v}_{c}} &=\mathbf{u}_{o}-\frac{\sum_{j \in \mathcal{V}} \exp \left(\mathbf{u}_{j}^{\top} \mathbf{v}_{c}\right) \mathbf{u}_{j}}{\sum_{i \in \mathcal{V}} \exp \left(\mathbf{u}_{i}^{\top} \mathbf{v}_{c}\right)} \\
+&=\mathbf{u}_{o}-\sum_{j \in \mathcal{V}}\left(\frac{\exp \left(\mathbf{u}_{j}^{\top} \mathbf{v}_{c}\right)}{\sum_{i \in \mathcal{V}} \exp \left(\mathbf{u}_{i}^{\top} \mathbf{v}_{c}\right)}\right) \mathbf{u}_{j} \\
+&=\mathbf{u}_{o}-\sum_{j \in \mathcal{V}} P\left(w_{j} \mid w_{c}\right) \mathbf{u}_{j}
+\end{aligned}</script><p>可以发现其中有一个求和项，对于词典数量 V 很大的情况，计算量会非常大，为了解决这个问题提出了两个方法</p>
+<h3 id="负采样"><a href="#负采样" class="headerlink" title="负采样"></a>负采样</h3><p>上面的求和问题是由于 softmax 的计算方式导致。直接采用 sigmoid 进行概率表示就不会有这样的问题，我们现在来建模另一个概率事件</p>
+<script type="math/tex; mode=display">
+P\left(D=1 \mid w_{c}, w_{o}\right)=\sigma\left(\mathbf{u}_{o}^{\top} \mathbf{v}_{c}\right)</script><p>其中出现了一个新的随机变量 D，该变量表示 $w_c, w_o$ 是否出现在同一个上下文窗口，如果在则 D = 1 如果不在则 D = 0。也就是说，我们用两个词是否出现在同一个窗口来进行建模。但采用这样的建模方式是有问题的，因为当你去最大化似然时，得到的所有词向量将会是一个无穷大的数。为了让模型变得合理，我们加入负样本/噪声样本/背景样本，负样本通过人为设定的先验概率 P(w) 采样得到。我们采样 K 个负样本 $w_k$，并重新写出概率</p>
+<script type="math/tex; mode=display">
+P\left(w^{(t+j)} \mid w^{(t)}\right)=P\left(D=1 \mid w^{(t)}, w^{(t+j)}\right) \prod_{k=1, w k \sim P(w)}^{K} P\left(D=0 \mid w^{(t)}, w_{k}\right)</script><p>此时我们将原始的模型分解为了两部分：两个词在同一窗口内，两个词不在同一窗口内。此时该模型将不再含有 softmax 当中的求和，计算量由采样数 K 限制。将目标函数写得具体一些</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+-\log P\left(w^{(t+j)} \mid w^{(t)}\right) &=-\log P\left(D=1 \mid w^{(t)}, w^{(t+j)}\right)-\sum_{k=1, w k \sim P(w)}^{K} \log P\left(D=0 \mid w^{(t)}, w_{k}\right) \\
+&=-\log \sigma\left(\mathbf{u}_{i t+j}^{\top} \mathbf{v}_{i t}\right)-\sum_{k=1, w k \sim P(w)}^{K} \log \left(1-\sigma\left(\mathbf{u}_{h k}^{\top} \mathbf{v}_{i t}\right)\right) \\
+&=-\log \sigma\left(\mathbf{u}_{i t+j}^{\top} \mathbf{v}_{i t}\right)-\sum_{k=1, w k \sim P(w)}^{K} \log \sigma\left(-\mathbf{u}_{h k}^{\top} \mathbf{v}_{i t}\right) .
+\end{aligned}</script><h3 id="层序-Softmax"><a href="#层序-Softmax" class="headerlink" title="层序 Softmax"></a>层序 Softmax</h3><p>这个东西不太好理解，我也不太想要深究，贴一下图和公式</p>
+<p><img src="/archives/736b157a/image-20220409183444554.png" alt="image-20220409183444554" style="zoom:50%;"></p>
+<script type="math/tex; mode=display">
+P\left(w_{o} \mid w_{c}\right)=\prod_{j=1}^{L\left(w_{o}\right)-1} \sigma\left(\| n\left(w_{o}, j+1\right)\ is \operatorname{leftChild}\left(n\left(w_{o}, j\right)\right)\| \cdot \mathbf{u}_{n\left(w_{o}, j\right)}^{\top} \mathbf{v}_{c}\right)</script><p>依然还是使用 sigmoid 去建模概率，但是编码是采用了一个二分的编码方式，不明白这样编码的有效性</p>
+<h2 id="预训练-word2vec"><a href="#预训练-word2vec" class="headerlink" title="预训练 word2vec"></a>预训练 word2vec</h2><p>只记录负采样的跳元模型</p>
+<h3 id="嵌入层"><a href="#嵌入层" class="headerlink" title="嵌入层"></a>嵌入层</h3><p>嵌入层将词元的索引映射到其特征向量。该层的权重是一个矩阵，其行数等于字典大小（<code>input_dim</code>），列数等于每个标记的向量维数（<code>output_dim</code>）。在词嵌入模型训练之后，这个权重就是我们所需要的，<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html">nn.Embedding</a></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">embed <span class="token operator">=</span> nn<span class="token punctuation">.</span>Embedding<span class="token punctuation">(</span>num_embeddings<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> embedding_dim<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">skip_gram</span><span class="token punctuation">(</span>center<span class="token punctuation">,</span> contexts_and_negatives<span class="token punctuation">,</span> embed_v<span class="token punctuation">,</span> embed_u<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    v <span class="token operator">=</span> embed_v<span class="token punctuation">(</span>center<span class="token punctuation">)</span>	<span class="token comment"># （B, 1, H)</span>
+    u <span class="token operator">=</span> embed_u<span class="token punctuation">(</span>contexts_and_negatives<span class="token punctuation">)</span>	<span class="token comment"># (B, M, H)</span>
+    pred <span class="token operator">=</span> torch<span class="token punctuation">.</span>bmm<span class="token punctuation">(</span>v<span class="token punctuation">,</span> u<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>	<span class="token comment"># (B, 1, M)</span>
+    <span class="token keyword">return</span> pred<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看代码就非常清晰，首先有两个 embedding 层分别对应 center embedding 和 context embedding（是的，二者是不同的 embedding，我之前认为一个词只有一个 embedding），然后使用批量矩阵乘法获得最后的结果</p>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p>这里使用的是 masked binary cross entropy loss</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">SigmoidBCELoss</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 带掩码的二元交叉熵损失</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> inputs<span class="token punctuation">,</span> target<span class="token punctuation">,</span> mask<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        out <span class="token operator">=</span> nn<span class="token punctuation">.</span>functional<span class="token punctuation">.</span>binary_cross_entropy_with_logits<span class="token punctuation">(</span>
+            inputs<span class="token punctuation">,</span> target<span class="token punctuation">,</span> weight<span class="token operator">=</span>mask<span class="token punctuation">,</span> reduction<span class="token operator">=</span><span class="token string">"none"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> out<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+loss <span class="token operator">=</span> SigmoidBCELoss<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>要理解这个损失函数，要回答两个问题：1. 为什么要带掩码？2. 损失函数的输入和标签是什么？</p>
+<p>第一个问题很好回答，因为上下文的长度是不一样的，需要 mask 掉 padding 的部分不计算损失。第二个问题先给答案：输入为前向传播的预测结果 pred (B, 1, M)，输出是正负样本标签 (B, 1, M) 代表这个词是否在上下文窗口中</p>
+<p>这样的标签是非常合理的，但是在之前的笔记中提到：最大化似然函数不需要标签，为什么不用之前的 MLE 去做最优化呢？<strong>因为在分类问题上二者是等价的</strong>，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/165139520">知乎</a></p>
+<h2 id="GloVe"><a href="#GloVe" class="headerlink" title="GloVe"></a>GloVe</h2><p>没能理解，不打算深入学习。似乎这种方法是想要建模一个三词之间的条件关系，该建模建立在一个共现矩阵上（词 j 出现在词 i 上下文的频率），共现概率的比值能够直观地表达词与词之间的关系</p>
+<p><img src="/archives/736b157a/image-20220409235231501.png" alt="image-20220409235231501" style="zoom:50%;"></p>
+<h2 id="FastText-子词嵌入"><a href="#FastText-子词嵌入" class="headerlink" title="FastText 子词嵌入"></a>FastText 子词嵌入</h2><p>fastText 在使用负采样的 skip-gram 模型基础上，将每个中心词视为子词 subword 的集合，并学习子词的词向量，用子词词向量的和来替代原来中心词词向量</p>
+<p>让我们来说明如何以单词 “where” 为例获得 fastText 中每个中心词的子词。首先，在词的开头和末尾添加特殊字符“&lt;”和“&gt;”，以将前缀和后缀与其他子词区分开来。 然后，从词中提取字符 n-gram。 例如，值 n=3 时，我们将获得长度为3的所有子词：“<wh”、“whe”、“her”、“ere”、“re>”和特殊子词（整词）“<where>”</where></wh”、“whe”、“her”、“ere”、“re></p>
+<p>假设 $z_g$ 是词典中的子词 g 的向量，则跳元模型中中心词向量 $v_c$ 我们计算为其子词向量的和：</p>
+<script type="math/tex; mode=display">
+\mathbf{v}_{c}=\sum_{g} \mathbf{z}_{g}</script><p>于是 fastText 模型可以表示为：</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}
+\text{fastText:    }
+-\log \mathbb{P}\left(w_{o} \mid w_{c}\right)=-\log \frac{1}{1+\exp \left(-\mathbf{u}_{o}^{\top} \sum_{g \in \mathcal{G}_{w_{c}}} \mathbf{z}_{g}\right)}-\sum_{k=1, w_{k} \sim \mathbb{P}(w)}^{K} \log \frac{1}{1+\exp \left(\mathbf{u}_{i_{k}}^{\top} \sum_{g \in \mathcal{G}_{w_{c}}} \mathbf{z}_{g}\right)}\\
+\text{original:    }
+-\log \mathbb{P}\left(w_{o} \mid w_{c}\right)=-\log \frac{1}{1+\exp \left(-\mathbf{u}_{o}^{\top} \mathbf{v}_{c}\right)}-\sum_{k=1, w_{k} \sim \mathbb{P}(w)}^{K} \log \frac{1}{1+\exp \left(\mathbf{u}_{i_{k}}^{\top} \mathbf{v}_{c}\right)} 
+\end{array}</script><p>从上面两式可以很清楚地看到改动的区别。这样改动的意义在哪里呢？教材简单总结：子词嵌入可以提高稀有词和词典外词的表示质量。可能因为它对词的单词内部也进行了一定的建模吧，这样做的出发点也是由于某些语言特性导致，因为一个单词往往可以拆解为多个词根</p>
+<h2 id="词的相似性和类比任务"><a href="#词的相似性和类比任务" class="headerlink" title="词的相似性和类比任务"></a>词的相似性和类比任务</h2><p>本来想跳过这一节的，还是把教材里的小结贴一下吧，有个概念：</p>
+<ul>
+<li>在实践中，在大型语料库上预先练的词向量可以应用于下游的自然语言处理任务</li>
+<li>预训练的词向量可以应用于词的相似性和类比任务</li>
+</ul>
+<h2 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h2><p>终于来到自己最想要了解的部分了😎主要参考官方视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yU4y1E7Ns?p=1">bilibili</a>，因为想更好的了解模型的内在逻辑</p>
+<h3 id="NLP-里的迁移学习"><a href="#NLP-里的迁移学习" class="headerlink" title="NLP 里的迁移学习"></a>NLP 里的迁移学习</h3><p>word2vec 模型的缺点：<strong>忽略了部分时序信息，是一种静态的表征</strong>。举一个简单的例子：如水果中的“苹果”和苹果公司的“苹果”，在 word2vec 模型中词向量表示是一样的，而实际上这两词的意思完全不一样</p>
+<p>BERT 的动机之一：希望通过微调来做下游任务。换句话说，我们希望有一个预训练好的（<strong>大</strong>）模型，该模型能提取出足够好的嵌入特征，然后直接拿这些特征通过一个简单的解码器（MLP）完成下游任务（当然还有微调的过程）</p>
+<h3 id="BERT-架构"><a href="#BERT-架构" class="headerlink" title="BERT 架构"></a>BERT 架构</h3><p><strong>简单概括：只有编码器的 transformer</strong></p>
+<p>BERT 论文使用了两个版本，下面是一些参数细节：</p>
+<ol>
+<li>Base: # blocks = 12, hidden size = 768, # heads = 12, # parameters = 110M</li>
+<li>Large: # blocks = 12, hidden size = 1024, # heads = 16. # parameters = 340M</li>
+</ol>
+<h3 id="BERT-输入"><a href="#BERT-输入" class="headerlink" title="BERT 输入"></a>BERT 输入</h3><ol>
+<li>每个样本是一个句子对</li>
+<li>加入额外的片段嵌入。代表是第一个句子，还是第二个句子</li>
+<li>位置编码可学习</li>
+</ol>
+<p><img src="/archives/736b157a/image-20220410152406518.png" alt="image-20220410152406518" style="zoom:50%;"></p>
+<p>上代码！清晰得一批</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#@save</span>
+<span class="token keyword">def</span> <span class="token function">get_tokens_and_segments</span><span class="token punctuation">(</span>tokens_a<span class="token punctuation">,</span> tokens_b<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""获取输入序列的词元及其片段索引"""</span>
+    tokens <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'&lt;cls&gt;'</span><span class="token punctuation">]</span> <span class="token operator">+</span> tokens_a <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token string">'&lt;sep&gt;'</span><span class="token punctuation">]</span>
+    <span class="token comment"># 0和1分别标记片段A和B</span>
+    segments <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>tokens_a<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> tokens_b <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        tokens <span class="token operator">+=</span> tokens_b <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token string">'&lt;sep&gt;'</span><span class="token punctuation">]</span>
+        segments <span class="token operator">+=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>tokens_b<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> tokens<span class="token punctuation">,</span> segments<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面这段代码是先处理的文本：1. 加入特殊词元（不包含 <mask> 词元）；2. 创建段信息</mask></p>
+<p>之后直接使用 nn.Embedding，将输入嵌入到相同的维度上</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#@save</span>
+<span class="token keyword">class</span> <span class="token class-name">BERTEncoder</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""BERT编码器"""</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> vocab_size<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">,</span> norm_shape<span class="token punctuation">,</span> ffn_num_input<span class="token punctuation">,</span>
+                 ffn_num_hiddens<span class="token punctuation">,</span> num_heads<span class="token punctuation">,</span> num_layers<span class="token punctuation">,</span> dropout<span class="token punctuation">,</span>
+                 max_len<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">,</span> key_size<span class="token operator">=</span><span class="token number">768</span><span class="token punctuation">,</span> query_size<span class="token operator">=</span><span class="token number">768</span><span class="token punctuation">,</span> value_size<span class="token operator">=</span><span class="token number">768</span><span class="token punctuation">,</span>
+                 <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>BERTEncoder<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>token_embedding <span class="token operator">=</span> nn<span class="token punctuation">.</span>Embedding<span class="token punctuation">(</span>vocab_size<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>segment_embedding <span class="token operator">=</span> nn<span class="token punctuation">.</span>Embedding<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> num_hiddens<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>blks <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>num_layers<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>blks<span class="token punctuation">.</span>add_module<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>i<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span> d2l<span class="token punctuation">.</span>EncoderBlock<span class="token punctuation">(</span>	<span class="token comment"># transformer block</span>
+                key_size<span class="token punctuation">,</span> query_size<span class="token punctuation">,</span> value_size<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">,</span> norm_shape<span class="token punctuation">,</span>
+                ffn_num_input<span class="token punctuation">,</span> ffn_num_hiddens<span class="token punctuation">,</span> num_heads<span class="token punctuation">,</span> dropout<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment"># 在BERT中，位置嵌入是可学习的，因此我们创建一个足够长的位置嵌入参数</span>
+        <span class="token comment"># 并且不需要 batch 维度, 因为每个 sample 的位置信息编码都应该一样</span>
+        self<span class="token punctuation">.</span>pos_embedding <span class="token operator">=</span> nn<span class="token punctuation">.</span>Parameter<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> max_len<span class="token punctuation">,</span>
+                                                      num_hiddens<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> tokens<span class="token punctuation">,</span> segments<span class="token punctuation">,</span> valid_lens<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 在以下代码段中，X的形状保持不变：（批量大小，最大序列长度，num_hiddens）</span>
+        X <span class="token operator">=</span> self<span class="token punctuation">.</span>token_embedding<span class="token punctuation">(</span>tokens<span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>segment_embedding<span class="token punctuation">(</span>segments<span class="token punctuation">)</span>
+        X <span class="token operator">=</span> X <span class="token operator">+</span> self<span class="token punctuation">.</span>pos_embedding<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span>X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> blk <span class="token keyword">in</span> self<span class="token punctuation">.</span>blks<span class="token punctuation">:</span>
+            X <span class="token operator">=</span> blk<span class="token punctuation">(</span>X<span class="token punctuation">,</span> valid_lens<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> X<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="BERT-预训练任务"><a href="#BERT-预训练任务" class="headerlink" title="BERT 预训练任务"></a>BERT 预训练任务</h3><h4 id="带掩码的语言模型"><a href="#带掩码的语言模型" class="headerlink" title="带掩码的语言模型"></a>带掩码的语言模型</h4><p>带掩码的语言模型每次随机（15%概率）将一些词元换成 <mask> token。但因为微调任务中不出现 <mask> 所以对于 <mask> 有额外处理：</mask></mask></mask></p>
+<ol>
+<li>80% 概率下，保持 <mask> token</mask></li>
+<li>10% 概率下，随机换成其他 token</li>
+<li>10% 概率下，保持原有 token</li>
+</ol>
+<h4 id="下一句子预测"><a href="#下一句子预测" class="headerlink" title="下一句子预测"></a>下一句子预测</h4><p>预测一个句子对中两个句子是不是相邻的。在训练样本中：50% 概率先择相邻句子对，50% 概率选择随机句子对。并将 <cls> 对应的输出放到一个全连接层来做预测</cls></p>
+<p>补充：</p>
+<ol>
+<li>不必过于纠结 BERT 中的 B -&gt; bidirectional，这其实是 transformer 自带的属性，直白的来讲这个 bidirectional 更像是指代一种全局能力</li>
+<li>沐神提到，他们将 BERT 的代码分为了：<strong>数据，模型，训练</strong>三部分。这个范式应该要牢记！</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Declan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://hongkun.space/archives/736b157a.html">https://hongkun.space/archives/736b157a.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Declan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Dive-into-deep-learning/">
+                                    <span class="chip bg-color">Dive into deep learning</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+        <div class="card">
+	    <script src="https://utteranc.es/client.js"
+	    repo="DeclK/declk.github.io"
+	    issue-term="pathname"
+	    theme="github-light"
+	    crossorigin="anonymous"
+	    async>
+	    </script>
+            
+
+            
+
+            
+
+            
+
+            
+			
+			
+
+            
+
+        </div>
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/archives/2083e7ea.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="IA-SSD">
+                        
+                        <span class="card-title">IA-SSD</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/papers/" class="post-category">
+                                    papers
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Point-Cloud/">
+                        <span class="chip bg-color">Point Cloud</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/15b3ab53.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="D2L 13 计算机视觉">
+                        
+                        <span class="card-title">D2L 13 计算机视觉</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/" class="post-category">
+                                    课程
+                                </a>
+                            
+                            <a href="/categories/%E8%AF%BE%E7%A8%8B/Dive-into-deep-learning/" class="post-category">
+                                    Dive into deep learning
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Dive-into-deep-learning/">
+                        <span class="chip bg-color">Dive into deep learning</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">Declan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">179.8k</span>&nbsp;字
+            
+            <span id="sitetime"></span>
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/DeclK" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hongkun20sme@smail.nju.edu.cn" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="https://space.bilibili.com/385931953" class="tooltipped" target="_blank" data-tooltip="访问我的bilibili" data-position="top" data-delay="50">
+        <i class="fas fa-bold"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        var t1 = Date.UTC(2021, 06, 30, 00, 00, 00); //起始北京时间
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 180;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 200;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substring(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

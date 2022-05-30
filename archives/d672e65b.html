@@ -1,0 +1,1250 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="ViT &amp; MAE &amp; Swin Transformer, ">
+    <meta name="description" content=" ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>ViT &amp; MAE &amp; Swin Transformer | </title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span"></span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name"></div>
+        <div class="logo-desc">
+            
+             
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">ViT &amp; MAE &amp; Swin Transformer</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/ViT/">
+                                <span class="chip bg-color">ViT</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/papers/" class="post-category">
+                                papers
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-04-14
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    2.3k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="ViT-amp-MAE-amp-Swin-Transformer"><a href="#ViT-amp-MAE-amp-Swin-Transformer" class="headerlink" title="ViT &amp; MAE &amp; Swin Transformer"></a>ViT &amp; MAE &amp; Swin Transformer</h2><hr>
+<p>Dosovitskiy, Alexey, et al. “An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale.” <em>ArXiv:2010.11929 [Cs]</em>, June 2021. <em>arXiv.org</em>, <a target="_blank" rel="noopener" href="http://arxiv.org/abs/2010.11929">http://arxiv.org/abs/2010.11929</a>.</p>
+<p>He, Kaiming, et al. “Masked Autoencoders Are Scalable Vision Learners.” <em>ArXiv:2111.06377 [Cs]</em>, Dec. 2021. <em>arXiv.org</em>, <a target="_blank" rel="noopener" href="http://arxiv.org/abs/2111.06377">http://arxiv.org/abs/2111.06377</a>.</p>
+<p>Liu, Ze, et al. “Swin Transformer: Hierarchical Vision Transformer Using Shifted Windows.” <em>ArXiv:2103.14030 [Cs]</em>, Aug. 2021. <em>arXiv.org</em>, <a target="_blank" rel="noopener" href="http://arxiv.org/abs/2103.14030">http://arxiv.org/abs/2103.14030</a>.</p>
+<hr>
+<p>想要把这三篇论文统一整理一下。ViT 是视觉 transformer 的奠基作之一，而 MAE 和 Swin 是最近的强势论文。在了解 transformer 之前老是被这个东西的计算时间给吓到，要什么几百个 GPU/TPU 跑个几天才跑得出来，但了解之后我似乎觉得不是这么回事。Transformer 模型可以做的和普通卷积网络一样小的，计算量也是差不多的，不过通常为了刷榜会使用<strong>更大的模型和超大的数据集</strong>，这就导致了训练时间炸裂！但实际上 transformer 是一个非常好的结构，效率并不低，应当重视起来！！</p>
+<h2 id="ViT"><a href="#ViT" class="headerlink" title="ViT"></a>ViT</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV15P4y137jb/?spm_id_from=333.788">ViT论文逐段精读</a></p>
+<p>Transformer 到底有什么优越性？Transformer 能够更好地处理如下难题：</p>
+<ol>
+<li>Occlusion，遮挡</li>
+<li>Distribution shift，分布偏移</li>
+<li>Permutation，排列</li>
+</ol>
+<p>简单来讲这些性质来源于 transformer 的全局建模能力（具体原因咱也不知道哈😀）除此之外 transfomer 目前似乎还未观察到性能饱和的现象，数据集越大，模型越大，效果越好</p>
+<p>但是在一些不那么大的数据集上训练 ViT，效果反而不是那么好，论文认为这是因为数据集少，transformer 难以学到最好的特征。CNN 因为有两个先验知识：1. 平移不变性；2. 相对位置，所以使用较小的数据集能够有更好的表现。但是随着数据集的增大，transformer 的威力就全面爆发了</p>
+<p>由于自注意力是平方复杂度的增长，所以直接应用到 cv 上有一定困难，前人尝试过的方法：1. 在 window 上做自注意力；2. 使用 sparse transformer，为全局注意力的近似；3. 轴注意力，先在横轴上做自注意力，然后在纵轴上做自注意力</p>
+<h3 id="ViT-Model"><a href="#ViT-Model" class="headerlink" title="ViT Model"></a>ViT Model</h3><p>如果你了解 BERT &amp; Tansformer，ViT 的模型理解起来根本没有难度</p>
+<p><img src="/archives/d672e65b/image-20220412230331225.png" alt="image-20220412230331225" style="zoom:50%;"></p>
+<p>我们按照前向方程的顺序来逐个看看：</p>
+<ol>
+<li>将图片分割为 Pathes，每一个 Patch 为 16x16 大小的子图，将该子图展开为 16x16x3 = 768 维的特征。假设原图大小为 224x224 那么能够得到 196 个子图，我们把每一个子图就当作一个 token，此时有 196 个维度为 768 的 token</li>
+<li>增加 cls token 到 Patch token 中，用于之后的分类任务（不一定非要使用这个 cls token 结构，也可以是对其他 token 使用 global average pooling。论文这么做是为了和 BERT 尽量靠近，排除是视觉中的 trick 带来效果提升）</li>
+<li>将 Patch token 输入到一个全连接层进行维度转换/线性映射</li>
+<li>生成位置编码。类似于 BERT，设置一个可学习的位置编码，维度与 Patch token 的维度相同。将位置编码与 Patch token 加起来，得到 input</li>
+<li>将 input 输入 Transformer encoder</li>
+<li>使用 cls token 处获得的特征，输入到全连接层做分类任务</li>
+</ol>
+<p><strong>ViT 在微调的缺点</strong></p>
+<p>在进行微调时，使用不同尺寸，但是由于预训练时位置编码大小是固定，所以预训练的位置编码不好使用在微调中。一个简单的解决方法就是用插值</p>
+<p><strong>不同大小的 ViT</strong></p>
+<p><img src="/archives/d672e65b/image-20220412233547870.png" alt="image-20220412233547870" style="zoom:50%;"></p>
+<p>之后的 vision transformer 很多都时这样的命名方式，后面的 B, L, H…都代表模型的大小 base, large, huge, tiny, small….</p>
+<h3 id="ViT-Experiment"><a href="#ViT-Experiment" class="headerlink" title="ViT Experiment"></a>ViT Experiment</h3><p><img src="/archives/d672e65b/image-20220412233654796.png" alt="image-20220412233654796" style="zoom: 50%;"></p>
+<p>整篇论文的核心实验结果：小数据不如 resnet-based 模型，大数据效果拔群。所以这里就有一个潜在的研究方向：transformer 在小样本上的学习</p>
+<h2 id="MAE"><a href="#MAE" class="headerlink" title="MAE"></a>MAE</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sq4y1q77t/?spm_id_from=333.788">MAE 论文逐段精读</a></p>
+<p>Masked Autoencoders Are Scalable Vision Learners 是一篇比较新的文章（2021/11），主要整理一下思想，细节部分需要看代码，代码也是今年年初开源（2022/1），<a target="_blank" rel="noopener" href="https://github.com/facebookresearch/mae">MAE pytorch</a>。标题中的 scalable 表示模型能够适用于非常大的数据集，而标题中的 auto 不是自动的意思，仅仅表达”自” self，更具体一点表示自监督</p>
+<h3 id="MAE-Model"><a href="#MAE-Model" class="headerlink" title="MAE Model"></a>MAE Model</h3><p>MAE 的模型图示是比较清晰的，看完就能有一些概念了</p>
+<p><img src="/archives/d672e65b/image-20220413175839548.png" alt="image-20220413175839548" style="zoom:50%;"></p>
+<p>还是用语言来总一下：</p>
+<ol>
+<li>将图片分为 patches，然后随机掩盖掉大部分 patches (75%)</li>
+<li>将没有掩盖的 pathes，按照 ViT 中的方法进行编码（positional + patch embedding）</li>
+<li>加入 masked patches 到已经编码好的 patches，此时 mask patches 使用一个统一的可学习向量表示。并且顺序是按照初始分割顺序</li>
+<li>再将所有 patches，按照 ViT 中的方法进行解码，但使用一个轻量的 ViT</li>
+</ol>
+<h3 id="MAE-Motivation"><a href="#MAE-Motivation" class="headerlink" title="MAE Motivation"></a>MAE Motivation</h3><p>MAE 的设计逻辑写得是真的清晰，将视觉中的自监督难点与 NLP 中的自监督进行比较，解释为什么视觉中的自监督比较难：</p>
+<ol>
+<li>视觉领域之前难以提出像 NLP 里的 token 概念。但现在已经被 ViT 解决</li>
+<li>视觉中的信息是冗余的。一个图片去掉少量像素点，不妨碍这个图片的整体表示。但是一句话里去掉一个词，可能整个意思都不明确的。这是 CV 和 NLP 在信息密度上的差别</li>
+<li>对于解码器，NLP 使用一个简单的 MLP 进行解码去预测 masked token，而这个 token 所表示的语义信息是很丰富的。但是 CV 需要预测的是一个原始的像素点的话，其语义信息并不那么明确，所以需要比 MLP 更强大的解码器</li>
+</ol>
+<p>以上就是 MAE 的设计逻辑，对于每个难点精准出击！</p>
+<h3 id="MAE-Experiment"><a href="#MAE-Experiment" class="headerlink" title="MAE Experiment"></a>MAE Experiment</h3><h4 id="Ablation-Study"><a href="#Ablation-Study" class="headerlink" title="Ablation Study"></a>Ablation Study</h4><p><img src="/archives/d672e65b/image-20220413182021165.png" alt="image-20220413182021165" style="zoom:50%;"></p>
+<p>fine-tuning 代表整个网络的参数都可以调整，linear probing 只能调整最后的输出层，两种不同的策略效果相差很大！下面这张图比较了 MAE 和 ViT</p>
+<h4 id="MAE-vs-ViT"><a href="#MAE-vs-ViT" class="headerlink" title="MAE vs. ViT"></a>MAE vs. ViT</h4><p><img src="/archives/d672e65b/image-20220413182400525.png" alt="image-20220413182400525" style="zoom:50%;"></p>
+<p>虽然只看结果似乎 MAE 落后于 ViT，但需要注意的是 MAE 只在 ImageNet-1K 上做的预训练，而 ViT 在 JFT 上做的预训练（这是一个超大的数据集），不知道在更大的数据集上进行预训练 MAE 会发生什么呢？</p>
+<h4 id="MAE-vs-MoCo"><a href="#MAE-vs-MoCo" class="headerlink" title="MAE vs. MoCo"></a>MAE vs. MoCo</h4><p><strong>微调层数实验</strong></p>
+<p><img src="/archives/d672e65b/image-20220413182617158.png" alt="image-20220413182617158" style="zoom:50%;"></p>
+<p><strong>直接结果比较</strong></p>
+<p><img src="/archives/d672e65b/image-20220413183109192.png" alt="image-20220413183109192" style="zoom:50%;"></p>
+<p>MAE 可以说是比 MoCo 更加强劲的无监督学习方法（但是 MoCo 的轻量好用也是无可争议的）。从第一张图可以看到随着解冻的层数增加，MAE 迅速超越了 MoCo。这说明了 MAE/ViT 不是一个线性可分的结构，最后几层的 transformer block 是和任务紧密相关的。另一个也说明了底层所学习的特征是通用的，因为随着解冻层的增加，表现的提升增加缓慢</p>
+<p>论文在相关工作里提了一句对比学习：对比学习更依赖于代理任务和数据增强（再联系上 mean teacher，我似乎感觉：半监督和无监督的区别再慢慢减少？）</p>
+<h2 id="Swin"><a href="#Swin" class="headerlink" title="Swin"></a>Swin</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pL4y1v7jC/?spm_id_from=333.788">Swin-Transformer网络结构详解</a> <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13L4y1475U/?spm_id_from=333.788">Swin Transformer论文精读</a></p>
+<p>看了上面两个讲解视频，最大的感受就是：好多好多 trick 啊！！自己理解起来也没有特别清晰…难道以后要使用 swin 作为之后的主要骨干吗？回想起 ResNet 简洁，我实在是难以接受…这里就简单整理一下里面的核心思想吧</p>
+<p>Swin 认为 Transformer 在视觉里的两大难点：</p>
+<ol>
+<li>处理多尺度信息</li>
+<li>处理高分辨率图像</li>
+</ol>
+<p>这两者个难点使用移动窗口在 CNN 里是很好的解决的（为什么不能也使用移动窗口？可能是计算上的原因吧），论文就想尽办法，把 CNN 上的“窗口”往 transformer 里面搬：</p>
+<ol>
+<li>对于高分辨率问题，也是计算量问题，Swin 直接在一个固定的 window 内部做自注意力即可 </li>
+<li>对于多尺度问题，Swin 使用了一个 Patch Merging 的方法，这样就能够进行像 CNN 一样的下采样，获得更大的感受野</li>
+<li>对于固定 window 的方法有局限性：window 之间的交互没有了。所以提出了 shifted window 自注意力</li>
+<li>对于提出的 shifted window 自注意力，由于各个大小的块不一样了，提出了更有效的循环位移+掩码计算方法</li>
+<li>使用了一个不太好理解的相对位置编码，作为偏置加入到权重当中，而不是像 ViT 一样做 embedding</li>
+</ol>
+<p>可以看到后面三点都是针对第一点的 idea 做的补充，并且都不是特别好理解…但最终 Swin 的效果就是巨好！简直就是无情的屠榜机器！并且在各式各样的性能优化下，计算量和同等大小的 ResNet 是差不多的，希望大佬们继续努力，下放更好的技术给我们用555</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Declan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://hongkun.space/archives/d672e65b.html">https://hongkun.space/archives/d672e65b.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Declan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/ViT/">
+                                    <span class="chip bg-color">ViT</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+        <div class="card">
+	    <script src="https://utteranc.es/client.js"
+	    repo="DeclK/declk.github.io"
+	    issue-term="pathname"
+	    theme="github-light"
+	    crossorigin="anonymous"
+	    async>
+	    </script>
+            
+
+            
+
+            
+
+            
+
+            
+			
+			
+
+            
+
+        </div>
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/archives/5871b266.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Mean Teacher &amp; MoCo">
+                        
+                        <span class="card-title">Mean Teacher &amp; MoCo</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/papers/" class="post-category">
+                                    papers
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mean-Teacher/">
+                        <span class="chip bg-color">Mean Teacher</span>
+                    </a>
+                    
+                    <a href="/tags/MoCo/">
+                        <span class="chip bg-color">MoCo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/2083e7ea.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="IA-SSD">
+                        
+                        <span class="card-title">IA-SSD</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/papers/" class="post-category">
+                                    papers
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Point-Cloud/">
+                        <span class="chip bg-color">Point Cloud</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">Declan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">179.8k</span>&nbsp;字
+            
+            <span id="sitetime"></span>
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/DeclK" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hongkun20sme@smail.nju.edu.cn" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="https://space.bilibili.com/385931953" class="tooltipped" target="_blank" data-tooltip="访问我的bilibili" data-position="top" data-delay="50">
+        <i class="fas fa-bold"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        var t1 = Date.UTC(2021, 06, 30, 00, 00, 00); //起始北京时间
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 180;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 200;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substring(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

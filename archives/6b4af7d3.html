@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.6k
+                    2.8k
                 </div>
                 
 
@@ -434,15 +434,35 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="OpenPCDet-review"><a href="#OpenPCDet-review" class="headerlink" title="OpenPCDet review"></a>OpenPCDet review</h1><p>现在想要打造自己的网络了，就要对这个框架完全的熟悉。虽然之前把代码都过了一遍，但是熟悉度还是不够，打算重新整理过。目标就是完成 SA-SSD 在 OpenPCDet 框架下的复现。贴一个 <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/yilu-kuang-shuai">Shaoshuai Shi</a> 本人在知乎的解读 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/152120636">OpenPCDet: Open-MMLab 面向LiDAR点云表征的3D目标检测代码库</a></p>
-<h2 id="零碎的知识"><a href="#零碎的知识" class="headerlink" title="零碎的知识"></a>零碎的知识</h2><h3 id="库"><a href="#库" class="headerlink" title="库"></a>库</h3><p>之前在看代码的时候遇到了一些有用的第三方库，总结如下：</p>
+<h2 id="零碎的知识"><a href="#零碎的知识" class="headerlink" title="零碎的知识"></a>零碎的知识</h2><h3 id="库"><a href="#库" class="headerlink" title="库"></a>库</h3><p>之前在看代码的时候遇到了一些有用的第三方库，简单列举如下（之后慢慢填坑总结）：</p>
 <ol>
-<li>pathlib， <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33524938">知乎</a></li>
-<li>logging， <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/360306588">知乎</a></li>
-<li>tqdm，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/163613814">知乎</a></li>
-<li>tensorboard，<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Qf4y1C7kz">bilibili</a> <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/tensorboard.html">pytorch</a></li>
-<li>pdb，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37294138">知乎</a></li>
-<li>分布式训练，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/113694038">知乎</a>，关于指定 GPU, CUDA_VISIBLE_DEVICES <a target="_blank" rel="noopener" href="https://blog.csdn.net/alip39/article/details/87913543">CSDN</a> </li>
-<li>collections, pickle</li>
+<li><p>logging， <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/360306588">知乎</a></p>
+</li>
+<li><p>tensorboard，<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Qf4y1C7kz">bilibili</a> <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/tensorboard.html">pytorch</a></p>
+</li>
+<li><p>pdb，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37294138">知乎</a></p>
+</li>
+<li><p>collections</p>
+</li>
+<li><p>screen，用于新建窗口，让命令在后台运行，即使退出会话程序也不会停止</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">screen</span> -ls              <span class="token comment"># 查看所有screen</span>
+<span class="token function">screen</span> -S <span class="token operator">&lt;</span>screen-name<span class="token operator">&gt;</span> <span class="token comment"># 创建screen，并命名</span>
+<span class="token function">screen</span> -d				<span class="token comment"># detach or Ctrl + A + D</span>
+<span class="token function">screen</span> -r <span class="token operator">&lt;</span>screen-name<span class="token operator">&gt;</span> <span class="token comment"># 进入screen</span>
+<span class="token function">screen</span> -X quit          <span class="token comment"># 删除screen，但没有指定会话</span>
+<span class="token function">screen</span> -X -S <span class="token punctuation">[</span>session you want to kill<span class="token punctuation">]</span> quit <span class="token comment">#删除screen，指定会话</span>
+<span class="token function">screen</span> -wipe            <span class="token comment"># 清除dead screens</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>tmux 有更强大的功能</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tmux new -s <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>
+tmux detach				<span class="token comment"># or ctrl + B + D, or crtl + B + :detach</span>
+tmux attach -t <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>
+tmux <span class="token function">ls</span>
+tmux kill-session -t <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>	<span class="token comment"># or enter session &amp; exit</span>
+
+<span class="token comment"># 打开鼠标滚动功能</span>
+ctrl + B + :set -g mouse on<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>有点类似于 vim，按下 ctrl + B + : 过后可以输入一些命令</p>
+</li>
 </ol>
 <h3 id="重要的参数"><a href="#重要的参数" class="headerlink" title="重要的参数"></a>重要的参数</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">-</span><span class="token operator">-</span>cfg_file
 <span class="token operator">-</span><span class="token operator">-</span>batch_size
@@ -451,7 +471,7 @@
 <span class="token operator">-</span><span class="token operator">-</span>start_epoch
 <span class="token operator">-</span><span class="token operator">-</span>save_to_file<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其中对于 <code>--workers</code> 的作用需要更多的理解，参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/jiongjiongxia123/article/details/112850223">CSDN</a>，个人理解就是 CPU 作为搬运工 workers 提前将需要的 batch 放入内存 RAM 中（非显存），然后 GPU 处理完一个 batch 过后来取</p>
-<h3 id="EasyDict"><a href="#EasyDict" class="headerlink" title="EasyDict"></a>EasyDict</h3><p>项目写了一个 <code>EasyDict</code> 类作为更好用的字典，能够将 <code>key</code> 直接作为 <code>attribute</code> 进行调用</p>
+<h3 id="EasyDict"><a href="#EasyDict" class="headerlink" title="EasyDict"></a>EasyDict</h3><p>项目用了一个 <code>EasyDict</code> 类作为更好用的字典，能够将 <code>key</code> 直接作为 <code>attribute</code> 进行调用</p>
 <h3 id="Yaml"><a href="#Yaml" class="headerlink" title="Yaml"></a>Yaml</h3><p>模型的参数是以 <a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/yaml-intro.html">yaml</a> 格式，使用如下方法导入</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> yaml
 
@@ -619,6 +639,7 @@ image_shape <span class="token punctuation">(</span><span class="token number">4
         points <span class="token operator">=</span> points<span class="token punctuation">[</span>fov_flag<span class="token punctuation">]</span>
         input_dict<span class="token punctuation">[</span><span class="token string">'points'</span><span class="token punctuation">]</span> <span class="token operator">=</span> points<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>__getitem__</code> 中在最后调用了基类 <code>prepare_data</code> 方法，对点云进行采样、增强和体素化，最终返回一个字典包含了每个样本的信息</p>
+<p>关于 calib 是什么作用，可以参考这一篇博客 <a target="_blank" rel="noopener" href="https://medium.com/test-ttile/kitti-3d-object-detection-dataset-d78a762b5a4">Kitti Calib</a>。对于坐标转换的矩阵还是比较好理解的，难以理解的是修正矩阵，通过观察我发现修正矩阵的值非常接近于一个单位矩阵，所以我猜测这是为了修正由于路况颠簸而导致的相机微小抖动/旋转</p>
 <h4 id="generate-prediction-results"><a href="#generate-prediction-results" class="headerlink" title="generate_prediction_results"></a>generate_prediction_results</h4><p>除了核心函数外，该类还实现了一个静态方法 <code>generate_prediction_results</code>，这个方法的目的是将预测的 bbox, scores, label 等结果转化为 kitti 原始标签格式，用于之后的评估</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">generate_prediction_dicts</span><span class="token punctuation">(</span>batch_dict<span class="token punctuation">,</span> pred_dicts<span class="token punctuation">,</span> class_names<span class="token punctuation">,</span> output_path<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token triple-quoted-string string">"""
@@ -1271,7 +1292,7 @@ image_shape <span class="token punctuation">(</span><span class="token number">4
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">159.3k</span>&nbsp;字
+                class="white-color">179.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    6.9k
+                    7k
                 </div>
                 
 
@@ -435,7 +435,7 @@
             <div id="articleContent">
                 <h1 id="leetcode-diary-剑指offer"><a href="#leetcode-diary-剑指offer" class="headerlink" title="leetcode-diary 剑指offer"></a>leetcode-diary 剑指offer</h1><p>因为这个题库是大家强推的，所以先刷比较重要的才是更有效率的策略，之后再深入各个板块，<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/xb9nqhhg/">leetcode 剑指offer</a></p>
 <p>现在开始每天复习 offer，旨在能够遇到原题时快速写出最优的答案。会在题目之后 mark 做了几次</p>
-<h4 id="Offer-07-重建二叉树-m2"><a href="#Offer-07-重建二叉树-m2" class="headerlink" title="Offer 07. 重建二叉树 m2"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/">Offer 07. 重建二叉树</a> m2</h4><p>前序/后序 + 中序能构建二叉树，但前序 + 后续不能够构建二叉树，仅能明确父子关系。这一题使用递归的方法进行：由前序确定根节点，左子树前序，右子树前序；由中序确定根节点，左子树中序，右子树中序，由此就能够构建递归算法。基础情况就是仅有一个节点的情况（如果使用 index 就直接考虑 index 不满足时的情况）</p>
+<h4 id="Offer-07-重建二叉树-MARK-2"><a href="#Offer-07-重建二叉树-MARK-2" class="headerlink" title="Offer 07. 重建二叉树 MARK 2"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/">Offer 07. 重建二叉树</a> MARK 2</h4><p>前序/后序 + 中序能构建二叉树，但前序 + 后续不能够构建二叉树，仅能明确父子关系。这一题使用递归的方法进行：由前序确定根节点，左子树前序，右子树前序；由中序确定根节点，左子树中序，右子树中序，由此就能够构建递归算法。基础情况就是仅有一个节点的情况（如果使用 index 就直接考虑 index 不满足时的情况）</p>
 <h4 id="Offer-09-用两个栈实现队列"><a href="#Offer-09-用两个栈实现队列" class="headerlink" title="Offer 09. 用两个栈实现队列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/">Offer 09. 用两个栈实现队列</a></h4><p>使用两个栈，一个用于进，一个用于出</p>
 <p>在 <code>append</code> 的时候操作和栈是一模一样的，在 <code>pop</code> 的时候要分两种情况讨论：1. 当出栈不为空，则 <code>pop</code> 出栈；2. 当出栈为空，则把进栈的数字放入出栈，再 <code>pop</code>；3. 当两个栈都为空，则返回 -1</p>
 <h4 id="Offer-10-I-斐波那契数列"><a href="#Offer-10-I-斐波那契数列" class="headerlink" title="Offer 10- I. 斐波那契数列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/">Offer 10- I. 斐波那契数列</a></h4><p>有多种解法：1. 递归；2. 公式法；3. 迭代/动态规划；4. 矩阵快速幂</p>
@@ -600,7 +600,8 @@ x <span class="token operator">-</span> a <span class="token operator">=</span> 
 </ol>
 <h4 id="Offer-66-构建乘积数组"><a href="#Offer-66-构建乘积数组" class="headerlink" title="Offer 66. 构建乘积数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/">Offer 66. 构建乘积数组</a></h4><p>没办法使用除法，那就只能高效使用乘法，通过构建上下三角来重复利用已求得的结果</p>
 <h4 id="Offer-67-把字符串转换成整数"><a href="#Offer-67-把字符串转换成整数" class="headerlink" title="Offer 67. 把字符串转换成整数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/">Offer 67. 把字符串转换成整数</a></h4><p>没什么特别的方法，就是跟着逻辑硬判断，但是其实文字描述并不够清晰…这一题就这样吧，直接抄的答案</p>
-<h4 id="Offer-68-I-二叉搜索树的最近公共祖先"><a href="#Offer-68-I-二叉搜索树的最近公共祖先" class="headerlink" title="Offer 68 - I. 二叉搜索树的最近公共祖先"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/">Offer 68 - I. 二叉搜索树的最近公共祖先</a></h4><p>利用二叉搜索树的性质能够加速搜索，如果不是二叉搜索树则先将路径搜索出来，然后查询公共节点。使用 append &amp; pop 能够极大加速搜索速度并减少内存，而不使用 + 方法省去剪枝的流程</p>
+<h4 id="Offer-68-I-二叉搜索树的最近公共祖先-MARK2"><a href="#Offer-68-I-二叉搜索树的最近公共祖先-MARK2" class="headerlink" title="Offer 68 - I. 二叉搜索树的最近公共祖先 MARK2"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/">Offer 68 - I. 二叉搜索树的最近公共祖先</a> MARK2</h4><p>我先是没有利用二叉搜索树的性质完成了这一题。就是直接把路径找出来，然后看相同祖先。<strong>当然简单的写法是递归，当左侧没有时，就在右侧；当右侧没有时，就在左侧；当两侧各有一个时，就返回根节点</strong></p>
+<p>利用二叉搜索树的性质能够加速搜索，如果不是二叉搜索树则先将路径搜索出来，然后查询公共节点。使用 append &amp; pop 能够极大加速搜索速度并减少内存，而不使用 + 方法省去剪枝的流程</p>
 <h4 id="面试题32-I-从上到下打印二叉树"><a href="#面试题32-I-从上到下打印二叉树" class="headerlink" title="面试题32 - I. 从上到下打印二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/">面试题32 - I. 从上到下打印二叉树</a></h4><p>层序遍历</p>
 <h4 id="面试题19-正则表达式匹配"><a href="#面试题19-正则表达式匹配" class="headerlink" title="面试题19. 正则表达式匹配"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/">面试题19. 正则表达式匹配</a></h4><p>比较复杂的一道动态规划，调试了很久很久，我其实也不能确定这样的状态转移能够推理出全部的解，我尽可能的写出了为 true 的状态转移方程，显然我写出的方程已经覆盖了所有为 true 的情况，不满足的自然为 false</p>
 <h2 id="补充：常见输入输出"><a href="#补充：常见输入输出" class="headerlink" title="补充：常见输入输出"></a>补充：常见输入输出</h2><p>因为在进行笔试的时候，不像 leetcode 提供了输入输出，而是需要使用标准输入输出 input &amp; print。这里总结一下 python 的标准输入输出模板。要点就是：</p>
@@ -1110,7 +1111,7 @@ x <span class="token operator">-</span> a <span class="token operator">=</span> 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">159.3k</span>&nbsp;字
+                class="white-color">179.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

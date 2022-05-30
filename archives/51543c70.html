@@ -466,7 +466,7 @@
 <script type="math/tex; mode=display">
 \mathcal{L}_{\text {focal }}\left(p_{t}\right)=-\alpha_{t}\left(1-p_{t}\right)^{\gamma} \log \left(p_{t}\right)
 \\
-\text{where }p_{t}=\left\{\begin{array}{ll}p & \text { for forground point } \\ 1-p & \text { otherwise }\end{array}\right.</script><p>focal loss 在三维目标检测中是一个很常见的损失函数，下图可以清楚地看到，在 γ 比较大时，大部分的loss值都是比较低的，除非网络的预测非常的离谱，惩罚才会急剧增加。可以说 focal loss 能够减轻惩罚，对于正负样本不均匀的数据来说会很有用</p>
+\text{where }p_{t}=\left\{\begin{array}{ll}p & \text { for forground point } \\ 1-p & \text { otherwise }\end{array}\right.</script><p>可以看到在 γ 比较大时，大部分的loss值都是比较低的，除非网络的预测非常的离谱，惩罚才会急剧增加。可以说 focal loss 能够减轻惩罚，把 loss 的权重 focus 在比较难的样本上</p>
 <p><img src="/archives/51543c70/a8c1f242-8cf0-4310-bd10-a488658a3463-16335112903811.png" style="zoom: 80%;"></p>
 <p>更详细的说明，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/122542747">知乎</a></p>
 <h4 id="选框生成"><a href="#选框生成" class="headerlink" title="选框生成"></a>选框生成</h4><p>经过了前景点和背景点的二元分类任务，网络就要正式进行选框生成。需要注意的是，网络仅采用前景点来生成选框，尽管在网络训练之初，前景点和背景点的分类结果并不靠谱，但随着训练的深入会越来越准确</p>
@@ -846,13 +846,13 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/archives/acef3112.html">
+                <a href="/archives/88f138aa.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="MMDetection 项目">
+                        <img src="/medias/featureimages/0.png" class="responsive-img" alt="Pytorch cn231n note (dev)">
                         
-                        <span class="card-title">MMDetection 项目</span>
+                        <span class="card-title">Pytorch cn231n note (dev)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -863,7 +863,7 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
                             </span>
                         <span class="publish-author">
                             
@@ -873,8 +873,12 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                                     编程
                                 </a>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/OpenMMLab/" class="post-category">
-                                    OpenMMLab
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/Python/Pytorch/" class="post-category">
+                                    Pytorch
                                 </a>
                             
                             
@@ -884,8 +888,12 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MMDetection/">
-                        <span class="chip bg-color">MMDetection</span>
+                    <a href="/tags/Pytorch/">
+                        <span class="chip bg-color">Pytorch</span>
+                    </a>
+                    
+                    <a href="/tags/CS231N/">
+                        <span class="chip bg-color">CS231N</span>
                     </a>
                     
                 </div>
@@ -1040,7 +1048,7 @@ d^{(p)} = \sqrt{(x^{(p)})^2+ (y^{(p)})^2 + (z^{(p)})^2}</script><p>每个点除�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">159.3k</span>&nbsp;字
+                class="white-color">179.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

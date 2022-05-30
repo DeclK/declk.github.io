@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.2k
+                    3k
                 </div>
                 
 
@@ -464,6 +464,7 @@
                 visited<span class="token punctuation">[</span>v_<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token boolean">True</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以上的代码仅体现思想，并没有 return 任何值，而且仅仅是使用了遍历图的特例，具体情况需要具体分析</p>
 <h3 id="40-Combination-Sum-ii"><a href="#40-Combination-Sum-ii" class="headerlink" title="40 Combination Sum ii"></a>40 Combination Sum ii</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combination-sum-ii/">leetcode link</a></p>
+<p>这一题出了深度搜索是解题关键外，另一个关键在于剪枝。对于重复数字 x 重复了 m 次，应当使用 m 个循环建立状态的转移，而不是采用比较原始的深度搜索思想，即 2^m 次搜索，这会浪费很多时间</p>
 <p>这一题其实有很多的东西需要学习。我这里简要总结一下：</p>
 <ol>
 <li><p>python 的 nonlocal &amp; global 关键字作用。二者的作用是相似，都可以将变量的命名空间延长到“局部”，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/341378844">知乎</a></p>
@@ -492,33 +493,9 @@ a <span class="token operator">=</span> a <span class="token operator">+</span> 
 <li>给一个清晰的定义：从某个节点开始遍历所有的</li>
 <li>剪枝是一个节省计算资源的重要操作，不仅是 visited 记录状态，还排除不可能的搜索空间</li>
 </ol>
-<p>深度搜索的思想，还需要进一步的理解，尤其是对于<strong>回溯</strong>时候的操作</p>
+<p>深度搜索的思想，还需要进一步的理解，尤其是对于<strong>回溯</strong>时候的操作<strong>（回溯仅在空间复杂度很大的使用，不然直接创建多条路径就可以了）</strong></p>
 <ol>
 <li><p>之前关于 copy 的矛盾来自于一个赋值操作（实际上是让指针指向了 copy 对象，从而之后都修改了 copy 对象）</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">combinationSum2</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> candidates<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-        <span class="token keyword">from</span> collections <span class="token keyword">import</span> Counter
-        counter <span class="token operator">=</span> Counter<span class="token punctuation">(</span>candidates<span class="token punctuation">)</span>
-        uniq_cand <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span>
-        ans <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>pos<span class="token punctuation">,</span> sub_ans<span class="token punctuation">:</span> List<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> target <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                ans<span class="token punctuation">.</span>append<span class="token punctuation">(</span>sub_ans<span class="token punctuation">)</span>
-                <span class="token keyword">return</span>
-            <span class="token keyword">if</span> pos <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>uniq_cand<span class="token punctuation">)</span> <span class="token keyword">or</span> uniq_cand<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">&gt;</span> target<span class="token punctuation">:</span>
-                <span class="token keyword">return</span>
-
-            origin_sub <span class="token operator">=</span> sub_ans<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">for</span> pos_ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>pos<span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>uniq_cand<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                num <span class="token operator">=</span> uniq_cand<span class="token punctuation">[</span>pos_<span class="token punctuation">]</span>
-                freq <span class="token operator">=</span> counter<span class="token punctuation">[</span>num<span class="token punctuation">]</span>
-                repeat <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>freq<span class="token punctuation">,</span> target <span class="token operator">//</span> num<span class="token punctuation">)</span>
-                <span class="token keyword">for</span> r_ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> repeat <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    sub_ans <span class="token operator">+=</span> <span class="token punctuation">[</span>num<span class="token punctuation">]</span> <span class="token operator">*</span> r_
-                    dfs<span class="token punctuation">(</span>pos_ <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> sub_ans<span class="token punctuation">,</span> target <span class="token operator">-</span> num <span class="token operator">*</span> r_<span class="token punctuation">)</span>
-                    sub_ans <span class="token operator">=</span> origin_sub
-        dfs<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> target<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> ans<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>如果需要修改原对象，需要使用方法 <code>sub_ans[:] = sub_ans[:-r_]</code> 否则会返回新的对象/新的 id，<code>a = sub_ans[:]</code> 和 <code>a = sub_ans.copy()</code> 是等效的</p>
 </li>
 <li><p>加号 + 和 append 对于 list 的区别：+ 一般会创建一个新的对象，而 append 不会，并且 append 速度更快，但是 += 方法不会创建新的对象</p>
@@ -526,54 +503,6 @@ a <span class="token operator">=</span> a <span class="token operator">+</span> 
 <li><p>nonlocal 和 global 是相似的，只是使用场合不同</p>
 </li>
 </ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">combinationSum2</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> candidates<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-        <span class="token keyword">from</span> collections <span class="token keyword">import</span> Counter
-        counter <span class="token operator">=</span> Counter<span class="token punctuation">(</span>candidates<span class="token punctuation">)</span>
-        uniq_cand <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span>
-        ans <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>pos<span class="token punctuation">,</span> sub_ans<span class="token punctuation">:</span> List<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> target <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                ans<span class="token punctuation">.</span>append<span class="token punctuation">(</span>sub_ans<span class="token punctuation">)</span>
-                <span class="token keyword">return</span>
-            <span class="token keyword">if</span> pos <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>uniq_cand<span class="token punctuation">)</span> <span class="token keyword">or</span> uniq_cand<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">&gt;</span> target<span class="token punctuation">:</span>
-                <span class="token keyword">return</span>
-
-            <span class="token keyword">for</span> pos_ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>pos<span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>uniq_cand<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                num <span class="token operator">=</span> uniq_cand<span class="token punctuation">[</span>pos_<span class="token punctuation">]</span>
-                freq <span class="token operator">=</span> counter<span class="token punctuation">[</span>num<span class="token punctuation">]</span>
-                repeat <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>freq<span class="token punctuation">,</span> target <span class="token operator">//</span> num<span class="token punctuation">)</span>
-                <span class="token keyword">for</span> r_ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> repeat <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    sub_ans_copy <span class="token operator">=</span> sub_ans<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                    sub_ans_copy <span class="token operator">+=</span> <span class="token punctuation">[</span>num<span class="token punctuation">]</span> <span class="token operator">*</span> r_
-                    dfs<span class="token punctuation">(</span>pos_ <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> sub_ans_copy<span class="token punctuation">,</span> target <span class="token operator">-</span> num <span class="token operator">*</span> r_<span class="token punctuation">)</span>
-        dfs<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> target<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> ans
-
-<span class="token comment"># 我的最终版本</span>
-<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">combinationSum2</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> candidates<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-        uniq_cand <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>collections<span class="token punctuation">.</span>Counter<span class="token punctuation">(</span>candidates<span class="token punctuation">)</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        ans <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        sub_ans <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>pos<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">nonlocal</span> sub_ans
-            <span class="token keyword">if</span> target <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                ans<span class="token punctuation">.</span>append<span class="token punctuation">(</span>sub_ans<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token keyword">return</span>
-            <span class="token keyword">if</span> pos <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>uniq_cand<span class="token punctuation">)</span> <span class="token keyword">or</span> uniq_cand<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> target<span class="token punctuation">:</span>
-                <span class="token keyword">return</span>
-
-            <span class="token keyword">for</span> pos_ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>pos<span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>uniq_cand<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                num <span class="token operator">=</span> uniq_cand<span class="token punctuation">[</span>pos_<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-                freq <span class="token operator">=</span> uniq_cand<span class="token punctuation">[</span>pos_<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-                repeat <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>freq<span class="token punctuation">,</span> target <span class="token operator">//</span> num<span class="token punctuation">)</span>
-                <span class="token keyword">for</span> r_ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> repeat <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    sub_ans <span class="token operator">+=</span> <span class="token punctuation">[</span>num<span class="token punctuation">]</span> <span class="token operator">*</span> r_
-                    dfs<span class="token punctuation">(</span>pos_ <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> target <span class="token operator">-</span> num <span class="token operator">*</span> r_<span class="token punctuation">)</span>
-                    sub_ans<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">=</span> sub_ans<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token operator">-</span>r_<span class="token punctuation">]</span>
-        dfs<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> target<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> ans<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h2><h3 id="225-amp-232-Implement-Stack-using-Queues-amp-vice-versa"><a href="#225-amp-232-Implement-Stack-using-Queues-amp-vice-versa" class="headerlink" title="225 &amp; 232 Implement Stack using Queues &amp; vice versa"></a>225 &amp; 232 Implement Stack using Queues &amp; vice versa</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-stack-using-queues/solution/yong-dui-lie-shi-xian-zhan-by-leetcode-solution/">leetcode link</a></p>
 <h3 id="150-Evaluate-Reverse-Polish-Notation"><a href="#150-Evaluate-Reverse-Polish-Notation" class="headerlink" title="150 Evaluate Reverse Polish Notation"></a>150 Evaluate Reverse Polish Notation</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/">leetcode link</a></p>
 <p>之前接触过类似的题，所以做起来很快，使用栈来计算。注意使用 int 来进行整数转换</p>
@@ -626,10 +555,10 @@ a <span class="token operator">=</span> a <span class="token operator">+</span> 
 </ol>
 <p>数学归纳法的形式比较直观，深度搜索的代码就没有那么直觉了。这里总结一些深度搜索中的重要元素：</p>
 <ol>
-<li>初始状态 initial status</li>
-<li>条件 conditions，停止搜索的条件，通常用于剪枝</li>
+<li>当前状态 status。通常包括当前节点，当前搜索路径 path 等建模当前环境的条件</li>
 <li>目标 target，搜索的目标，也是停止搜索的条件</li>
-<li>答案 solution，通常为搜索路径</li>
+<li>剪枝条件 conditions (optional)，通常用于减少计算量</li>
+<li>状态转移，从当前状态转移到其他状态</li>
 </ol>
 <p>但是动态规划一般不需要自调用，只需要循环。因为自调用形成递归被 memoization 替代，具体来说是被一个数组替代，这个数组存储了最优子问题的答案。这样看来动态规划更像是一种迭代</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
@@ -1334,7 +1263,7 @@ n <span class="token operator">=</span> <span class="token number">0b00000010100
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">159.3k</span>&nbsp;字
+                class="white-color">179.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

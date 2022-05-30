@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
@@ -441,10 +441,27 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="安装Linux笔记"><a href="#安装Linux笔记" class="headerlink" title="安装Linux笔记"></a>安装Linux笔记</h1><h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ol>
-<li><p>如何安装双系统：移步 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18W41137XB">bilibili</a>（建议安装最新版，美观且体验更友好）或者阅读 <a target="_blank" rel="noopener" href="https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview">ubuntu 官方教程</a></p>
+                <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="Install-Linux-Subsystem"><a href="#Install-Linux-Subsystem" class="headerlink" title="Install Linux Subsystem"></a>Install Linux Subsystem</h2><p>安装一个双系统可能对于初学者来讲是比较友好的，随着对 Linux 的了解越来越多，更多的 Linux 使用转移到了服务器上，对双系统的需求越来越少。并且 windows 现在支持了 linux 子系统（WSL），也可以直接使用 docker，这样安装双系统就显得是一个很复杂的选项了。我之前就算安装了双系统，现在也将其删除了，释放了 100G 空间，删除参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ba411z75z/">bilibili</a>，再贴一个 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/install">WSL</a> 官网</p>
+<p>这个 up 的系列视频都教得非常好,：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aA411s7PJ">bilibili</a>，教你如何安装漂亮的 WSL，配合 vscode + zsh 变为强力开发环境，下面简要总结 zsh 的安装：</p>
+<ol>
+<li><p>安装 zsh <code>sudo apt install zsh</code></p>
 </li>
-<li><p>设置 root 密码。然后创建新用户，并设置新用户密码以及 sudo 权限</p>
+<li><p>根据 <a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh">ohmyzsh</a> 项目进行安装，可以使用网络安装：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">bash</span> -c <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">wget</span> -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>也可以把上面链接中的脚本复制下来，保存为 <code>install.sh</code>，然后执行</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sh</span> install.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>安装插件。插件推荐 <a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autusuggestions</a>，把这个项目 clone 到 <code>~/.oh-my-zsh/custom/plugins</code> 中</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">cd</span> ~/.oh-my-zsh/custom/plugins
+<span class="token function">git</span> clone https://github.com/zsh-users/zsh-autosuggestions.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>然后在 <code>~/.zshrc</code> 里配置 plugin</p>
+<pre class="line-numbers language-.zshrc" data-language=".zshrc"><code class="language-.zshrc">plugins=(git zsh-autosuggestions)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ol>
+<h2 id="Install-Ubuntu"><a href="#Install-Ubuntu" class="headerlink" title="Install Ubuntu"></a>Install Ubuntu</h2><p>（如果仍需要）安装双系统：移步 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18W41137XB">bilibili</a>（建议安装最新版，美观且体验更友好）或者阅读 <a target="_blank" rel="noopener" href="https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview">ubuntu 官方教程</a></p>
+<h2 id="Common-Settings"><a href="#Common-Settings" class="headerlink" title="Common Settings"></a>Common Settings</h2><ol>
+<li><p>设置 root 密码。然后创建新用户，并设置新用户密码以及 sudo 权限 <code>/etc/sudoers</code> </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">username <span class="token assign-left variable">ALL</span><span class="token operator">=</span><span class="token punctuation">(</span>ALL<span class="token punctuation">)</span> NOPASSWD: ALL<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>修改 /etc/hostname，reboot 后永久更改主机名</p>
 </li>
@@ -458,7 +475,7 @@
 <ol>
 <li><a target="_blank" rel="noopener" href="https://mirrors.bfsu.edu.cn/help/anaconda/">北京外国语大学镜像源</a>（截至2021/6/15下载速度很快）</li>
 <li><a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/anaconda/">清华大学镜像源</a></li>
-<li><a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/help/anaconda">南京大学镜像源</a>（自家的镜像源，当然要推荐一下😎）</li>
+<li><a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/help/anaconda">南京大学镜像源</a>（南大本家推荐）</li>
 </ol>
 </li>
 <li><p>配置 nvidia driver: 根据 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59618999">知乎链接</a> ，在命令行里下载推荐的driver。如果在配置 nvidia driver 的过程中出现连接不上显卡，可能需要关闭 security boot。参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/336429888">稚晖君</a> 的教程，下载安装 CUDA，选择 runfile。</p>
@@ -469,65 +486,17 @@
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token variable">${CUDA_HOME}</span>/lib64
 <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">${CUDA_HOME}</span>/bin:<span class="token variable">${<span class="token environment constant">PATH</span>}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>(2022/1/31 更新) 尝试使用命令行在 ubuntu 16.04 上更新驱动，不太顺利，因为 ppa 中好像没有对这 16.04 进行支持，最新仅支持到 430，通过其他方法可能成功，但我就不进行过多尝试了。最终使用 <code>sudo apt install nvidia-418</code> 恢复了之前的驱动版本，其中遇到的报错 <code>NVIDIA NVML Driver/library version mismatch</code>，参考了 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/43022843/nvidia-nvml-driver-library-version-mismatch">StackOverflow </a> 中的第二个回答解决</p>
-<p>教程里还教了如何更新 apt source 为阿里云镜像源，镜像中的软件会持续而且下载速度很快，这里我选择更换为 <a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/help/ubuntu">南京大学镜像源</a> 如下所示。同时教程里也设置了 sudo，让每一次 sudo 都不需要输入密码</p>
-  <pre class="line-numbers language-source.list" data-language="source.list"><code class="language-source.list"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
-deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}} main restricted universe multiverse
-# deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}} main restricted universe multiverse
-deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-updates main restricted universe multiverse
-# deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-updates main restricted universe multiverse
-deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-backports main restricted universe multiverse
-# deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-backports main restricted universe multiverse
-deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-security main restricted universe multiverse
-# deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-security main restricted universe multiverse
-
-# 预发布软件源，不建议启用
-# deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-proposed main restricted universe multiverse
-# deb-src https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-proposed main restricted universe multiverse<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>请根据 Ubuntu 版本自行替换 </p>
+<p>教程里还教了如何更新 apt source 为阿里云镜像源，镜像中的软件会持续而且下载速度很快，这里我选择更换为 <a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/help/ubuntu">南京大学镜像源</a> 如下所示</p>
+  <pre class="line-numbers language-source.list" data-language="source.list"><code class="language-source.list">sudo cp /etc/apt/sources.list /etc/apt/sources.list.back
+sudo sed -i 's/archive.ubuntu.com/mirrors.nju.edu.cn/g' /etc/apt/sources.list
+sudo sed -i 's/security.ubuntu.com/mirrors.nju.edu.cn/g' /etc/apt/sources.list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>同时教程里也设置了 sudo，让每一次 sudo 都不需要输入密码</p>
 </li>
-</ol>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>版本</th>
-<th><code>{{release_name}}</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ubuntu 14.04 LTS</td>
-<td>trusty</td>
-</tr>
-<tr>
-<td>Ubuntu 16.04 LTS</td>
-<td>xenial</td>
-</tr>
-<tr>
-<td>Ubuntu 18.04 LTS</td>
-<td>bionic</td>
-</tr>
-<tr>
-<td>Ubuntu 20.04 LTS</td>
-<td>focal</td>
-</tr>
-<tr>
-<td>Ubuntu 20.10</td>
-<td>groovy</td>
-</tr>
-<tr>
-<td>Ubuntu 21.04</td>
-<td>hirsute</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ol>
 <li><p>pip install 遇到问题 enter your password to unlock your login keyring</p>
 <p>解决方法，直接cancel，或者在passwd and key中更改密码</p>
 </li>
 </ol>
-<h1 id="安装-Windows-笔记"><a href="#安装-Windows-笔记" class="headerlink" title="安装 Windows 笔记"></a>安装 Windows 笔记</h1><p>实验室有一个空的主机，比较老，想要重新清理一下自己用。我并没有选择重装整个系统，而是选择重置，即恢复出厂设置</p>
+<h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><p>实验室有一个空的主机，比较老，想要重新清理一下自己用。我并没有选择重装整个系统，而是选择重置，即恢复出厂设置</p>
 <p>资源下载：<a target="_blank" rel="noopener" href="https://msdn.itellyou.cn/">MSDN</a> <a target="_blank" rel="noopener" href="https://rufus.ie/zh/">rufus</a> MSDN 提供了需要的各个 Windows 版本的 iso，使用 rufus 将 iso 烧入到U盘里</p>
 <p>Win10 安装教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DJ411D79y/?spm_id_from=333.788.recommend_more_video.-1">bilibili</a></p>
 <p>Windows 激活：<a target="_blank" rel="noopener" href="https://github.com/TGSAN/CMWTAT_Digital_Edition/releases">github</a></p>
@@ -546,6 +515,7 @@ deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-security main restricted 
 <li><p>在之后使用过程中可能遇到许可证问题，可以使用工具箱中的<strong>修复Office许可证问题</strong>。此时需要一个 <a target="_blank" rel="noopener" href="https://www.coolhub.top/tech-articles/kms_list.html">KMS 地址</a>，填入即可</p>
 </li>
 </ol>
+<p>好用的 windows terminal: <a target="_blank" rel="noopener" href="https://github.com/microsoft/terminal">github</a></p>
 
                 
             </div>
@@ -1047,7 +1017,7 @@ deb https://mirror.nju.edu.cn/ubuntu/ {{release_name}}-security main restricted 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">159.3k</span>&nbsp;字
+                class="white-color">179.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

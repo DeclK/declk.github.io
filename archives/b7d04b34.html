@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    6.9k
+                    6.8k
                 </div>
                 
 
@@ -623,7 +623,7 @@ a(\mathbf{q}, \mathbf{k})=\mathbf{q}^{\top} \mathbf{k} / \sqrt{d}</script><p>查
 \mathbf{h}_{h}
 \end{array}\right] \in \mathbb{R}^{p_{o}}</script><p>这里 $W_0$ 是一个 $p_0 \times p_0$ 的矩阵，$p_0 = \text{number of heads} \times p_v$，图示如下</p>
 <p><img src="/archives/b7d04b34/image-20211213235228429.png" style="zoom:80%;"></p>
-<p>代码要注意一下，$p_0$ 就是 <code>num_hiddens</code>，代码是将 <code>num_hiddens</code> 拆为 <code>num_heads</code> 份来计算每一个头的注意力输出，但是又为了并行计算的方便，在进行维度操作的时候需要注意维度的变换，非常巧妙，详细过程请看代码</p>
+<p>在使用代码实现的时候发现，可以把 <code>num_heads</code> 个 $W_{i}q$ 使用一个大的 $W_q$ 代替，然后将变换后的特征进行分割即可。其他两个矩阵同理，这样便于并行处理，并且代码更简洁</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#@save</span>
 <span class="token keyword">class</span> <span class="token class-name">MultiHeadAttention</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token triple-quoted-string string">"""多头注意力"""</span>
@@ -638,44 +638,30 @@ a(\mathbf{q}, \mathbf{k})=\mathbf{q}^{\top} \mathbf{k} / \sqrt{d}</script><p>查
         self<span class="token punctuation">.</span>W_o <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>num_hiddens<span class="token punctuation">,</span> num_hiddens<span class="token punctuation">,</span> bias<span class="token operator">=</span>bias<span class="token punctuation">)</span>
 
     <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> queries<span class="token punctuation">,</span> keys<span class="token punctuation">,</span> values<span class="token punctuation">,</span> valid_lens<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment"># queries，keys，values的形状:</span>
-        <span class="token comment"># (batch_size，查询或者“键－值”对的个数，num_hiddens)</span>
-        <span class="token comment"># valid_lens　的形状:</span>
-        <span class="token comment"># (batch_size，)或(batch_size，查询的个数)</span>
-        <span class="token comment"># 经过变换后，输出的queries，keys，values　的形状:</span>
-        <span class="token comment"># (batch_size*num_heads，查询或者“键－值”对的个数，</span>
-        <span class="token comment"># num_hiddens/num_heads)</span>
         queries <span class="token operator">=</span> transpose_qkv<span class="token punctuation">(</span>self<span class="token punctuation">.</span>W_q<span class="token punctuation">(</span>queries<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>num_heads<span class="token punctuation">)</span>
         keys <span class="token operator">=</span> transpose_qkv<span class="token punctuation">(</span>self<span class="token punctuation">.</span>W_k<span class="token punctuation">(</span>keys<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>num_heads<span class="token punctuation">)</span>
         values <span class="token operator">=</span> transpose_qkv<span class="token punctuation">(</span>self<span class="token punctuation">.</span>W_v<span class="token punctuation">(</span>values<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>num_heads<span class="token punctuation">)</span>
 
         <span class="token keyword">if</span> valid_lens <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-            <span class="token comment"># 在轴0，将第一项（标量或者矢量）复制num_heads次，</span>
-            <span class="token comment"># 然后如此复制第二项，然后诸如此类。</span>
+            <span class="token comment"># 在轴0，将第一项（标量或者矢量）复制num_heads次</span>
             valid_lens <span class="token operator">=</span> torch<span class="token punctuation">.</span>repeat_interleave<span class="token punctuation">(</span>
                 valid_lens<span class="token punctuation">,</span> repeats<span class="token operator">=</span>self<span class="token punctuation">.</span>num_heads<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
 
-        <span class="token comment"># output的形状:(batch_size*num_heads，查询的个数，</span>
+        <span class="token comment"># output的形状:(batch_size*num_heads，num_query,</span>
         <span class="token comment"># num_hiddens/num_heads)</span>
         output <span class="token operator">=</span> self<span class="token punctuation">.</span>attention<span class="token punctuation">(</span>queries<span class="token punctuation">,</span> keys<span class="token punctuation">,</span> values<span class="token punctuation">,</span> valid_lens<span class="token punctuation">)</span>
 
-        <span class="token comment"># output_concat的形状:(batch_size，查询的个数，num_hiddens)</span>
         output_concat <span class="token operator">=</span> transpose_output<span class="token punctuation">(</span>output<span class="token punctuation">,</span> self<span class="token punctuation">.</span>num_heads<span class="token punctuation">)</span>
         <span class="token keyword">return</span> self<span class="token punctuation">.</span>W_o<span class="token punctuation">(</span>output_concat<span class="token punctuation">)</span>
 
 <span class="token comment">#@save</span>
 <span class="token keyword">def</span> <span class="token function">transpose_qkv</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> num_heads<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token triple-quoted-string string">"""为了多注意力头的并行计算而变换形状"""</span>
-    <span class="token comment"># 输入X的形状:(batch_size，查询或者“键－值”对的个数，num_hiddens)</span>
-    <span class="token comment"># 输出X的形状:(batch_size，查询或者“键－值”对的个数，num_heads，</span>
-    <span class="token comment"># num_hiddens/num_heads)</span>
     X <span class="token operator">=</span> X<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> num_heads<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
 
-    <span class="token comment"># 输出X的形状:(batch_size，num_heads，查询或者“键－值”对的个数,</span>
-    <span class="token comment"># num_hiddens/num_heads)</span>
     X <span class="token operator">=</span> X<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
 
-    <span class="token comment"># 最终输出的形状:(batch_size*num_heads,查询或者“键－值”对的个数,</span>
+    <span class="token comment"># 最终输出的形状:(batch_size*num_heads, num_query or num_keys,</span>
     <span class="token comment"># num_hiddens/num_heads)</span>
     <span class="token keyword">return</span> X<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 
@@ -685,7 +671,7 @@ a(\mathbf{q}, \mathbf{k})=\mathbf{q}^{\top} \mathbf{k} / \sqrt{d}</script><p>查
     <span class="token triple-quoted-string string">"""逆转transpose_qkv函数的操作"""</span>
     X <span class="token operator">=</span> X<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> num_heads<span class="token punctuation">,</span> X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
     X <span class="token operator">=</span> X<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> X<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">return</span> X<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="自注意力和位置编码"><a href="#自注意力和位置编码" class="headerlink" title="自注意力和位置编码"></a>自注意力和位置编码</h2><p>终于进入自注意力部分了，离 transformer 只有一步之遥！</p>
 <p>在深度学习中，我们经常使用卷积神经网络（CNN）或循环神经网络（RNN）对序列进行编码。想象一下，有了注意力机制之后，我们将词元序列输入注意力池化层中，同一组词元同时充当查询、键和值。每个查询都会关注所有的键－值对并生成一个注意力输出。由于查询、键和值来自同一组输入，因此被称为 自注意力（self-attention）在本节中，我们将使用自注意力进行序列编码，以及如何使用序列的顺序作为补充信息</p>
 <h3 id="自注意力"><a href="#自注意力" class="headerlink" title="自注意力"></a>自注意力</h3><p>给定一个由词元组成的输入序列，其中任意 $x_i \in R^ d$。该序列的自注意力输出为一个长度相同的序列：</p>
@@ -1426,7 +1412,7 @@ decoder_blk<span class="token punctuation">(</span>X<span class="token punctuati
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">159.3k</span>&nbsp;字
+                class="white-color">179.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

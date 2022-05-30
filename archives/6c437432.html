@@ -868,7 +868,7 @@ loss<span class="token punctuation">.</span>backward<span class="token punctuati
 
 loss_fn <span class="token operator">=</span> nn<span class="token punctuation">.</span>X<span class="token punctuation">(</span><span class="token punctuation">)</span>                            <span class="token comment"># where X is L1Loss, MSELoss, CrossEntropyLoss...</span>
 opt <span class="token operator">=</span> optim<span class="token punctuation">.</span>X<span class="token punctuation">(</span>model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>      <span class="token comment"># where X is SGD, Adadelta, Adagrad, Adam...</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>整体的优化逻辑分为两步，首先使用反向传播算法计算出参数的梯度，然后根据这些梯度采用不同的优化算法进行迭代优化 <code>opt.step()</code> 。下面的代码实现了 <code>train_loop</code> 和 <code>teat_loop</code> 分别实现训练和测试模型</p>
+<p>整体的优化逻辑分为两步，首先使用反向传播算法计算出参数的梯度，然后根据这些梯度采用不同的优化算法进行迭代优化 <code>opt.step()</code> 。下面的代码实现了 <code>train_loop</code> 和 <code>test_loop</code> 分别实现训练和测试模型</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">train_loop</span><span class="token punctuation">(</span>dataloader<span class="token punctuation">,</span> model<span class="token punctuation">,</span> loss_fn<span class="token punctuation">,</span> optimizer<span class="token punctuation">)</span><span class="token punctuation">:</span>
     size <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>dataloader<span class="token punctuation">.</span>dataset<span class="token punctuation">)</span>
     <span class="token keyword">for</span> batch<span class="token punctuation">,</span> <span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>dataloader<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -1453,7 +1453,7 @@ F<span class="token punctuation">.</span>one_hot<span class="token punctuation">
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">159.3k</span>&nbsp;字
+                class="white-color">179.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Pathlib, ">
+    <meta name="keywords" content="Python Useful Packages, ">
     <meta name="description" content=" ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Pathlib | </title>
+    <title>Python Useful Packages | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Pathlib</h1>
+                    <h1 class="description center-align post-title">Python Useful Packages</h1>
                 </div>
             </div>
         </div>
@@ -370,8 +370,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Pathlib/">
-                                <span class="chip bg-color">Pathlib</span>
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
                             </a>
                         
                     </div>
@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    425
+                    765
                 </div>
                 
 
@@ -437,7 +437,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Pathlib"><a href="#Pathlib" class="headerlink" title="Pathlib"></a>Pathlib</h1><h2 id="取路径"><a href="#取路径" class="headerlink" title="取路径"></a>取路径</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pathlib <span class="token keyword">import</span> Path
+                <h1 id="Python-Useful-Packages"><a href="#Python-Useful-Packages" class="headerlink" title="Python Useful Packages"></a>Python Useful Packages</h1><h2 id="pathlib"><a href="#pathlib" class="headerlink" title="pathlib"></a>pathlib</h2><h3 id="取路径"><a href="#取路径" class="headerlink" title="取路径"></a>取路径</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pathlib <span class="token keyword">import</span> Path
 
 <span class="token comment"># 当前工作目录</span>
 Path<span class="token punctuation">.</span>cwd<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -450,7 +450,7 @@ Path<span class="token punctuation">(</span><span class="token string">'abc/file
 
 <span class="token comment"># 获取绝对路径</span>
 Path<span class="token punctuation">(</span><span class="token string">'abc/file.py'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>resolve<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="获取路径组成部分"><a href="#获取路径组成部分" class="headerlink" title="获取路径组成部分"></a>获取路径组成部分</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">file</span> <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">'abc/file.py'</span><span class="token punctuation">)</span>
+<h3 id="获取路径组成部分"><a href="#获取路径组成部分" class="headerlink" title="获取路径组成部分"></a>获取路径组成部分</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">file</span> <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">'abc/file.py'</span><span class="token punctuation">)</span>
 
 <span class="token comment"># 文件名</span>
 <span class="token builtin">file</span><span class="token punctuation">.</span>name
@@ -469,7 +469,7 @@ Path<span class="token punctuation">(</span><span class="token string">'abc/file
 <span class="token builtin">file</span><span class="token punctuation">.</span>parents<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>	<span class="token comment"># 上级 abc</span>
 <span class="token builtin">file</span><span class="token punctuation">.</span>parents<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>	<span class="token comment"># 上上级 .</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>对 <code>file</code> 获得父级目录时，仅对所输入的字符串进行操作 <code>abc/file.py</code>，如果想要获得绝对路径下的父级目录，请先使用 <code>.resolve()</code> 获得绝对目录</p>
-<h2 id="子路径扫描"><a href="#子路径扫描" class="headerlink" title="子路径扫描"></a>子路径扫描</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">path <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span>
+<h3 id="子路径扫描"><a href="#子路径扫描" class="headerlink" title="子路径扫描"></a>子路径扫描</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">path <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span>
 
 <span class="token comment"># 遍历目录下的所有文件/子目录, 但不会递归遍历子目录</span>
 files <span class="token operator">=</span> <span class="token punctuation">[</span>f <span class="token keyword">for</span> f <span class="token keyword">in</span> path<span class="token punctuation">.</span>iterdir<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
@@ -478,12 +478,12 @@ files <span class="token operator">=</span> <span class="token punctuation">[</s
 files <span class="token operator">=</span> <span class="token punctuation">[</span>f <span class="token keyword">for</span> f <span class="token keyword">in</span> path<span class="token punctuation">.</span>glob<span class="token punctuation">(</span><span class="token string">'*.txt'</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
 <span class="token comment"># 子目录递归查询</span>
 files <span class="token operator">=</span> <span class="token punctuation">[</span>f <span class="token keyword">for</span> f <span class="token keyword">in</span> path<span class="token punctuation">.</span>rglob<span class="token punctuation">(</span><span class="token string">'*.txt'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="路径拼接"><a href="#路径拼接" class="headerlink" title="路径拼接"></a>路径拼接</h2><p>重载除法算符，非常好用👍</p>
+<h3 id="路径拼接"><a href="#路径拼接" class="headerlink" title="路径拼接"></a>路径拼接</h3><p>重载除法算符，非常好用👍</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">path <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span>
 new_file <span class="token operator">=</span> <span class="token builtin">file</span> <span class="token operator">/</span> <span class="token string">'dir'</span> <span class="token operator">/</span> <span class="token string">'file.txt'</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>new_file<span class="token punctuation">)</span>
 <span class="token comment"># ./dir/file.txt</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="路径判断"><a href="#路径判断" class="headerlink" title="路径判断"></a>路径判断</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">file</span> <span class="token operator">=</span> Path<span class="token punctuation">(</span>any_str<span class="token punctuation">)</span>
+<h3 id="路径判断"><a href="#路径判断" class="headerlink" title="路径判断"></a>路径判断</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">file</span> <span class="token operator">=</span> Path<span class="token punctuation">(</span>any_str<span class="token punctuation">)</span>
 
 <span class="token comment"># 是否为文件</span>
 <span class="token builtin">file</span><span class="token punctuation">.</span>is_file<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -493,7 +493,7 @@ new_file <span class="token operator">=</span> <span class="token builtin">file<
 
 <span class="token comment"># 是否存在</span>
 <span class="token builtin">file</span><span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">file</span> <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">'hello.txt'</span><span class="token punctuation">)</span>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">file</span> <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">'hello.txt'</span><span class="token punctuation">)</span>
 
 <span class="token comment"># 创建文件 touch</span>
 <span class="token builtin">file</span><span class="token punctuation">.</span>touch<span class="token punctuation">(</span>exist_ok<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
@@ -519,7 +519,63 @@ path<span class="token punctuation">.</span>mkdir<span class="token punctuation"
 
 <span class="token comment"># 删除目录</span>
 <span class="token comment"># 一次只能删除一级目录, 且目录必须为空</span>
-path<span class="token punctuation">.</span>rmdir<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+path<span class="token punctuation">.</span>rmdir<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 其实 pathlib 的功能并不是为了删除文件</span>
+<span class="token comment"># 可以使用下面的方法删除文件和目录</span>
+<span class="token keyword">import</span> shutil
+<span class="token keyword">import</span> os
+os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>file_path<span class="token punctuation">)</span>
+shutil<span class="token punctuation">.</span>rmtree<span class="token punctuation">(</span>dir_path<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>下面写一个简单的代码，因为有时候想要删除 pycache &amp; gnu.so 文件，把这个文件放在 root dir 就可以了</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># clean pycache &amp; gnu.so</span>
+<span class="token keyword">from</span> pathlib <span class="token keyword">import</span> Path
+<span class="token keyword">import</span> shutil<span class="token punctuation">,</span> os
+delete_file <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'__pycache__'</span><span class="token punctuation">,</span> <span class="token string">'*gnu.so'</span><span class="token punctuation">]</span>
+root_dir <span class="token operator">=</span> Path<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">.</span>parent
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'root dir: </span><span class="token interpolation"><span class="token punctuation">{</span>root_dir<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> delete_file<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> item <span class="token keyword">in</span> root_dir<span class="token punctuation">.</span>rglob<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> item<span class="token punctuation">.</span>is_dir<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            shutil<span class="token punctuation">.</span>rmtree<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'deleting </span><span class="token interpolation"><span class="token punctuation">{</span>item<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="tqdm"><a href="#tqdm" class="headerlink" title="tqdm"></a>tqdm</h2><p>参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/163613814">zhihu</a></p>
+<p>tqdm 主要有两种使用方式：</p>
+<ol>
+<li><p>基于迭代对象，你可以把 tqdm 当成是一个装饰器，不影响原来迭代对象的使用</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> tqdm
+<span class="token keyword">import</span> time
+dic <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> item <span class="token keyword">in</span> tqdm<span class="token punctuation">(</span>dic<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>手动进行更新</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>dic<span class="token punctuation">)</span>
+<span class="token keyword">for</span> item <span class="token keyword">in</span> dic<span class="token punctuation">:</span>
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+    pbar<span class="token punctuation">.</span>update<span class="token punctuation">(</span>n<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>手动更新还能有更多的功能</p>
+<ol>
+<li><code>pbar.set_description(desc)</code></li>
+<li><code>pbat.set_postfix(dict)</code></li>
+<li><code>pbar.refresh()</code> 强制更新</li>
+</ol>
+</li>
+</ol>
+<p>除此之外还经常使用 trange 来快速创建</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> trange
+pbar <span class="token operator">=</span> trange<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+tbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span>	<span class="token comment"># 不可迭代，仅支持手动更新</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>同时如果有嵌套进度条的话需要指定 <code>leave</code> 参数，这样在循环完成后进度条不会留在 shell 输出</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">with</span> trange<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> leave<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span> <span class="token keyword">as</span> tbar<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> tbar<span class="token punctuation">:</span>
+        pbar <span class="token operator">=</span> trange<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> leave<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> t <span class="token keyword">in</span> pbar<span class="token punctuation">:</span>
+            time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="tensorboard"><a href="#tensorboard" class="headerlink" title="tensorboard"></a>tensorboard</h2><p>TODO</p>
 
                 
             </div>
@@ -584,8 +640,8 @@ path<span class="token punctuation">.</span>rmdir<span class="token punctuation"
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Pathlib/">
-                                    <span class="chip bg-color">Pathlib</span>
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
                                 </a>
                             
                         </div>
@@ -1009,7 +1065,7 @@ path<span class="token punctuation">.</span>rmdir<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">159.3k</span>&nbsp;字
+                class="white-color">179.8k</span>&nbsp;字
             
             <span id="sitetime"></span>
             
